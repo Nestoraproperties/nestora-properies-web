@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.92, maximum-scale=1.0">
   <title>Nestora Properties | Exclusive Kerala Real Estate</title>
   
-  <!-- App Icon & Manifest Data -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ea580c'%3E%3Cpath d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' stroke='%23f59e0b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
   
   <script src="https://cdn.tailwindcss.com"></script>
@@ -22,16 +21,12 @@
 </head>
 <body class="bg-[#f8fafc] text-slate-900 antialiased min-h-screen flex flex-col">
 
-  <!-- ========================================== -->
-  <!-- 1. PUBLIC VIEW & DEDICATED DETAILS        -->
-  <!-- ========================================== -->
+  <!-- 1. PUBLIC VIEW & DEDICATED DETAILS -->
   <div id="publicFlowContainer" class="flex-1 flex flex-col">
     
     <!-- ROYAL DARK BRAND HEADER -->
     <header class="bg-[#0b0f19] border-b border-slate-800/80 px-4 py-3 sticky top-0 z-30 shadow-md">
       <div class="max-w-4xl mx-auto flex items-center justify-between">
-        
-        <!-- LUXURY LOGO EMBLEM -->
         <div class="flex items-center gap-3 cursor-pointer" onclick="closeDetailsPage()">
           <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-600 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-orange-600/30">
             N
@@ -60,15 +55,15 @@
         </span>
         <h1 class="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight leading-tight">
           Nestora Properties
-          <span class="block text-base sm:text-lg font-bold text-orange-600 mt-0.5">Verified Properties in Aluva, Ernakulam</span>
+          <span class="block text-base sm:text-lg font-bold text-orange-600 mt-0.5">Verified Properties in Ernakulam & Across Kerala</span>
         </h1>
         <p class="text-xs text-slate-600 leading-relaxed font-medium max-w-2xl">
-          Specializing in residential plots, premium houses, villas, and commercial land across Aluva, Ernakulam and nearby localities in Kerala.
+          Specializing in residential plots, premium houses, villas, and commercial land across Aluva, Ernakulam and prime investment corridors in Kerala.
         </p>
         <div class="flex flex-wrap gap-x-4 gap-y-1.5 pt-1 text-[11px] font-bold text-slate-700">
           <span class="flex items-center gap-1 text-emerald-700">✓ Verified Legal Titles</span>
           <span class="flex items-center gap-1 text-emerald-700">✓ Direct Owner / Agent Listings</span>
-          <span class="flex items-center gap-1 text-slate-500">📍 Aluva • Perumbavoor • Kalamassery</span>
+          <span class="flex items-center gap-1 text-slate-500">📍 Ernakulam District • Across Kerala</span>
         </div>
       </div>
 
@@ -79,7 +74,6 @@
           <input type="text" id="searchInput" oninput="applyFilters()" placeholder="Search by locality, title, ID (e.g. Desom, Villa, NP-001)..." class="w-full bg-slate-50 border border-slate-200/80 rounded-xl pl-10 pr-4 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-orange-500 font-medium">
         </div>
 
-        <!-- CATEGORY CHIPS (ROUNDED PILLS) -->
         <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1" id="categoryFilterBar">
           <button onclick="setCategoryFilter('all')" class="cat-btn bg-slate-950 text-white px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap shadow-sm" data-cat="all">All Types</button>
           <button onclick="setCategoryFilter('Residential Land')" class="cat-btn bg-white border border-slate-200 text-slate-700 px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap hover:bg-slate-50 transition" data-cat="Residential Land">Residential Land</button>
@@ -94,7 +88,7 @@
         <span id="publicListingCount">Showing listings...</span>
       </div>
 
-      <!-- PROPERTY POSTER CARDS GRID (EXACT POSTER CARD DESIGN) -->
+      <!-- PROPERTY POSTER CARDS GRID -->
       <div id="propertiesGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-1"></div>
     </div>
 
@@ -210,12 +204,8 @@
     </div>
   </div>
 
-
-  <!-- ========================================== -->
-  <!-- 2. DEDICATED ADMIN CONTROL CENTER          -->
-  <!-- ========================================== -->
+  <!-- 2. DEDICATED ADMIN CONTROL CENTER -->
   <div id="adminContainer" class="hidden min-h-screen flex-col bg-[#f8fafc] text-slate-900 pb-16">
-    
     <header class="bg-white border-b border-slate-200/80 px-4 py-3 sticky top-0 z-30 shadow-sm">
       <div class="max-w-4xl mx-auto flex items-center justify-between">
         <div class="flex items-center gap-2.5">
@@ -239,7 +229,6 @@
         </div>
       </div>
 
-      <!-- Navigation Tabs -->
       <div class="max-w-4xl mx-auto flex gap-6 mt-3 border-t border-slate-100 pt-2 text-xs font-bold">
         <button onclick="switchAdminTab('overview')" id="tabBtnOverview" class="text-orange-600 border-b-2 border-orange-600 pb-1.5">⊞ Overview</button>
         <button onclick="switchAdminTab('properties')" id="tabBtnProps" class="text-slate-500 pb-1.5">🏢 Properties</button>
@@ -255,7 +244,6 @@
         <button onclick="switchAdminTab('form')" class="bg-orange-600 hover:bg-orange-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition shadow-md">+ Add New Property</button>
       </div>
 
-      <!-- Stats Overview -->
       <div id="overviewStatsSection" class="grid grid-cols-2 gap-3">
         <div class="bg-white border border-slate-200/80 p-4 rounded-2xl shadow-sm"><span class="text-[10px] font-bold text-slate-400 uppercase">Total Inventory</span><div class="text-2xl font-black text-slate-900 my-1" id="statTotal">0</div></div>
         <div class="bg-white border border-slate-200/80 p-4 rounded-2xl shadow-sm"><span class="text-[10px] font-bold text-emerald-700 uppercase">Available</span><div class="text-2xl font-black text-emerald-600 my-1" id="statActive">0</div></div>
@@ -263,7 +251,6 @@
         <div class="bg-white border border-slate-200/80 p-4 rounded-2xl shadow-sm"><span class="text-[10px] font-bold text-slate-400 uppercase">Sold</span><div class="text-2xl font-black text-slate-900 my-1" id="statSold">0</div></div>
       </div>
 
-      <!-- Directory Table -->
       <div id="propertyTableSection" class="bg-white border border-slate-200/80 rounded-2xl p-4 shadow-sm">
         <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">Property Directory</h3>
         <div class="overflow-x-auto">
@@ -283,7 +270,7 @@
         </div>
       </div>
 
-      <!-- COMPLETE COMPREHENSIVE ADD PROPERTY FORM (WITH AUTOMATIC ID) -->
+      <!-- COMPLETE ADD PROPERTY FORM -->
       <div id="propertyFormSection" class="hidden bg-white border border-slate-200/80 rounded-3xl p-5 sm:p-7 shadow-sm space-y-5">
         <div class="border-b border-slate-100 pb-3">
           <h2 class="text-base sm:text-lg font-black text-slate-900">Add New Property</h2>
@@ -291,7 +278,6 @@
         </div>
 
         <form id="propertyForm" onsubmit="handleFormSubmit(event)" class="space-y-5">
-          
           <!-- 1. BASIC INFORMATION -->
           <div class="space-y-3">
             <div class="text-[11px] font-extrabold text-orange-600 uppercase tracking-wider border-b border-orange-100 pb-1">1. BASIC INFORMATION</div>
@@ -372,8 +358,9 @@
             <div class="text-[11px] font-extrabold text-orange-600 uppercase tracking-wider border-b border-orange-100 pb-1">3. SPECIFICATIONS & PRICING</div>
             
             <div>
-              <label class="block text-xs font-bold text-slate-700 mb-1">Price (in INR ₹) *</label>
-              <input type="number" id="propPrice" placeholder="e.g. 9600000 (96 Lakhs)" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-orange-500 font-medium">
+              <label class="block text-xs font-bold text-slate-700 mb-1">Price (Exact Number in INR ₹) *</label>
+              <input type="number" id="propPrice" placeholder="e.g. 9600000" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-orange-500 font-medium">
+              <span class="text-[10px] text-slate-400 mt-1 block">The app will automatically format this into Lakhs or Crores.</span>
             </div>
 
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -385,8 +372,9 @@
                 <label class="block text-xs font-bold text-slate-700 mb-1">Area Unit</label>
                 <select id="propAreaUnit" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium">
                   <option value="Cent">Cent</option>
-                  <option value="Sq.Ft">Sq.Ft</option>
                   <option value="Acre">Acre</option>
+                  <option value="Hectare">Hectare</option>
+                  <option value="Sq.Ft">Sq.Ft</option>
                 </select>
               </div>
               <div class="col-span-2 sm:col-span-1">
@@ -420,7 +408,6 @@
           <!-- 4. PROPERTY PHOTOS & MEDIA -->
           <div class="space-y-3">
             <div class="text-[11px] font-extrabold text-orange-600 uppercase tracking-wider border-b border-orange-100 pb-1">4. PROPERTY PHOTOS & MEDIA</div>
-            
             <div>
               <label class="block text-xs font-bold text-slate-700 mb-1">Image URL (High Quality)</label>
               <input type="url" id="propImageUrl" required placeholder="https://images.unsplash.com/..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs">
@@ -477,14 +464,12 @@
     </div>
   </div>
 
-  <!-- ========================================================= -->
-  <!-- 3. BRAND NEW LUXURY JPEG POSTER (WHITE / ORANGE ELEGANT) -->
-  <!-- ========================================================= -->
+  <!-- 3. BRAND NEW LUXURY JPEG POSTER (OPTIMIZED 4:5 WHATSAPP/INSTA BROCHURE RATIO) -->
   <div id="flyerContainer" style="position: absolute; left: -9999px; top: -9999px;">
-    <div id="flyerPoster" style="width: 600px; height: 750px; background: #ffffff; color: #0f172a; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; font-family: 'Inter', sans-serif; box-sizing: border-box; border: 1px solid #e2e8f0;">
+    <div id="flyerPoster" style="width: 640px; height: 800px; background: #ffffff; color: #0f172a; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; font-family: 'Inter', sans-serif; box-sizing: border-box; border: 1px solid #e2e8f0;">
       
-      <!-- Brand Header -->
-      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 16px;">
+      <!-- Poster Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 14px;">
         <div style="display: flex; align-items: center; gap: 12px;">
           <div style="width: 44px; height: 44px; background: #020617; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
@@ -492,7 +477,7 @@
             </svg>
           </div>
           <div>
-            <div style="font-size: 18px; font-weight: 900; color: #0f172a; letter-spacing: -0.5px; line-height: 1.1;">NESTORA PROPERTIES</div>
+            <div style="font-size: 19px; font-weight: 900; color: #0f172a; letter-spacing: -0.5px; line-height: 1.1;">NESTORA PROPERTIES</div>
             <div style="font-size: 10px; font-weight: 800; color: #ea580c; letter-spacing: 1.5px; text-transform: uppercase;">VERIFIED REAL ESTATE SOLUTIONS</div>
           </div>
         </div>
@@ -501,50 +486,50 @@
         </div>
       </div>
 
-      <!-- Property Photo Card -->
-      <div style="margin: 18px 0; border-radius: 20px; overflow: hidden; height: 320px; position: relative; background: #e2e8f0; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+      <!-- Property Photo Frame -->
+      <div style="margin: 16px 0; border-radius: 20px; overflow: hidden; height: 350px; position: relative; background: #e2e8f0; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
         <img id="flyerImg" src="" crossorigin="anonymous" style="width: 100%; height: 100%; object-fit: cover;">
-        <div id="flyerCatBadge" style="position: absolute; top: 16px; left: 16px; background: #ea580c; color: #ffffff; font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 2px 8px rgba(234,88,12,0.4);">
+        <div id="flyerCatBadge" style="position: absolute; top: 16px; left: 16px; background: #ea580c; color: #ffffff; font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.5px;">
           RESIDENTIAL
         </div>
-        <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(15,23,42,0.85); backdrop-filter: blur(8px); color: #34d399; font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 9999px;">
+        <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(15,23,42,0.88); backdrop-filter: blur(8px); color: #34d399; font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 9999px;">
           ✓ VERIFIED ASSET
         </div>
       </div>
 
-      <!-- Details & Specs Strip -->
+      <!-- Details Section -->
       <div>
-        <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: #ea580c; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">
+        <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: #ea580c; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">
           <span>📍</span> <span id="flyerLocation">ALUVA, ERNAKULAM</span>
         </div>
-        <div id="flyerTitle" style="font-size: 22px; font-weight: 900; color: #0f172a; line-height: 1.3; margin-bottom: 14px; height: 58px; overflow: hidden;">
+        <div id="flyerTitle" style="font-size: 22px; font-weight: 900; color: #0f172a; line-height: 1.25; margin-bottom: 14px; height: 55px; overflow: hidden;">
           Property Title
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px;">
-          <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 12px; border-radius: 12px;">
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px;">
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 12px; border-radius: 12px; text-align: center;">
             <div style="font-size: 9px; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Area / Size</div>
-            <div id="flyerSize" style="font-size: 13px; font-weight: 800; color: #1e293b; margin-top: 2px;">12 Cent</div>
+            <div id="flyerSize" style="font-size: 14px; font-weight: 800; color: #1e293b; margin-top: 2px;">12 Cent</div>
           </div>
-          <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 12px; border-radius: 12px;">
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 12px; border-radius: 12px; text-align: center;">
             <div style="font-size: 9px; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Road Access</div>
             <div id="flyerRoad" style="font-size: 13px; font-weight: 800; color: #1e293b; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Tar Road</div>
           </div>
-          <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 12px; border-radius: 12px;">
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 12px; border-radius: 12px; text-align: center;">
             <div style="font-size: 9px; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Ownership</div>
             <div style="font-size: 13px; font-weight: 800; color: #16a34a; margin-top: 2px;">Clear Title</div>
           </div>
         </div>
 
-        <!-- Footer Strip -->
-        <div style="display: flex; justify-content: space-between; align-items: center; background: #0f172a; padding: 16px 20px; border-radius: 16px; color: #ffffff;">
+        <!-- Footer Banner -->
+        <div style="display: flex; justify-content: space-between; align-items: center; background: #0b0f19; padding: 16px 20px; border-radius: 16px; color: #ffffff;">
           <div>
             <div style="font-size: 10px; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Guide Price</div>
             <div id="flyerPrice" style="font-size: 24px; font-weight: 900; color: #f97316; line-height: 1.1;">₹ 0</div>
           </div>
           <div style="text-align: right;">
             <div style="font-size: 10px; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Direct Desk / WhatsApp</div>
-            <div style="font-size: 14px; font-weight: 800; color: #ffffff; margin-top: 2px;">+91 99464 46793</div>
+            <div style="font-size: 15px; font-weight: 800; color: #ffffff; margin-top: 2px;">+91 99464 46793</div>
           </div>
         </div>
       </div>
@@ -552,10 +537,7 @@
     </div>
   </div>
 
-
-  <!-- ========================================== -->
-  <!-- 4. JAVASCRIPT ENGINE & LOGIC               -->
-  <!-- ========================================== -->
+  <!-- 4. JAVASCRIPT ENGINE & LOGIC -->
   <script>
     const SUPABASE_URL = "https://mphtlexdhzyjuxpncygf.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_K5hGWJiNHPnl2_MpCUirqg_x-y5RWrJ"; 
@@ -590,9 +572,19 @@
       window.scrollTo(0, 0);
     }
 
-    function formatINR(amount) {
-      if (!amount) return "Price on Request";
-      return "₹ " + Number(amount).toLocaleString('en-IN');
+    // AUTOMATIC REAL ESTATE PRICE FORMATTER (LAKHS / CRORES)
+    function formatINR(val) {
+      if (!val || isNaN(val)) return "Price on Request";
+      const num = Number(val);
+      if (num >= 10000000) {
+        const cr = (num / 10000000).toFixed(2).replace(/\.00$/, '');
+        return `₹ ${cr} Cr`;
+      } else if (num >= 100000) {
+        const lakhs = (num / 100000).toFixed(2).replace(/\.00$/, '');
+        return `₹ ${lakhs} Lakhs`;
+      } else {
+        return "₹ " + num.toLocaleString('en-IN');
+      }
     }
 
     // AUTOMATIC PROPERTY ID GENERATOR
@@ -619,7 +611,6 @@
         renderPublicProperties();
         if (isAdminLoggedIn) renderAdminDashboard();
         
-        // Update Auto ID in Form
         const autoRefInput = document.getElementById('propRef');
         if (autoRefInput) autoRefInput.value = generateNextPropertyId();
       } catch (err) {
@@ -655,7 +646,6 @@
         return;
       }
 
-      // RENDER EXACT POSTER CARD DESIGN
       grid.innerHTML = list.map((p, index) => {
         const isSold = p.status === 'sold';
         const refTag = p.reference_code || 'REF: ' + String(index + 1).padStart(2, '0');
@@ -664,8 +654,6 @@
 
         return `
           <div onclick="openDedicatedDetails('${p.id}')" class="bg-white rounded-[24px] overflow-hidden border border-slate-200/90 shadow-[0_2px_10px_rgba(0,0,0,0.03)] hover:shadow-lg transition duration-300 cursor-pointer flex flex-col justify-between">
-            
-            <!-- Poster Card Top Header -->
             <div class="px-4 py-3 flex items-center justify-between border-b border-slate-100 bg-white">
               <div class="flex items-center gap-2">
                 <div class="w-8 h-8 rounded-lg bg-slate-950 flex items-center justify-center">
@@ -679,7 +667,6 @@
               <span class="bg-slate-50 border border-slate-200 text-slate-600 text-[10px] font-mono font-extrabold px-2 py-0.5 rounded-md">${refTag}</span>
             </div>
 
-            <!-- Poster Card Main Image with Verified Badge -->
             <div class="relative h-56 bg-slate-100 overflow-hidden mx-3 mt-3 rounded-2xl">
               <img src="${p.image_url}" class="w-full h-full object-cover ${isSold ? 'grayscale' : ''}" alt="${p.title}">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
@@ -689,7 +676,6 @@
               </div>
             </div>
 
-            <!-- Location & Title -->
             <div class="p-4 space-y-3">
               <div>
                 <div class="text-[11px] font-extrabold text-orange-600 uppercase tracking-wider mb-0.5 flex items-center gap-1">
@@ -698,7 +684,6 @@
                 <h3 class="text-base font-black text-slate-900 leading-snug truncate">${p.title}</h3>
               </div>
 
-              <!-- 3 Column Specs Box (Screen Exact) -->
               <div class="grid grid-cols-3 gap-2 text-center pt-1">
                 <div class="bg-slate-50 border border-slate-100 p-2 rounded-xl">
                   <span class="block text-[8px] font-bold text-slate-400 uppercase">AREA / SIZE</span>
@@ -715,7 +700,6 @@
               </div>
             </div>
 
-            <!-- Poster Card Dark Bottom Price & Desk Banner -->
             <div class="bg-[#0b0f19] mx-3 mb-3 p-3 rounded-2xl flex items-center justify-between text-white shadow-sm">
               <div>
                 <span class="text-[8px] font-bold text-slate-400 uppercase tracking-wider block">GUIDE PRICE</span>
@@ -726,7 +710,6 @@
                 <span class="text-xs font-extrabold text-white block mt-0.5">+91 99464 46793</span>
               </div>
             </div>
-
           </div>
         `;
       }).join('');
@@ -888,7 +871,7 @@
       }
     }
 
-    // ACCURATE LUXURY HIGH-QUALITY JPEG POSTER ENGINE
+    // LUXURY HIGH-QUALITY JPEG POSTER ENGINE (WHATSAPP BROCHURE SPEC)
     async function downloadFlyer(id) {
       const p = allProperties.find(item => item.id === id);
       if (!p) return;
@@ -952,7 +935,6 @@
       switchToPublicView();
     }
 
-    // Set initial state
     history.replaceState({ view: 'catalogue' }, '', window.location.pathname);
     fetchProperties();
   </script>
