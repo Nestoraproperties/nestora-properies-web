@@ -7,7 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
     .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -16,192 +16,215 @@
 </head>
 <body class="bg-slate-100 text-slate-900 antialiased min-h-screen flex flex-col">
 
-  <!-- TOP HEADER -->
-  <header class="bg-white border-b border-slate-200 px-4 py-3 sticky top-0 z-30 shadow-sm">
-    <div class="max-w-4xl mx-auto flex items-center justify-between">
-      <div class="flex items-center gap-2.5 cursor-pointer" onclick="closeDetailsPage()">
-        <div class="w-9 h-9 rounded-xl bg-orange-600 text-white flex items-center justify-center font-black text-base shadow-sm">
-          N
+  <!-- ========================================== -->
+  <!-- 1. PUBLIC VIEW & DEDICATED DETAILS        -->
+  <!-- ========================================== -->
+  <div id="publicFlowContainer" class="flex-1 flex flex-col">
+    
+    <!-- BRAND PUBLIC HEADER -->
+    <header class="bg-white border-b border-slate-200 px-4 py-3 sticky top-0 z-30 shadow-sm">
+      <div class="max-w-4xl mx-auto flex items-center justify-between">
+        
+        <!-- LUXURY REAL ESTATE SVG EMBLEM LOGO -->
+        <div class="flex items-center gap-3 cursor-pointer" onclick="closeDetailsPage()">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-slate-950 via-slate-900 to-orange-600 flex items-center justify-center text-white shadow-md shadow-orange-950/20">
+            <svg class="w-6 h-6 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M4 21V10l8-7 8 7v11M9 21v-6a3 3 0 016 0v6M9 9h.01M15 9h.01M9 13h.01M15 13h.01" />
+            </svg>
+          </div>
+          <div>
+            <span class="text-sm font-black tracking-tight text-slate-900 block leading-tight">NESTORA PROPERTIES</span>
+            <span class="text-[10px] font-bold text-orange-600 tracking-wider uppercase">Direct Brokerage • Kerala</span>
+          </div>
         </div>
-        <div>
-          <span class="text-sm font-black text-slate-900 block leading-tight">Nestora Properties</span>
-          <span class="text-[10px] font-semibold text-slate-500">Aluva, Ernakulam, Kerala, India</span>
+
+        <div class="flex items-center gap-2">
+          <a href="tel:9946446793" class="inline-flex items-center gap-1.5 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1.5 rounded-xl border border-slate-200 transition">
+            <svg class="w-3.5 h-3.5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            Call
+          </a>
+          <a href="https://wa.me/919946446793" target="_blank" class="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow-sm transition">
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+            WhatsApp
+          </a>
+          <button onclick="handleAdminButtonClick()" class="inline-flex items-center gap-1.5 bg-slate-950 hover:bg-slate-800 text-white text-xs font-bold px-3 py-1.5 rounded-xl transition ml-1 shadow-sm">
+            <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            Admin
+          </button>
         </div>
       </div>
-      <div class="flex items-center gap-2">
-        <a href="tel:9946446793" class="inline-flex items-center gap-1 bg-slate-50 text-slate-700 text-xs font-bold px-3 py-1.5 rounded-xl border border-slate-200">
-          📞 Call
-        </a>
-        <a href="https://wa.me/919946446793" target="_blank" class="inline-flex items-center gap-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow-sm">
-          WhatsApp
-        </a>
-        <button onclick="handleAdminButtonClick()" class="inline-flex items-center gap-1 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-3 py-1.5 rounded-xl ml-1">
-          Admin
+    </header>
+
+    <!-- PUBLIC CATALOGUE -->
+    <div id="publicContainer" class="flex-1 max-w-4xl mx-auto w-full px-4 py-5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4 mb-4">
+        <div>
+          <h1 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Verified Property Assets</h1>
+          <p class="text-xs text-slate-500 mt-0.5" id="publicListingCount">Loading inventory...</p>
+        </div>
+        <div class="w-full sm:w-72">
+          <input type="text" id="searchInput" oninput="applyFilters()" placeholder="Search location, title, ref..." class="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-xs text-slate-800 focus:outline-none focus:border-orange-500 shadow-sm">
+        </div>
+      </div>
+
+      <!-- Filter Chips -->
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-3" id="categoryFilterBar">
+        <button onclick="setCategoryFilter('all')" class="cat-btn bg-slate-900 text-white px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap shadow-sm" data-cat="all">All</button>
+        <button onclick="setCategoryFilter('Residential Land')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Residential Land">Residential Land</button>
+        <button onclick="setCategoryFilter('Villa')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Villa">Villa</button>
+        <button onclick="setCategoryFilter('Apartment')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Apartment">Apartment</button>
+        <button onclick="setCategoryFilter('Commercial')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Commercial">Commercial</button>
+        <button onclick="setCategoryFilter('Plot')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Plot">Plot</button>
+      </div>
+
+      <div id="propertiesGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+    </div>
+
+    <!-- FULL DEDICATED DETAILS PAGE -->
+    <div id="propertyDetailPage" class="hidden flex-1 max-w-2xl mx-auto w-full px-3 py-3 space-y-3 pb-16">
+      <div class="flex items-center justify-between text-xs font-bold text-slate-600 px-1">
+        <button onclick="closeDetailsPage()" class="inline-flex items-center gap-1.5 hover:text-slate-900 bg-white border border-slate-200 px-3 py-1.5 rounded-xl shadow-sm">
+          ‹ Back to Catalogue
+        </button>
+        <button onclick="shareActiveProperty()" class="inline-flex items-center gap-1.5 hover:text-slate-900 bg-white border border-slate-200 px-3 py-1.5 rounded-xl shadow-sm">
+          Share
         </button>
       </div>
-    </div>
-  </header>
 
-  <!-- 1. PUBLIC CATALOGUE VIEW -->
-  <div id="publicContainer" class="flex-1 max-w-4xl mx-auto w-full px-4 py-5">
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4 mb-4">
-      <div>
-        <h1 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Verified Property Assets</h1>
-        <p class="text-xs text-slate-500 mt-0.5" id="publicListingCount">Loading inventory...</p>
-      </div>
-      <div class="w-full sm:w-72">
-        <input type="text" id="searchInput" oninput="applyFilters()" placeholder="Search location, title, ref..." class="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-xs text-slate-800 focus:outline-none focus:border-orange-500 shadow-sm">
-      </div>
-    </div>
-
-    <!-- Category Filter Chips -->
-    <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-3" id="categoryFilterBar">
-      <button onclick="setCategoryFilter('all')" class="cat-btn bg-slate-900 text-white px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap shadow-sm" data-cat="all">All</button>
-      <button onclick="setCategoryFilter('Residential Land')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Residential Land">Residential Land</button>
-      <button onclick="setCategoryFilter('Villa')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Villa">Villa</button>
-      <button onclick="setCategoryFilter('Apartment')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Apartment">Apartment</button>
-      <button onclick="setCategoryFilter('Commercial')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Commercial">Commercial</button>
-      <button onclick="setCategoryFilter('Plot')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Plot">Plot</button>
-    </div>
-
-    <div id="propertiesGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
-  </div>
-
-  <!-- 2. FULL DEDICATED DETAILS PAGE (ELEGANT LAYOUT) -->
-  <div id="propertyDetailPage" class="hidden flex-1 max-w-2xl mx-auto w-full px-3 py-3 space-y-3 pb-16">
-    <div class="flex items-center justify-between text-xs font-bold text-slate-600 px-1">
-      <button onclick="closeDetailsPage()" class="inline-flex items-center gap-1.5 hover:text-slate-900 bg-white border border-slate-200 px-3 py-1.5 rounded-xl shadow-sm">
-        ‹ Back to Catalogue
-      </button>
-      <button onclick="shareActiveProperty()" class="inline-flex items-center gap-1.5 hover:text-slate-900 bg-white border border-slate-200 px-3 py-1.5 rounded-xl shadow-sm">
-        Share
-      </button>
-    </div>
-
-    <!-- Main Banner Image -->
-    <div class="relative rounded-3xl overflow-hidden bg-slate-900 h-60 sm:h-72 shadow-md">
-      <img id="detailImg" src="" class="w-full h-full object-cover">
-      <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
-      <div class="absolute top-3 left-3 flex gap-1.5">
-        <span class="bg-emerald-600 text-white font-black text-[10px] px-2.5 py-0.5 rounded-full uppercase shadow" id="detailStatusBadge">AVAILABLE</span>
-        <span class="bg-amber-500 text-slate-950 font-black text-[10px] px-2.5 py-0.5 rounded-full uppercase shadow" id="detailFeaturedBadge">★ Featured</span>
-      </div>
-      <span class="absolute top-3 right-3 bg-slate-900/80 text-white font-mono text-[10px] font-bold px-2 py-0.5 rounded-lg border border-white/20" id="detailRef">RE-001</span>
-      <span class="absolute bottom-3 left-3 bg-white text-slate-900 text-[11px] font-extrabold px-3 py-1 rounded-xl shadow" id="detailTypeChip">Residential Land</span>
-    </div>
-
-    <!-- Pricing Card -->
-    <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3">
-      <div>
-        <div class="text-[10px] font-extrabold text-orange-600 uppercase tracking-wider mb-1" id="detailSubRef">PROPERTY ID: RE-001</div>
-        <h2 class="text-lg sm:text-xl font-black text-slate-900 leading-snug" id="detailTitle">Title</h2>
-        <div class="text-xs text-slate-500 flex items-center gap-1 mt-1 font-medium">
-          <span>📍</span> <span id="detailLocation">Location</span>
+      <div class="relative rounded-3xl overflow-hidden bg-slate-900 h-60 sm:h-72 shadow-md">
+        <img id="detailImg" src="" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+        <div class="absolute top-3 left-3 flex gap-1.5">
+          <span class="bg-emerald-600 text-white font-black text-[10px] px-2.5 py-0.5 rounded-full uppercase shadow" id="detailStatusBadge">AVAILABLE</span>
+          <span class="bg-amber-500 text-slate-950 font-black text-[10px] px-2.5 py-0.5 rounded-full uppercase shadow" id="detailFeaturedBadge">★ Featured</span>
         </div>
+        <span class="absolute top-3 right-3 bg-slate-900/80 text-white font-mono text-[10px] font-bold px-2 py-0.5 rounded-lg border border-white/20" id="detailRef">RE-001</span>
+        <span class="absolute bottom-3 left-3 bg-white text-slate-900 text-[11px] font-extrabold px-3 py-1 rounded-xl shadow" id="detailTypeChip">Residential Land</span>
       </div>
 
-      <div class="pt-2 border-t border-slate-100 flex items-baseline justify-between">
+      <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3">
         <div>
-          <div class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight" id="detailPrice">₹ 0</div>
-          <div class="text-xs text-slate-400 font-semibold" id="detailSize">Size details</div>
-        </div>
-        <div id="detailMapsBtnWrap"></div>
-      </div>
-
-      <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100 text-xs">
-        <div class="bg-slate-50 border border-slate-100 p-3 rounded-xl">
-          <span class="block text-[9px] uppercase font-bold text-slate-400">Land Area</span>
-          <span class="font-extrabold text-slate-800 text-sm" id="detailBoxArea">-</span>
-        </div>
-        <div class="bg-slate-50 border border-slate-100 p-3 rounded-xl">
-          <span class="block text-[9px] uppercase font-bold text-slate-400">Property Type</span>
-          <span class="font-extrabold text-slate-800 text-sm" id="detailBoxType">-</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Description -->
-    <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
-      <h3 class="text-xs font-black text-slate-900 uppercase tracking-wider mb-2">Property Description</h3>
-      <p class="text-xs sm:text-sm text-slate-600 leading-relaxed whitespace-pre-line font-medium" id="detailDesc">-</p>
-    </div>
-
-    <!-- Infrastructure & Utilities -->
-    <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3">
-      <h3 class="text-xs font-black text-slate-900 uppercase tracking-wider">Infrastructure & Utilities</h3>
-      <div class="space-y-2.5 text-xs">
-        <div class="flex items-start gap-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
-          <span class="text-base text-orange-500">🛣️</span>
-          <div>
-            <span class="text-[9px] font-bold text-slate-400 uppercase block">Road Access / Width</span>
-            <span class="font-semibold text-slate-800" id="detailRoadAccess">Direct road access</span>
+          <div class="text-[10px] font-extrabold text-orange-600 uppercase tracking-wider mb-1" id="detailSubRef">PROPERTY ID: RE-001</div>
+          <h2 class="text-lg sm:text-xl font-black text-slate-900 leading-snug" id="detailTitle">Title</h2>
+          <div class="text-xs text-slate-500 flex items-center gap-1 mt-1 font-medium">
+            <span>📍</span> <span id="detailLocation">Location</span>
           </div>
         </div>
 
-        <div class="flex items-start gap-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
-          <span class="text-base text-blue-500">💧</span>
+        <div class="pt-2 border-t border-slate-100 flex items-baseline justify-between">
           <div>
-            <span class="text-[9px] font-bold text-slate-400 uppercase block">Water Supply</span>
-            <span class="font-semibold text-slate-800" id="detailWaterSupply">Open well / Municipal pipeline</span>
+            <div class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight" id="detailPrice">₹ 0</div>
+            <div class="text-xs text-slate-400 font-semibold" id="detailSize">Size details</div>
           </div>
+          <div id="detailMapsBtnWrap"></div>
         </div>
 
-        <div class="flex items-start gap-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
-          <span class="text-base text-amber-500">⚡</span>
-          <div>
-            <span class="text-[9px] font-bold text-slate-400 uppercase block">Electricity</span>
-            <span class="font-semibold text-slate-800" id="detailElectricity">KSEB connection point available</span>
+        <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100 text-xs">
+          <div class="bg-slate-50 border border-slate-100 p-3 rounded-xl">
+            <span class="block text-[9px] uppercase font-bold text-slate-400">Land Area</span>
+            <span class="font-extrabold text-slate-800 text-sm" id="detailBoxArea">-</span>
           </div>
-        </div>
-
-        <div class="flex items-start gap-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
-          <span class="text-base text-emerald-500">📄</span>
-          <div>
-            <span class="text-[9px] font-bold text-slate-400 uppercase block">Document Approvals Status</span>
-            <span class="font-semibold text-slate-800" id="detailApprovals">Clear Title & Tax Receipts</span>
+          <div class="bg-slate-50 border border-slate-100 p-3 rounded-xl">
+            <span class="block text-[9px] uppercase font-bold text-slate-400">Property Type</span>
+            <span class="font-extrabold text-slate-800 text-sm" id="detailBoxType">-</span>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Enquiries Desk -->
-    <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3">
-      <div>
-        <span class="text-[9px] font-extrabold text-slate-400 uppercase tracking-wider block">Consultation & Enquiries</span>
-        <h3 class="text-sm font-black text-slate-900 mt-0.5">Interested in this Property?</h3>
-        <p class="text-xs text-slate-500 mt-0.5">Direct contact with Nestora Properties desk.</p>
+      <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+        <h3 class="text-xs font-black text-slate-900 uppercase tracking-wider mb-2">Property Description</h3>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed whitespace-pre-line font-medium" id="detailDesc">-</p>
       </div>
 
-      <div class="space-y-2 pt-1">
-        <a id="detailWhatsappBtn" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 shadow-sm transition">
-          <span>💬 Chat on WhatsApp</span>
-        </a>
-        <a id="detailCallBtn" href="tel:9946446793" class="w-full bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5 transition">
-          <span>📞 Call Desk</span>
-        </a>
+      <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3">
+        <h3 class="text-xs font-black text-slate-900 uppercase tracking-wider">Infrastructure & Utilities</h3>
+        <div class="space-y-2.5 text-xs">
+          <div class="flex items-start gap-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
+            <span class="text-base text-orange-500">🛣️</span>
+            <div>
+              <span class="text-[9px] font-bold text-slate-400 uppercase block">Road Access / Width</span>
+              <span class="font-semibold text-slate-800" id="detailRoadAccess">Direct road access</span>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
+            <span class="text-base text-blue-500">💧</span>
+            <div>
+              <span class="text-[9px] font-bold text-slate-400 uppercase block">Water Supply</span>
+              <span class="font-semibold text-slate-800" id="detailWaterSupply">Open well / Municipal pipeline</span>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
+            <span class="text-base text-amber-500">⚡</span>
+            <div>
+              <span class="text-[9px] font-bold text-slate-400 uppercase block">Electricity</span>
+              <span class="font-semibold text-slate-800" id="detailElectricity">KSEB connection point ready</span>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
+            <span class="text-base text-emerald-500">📄</span>
+            <div>
+              <span class="text-[9px] font-bold text-slate-400 uppercase block">Document Approvals Status</span>
+              <span class="font-semibold text-slate-800" id="detailApprovals">Clear Title & Tax Receipts</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3">
+        <div>
+          <span class="text-[9px] font-extrabold text-slate-400 uppercase tracking-wider block">Consultation & Enquiries</span>
+          <h3 class="text-sm font-black text-slate-900 mt-0.5">Interested in this Property?</h3>
+          <p class="text-xs text-slate-500 mt-0.5">Direct contact with Nestora Properties desk.</p>
+        </div>
+
+        <div class="space-y-2 pt-1">
+          <a id="detailWhatsappBtn" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 shadow-sm transition">
+            <span>💬 Chat on WhatsApp</span>
+          </a>
+          <a id="detailCallBtn" href="tel:9946446793" class="w-full bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5 transition">
+            <span>📞 Call Desk</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- 3. ADMIN DASHBOARD -->
+
+  <!-- ========================================== -->
+  <!-- 2. DEDICATED ADMIN CONTROL CENTER          -->
+  <!-- ========================================== -->
   <div id="adminContainer" class="hidden min-h-screen flex-col bg-slate-100 text-slate-900 pb-16">
-    <header class="bg-white border-b border-slate-200 px-4 py-3 sticky top-0 z-30">
+    
+    <!-- SINGLE CLEAN ADMIN HEADER -->
+    <header class="bg-white border-b border-slate-200 px-4 py-3 sticky top-0 z-30 shadow-sm">
       <div class="max-w-4xl mx-auto flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <div class="w-8 h-8 rounded-lg bg-orange-600 text-white flex items-center justify-center font-bold text-sm">
-            N
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-orange-600 text-white flex items-center justify-center shadow-sm">
+            <svg class="w-5 h-5 text-amber-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
           </div>
           <div>
-            <span class="text-xs font-bold text-slate-900 block leading-tight">Super Admin (Nestora)</span>
-            <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-purple-100 text-purple-700 tracking-wide uppercase">SUPER ADMIN</span>
+            <span class="text-xs font-extrabold text-slate-900 block leading-tight">Super Admin (Nestora)</span>
+            <span class="text-[9px] font-black px-1.5 py-0.5 rounded bg-purple-100 text-purple-700 tracking-wide uppercase">SUPER ADMIN</span>
           </div>
         </div>
+
         <div class="flex items-center gap-2">
-          <button onclick="switchToPublicView()" class="border border-slate-200 text-slate-700 text-xs font-semibold px-2.5 py-1.5 rounded-lg bg-white">Live Catalogue</button>
-          <button onclick="logoutAdmin()" class="text-red-600 border border-red-200 bg-red-50 text-xs font-semibold px-2.5 py-1.5 rounded-lg">Sign Out</button>
+          <button onclick="switchToPublicView()" class="border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-semibold px-2.5 py-1.5 rounded-lg bg-white shadow-sm transition flex items-center gap-1">
+            <span>Live Catalogue</span>
+            <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </button>
+          <button onclick="logoutAdmin()" class="text-red-600 border border-red-200 bg-red-50 hover:bg-red-100 text-xs font-semibold px-2.5 py-1.5 rounded-lg transition">
+            Sign Out
+          </button>
         </div>
       </div>
 
+      <!-- Navigation Tabs -->
       <div class="max-w-4xl mx-auto flex gap-6 mt-3 border-t border-slate-100 pt-2 text-xs font-bold">
         <button onclick="switchAdminTab('overview')" id="tabBtnOverview" class="text-orange-600 border-b-2 border-orange-600 pb-1.5">⊞ Overview</button>
         <button onclick="switchAdminTab('properties')" id="tabBtnProps" class="text-slate-500 pb-1.5">🏢 Properties</button>
@@ -214,7 +237,7 @@
         <span class="bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded-full">🛡️ Real Estate Management Control</span>
         <h2 class="text-lg font-black text-white mt-2 mb-1">Nestora Properties Dashboard</h2>
         <p class="text-xs text-slate-400 mb-3">Add comprehensive property details, specify utilities, and manage listings.</p>
-        <button onclick="switchAdminTab('form')" class="bg-orange-600 text-white text-xs font-bold px-4 py-2 rounded-xl">+ Add New Property</button>
+        <button onclick="switchAdminTab('form')" class="bg-orange-600 hover:bg-orange-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition shadow-md">+ Add New Property</button>
       </div>
 
       <!-- Stats Overview -->
@@ -245,7 +268,7 @@
         </div>
       </div>
 
-      <!-- COMPLETE COMPREHENSIVE ADD PROPERTY FORM (MATCHING YOUR SCREENSHOT) -->
+      <!-- COMPLETE COMPREHENSIVE ADD PROPERTY FORM -->
       <div id="propertyFormSection" class="hidden bg-white border border-slate-200 rounded-3xl p-5 sm:p-7 shadow-sm space-y-5">
         <div class="border-b border-slate-100 pb-3">
           <h2 class="text-base sm:text-lg font-black text-slate-900">Add New Property</h2>
@@ -393,11 +416,11 @@
           <div class="space-y-3">
             <div class="text-[11px] font-extrabold text-orange-600 uppercase tracking-wider border-b border-orange-100 pb-1">5. DESCRIPTION</div>
             <div>
-              <textarea id="propDescription" rows="3" placeholder="Provide a detailed description of the property, road access, distances to landmarks (e.g. Aluva Metro, Airport), soil quality, neighborhood..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-orange-500"></textarea>
+              <textarea id="propDescription" rows="3" placeholder="Provide a detailed description of the property, road access, distances to landmarks..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-orange-500"></textarea>
             </div>
           </div>
 
-          <!-- 6. PROPERTY SPECIFIC CONTACT / CONFIDENTIAL -->
+          <!-- 6. PROPERTY SPECIFIC CONTACT -->
           <div class="bg-amber-50/70 border border-amber-200 rounded-2xl p-4 space-y-3">
             <div class="text-[11px] font-extrabold text-amber-800 uppercase tracking-wider">6. PROPERTY SPECIFIC CONTACT (OWNER / DESK)</div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -423,37 +446,101 @@
     </main>
   </div>
 
-  <!-- AUTH MODAL -->
+  <!-- ADMIN AUTH MODAL -->
   <div id="adminAuthModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-xs w-full p-5 text-center shadow-2xl">
-      <h3 class="text-sm font-bold mb-2">Nestora Admin Access</h3>
-      <input type="password" id="adminPassInput" placeholder="Passcode" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-center text-sm mb-3">
+      <div class="w-10 h-10 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center mx-auto mb-3">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+      </div>
+      <h3 class="text-sm font-bold text-slate-900 mb-1">Nestora Admin Access</h3>
+      <p class="text-[11px] text-slate-500 mb-3">Enter master code to open dashboard.</p>
+      <input type="password" id="adminPassInput" placeholder="Passcode" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-center text-slate-900 tracking-widest text-sm focus:outline-none focus:border-orange-500 mb-3">
       <div class="flex gap-2">
-        <button onclick="toggleAdminModal(false)" class="w-1/2 py-2 text-xs text-slate-400">Cancel</button>
+        <button onclick="toggleAdminModal(false)" class="w-1/2 py-2 text-xs font-semibold text-slate-400">Cancel</button>
         <button onclick="verifyAdminPasscode()" class="w-1/2 bg-orange-600 text-white rounded-xl py-2 text-xs font-bold">Unlock</button>
       </div>
     </div>
   </div>
 
-  <!-- FLYER GENERATOR (HIDDEN) -->
+  <!-- ========================================================= -->
+  <!-- 3. BRAND NEW LUXURY JPEG POSTER (WHITE / ORANGE ELEGANT) -->
+  <!-- ========================================== ============== -->
   <div id="flyerContainer" style="position: absolute; left: -9999px; top: -9999px;">
-    <div id="flyerPoster" style="width: 600px; height: 750px; background-color: #030712; color: #ffffff; padding: 36px; display: flex; flex-direction: column; justify-content: space-between; font-family: 'Plus Jakarta Sans', sans-serif;">
-      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #1f2937; padding-bottom: 20px;">
-        <div style="font-size: 20px; font-weight: 900; color: #10b981;">NESTORA PROPERTIES</div>
-        <div id="flyerRefBadge" style="font-size: 11px; color: #9ca3af;">REF: NP-000</div>
+    <div id="flyerPoster" style="width: 600px; height: 750px; background: #ffffff; color: #0f172a; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; font-family: 'Plus Jakarta Sans', sans-serif; box-sizing: border-box; border: 1px solid #e2e8f0;">
+      
+      <!-- Brand Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 16px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 44px; height: 44px; background: linear-gradient(135deg, #020617, #ea580c); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M4 21V10l8-7 8 7v11M9 21v-6a3 3 0 016 0v6M9 9h.01M15 9h.01M9 13h.01M15 13h.01"/>
+            </svg>
+          </div>
+          <div>
+            <div style="font-size: 18px; font-weight: 900; color: #0f172a; letter-spacing: -0.5px; line-height: 1.1;">NESTORA PROPERTIES</div>
+            <div style="font-size: 10px; font-weight: 800; color: #ea580c; letter-spacing: 1.5px; text-transform: uppercase;">VERIFIED REAL ESTATE SOLUTIONS</div>
+          </div>
+        </div>
+        <div id="flyerRefBadge" style="background: #f8fafc; border: 1.5px solid #e2e8f0; padding: 6px 14px; border-radius: 10px; font-size: 12px; font-weight: 800; color: #475569; font-family: monospace;">
+          REF: NP-001
+        </div>
       </div>
-      <div style="height: 320px; border-radius: 16px; overflow: hidden; background: #111;">
+
+      <!-- Property Photo Card -->
+      <div style="margin: 18px 0; border-radius: 20px; overflow: hidden; height: 320px; position: relative; background: #e2e8f0; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
         <img id="flyerImg" src="" crossorigin="anonymous" style="width: 100%; height: 100%; object-fit: cover;">
+        <div id="flyerCatBadge" style="position: absolute; top: 16px; left: 16px; background: #ea580c; color: #ffffff; font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 2px 8px rgba(234,88,12,0.4);">
+          RESIDENTIAL
+        </div>
+        <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(15,23,42,0.85); backdrop-filter: blur(8px); color: #34d399; font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 9999px;">
+          ✓ VERIFIED ASSET
+        </div>
       </div>
+
+      <!-- Details & Specs Strip -->
       <div>
-        <div id="flyerLocation" style="font-size: 12px; color: #10b981; font-weight: 700;">LOCATION</div>
-        <div id="flyerTitle" style="font-size: 24px; font-weight: 800; margin: 8px 0;">Headline</div>
-        <div id="flyerPrice" style="font-size: 22px; font-weight: 800; color: #34d399;">₹ 0</div>
+        <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: #ea580c; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">
+          <span>📍</span> <span id="flyerLocation">ALUVA, ERNAKULAM</span>
+        </div>
+        <div id="flyerTitle" style="font-size: 22px; font-weight: 900; color: #0f172a; line-height: 1.3; margin-bottom: 14px; height: 58px; overflow: hidden;">
+          Property Title
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px;">
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 12px; border-radius: 12px;">
+            <div style="font-size: 9px; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Area / Size</div>
+            <div id="flyerSize" style="font-size: 13px; font-weight: 800; color: #1e293b; margin-top: 2px;">12 Cent</div>
+          </div>
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 12px; border-radius: 12px;">
+            <div style="font-size: 9px; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Road Access</div>
+            <div id="flyerRoad" style="font-size: 13px; font-weight: 800; color: #1e293b; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Tar Road</div>
+          </div>
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 12px; border-radius: 12px;">
+            <div style="font-size: 9px; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Ownership</div>
+            <div style="font-size: 13px; font-weight: 800; color: #16a34a; margin-top: 2px;">Clear Title</div>
+          </div>
+        </div>
+
+        <!-- Footer Strip -->
+        <div style="display: flex; justify-content: space-between; align-items: center; background: #0f172a; padding: 16px 20px; border-radius: 16px; color: #ffffff;">
+          <div>
+            <div style="font-size: 10px; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Guide Price</div>
+            <div id="flyerPrice" style="font-size: 24px; font-weight: 900; color: #f97316; line-height: 1.1;">₹ 0</div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 10px; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Direct Desk / WhatsApp</div>
+            <div style="font-size: 14px; font-weight: 800; color: #ffffff; margin-top: 2px;">+91 99464 46793</div>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 
-  <!-- APP JAVASCRIPT ENGINE -->
+
+  <!-- ========================================== -->
+  <!-- 4. JAVASCRIPT ENGINE & LOGIC               -->
+  <!-- ========================================== -->
   <script>
     const SUPABASE_URL = "https://mphtlexdhzyjuxpncygf.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_K5hGWJiNHPnl2_MpCUirqg_x-y5RWrJ"; 
@@ -507,7 +594,7 @@
       document.getElementById('publicListingCount').innerText = `${list.length} verified listings available`;
 
       if (list.length === 0) {
-        grid.innerHTML = `<div class="col-span-full text-center py-10 bg-white rounded-2xl border border-dashed border-slate-200 text-slate-400 text-xs">No matching properties found.</div>`;
+        grid.innerHTML = `<div class="col-span-full text-center py-10 bg-white rounded-2xl border border-dashed border-slate-200 text-slate-400 text-xs font-medium">No matching properties found.</div>`;
         return;
       }
 
@@ -558,16 +645,13 @@
       document.getElementById('detailBoxType').innerText = activeProperty.category || 'Residential';
       document.getElementById('detailDesc').innerText = activeProperty.description || 'Verified Kerala property asset managed exclusively under Nestora direct brokerage desk.';
 
-      // Dynamic Utilities Info
       document.getElementById('detailRoadAccess').innerText = activeProperty.road_access || 'Tar road direct access available';
       document.getElementById('detailWaterSupply').innerText = activeProperty.water_supply || 'Groundwater & municipal pipeline accessible';
       document.getElementById('detailElectricity').innerText = activeProperty.electricity || 'KSEB connection point ready';
       document.getElementById('detailApprovals').innerText = activeProperty.approvals || 'Clear title, single owner & tax updated';
 
-      // Featured Badge
       document.getElementById('detailFeaturedBadge').style.display = activeProperty.is_featured ? 'inline-block' : 'none';
 
-      // Maps Button
       const mapsWrap = document.getElementById('detailMapsBtnWrap');
       if (activeProperty.maps_url) {
         mapsWrap.innerHTML = `<a href="${activeProperty.maps_url}" target="_blank" class="text-[11px] font-bold text-orange-600 bg-orange-50 border border-orange-200 px-2.5 py-1 rounded-lg">🗺️ View Map</a>`;
@@ -624,8 +708,8 @@
           <td class="p-2"><div class="font-semibold text-slate-800">${p.owner_name || 'Nestora'}</div><div class="text-slate-400 text-[10px]">${p.owner_phone || '-'}</div></td>
           <td class="p-2"><button onclick="toggleSoldStatus('${p.id}', '${p.status || 'active'}')" class="px-2 py-0.5 rounded text-[9px] font-bold uppercase ${p.status === 'sold' ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'}">${p.status === 'sold' ? 'Sold' : 'Active'}</button></td>
           <td class="p-2 text-right space-x-1">
-            <button onclick="downloadFlyer('${p.id}')" class="bg-slate-100 border border-slate-200 text-slate-700 px-2 py-1 rounded text-[11px] font-bold">Flyer</button>
-            <button onclick="deleteProperty('${p.id}')" class="bg-red-50 text-red-600 px-2 py-1 rounded text-[11px] font-bold">Del</button>
+            <button onclick="downloadFlyer('${p.id}')" class="bg-orange-50 hover:bg-orange-100 border border-orange-200 text-orange-700 px-2.5 py-1 rounded-lg text-[11px] font-bold transition">JPG Flyer</button>
+            <button onclick="deleteProperty('${p.id}')" class="bg-red-50 hover:bg-red-100 text-red-600 px-2 py-1 rounded text-[11px] font-bold transition">Del</button>
           </td>
         </tr>
       `).join('');
@@ -695,22 +779,40 @@
       }
     }
 
+    // ACCURATE LUXURY HIGH-QUALITY JPEG POSTER ENGINE
     async function downloadFlyer(id) {
       const p = allProperties.find(item => item.id === id);
       if (!p) return;
-      document.getElementById('flyerRefBadge').innerText = `REF: ${p.reference_code || 'NP'}`;
-      document.getElementById('flyerLocation').innerText = p.location;
+
+      document.getElementById('flyerRefBadge').innerText = `REF: ${p.reference_code || 'NP-001'}`;
+      document.getElementById('flyerCatBadge').innerText = p.category || 'RESIDENTIAL';
+      document.getElementById('flyerLocation').innerText = (p.location || 'KERALA').toUpperCase();
       document.getElementById('flyerTitle').innerText = p.title;
+      document.getElementById('flyerSize').innerText = p.size ? `${p.size} ${p.area_unit || 'Cent'}` : 'Verified Area';
+      document.getElementById('flyerRoad').innerText = p.road_access ? p.road_access : 'Direct Access';
       document.getElementById('flyerPrice').innerText = formatINR(p.price);
+
       const img = document.getElementById('flyerImg');
       img.src = p.image_url;
+
       img.onload = async () => {
-        const canvas = await html2canvas(document.getElementById('flyerPoster'), { useCORS: true });
-        const a = document.createElement('a');
-        a.download = `Nestora-${p.reference_code || 'Flyer'}.png`;
-        a.href = canvas.toDataURL();
-        a.click();
+        try {
+          const poster = document.getElementById('flyerPoster');
+          const canvas = await html2canvas(poster, {
+            useCORS: true,
+            scale: 2,
+            backgroundColor: '#ffffff'
+          });
+          const a = document.createElement('a');
+          a.download = `Nestora-${p.reference_code || 'Flyer'}.jpg`;
+          a.href = canvas.toDataURL('image/jpeg', 0.95);
+          a.click();
+        } catch (err) {
+          alert("Flyer generation failed. Check image permissions.");
+        }
       };
+
+      if (img.complete) img.onload();
     }
 
     function handleAdminButtonClick() {
@@ -727,13 +829,16 @@
       } else alert("Incorrect passcode!");
     }
     function switchToAdminDashboard() {
-      document.getElementById('publicContainer').classList.add('hidden');
-      document.getElementById('propertyDetailPage').classList.add('hidden');
+      document.getElementById('publicFlowContainer').classList.add('hidden');
       document.getElementById('adminContainer').classList.remove('hidden');
+      document.getElementById('adminContainer').classList.add('flex');
       renderAdminDashboard();
     }
     function switchToPublicView() {
       document.getElementById('adminContainer').classList.add('hidden');
+      document.getElementById('adminContainer').classList.remove('flex');
+      document.getElementById('publicFlowContainer').classList.remove('hidden');
+      document.getElementById('propertyDetailPage').classList.add('hidden');
       document.getElementById('publicContainer').classList.remove('hidden');
     }
     function logoutAdmin() {
