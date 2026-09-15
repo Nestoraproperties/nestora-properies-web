@@ -14,190 +14,229 @@
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-900 antialiased min-h-screen flex flex-col">
+<body class="bg-slate-100 text-slate-900 antialiased min-h-screen flex flex-col">
 
-  <!-- 1. PUBLIC VIEW -->
-  <div id="publicContainer" class="flex-1 flex flex-col">
-    <header class="bg-slate-950 border-b border-slate-800 text-white sticky top-0 z-30">
-      <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-        <div class="flex items-center space-x-3">
-          <div class="w-9 h-9 rounded-xl bg-emerald-500 text-slate-950 font-black text-lg flex items-center justify-center shadow-lg shadow-emerald-500/20">
-            N
-          </div>
-          <div>
-            <span class="text-lg font-black tracking-tight text-white block leading-none">NESTORA</span>
-            <span class="text-[9px] font-bold tracking-widest text-emerald-400 uppercase">Properties Kerala</span>
-          </div>
+  <!-- TOP BRAND HEADER -->
+  <header class="bg-white border-b border-slate-200 px-4 py-2.5 sticky top-0 z-30 shadow-sm">
+    <div class="max-w-4xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2.5 cursor-pointer" onclick="closeDetailsPage()">
+        <div class="w-8 h-8 rounded-lg bg-orange-600 text-white flex items-center justify-center font-black text-sm shadow-sm">
+          N
         </div>
         <div>
-          <button onclick="handleAdminButtonClick()" class="inline-flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 text-xs font-semibold px-3 py-1.5 rounded-xl transition">
-            <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-            <span id="portalBtnText">Admin Dashboard</span>
-          </button>
+          <span class="text-xs font-black text-slate-900 block leading-tight">Nestora Properties</span>
+          <span class="text-[9px] font-semibold text-slate-500">Aluva, Ernakulam, Kerala, India</span>
         </div>
       </div>
-    </header>
-
-    <main class="flex-1 max-w-6xl mx-auto w-full px-4 py-5">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4 mb-4">
-        <div>
-          <h1 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">Verified Premium Assets</h1>
-          <p class="text-xs text-slate-500 mt-0.5" id="publicListingCount">Loading listings...</p>
-        </div>
-        <div class="w-full sm:w-64">
-          <input type="text" id="searchInput" oninput="applyFilters()" placeholder="Search location or title..." class="w-full bg-white border border-slate-200 rounded-xl px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-emerald-500 shadow-sm">
-        </div>
+      <div class="flex items-center gap-2">
+        <a href="tel:9946446793" class="inline-flex items-center gap-1 bg-slate-100 text-slate-700 text-[11px] font-bold px-2.5 py-1.5 rounded-lg border border-slate-200">
+          📞 Call
+        </a>
+        <a href="https://wa.me/919946446793" target="_blank" class="inline-flex items-center gap-1 bg-emerald-600 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-lg shadow-sm">
+          WhatsApp
+        </a>
+        <button onclick="handleAdminButtonClick()" class="inline-flex items-center gap-1 bg-slate-900 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-lg ml-1">
+          Admin
+        </button>
       </div>
+    </div>
+  </header>
 
-      <!-- Category Filter Chips -->
-      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-2" id="categoryFilterBar">
-        <button onclick="setCategoryFilter('all')" class="cat-btn bg-slate-900 text-white px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap" data-cat="all">All</button>
-        <button onclick="setCategoryFilter('Villa')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Villa">Villa</button>
-        <button onclick="setCategoryFilter('Apartment')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Apartment">Apartment</button>
-        <button onclick="setCategoryFilter('Plot')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Plot">Plot</button>
-        <button onclick="setCategoryFilter('Commercial')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Commercial">Commercial</button>
-        <button onclick="setCategoryFilter('Independent House')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Independent House">House</button>
+  <!-- 1. PUBLIC CATALOGUE VIEW -->
+  <div id="publicContainer" class="flex-1 max-w-4xl mx-auto w-full px-4 py-4">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-3 mb-3">
+      <div>
+        <h1 class="text-xl font-extrabold text-slate-900 tracking-tight">Verified Property Assets</h1>
+        <p class="text-xs text-slate-500 mt-0.5" id="publicListingCount">Loading inventory...</p>
       </div>
+      <div class="w-full sm:w-64">
+        <input type="text" id="searchInput" oninput="applyFilters()" placeholder="Search location or title..." class="w-full bg-white border border-slate-200 rounded-xl px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-orange-500 shadow-sm">
+      </div>
+    </div>
 
-      <div id="propertiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
-    </main>
+    <!-- Filter Chips -->
+    <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-2" id="categoryFilterBar">
+      <button onclick="setCategoryFilter('all')" class="cat-btn bg-slate-900 text-white px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap" data-cat="all">All</button>
+      <button onclick="setCategoryFilter('Villa')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Villa">Villa</button>
+      <button onclick="setCategoryFilter('Apartment')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Apartment">Apartment</button>
+      <button onclick="setCategoryFilter('Plot')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Plot">Plot</button>
+      <button onclick="setCategoryFilter('Commercial')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Commercial">Commercial</button>
+      <button onclick="setCategoryFilter('Independent House')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Independent House">House</button>
+    </div>
+
+    <div id="propertiesGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
   </div>
 
-  <!-- 2. PREMIUM APP-STYLE ADMIN DASHBOARD (EXACT SCREEN DESIGN) -->
+  <!-- 2. FULL DEDICATED DETAILS PAGE (SCREEN DESIGN) -->
+  <div id="propertyDetailPage" class="hidden flex-1 max-w-2xl mx-auto w-full px-3 py-3 space-y-3 pb-16">
+    <!-- Top Action Bar -->
+    <div class="flex items-center justify-between text-xs font-bold text-slate-600 px-1">
+      <button onclick="closeDetailsPage()" class="inline-flex items-center gap-1 hover:text-slate-900">
+        ‹ Back to Catalogue
+      </button>
+      <button onclick="shareActiveProperty()" class="inline-flex items-center gap-1 hover:text-slate-900">
+        Share
+      </button>
+    </div>
+
+    <!-- Main Banner Image -->
+    <div class="relative rounded-2xl overflow-hidden bg-slate-900 h-56 sm:h-64 shadow-sm">
+      <img id="detailImg" src="" class="w-full h-full object-cover">
+      <div class="absolute top-3 left-3 flex gap-1.5">
+        <span class="bg-emerald-600 text-white font-bold text-[10px] px-2.5 py-0.5 rounded-full uppercase" id="detailStatusBadge">AVAILABLE</span>
+        <span class="bg-amber-500 text-slate-950 font-bold text-[10px] px-2.5 py-0.5 rounded-full uppercase">★ Featured</span>
+      </div>
+      <span class="absolute top-3 right-3 bg-slate-900/80 text-white font-mono text-[10px] font-bold px-2 py-0.5 rounded-lg border border-white/20" id="detailRef">RE-001</span>
+      <span class="absolute bottom-3 left-3 bg-white text-slate-900 text-[10px] font-bold px-2.5 py-1 rounded-lg shadow-sm" id="detailTypeChip">Residential Land</span>
+    </div>
+
+    <!-- Asset Title & Price Section -->
+    <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm space-y-3">
+      <div>
+        <div class="text-[10px] font-bold text-orange-600 uppercase tracking-wider mb-1" id="detailSubRef">PROPERTY ID: RE-001</div>
+        <h2 class="text-base sm:text-lg font-black text-slate-900 leading-snug" id="detailTitle">Title</h2>
+        <div class="text-xs text-slate-500 flex items-center gap-1 mt-1">
+          <span>📍</span> <span id="detailLocation">Location</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="text-2xl font-black text-slate-900" id="detailPrice">₹ 0</div>
+        <div class="text-[11px] text-slate-400 font-medium" id="detailSize">Size details</div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2 pt-1 border-t border-slate-100 text-xs">
+        <div class="bg-slate-50 border border-slate-100 p-2.5 rounded-xl">
+          <span class="block text-[9px] uppercase font-bold text-slate-400">Land Area</span>
+          <span class="font-black text-slate-800" id="detailBoxArea">-</span>
+        </div>
+        <div class="bg-slate-50 border border-slate-100 p-2.5 rounded-xl">
+          <span class="block text-[9px] uppercase font-bold text-slate-400">Property Type</span>
+          <span class="font-black text-slate-800" id="detailBoxType">-</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Description Card -->
+    <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm">
+      <h3 class="text-xs font-black text-slate-900 uppercase tracking-wider mb-2">Property Description</h3>
+      <p class="text-xs text-slate-600 leading-relaxed whitespace-pre-line" id="detailDesc">-</p>
+    </div>
+
+    <!-- Infrastructure & Utilities (Screen Exact) -->
+    <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm space-y-3">
+      <h3 class="text-xs font-black text-slate-900 uppercase tracking-wider">Infrastructure & Utilities</h3>
+      
+      <div class="space-y-2.5 text-xs">
+        <div class="flex items-start gap-2.5 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+          <span class="text-orange-500 font-bold">🛣️</span>
+          <div>
+            <span class="text-[9px] font-bold text-slate-400 uppercase block">Road Access / Width</span>
+            <span class="font-semibold text-slate-800">Tar road direct access available</span>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-2.5 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+          <span class="text-blue-500 font-bold">💧</span>
+          <div>
+            <span class="text-[9px] font-bold text-slate-400 uppercase block">Water Availability</span>
+            <span class="font-semibold text-slate-800">Groundwater & municipal pipeline accessible</span>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-2.5 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+          <span class="text-amber-500 font-bold">⚡</span>
+          <div>
+            <span class="text-[9px] font-bold text-slate-400 uppercase block">Electricity</span>
+            <span class="font-semibold text-slate-800">KSEB connection point ready</span>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-2.5 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+          <span class="text-emerald-500 font-bold">📄</span>
+          <div>
+            <span class="text-[9px] font-bold text-slate-400 uppercase block">Documents & Approvals</span>
+            <span class="font-semibold text-slate-800">Clear title, single owner & tax updated</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Consultation & Enquiries Desk -->
+    <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm space-y-3">
+      <div>
+        <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider block">Consultation & Enquiries</span>
+        <h3 class="text-sm font-black text-slate-900 mt-0.5">Interested in this Property?</h3>
+        <p class="text-[11px] text-slate-500">Reach out to Nestora Properties for instant site visit arrangement.</p>
+      </div>
+
+      <div class="space-y-2">
+        <a id="detailWhatsappBtn" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-sm">
+          <span>💬 Chat on WhatsApp</span>
+        </a>
+        <a href="tel:9946446793" class="w-full bg-slate-50 border border-slate-200 text-slate-800 font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5">
+          <span>📞 Call 9946446793</span>
+        </a>
+        <button onclick="shareActiveProperty()" class="w-full bg-slate-900 text-white font-bold py-2 rounded-xl text-xs">
+          Submit Enquiry Form
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. ADMIN DASHBOARD -->
   <div id="adminContainer" class="hidden min-h-screen flex-col bg-slate-100 text-slate-900 pb-12">
-    
-    <!-- Top Super Admin Header -->
     <header class="bg-white border-b border-slate-200 px-4 py-3 sticky top-0 z-30">
       <div class="max-w-4xl mx-auto flex items-center justify-between">
         <div class="flex items-center gap-2">
-          <div class="w-8 h-8 rounded-lg bg-orange-600 text-white flex items-center justify-center font-bold text-sm shadow-sm">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <div class="w-8 h-8 rounded-lg bg-orange-600 text-white flex items-center justify-center font-bold text-sm">
+            N
           </div>
           <div>
             <span class="text-xs font-bold text-slate-900 block leading-tight">Super Admin (Nestora)</span>
             <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-purple-100 text-purple-700 tracking-wide uppercase">SUPER ADMIN</span>
           </div>
         </div>
-
         <div class="flex items-center gap-2">
-          <button onclick="switchToPublicView()" class="inline-flex items-center gap-1 border border-slate-200 text-slate-700 text-xs font-semibold px-2.5 py-1.5 rounded-lg bg-white shadow-sm">
-            <span>Live Catalogue</span>
-            <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-          </button>
-          <button onclick="logoutAdmin()" class="inline-flex items-center gap-1 text-red-600 border border-red-200 bg-red-50 text-xs font-semibold px-2.5 py-1.5 rounded-lg">
-            <span>Sign Out</span>
-          </button>
+          <button onclick="switchToPublicView()" class="border border-slate-200 text-slate-700 text-xs font-semibold px-2.5 py-1.5 rounded-lg bg-white">Live Catalogue</button>
+          <button onclick="logoutAdmin()" class="text-red-600 border border-red-200 bg-red-50 text-xs font-semibold px-2.5 py-1.5 rounded-lg">Sign Out</button>
         </div>
       </div>
 
-      <!-- Navigation Tabs -->
       <div class="max-w-4xl mx-auto flex gap-6 mt-3 border-t border-slate-100 pt-2 text-xs font-bold">
-        <button onclick="switchAdminTab('overview')" id="tabBtnOverview" class="flex items-center gap-1.5 text-orange-600 border-b-2 border-orange-600 pb-1.5">
-          <span>⊞</span> Overview
-        </button>
-        <button onclick="switchAdminTab('properties')" id="tabBtnProps" class="flex items-center gap-1.5 text-slate-500 hover:text-slate-800 pb-1.5">
-          <span>🏢</span> Properties
-        </button>
-        <button onclick="switchAdminTab('form')" id="tabBtnForm" class="flex items-center gap-1.5 text-slate-500 hover:text-slate-800 pb-1.5">
-          <span>➕</span> Add Property
-        </button>
+        <button onclick="switchAdminTab('overview')" id="tabBtnOverview" class="text-orange-600 border-b-2 border-orange-600 pb-1.5">⊞ Overview</button>
+        <button onclick="switchAdminTab('properties')" id="tabBtnProps" class="text-slate-500 pb-1.5">🏢 Properties</button>
+        <button onclick="switchAdminTab('form')" id="tabBtnForm" class="text-slate-500 pb-1.5">➕ Add Property</button>
       </div>
     </header>
 
     <main class="max-w-4xl mx-auto w-full px-4 py-4 space-y-4 flex-1">
-      
-      <!-- HERO BANNER CARD -->
-      <div class="bg-slate-900 rounded-2xl p-5 text-white shadow-sm relative overflow-hidden">
-        <div class="flex flex-wrap gap-2 mb-2">
-          <span class="bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
-            🛡️ Real Estate Management Control
-          </span>
-          <span class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
-            🗄️ Supabase Connected
-          </span>
-        </div>
-        <h2 class="text-lg font-black tracking-tight text-white mb-1">Nestora Properties Dashboard</h2>
-        <p class="text-xs text-slate-400 leading-relaxed max-w-xl mb-4">
-          Operating in Aluva, Ernakulam, Kerala, India. Monitor property inventory, track incoming buyer enquiries, and manage customer leads.
-        </p>
-        <button onclick="switchAdminTab('form')" class="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-md flex items-center gap-1.5">
-          <span>+ Add New Property</span>
-        </button>
+      <div class="bg-slate-900 rounded-2xl p-5 text-white shadow-sm">
+        <span class="bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded-full">🛡️ Real Estate Management Control</span>
+        <h2 class="text-lg font-black text-white mt-2 mb-1">Nestora Properties Dashboard</h2>
+        <p class="text-xs text-slate-400 mb-3">Operating in Aluva, Ernakulam, Kerala. Manage catalogue & direct leads.</p>
+        <button onclick="switchAdminTab('form')" class="bg-orange-600 text-white text-xs font-bold px-4 py-2 rounded-xl">+ Add New Property</button>
       </div>
 
-      <!-- 6 GRID STAT CARDS (EXACT APP LOOK) -->
       <div id="overviewStatsSection" class="grid grid-cols-2 gap-3">
-        <!-- 1. Total Inventory -->
-        <div class="bg-white border border-slate-200/80 p-4 rounded-2xl shadow-sm">
-          <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block">Total Inventory</span>
-          <div class="text-2xl font-black text-slate-900 my-1" id="statTotal">0</div>
-          <div class="text-[10px] text-orange-600 font-semibold flex items-center gap-1">
-            <span>📦</span> All Properties
-          </div>
-        </div>
-
-        <!-- 2. Available -->
-        <div class="bg-white border border-slate-200/80 p-4 rounded-2xl shadow-sm">
-          <span class="text-[10px] font-extrabold text-emerald-700 uppercase tracking-wider block">Available</span>
-          <div class="text-2xl font-black text-emerald-600 my-1" id="statActive">0</div>
-          <div class="text-[10px] text-emerald-700 font-semibold flex items-center gap-1">
-            <span>✔</span> Ready for sale
-          </div>
-        </div>
-
-        <!-- 3. Reserved -->
-        <div class="bg-white border border-slate-200/80 p-4 rounded-2xl shadow-sm">
-          <span class="text-[10px] font-extrabold text-amber-700 uppercase tracking-wider block">Reserved</span>
-          <div class="text-2xl font-black text-amber-600 my-1">0</div>
-          <div class="text-[10px] text-amber-700 font-semibold flex items-center gap-1">
-            <span>⏱</span> Under token
-          </div>
-        </div>
-
-        <!-- 4. Sold -->
-        <div class="bg-white border border-slate-200/80 p-4 rounded-2xl shadow-sm">
-          <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block">Sold</span>
-          <div class="text-2xl font-black text-slate-900 my-1" id="statSold">0</div>
-          <div class="text-[10px] text-slate-500 font-semibold flex items-center gap-1">
-            <span>🤝</span> Closed Deals
-          </div>
-        </div>
-
-        <!-- 5. Featured -->
-        <div class="bg-white border border-slate-200/80 p-4 rounded-2xl shadow-sm">
-          <span class="text-[10px] font-extrabold text-orange-600 uppercase tracking-wider block">Featured</span>
-          <div class="text-2xl font-black text-orange-600 my-1" id="statFeatured">0</div>
-          <div class="text-[10px] text-amber-500 font-semibold flex items-center gap-1">
-            <span>⭐</span> Homepage Prime
-          </div>
-        </div>
-
-        <!-- 6. Leads -->
-        <div class="bg-white border border-slate-200/80 p-4 rounded-2xl shadow-sm">
-          <span class="text-[10px] font-extrabold text-blue-700 uppercase tracking-wider block">Leads / Visitors</span>
-          <div class="text-2xl font-black text-blue-600 my-1">0</div>
-          <div class="text-[10px] text-blue-600 font-semibold flex items-center gap-1">
-            <span>👥</span> Captured Contacts
-          </div>
-        </div>
+        <div class="bg-white border border-slate-200 p-4 rounded-2xl"><span class="text-[10px] font-bold text-slate-400 uppercase">Total Inventory</span><div class="text-2xl font-black text-slate-900" id="statTotal">0</div></div>
+        <div class="bg-white border border-slate-200 p-4 rounded-2xl"><span class="text-[10px] font-bold text-emerald-700 uppercase">Available</span><div class="text-2xl font-black text-emerald-600" id="statActive">0</div></div>
+        <div class="bg-white border border-slate-200 p-4 rounded-2xl"><span class="text-[10px] font-bold text-amber-700 uppercase">Reserved</span><div class="text-2xl font-black text-amber-600">0</div></div>
+        <div class="bg-white border border-slate-200 p-4 rounded-2xl"><span class="text-[10px] font-bold text-slate-400 uppercase">Sold</span><div class="text-2xl font-black text-slate-900" id="statSold">0</div></div>
       </div>
 
-      <!-- PROPERTY LIST TABLE VIEW -->
       <div id="propertyTableSection" class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
-        <h3 class="text-sm font-bold text-slate-900 mb-3 flex items-center justify-between">
-          <span>Active Asset Directory</span>
-          <span class="text-xs text-slate-400 font-normal">Manage flyers & statuses</span>
-        </h3>
+        <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">Property Directory</h3>
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs">
-            <thead class="bg-slate-50 text-slate-500 uppercase tracking-wider border-b border-slate-200">
+            <thead class="bg-slate-50 text-slate-400 uppercase border-b border-slate-200">
               <tr>
-                <th class="p-2.5">Ref</th>
-                <th class="p-2.5">Property</th>
-                <th class="p-2.5">Price</th>
-                <th class="p-2.5">Owner Details</th>
-                <th class="p-2.5">Status</th>
-                <th class="p-2.5 text-right">Actions</th>
+                <th class="p-2">Ref</th>
+                <th class="p-2">Title</th>
+                <th class="p-2">Price</th>
+                <th class="p-2">Owner Contact</th>
+                <th class="p-2">Status</th>
+                <th class="p-2 text-right">Actions</th>
               </tr>
             </thead>
             <tbody id="adminAssetTableBody" class="divide-y divide-slate-100"></tbody>
@@ -205,140 +244,68 @@
         </div>
       </div>
 
-      <!-- ADD PROPERTY FORM (IN APP STYLE) -->
-      <div id="propertyFormSection" class="hidden bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
-        <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
-          <span class="w-2.5 h-2.5 bg-orange-500 rounded-full"></span> New Asset Submission
-        </h3>
-
+      <div id="propertyFormSection" class="hidden bg-white border border-slate-200 rounded-2xl p-5 space-y-4">
+        <h3 class="text-sm font-bold text-slate-900">Add New Property</h3>
         <form id="propertyForm" onsubmit="handleFormSubmit(event)" class="space-y-3">
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div>
-              <label class="block text-xs font-semibold text-slate-600 mb-1">Ref Code</label>
-              <input type="text" id="propRef" placeholder="e.g. NP-105" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-orange-500">
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-slate-600 mb-1">Property Title</label>
-              <input type="text" id="propTitle" placeholder="Luxury 4BHK Villa" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-orange-500">
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-slate-600 mb-1">Category</label>
-              <select id="propCategory" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-orange-500">
-                <option value="Villa">Villa</option>
-                <option value="Apartment">Apartment</option>
-                <option value="Commercial">Commercial</option>
-                <option value="Plot">Plot</option>
-                <option value="Independent House">Independent House</option>
-              </select>
-            </div>
+            <input type="text" id="propRef" placeholder="Ref Code (e.g. RE-001)" required class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs">
+            <input type="text" id="propTitle" placeholder="Property Title" required class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs">
+            <select id="propCategory" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs">
+              <option value="Villa">Villa</option>
+              <option value="Apartment">Apartment</option>
+              <option value="Commercial">Commercial</option>
+              <option value="Plot">Plot</option>
+              <option value="Independent House">House</option>
+            </select>
           </div>
-
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div>
-              <label class="block text-xs font-semibold text-slate-600 mb-1">Location / Town</label>
-              <input type="text" id="propLocation" placeholder="Aluva, Kochi" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-orange-500">
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-slate-600 mb-1">Price (₹)</label>
-              <input type="number" id="propPrice" placeholder="7500000" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-orange-500">
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-slate-600 mb-1">Area / Size</label>
-              <input type="text" id="propSize" placeholder="2200 sq.ft / 8 Cents" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-orange-500">
-            </div>
+            <input type="text" id="propLocation" placeholder="Location / Town" required class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs">
+            <input type="number" id="propPrice" placeholder="Price (₹)" required class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs">
+            <input type="text" id="propSize" placeholder="Size / Cents (e.g. 12 Cent)" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs">
           </div>
-
-          <div class="bg-amber-50/60 border border-amber-200 p-3.5 rounded-xl">
-            <div class="text-[10px] font-bold text-amber-800 uppercase tracking-wider mb-2">🔒 Owner Confidential Record (Admin Only)</div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <input type="text" id="propOwnerName" placeholder="Owner Name" class="w-full bg-white border border-amber-200 rounded-xl px-3 py-1.5 text-xs">
-              </div>
-              <div>
-                <input type="tel" id="propOwnerPhone" placeholder="Owner Phone" class="w-full bg-white border border-amber-200 rounded-xl px-3 py-1.5 text-xs">
-              </div>
-            </div>
+          <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 grid grid-cols-2 gap-3">
+            <input type="text" id="propOwnerName" placeholder="Owner Name" class="bg-white border border-amber-200 rounded-xl px-3 py-1.5 text-xs">
+            <input type="tel" id="propOwnerPhone" placeholder="Owner Mobile" class="bg-white border border-amber-200 rounded-xl px-3 py-1.5 text-xs">
           </div>
-
-          <div>
-            <label class="block text-xs font-semibold text-slate-600 mb-1">Image URL</label>
-            <input type="url" id="propImageUrl" required placeholder="https://images.unsplash.com/..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs">
-          </div>
-
-          <div>
-            <label class="block text-xs font-semibold text-slate-600 mb-1">Description</label>
-            <textarea id="propDescription" rows="2" placeholder="Property details..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs"></textarea>
-          </div>
-
-          <button type="submit" id="savePropertyBtn" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-2.5 rounded-xl text-xs shadow-sm transition">
-            Save Asset to Database
-          </button>
+          <input type="url" id="propImageUrl" required placeholder="Image URL" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs">
+          <textarea id="propDescription" rows="2" placeholder="Description..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs"></textarea>
+          <button type="submit" id="savePropertyBtn" class="w-full bg-orange-600 text-white font-bold py-2.5 rounded-xl text-xs">Save Property</button>
         </form>
       </div>
-
     </main>
   </div>
 
-  <!-- 3. DETAILS MODAL -->
-  <div id="detailsModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 overflow-y-auto">
-    <div class="bg-white rounded-2xl max-w-xl w-full overflow-hidden shadow-2xl relative my-auto">
-      <button onclick="closeDetailsModal()" class="absolute top-3 right-3 z-10 w-7 h-7 rounded-full bg-slate-900/70 text-white text-xs">✕</button>
-      <div id="modalContent"></div>
-    </div>
-  </div>
-
-  <!-- 4. ADMIN LOGIN MODAL -->
+  <!-- AUTH MODAL -->
   <div id="adminAuthModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-xs w-full p-5 text-center shadow-2xl">
-      <div class="w-10 h-10 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center mx-auto mb-3 font-bold">🔒</div>
-      <h3 class="text-sm font-bold text-slate-900 mb-1">Nestora Admin Access</h3>
-      <p class="text-[11px] text-slate-500 mb-3">Enter master code to open dashboard.</p>
-      <input type="password" id="adminPassInput" placeholder="Passcode" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-center text-slate-900 tracking-widest text-sm focus:outline-none focus:border-orange-500 mb-3">
+      <h3 class="text-sm font-bold mb-2">Nestora Admin Access</h3>
+      <input type="password" id="adminPassInput" placeholder="Passcode" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-center text-sm mb-3">
       <div class="flex gap-2">
-        <button onclick="toggleAdminModal(false)" class="w-1/2 py-2 text-xs font-semibold text-slate-400">Cancel</button>
+        <button onclick="toggleAdminModal(false)" class="w-1/2 py-2 text-xs text-slate-400">Cancel</button>
         <button onclick="verifyAdminPasscode()" class="w-1/2 bg-orange-600 text-white rounded-xl py-2 text-xs font-bold">Unlock</button>
       </div>
     </div>
   </div>
 
-  <!-- 5. FLYER TEMPLATE -->
+  <!-- FLYER CANVAS ENGINE -->
   <div id="flyerContainer" style="position: absolute; left: -9999px; top: -9999px;">
-    <div id="flyerPoster" style="width: 600px; height: 750px; background-color: #030712; color: #ffffff; padding: 36px; display: flex; flex-direction: column; justify-content: space-between; font-family: 'Plus Jakarta Sans', sans-serif; box-sizing: border-box;">
+    <div id="flyerPoster" style="width: 600px; height: 750px; background-color: #030712; color: #ffffff; padding: 36px; display: flex; flex-direction: column; justify-content: space-between; font-family: 'Plus Jakarta Sans', sans-serif;">
       <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #1f2937; padding-bottom: 20px;">
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <div style="width: 40px; height: 40px; background-color: #10b981; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 900; color: #030712;">N</div>
-          <div>
-            <div style="font-size: 20px; font-weight: 900; letter-spacing: 0.5px;">NESTORA</div>
-            <div style="font-size: 10px; color: #10b981; font-weight: 700; letter-spacing: 2px;">PROPERTIES KERALA</div>
-          </div>
-        </div>
-        <div id="flyerRefBadge" style="background-color: #111827; border: 1px solid #374151; padding: 6px 14px; border-radius: 9999px; font-size: 11px; font-weight: 700; color: #9ca3af;">REF: NP-000</div>
+        <div style="font-size: 20px; font-weight: 900; color: #10b981;">NESTORA PROPERTIES</div>
+        <div id="flyerRefBadge" style="font-size: 11px; color: #9ca3af;">REF: NP-000</div>
       </div>
-      <div style="margin: 20px 0; border-radius: 16px; overflow: hidden; height: 320px; position: relative; background-color: #111827;">
+      <div style="height: 320px; border-radius: 16px; overflow: hidden; background: #111;">
         <img id="flyerImg" src="" crossorigin="anonymous" style="width: 100%; height: 100%; object-fit: cover;">
-        <div id="flyerCatBadge" style="position: absolute; top: 16px; right: 16px; background-color: #10b981; color: #030712; font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 9999px; text-transform: uppercase;">VILLA</div>
       </div>
       <div>
-        <div id="flyerLocation" style="font-size: 13px; font-weight: 700; color: #10b981; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">LOCATION</div>
-        <div id="flyerTitle" style="font-size: 26px; font-weight: 800; color: #ffffff; line-height: 1.2; margin-bottom: 12px;">Property Headline Title</div>
-        <div style="display: flex; gap: 12px; margin-bottom: 20px;">
-          <div id="flyerSize" style="background-color: #111827; padding: 6px 12px; border-radius: 8px; font-size: 12px; color: #d1d5db;">Size Details</div>
-        </div>
-        <div style="display: flex; justify-content: space-between; align-items: flex-end; background-color: #0f172a; padding: 18px 24px; border-radius: 14px; border: 1px solid #1e293b;">
-          <div>
-            <div style="font-size: 10px; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Guide Price</div>
-            <div id="flyerPrice" style="font-size: 24px; font-weight: 800; color: #34d399;">₹ 0</div>
-          </div>
-          <div style="text-align: right;">
-            <div style="font-size: 10px; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Direct Desk</div>
-            <div style="font-size: 13px; font-weight: 700; color: #ffffff;">+91 99464 46793</div>
-          </div>
-        </div>
+        <div id="flyerLocation" style="font-size: 12px; color: #10b981; font-weight: 700;">LOCATION</div>
+        <div id="flyerTitle" style="font-size: 24px; font-weight: 800; margin: 8px 0;">Headline</div>
+        <div id="flyerPrice" style="font-size: 22px; font-weight: 800; color: #34d399;">₹ 0</div>
       </div>
     </div>
   </div>
 
-  <!-- JAVASCRIPT LOGIC -->
+  <!-- APPLICATION LOGIC -->
   <script>
     const SUPABASE_URL = "https://mphtlexdhzyjuxpncygf.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_K5hGWJiNHPnl2_MpCUirqg_x-y5RWrJ"; 
@@ -347,6 +314,7 @@
 
     const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     let allProperties = [];
+    let activeProperty = null;
     let selectedCategory = 'all';
     let isAdminLoggedIn = localStorage.getItem('nestora_admin_session') === 'true';
 
@@ -357,11 +325,7 @@
 
     async function fetchProperties() {
       try {
-        const { data, error } = await client
-          .from('properties')
-          .select('*')
-          .order('created_at', { ascending: false });
-
+        const { data, error } = await client.from('properties').select('*').order('created_at', { ascending: false });
         if (error) throw error;
         allProperties = data || [];
         renderPublicProperties();
@@ -371,74 +335,50 @@
       }
     }
 
-    function setCategoryFilter(category) {
-      selectedCategory = category;
+    function setCategoryFilter(cat) {
+      selectedCategory = cat;
       document.querySelectorAll('.cat-btn').forEach(btn => {
-        if (btn.dataset.cat === category) {
-          btn.className = "cat-btn bg-slate-900 text-white px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap";
-        } else {
-          btn.className = "cat-btn bg-white border border-slate-200 text-slate-600 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap";
-        }
+        btn.className = btn.dataset.cat === cat 
+          ? "cat-btn bg-slate-900 text-white px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap"
+          : "cat-btn bg-white border border-slate-200 text-slate-600 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap";
       });
       applyFilters();
     }
 
     function applyFilters() {
-      const searchTerm = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
-      let filtered = allProperties;
-
-      if (selectedCategory !== 'all') {
-        filtered = filtered.filter(p => p.category === selectedCategory);
-      }
-
-      if (searchTerm) {
-        filtered = filtered.filter(p => 
-          (p.title && p.title.toLowerCase().includes(searchTerm)) ||
-          (p.location && p.location.toLowerCase().includes(searchTerm)) ||
-          (p.reference_code && p.reference_code.toLowerCase().includes(searchTerm))
-        );
-      }
-
-      renderFilteredProperties(filtered);
-    }
-
-    function renderPublicProperties() {
-      applyFilters();
-    }
-
-    function renderFilteredProperties(list) {
+      const q = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
+      let list = allProperties;
+      if (selectedCategory !== 'all') list = list.filter(p => p.category === selectedCategory);
+      if (q) list = list.filter(p => (p.title && p.title.toLowerCase().includes(q)) || (p.location && p.location.toLowerCase().includes(q)));
+      
       const grid = document.getElementById('propertiesGrid');
-      const countLabel = document.getElementById('publicListingCount');
-      countLabel.innerText = `${list.length} verified listings available`;
+      document.getElementById('publicListingCount').innerText = `${list.length} verified listings available`;
 
       if (list.length === 0) {
-        grid.innerHTML = `<div class="col-span-full text-center py-10 bg-white rounded-2xl border border-dashed border-slate-200"><p class="text-slate-400 text-xs font-medium">No matching listings found.</p></div>`;
+        grid.innerHTML = `<div class="col-span-full text-center py-10 bg-white rounded-2xl border border-dashed border-slate-200 text-slate-400 text-xs">No matching listings.</div>`;
         return;
       }
 
       grid.innerHTML = list.map((p, index) => {
         const isSold = p.status === 'sold';
         return `
-          <div class="bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm flex flex-col">
+          <div onclick="openDedicatedDetails('${p.id}')" class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm cursor-pointer hover:shadow-md transition">
             <div class="relative h-44 bg-slate-100">
-              <img src="${p.image_url || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80'}" class="w-full h-full object-cover ${isSold ? 'grayscale' : ''}">
+              <img src="${p.image_url}" class="w-full h-full object-cover ${isSold ? 'grayscale' : ''}">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
-              <span class="absolute top-2.5 left-2.5 bg-slate-900/80 text-white font-mono text-[10px] px-2 py-0.5 rounded-lg border border-white/10 font-bold">${p.reference_code || 'NP-' + (index + 1)}</span>
-              <div class="absolute top-2.5 right-2.5">${isSold ? `<span class="bg-amber-500 text-slate-950 font-black text-[9px] uppercase px-2 py-0.5 rounded-full">SOLD</span>` : `<span class="bg-emerald-500 text-slate-950 font-bold text-[9px] uppercase px-2 py-0.5 rounded-full">${p.category || 'Asset'}</span>`}</div>
+              <span class="absolute top-2.5 left-2.5 bg-slate-900/80 text-white font-mono text-[10px] px-2 py-0.5 rounded-lg font-bold">${p.reference_code || 'NP-' + (index + 1)}</span>
+              <div class="absolute top-2.5 right-2.5">${isSold ? `<span class="bg-amber-500 text-slate-950 font-black text-[9px] uppercase px-2 py-0.5 rounded-full">SOLD</span>` : `<span class="bg-emerald-500 text-slate-950 font-bold text-[9px] uppercase px-2 py-0.5 rounded-full">${p.category}</span>`}</div>
               <div class="absolute bottom-2.5 left-3 right-3 text-white">
                 <span class="text-[9px] uppercase font-bold text-emerald-400">Guide Price</span>
                 <div class="text-xl font-black">${formatINR(p.price)}</div>
               </div>
             </div>
-            <div class="p-3.5 flex-1 flex flex-col justify-between">
-              <div>
-                <div class="text-[11px] font-semibold text-emerald-600 mb-0.5">📍 ${p.location}</div>
-                <h3 class="text-sm font-bold text-slate-900 leading-snug mb-1">${p.title}</h3>
-                ${p.size ? `<span class="inline-block bg-slate-50 border border-slate-200 text-slate-600 text-[10px] px-2 py-0.5 rounded-md mb-2">📐 ${p.size}</span>` : ''}
-              </div>
-              <div class="grid grid-cols-2 gap-2 mt-2">
-                <button onclick="openDetailsModal('${p.id}')" class="w-full bg-slate-900 text-white font-bold py-1.5 rounded-xl text-xs">Details</button>
-                <button onclick="shareViaWhatsApp('${p.id}')" class="w-full bg-emerald-600 text-white font-bold py-1.5 rounded-xl text-xs">Share</button>
+            <div class="p-3">
+              <div class="text-[11px] font-semibold text-emerald-600 mb-0.5">📍 ${p.location}</div>
+              <h3 class="text-xs font-bold text-slate-900 leading-snug mb-1 truncate">${p.title}</h3>
+              <div class="flex justify-between items-center text-[10px] text-slate-500 pt-1 border-t border-slate-100">
+                <span>${p.size || 'Verified Asset'}</span>
+                <span class="text-orange-600 font-bold">View Full Details →</span>
               </div>
             </div>
           </div>
@@ -446,22 +386,63 @@
       }).join('');
     }
 
+    function renderPublicProperties() { applyFilters(); }
+
+    function openDedicatedDetails(id) {
+      activeProperty = allProperties.find(p => p.id === id);
+      if (!activeProperty) return;
+
+      document.getElementById('detailImg').src = activeProperty.image_url;
+      document.getElementById('detailRef').innerText = activeProperty.reference_code || 'NP-EXCLUSIVE';
+      document.getElementById('detailSubRef').innerText = `PROPERTY ID: ${activeProperty.reference_code || 'NP-EXCLUSIVE'}`;
+      document.getElementById('detailTypeChip').innerText = activeProperty.category || 'Residential';
+      document.getElementById('detailTitle').innerText = activeProperty.title;
+      document.getElementById('detailLocation').innerText = activeProperty.location;
+      document.getElementById('detailPrice').innerText = formatINR(activeProperty.price);
+      document.getElementById('detailSize').innerText = activeProperty.size || 'On Request';
+      document.getElementById('detailBoxArea').innerText = activeProperty.size || 'Verified';
+      document.getElementById('detailBoxType').innerText = activeProperty.category || 'Asset';
+      document.getElementById('detailDesc').innerText = activeProperty.description || 'Verified Kerala property asset managed exclusively under Nestora direct brokerage desk.';
+
+      const isSold = activeProperty.status === 'sold';
+      const statusBadge = document.getElementById('detailStatusBadge');
+      statusBadge.innerText = isSold ? 'SOLD OUT' : 'AVAILABLE';
+      statusBadge.className = isSold ? "bg-amber-500 text-slate-950 font-bold text-[10px] px-2.5 py-0.5 rounded-full uppercase" : "bg-emerald-600 text-white font-bold text-[10px] px-2.5 py-0.5 rounded-full uppercase";
+
+      const waMsg = encodeURIComponent(`Hello Nestora Properties, I am interested in [${activeProperty.reference_code || activeProperty.title}] at ${activeProperty.location} (${formatINR(activeProperty.price)}). Please provide more details.`);
+      document.getElementById('detailWhatsappBtn').href = `https://wa.me/${NESTORA_OFFICIAL_PHONE}?text=${waMsg}`;
+
+      document.getElementById('publicContainer').classList.add('hidden');
+      document.getElementById('propertyDetailPage').classList.remove('hidden');
+      window.scrollTo(0, 0);
+    }
+
+    function closeDetailsPage() {
+      document.getElementById('propertyDetailPage').classList.add('hidden');
+      document.getElementById('publicContainer').classList.remove('hidden');
+    }
+
+    function shareActiveProperty() {
+      if (!activeProperty) return;
+      const text = encodeURIComponent(
+        `*NESTORA PROPERTIES KERALA*\n` +
+        `Verified Asset: ${activeProperty.title}\n` +
+        `Ref: ${activeProperty.reference_code || 'NP-DIRECT'}\n` +
+        `Location: ${activeProperty.location}\n` +
+        `Guide Price: ${formatINR(activeProperty.price)}\n\n` +
+        `Direct Desk: https://wa.me/${NESTORA_OFFICIAL_PHONE}`
+      );
+      window.open(`https://wa.me/?text=${text}`, '_blank');
+    }
+
     function renderAdminDashboard() {
       const total = allProperties.length;
       const sold = allProperties.filter(p => p.status === 'sold').length;
-      const active = total - sold;
-
       document.getElementById('statTotal').innerText = total;
-      document.getElementById('statActive').innerText = active;
+      document.getElementById('statActive').innerText = total - sold;
       document.getElementById('statSold').innerText = sold;
-      document.getElementById('statFeatured').innerText = total > 0 ? "1" : "0";
 
       const tbody = document.getElementById('adminAssetTableBody');
-      if (allProperties.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-400">No properties recorded.</td></tr>`;
-        return;
-      }
-
       tbody.innerHTML = allProperties.map(p => `
         <tr class="hover:bg-slate-50">
           <td class="p-2 font-mono font-bold text-slate-700">${p.reference_code || '-'}</td>
@@ -478,72 +459,13 @@
     }
 
     function switchAdminTab(tab) {
-      const stats = document.getElementById('overviewStatsSection');
-      const table = document.getElementById('propertyTableSection');
-      const form = document.getElementById('propertyFormSection');
-
-      document.querySelectorAll('#adminContainer header button[id^="tabBtn"]').forEach(b => {
-        b.className = "flex items-center gap-1.5 text-slate-500 hover:text-slate-800 pb-1.5";
-      });
-
-      if (tab === 'overview') {
-        stats.classList.remove('hidden');
-        table.classList.remove('hidden');
-        form.classList.add('hidden');
-        document.getElementById('tabBtnOverview').className = "flex items-center gap-1.5 text-orange-600 border-b-2 border-orange-600 pb-1.5";
-      } else if (tab === 'properties') {
-        stats.classList.add('hidden');
-        table.classList.remove('hidden');
-        form.classList.add('hidden');
-        document.getElementById('tabBtnProps').className = "flex items-center gap-1.5 text-orange-600 border-b-2 border-orange-600 pb-1.5";
-      } else if (tab === 'form') {
-        stats.classList.add('hidden');
-        table.classList.add('hidden');
-        form.classList.remove('hidden');
-        document.getElementById('tabBtnForm').className = "flex items-center gap-1.5 text-orange-600 border-b-2 border-orange-600 pb-1.5";
-      }
-    }
-
-    function openDetailsModal(id) {
-      const p = allProperties.find(item => item.id === id);
-      if (!p) return;
-
-      const whatsappText = encodeURIComponent(`Hello Nestora Properties, I am interested in verified asset [${p.reference_code || p.title}] at ${p.location} (Guide Price: ${formatINR(p.price)}). Please provide more details.`);
-      const whatsappUrl = `https://wa.me/${NESTORA_OFFICIAL_PHONE}?text=${whatsappText}`;
-
-      document.getElementById('modalContent').innerHTML = `
-        <div class="relative h-52 bg-slate-900">
-          <img src="${p.image_url || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80'}" class="w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
-          <div class="absolute bottom-3 left-4 right-4 text-white">
-            <span class="bg-emerald-500 text-slate-950 font-bold text-[9px] uppercase px-2 py-0.5 rounded-full">${p.category || 'Asset'}</span>
-            <div class="text-xl font-black mt-1">${formatINR(p.price)}</div>
-            <div class="text-xs text-slate-300">📍 ${p.location}</div>
-          </div>
-        </div>
-        <div class="p-4 space-y-3">
-          <h2 class="text-base font-black text-slate-900">${p.title}</h2>
-          <div class="grid grid-cols-2 gap-2 text-xs">
-            <div class="bg-slate-50 p-2 rounded-lg border border-slate-200"><strong>Area:</strong> ${p.size || 'On Request'}</div>
-            <div class="bg-slate-50 p-2 rounded-lg border border-slate-200"><strong>Category:</strong> ${p.category || 'Residential'}</div>
-          </div>
-          <p class="text-xs text-slate-600 bg-slate-50 p-2.5 rounded-xl border border-slate-100">${p.description || 'Verified Kerala property asset managed exclusively under Nestora direct desk.'}</p>
-          <a href="${whatsappUrl}" target="_blank" class="w-full bg-emerald-600 text-white font-bold py-2.5 rounded-xl text-center text-xs flex items-center justify-center gap-2">Connect on WhatsApp</a>
-        </div>
-      `;
-      document.getElementById('detailsModal').classList.remove('hidden');
-    }
-
-    function closeDetailsModal() {
-      document.getElementById('detailsModal').classList.add('hidden');
+      document.getElementById('overviewStatsSection').classList.toggle('hidden', tab !== 'overview');
+      document.getElementById('propertyTableSection').classList.toggle('hidden', tab === 'form');
+      document.getElementById('propertyFormSection').classList.toggle('hidden', tab !== 'form');
     }
 
     async function handleFormSubmit(e) {
       e.preventDefault();
-      const btn = document.getElementById('savePropertyBtn');
-      btn.disabled = true;
-      btn.innerText = "Publishing...";
-
       const payload = {
         reference_code: document.getElementById('propRef').value.trim(),
         title: document.getElementById('propTitle').value.trim(),
@@ -564,132 +486,69 @@
         document.getElementById('propertyForm').reset();
         await fetchProperties();
         switchAdminTab('overview');
-        alert("Property saved successfully!");
-      } catch (err) {
-        alert("Error: " + err.message);
-      } finally {
-        btn.disabled = false;
-        btn.innerText = "Save Asset to Database";
-      }
+        alert("Property Saved!");
+      } catch (err) { alert(err.message); }
     }
 
-    async function toggleSoldStatus(id, currentStatus) {
-      const nextStatus = currentStatus === 'sold' ? 'active' : 'sold';
-      try {
-        const { error } = await client.from('properties').update({ status: nextStatus }).eq('id', id);
-        if (error) throw error;
-        await fetchProperties();
-      } catch (err) {
-        alert("Status update failed: " + err.message);
-      }
+    async function toggleSoldStatus(id, st) {
+      await client.from('properties').update({ status: st === 'sold' ? 'active' : 'sold' }).eq('id', id);
+      fetchProperties();
     }
 
     async function deleteProperty(id) {
-      if (!confirm("Are you sure?")) return;
-      try {
-        const { error } = await client.from('properties').delete().eq('id', id);
-        if (error) throw error;
-        await fetchProperties();
-      } catch (err) {
-        alert("Delete failed: " + err.message);
+      if (confirm("Delete listing?")) {
+        await client.from('properties').delete().eq('id', id);
+        fetchProperties();
       }
     }
 
     async function downloadFlyer(id) {
       const p = allProperties.find(item => item.id === id);
       if (!p) return;
-
-      document.getElementById('flyerRefBadge').innerText = `REF: ${p.reference_code || 'NP-EXCLUSIVE'}`;
-      document.getElementById('flyerCatBadge').innerText = p.category || 'EXCLUSIVE';
+      document.getElementById('flyerRefBadge').innerText = `REF: ${p.reference_code || 'NP'}`;
       document.getElementById('flyerLocation').innerText = p.location;
       document.getElementById('flyerTitle').innerText = p.title;
-      document.getElementById('flyerSize').innerText = p.size ? `📐 ${p.size}` : `Verified Title Deed`;
       document.getElementById('flyerPrice').innerText = formatINR(p.price);
-
-      const flyerImg = document.getElementById('flyerImg');
-      flyerImg.src = p.image_url;
-
-      flyerImg.onload = async () => {
-        try {
-          const element = document.getElementById('flyerPoster');
-          const canvas = await html2canvas(element, { useCORS: true, scale: 2 });
-          const link = document.createElement('a');
-          link.download = `Nestora-${p.reference_code || 'Flyer'}.png`;
-          link.href = canvas.toDataURL('image/png');
-          link.click();
-        } catch (err) {
-          alert("Flyer generation failed.");
-        }
+      const img = document.getElementById('flyerImg');
+      img.src = p.image_url;
+      img.onload = async () => {
+        const canvas = await html2canvas(document.getElementById('flyerPoster'), { useCORS: true });
+        const a = document.createElement('a');
+        a.download = `Flyer-${p.reference_code || 'Asset'}.png`;
+        a.href = canvas.toDataURL();
+        a.click();
       };
-
-      if (flyerImg.complete) flyerImg.onload();
-    }
-
-    function shareViaWhatsApp(id) {
-      const p = allProperties.find(item => item.id === id);
-      if (!p) return;
-
-      const text = encodeURIComponent(
-        `*NESTORA PROPERTIES KERALA*\n` +
-        `Verified Asset: ${p.title}\n` +
-        `Ref: ${p.reference_code || 'NP-DIRECT'}\n` +
-        `Location: ${p.location}\n` +
-        `Guide Price: ${formatINR(p.price)}\n\n` +
-        `Direct Desk: https://wa.me/${NESTORA_OFFICIAL_PHONE}`
-      );
-      window.open(`https://wa.me/?text=${text}`, '_blank');
     }
 
     function handleAdminButtonClick() {
-      if (isAdminLoggedIn) {
-        switchToAdminDashboard();
-      } else {
-        toggleAdminModal(true);
-      }
+      if (isAdminLoggedIn) switchToAdminDashboard();
+      else toggleAdminModal(true);
     }
-
-    function toggleAdminModal(show) {
-      document.getElementById('adminAuthModal').classList.toggle('hidden', !show);
-      if (show) document.getElementById('adminPassInput').focus();
-    }
-
+    function toggleAdminModal(show) { document.getElementById('adminAuthModal').classList.toggle('hidden', !show); }
     function verifyAdminPasscode() {
-      const pass = document.getElementById('adminPassInput').value;
-      if (pass === ADMIN_PASSCODE) {
+      if (document.getElementById('adminPassInput').value === ADMIN_PASSCODE) {
         isAdminLoggedIn = true;
         localStorage.setItem('nestora_admin_session', 'true');
         toggleAdminModal(false);
         switchToAdminDashboard();
-      } else {
-        alert("Incorrect passcode!");
-      }
+      } else alert("Incorrect passcode!");
     }
-
     function switchToAdminDashboard() {
       document.getElementById('publicContainer').classList.add('hidden');
+      document.getElementById('propertyDetailPage').classList.add('hidden');
       document.getElementById('adminContainer').classList.remove('hidden');
-      document.getElementById('adminContainer').classList.add('flex');
       renderAdminDashboard();
     }
-
     function switchToPublicView() {
       document.getElementById('adminContainer').classList.add('hidden');
-      document.getElementById('adminContainer').classList.remove('flex');
       document.getElementById('publicContainer').classList.remove('hidden');
-      document.getElementById('portalBtnText').innerText = "Admin Dashboard";
-      renderPublicProperties();
     }
-
     function logoutAdmin() {
       isAdminLoggedIn = false;
       localStorage.removeItem('nestora_admin_session');
-      document.getElementById('portalBtnText').innerText = "Admin Dashboard";
       switchToPublicView();
     }
 
-    if (isAdminLoggedIn) {
-      document.getElementById('portalBtnText').innerText = "Admin Dashboard";
-    }
     fetchProperties();
   </script>
 </body>
