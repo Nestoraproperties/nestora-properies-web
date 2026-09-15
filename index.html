@@ -2,53 +2,55 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=0.88, maximum-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=0.92, maximum-scale=1.0">
   <title>Nestora Properties | Exclusive Kerala Real Estate</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
-<body class="bg-slate-100 text-slate-900 antialiased min-h-screen flex flex-col">
+<body class="bg-[#f8fafc] text-slate-900 antialiased min-h-screen flex flex-col">
 
   <!-- ========================================== -->
   <!-- 1. PUBLIC VIEW & DEDICATED DETAILS        -->
   <!-- ========================================== -->
   <div id="publicFlowContainer" class="flex-1 flex flex-col">
     
-    <!-- BRAND PUBLIC HEADER -->
-    <header class="bg-white border-b border-slate-200 px-4 py-3 sticky top-0 z-30 shadow-sm">
+    <!-- BRAND PUBLIC HEADER (EXACT SCREENSHOT 1) -->
+    <header class="bg-white border-b border-slate-200/80 px-4 py-3 sticky top-0 z-30 shadow-[0_1px_3px_rgba(0,0,0,0.05)]">
       <div class="max-w-4xl mx-auto flex items-center justify-between">
         
-        <!-- LUXURY REAL ESTATE SVG EMBLEM LOGO -->
-        <div class="flex items-center gap-3 cursor-pointer" onclick="closeDetailsPage()">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-slate-950 via-slate-900 to-orange-600 flex items-center justify-center text-white shadow-md shadow-orange-950/20">
-            <svg class="w-6 h-6 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M4 21V10l8-7 8 7v11M9 21v-6a3 3 0 016 0v6M9 9h.01M15 9h.01M9 13h.01M15 13h.01" />
+        <!-- LUXURY HOUSE ICON LOGO -->
+        <div class="flex items-center gap-2.5 cursor-pointer" onclick="closeDetailsPage()">
+          <div class="w-10 h-10 rounded-xl bg-slate-950 flex items-center justify-center shadow-md border border-slate-800">
+            <svg class="w-6 h-6 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
             </svg>
           </div>
           <div>
-            <span class="text-sm font-black tracking-tight text-slate-900 block leading-tight">NESTORA PROPERTIES</span>
-            <span class="text-[10px] font-bold text-orange-600 tracking-wider uppercase">Direct Brokerage • Kerala</span>
+            <span class="text-sm font-black tracking-tight text-slate-950 block leading-tight">NESTORA PROPERTIES</span>
+            <span class="text-[9px] font-extrabold text-orange-600 tracking-wider uppercase">DIRECT BROKERAGE • KERALA</span>
           </div>
         </div>
 
-        <div class="flex items-center gap-2">
-          <a href="tel:9946446793" class="inline-flex items-center gap-1.5 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1.5 rounded-xl border border-slate-200 transition">
+        <div class="flex items-center gap-1.5 sm:gap-2">
+          <a href="tel:9946446793" class="inline-flex items-center gap-1 bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold px-2.5 py-1.5 rounded-xl border border-slate-200 shadow-sm transition">
             <svg class="w-3.5 h-3.5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
             Call
           </a>
-          <a href="https://wa.me/919946446793" target="_blank" class="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow-sm transition">
+          <a href="https://wa.me/919946446793" target="_blank" class="inline-flex items-center gap-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-2.5 py-1.5 rounded-xl shadow-sm transition">
             <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
             WhatsApp
           </a>
-          <button onclick="handleAdminButtonClick()" class="inline-flex items-center gap-1.5 bg-slate-950 hover:bg-slate-800 text-white text-xs font-bold px-3 py-1.5 rounded-xl transition ml-1 shadow-sm">
-            <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          <button onclick="handleAdminButtonClick()" class="inline-flex items-center gap-1 bg-slate-950 hover:bg-slate-800 text-white text-xs font-bold px-2.5 py-1.5 rounded-xl transition shadow-sm">
+            <svg class="w-3 h-3 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
             Admin
           </button>
         </div>
@@ -56,65 +58,65 @@
     </header>
 
     <!-- PUBLIC CATALOGUE -->
-    <div id="publicContainer" class="flex-1 max-w-4xl mx-auto w-full px-4 py-5">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4 mb-4">
-        <div>
-          <h1 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Verified Property Assets</h1>
-          <p class="text-xs text-slate-500 mt-0.5" id="publicListingCount">Loading inventory...</p>
-        </div>
-        <div class="w-full sm:w-72">
-          <input type="text" id="searchInput" oninput="applyFilters()" placeholder="Search location, title, ref..." class="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-xs text-slate-800 focus:outline-none focus:border-orange-500 shadow-sm">
-        </div>
+    <div id="publicContainer" class="flex-1 max-w-4xl mx-auto w-full px-4 py-5 space-y-4">
+      <div>
+        <h1 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Verified Property Assets</h1>
+        <p class="text-xs text-slate-500 mt-0.5 font-medium" id="publicListingCount">Loading inventory...</p>
       </div>
 
-      <!-- Filter Chips -->
-      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-3" id="categoryFilterBar">
-        <button onclick="setCategoryFilter('all')" class="cat-btn bg-slate-900 text-white px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap shadow-sm" data-cat="all">All</button>
-        <button onclick="setCategoryFilter('Residential Land')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Residential Land">Residential Land</button>
-        <button onclick="setCategoryFilter('Villa')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Villa">Villa</button>
-        <button onclick="setCategoryFilter('Apartment')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Apartment">Apartment</button>
-        <button onclick="setCategoryFilter('Commercial')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Commercial">Commercial</button>
-        <button onclick="setCategoryFilter('Plot')" class="cat-btn bg-white border border-slate-200 text-slate-600 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap" data-cat="Plot">Plot</button>
+      <!-- SEARCH INPUT (CLEAN ROUNDED BAR) -->
+      <div>
+        <input type="text" id="searchInput" oninput="applyFilters()" placeholder="Search location, title, ref..." class="w-full bg-white border border-slate-200 rounded-2xl px-4 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-slate-400 shadow-sm placeholder:text-slate-400 font-medium">
       </div>
 
-      <div id="propertiesGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+      <!-- CATEGORY CHIPS (ROUNDED PILLS) -->
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1" id="categoryFilterBar">
+        <button onclick="setCategoryFilter('all')" class="cat-btn bg-slate-950 text-white px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap shadow-sm" data-cat="all">All</button>
+        <button onclick="setCategoryFilter('Residential Land')" class="cat-btn bg-white border border-slate-200 text-slate-700 px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap hover:bg-slate-50 transition" data-cat="Residential Land">Residential Land</button>
+        <button onclick="setCategoryFilter('Villa')" class="cat-btn bg-white border border-slate-200 text-slate-700 px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap hover:bg-slate-50 transition" data-cat="Villa">Villa</button>
+        <button onclick="setCategoryFilter('Apartment')" class="cat-btn bg-white border border-slate-200 text-slate-700 px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap hover:bg-slate-50 transition" data-cat="Apartment">Apartment</button>
+        <button onclick="setCategoryFilter('Commercial')" class="cat-btn bg-white border border-slate-200 text-slate-700 px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap hover:bg-slate-50 transition" data-cat="Commercial">Commercial</button>
+        <button onclick="setCategoryFilter('Plot')" class="cat-btn bg-white border border-slate-200 text-slate-700 px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap hover:bg-slate-50 transition" data-cat="Plot">Plot</button>
+      </div>
+
+      <div id="propertiesGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1"></div>
     </div>
 
     <!-- FULL DEDICATED DETAILS PAGE -->
-    <div id="propertyDetailPage" class="hidden flex-1 max-w-2xl mx-auto w-full px-3 py-3 space-y-3 pb-16">
-      <div class="flex items-center justify-between text-xs font-bold text-slate-600 px-1">
-        <button onclick="closeDetailsPage()" class="inline-flex items-center gap-1.5 hover:text-slate-900 bg-white border border-slate-200 px-3 py-1.5 rounded-xl shadow-sm">
+    <div id="propertyDetailPage" class="hidden flex-1 max-w-2xl mx-auto w-full px-4 py-3 space-y-3 pb-16">
+      <div class="flex items-center justify-between text-xs font-bold text-slate-700 px-1">
+        <button onclick="closeDetailsPage()" class="inline-flex items-center gap-1.5 hover:text-slate-950 bg-white border border-slate-200 px-3 py-1.5 rounded-xl shadow-sm">
           ‹ Back to Catalogue
         </button>
-        <button onclick="shareActiveProperty()" class="inline-flex items-center gap-1.5 hover:text-slate-900 bg-white border border-slate-200 px-3 py-1.5 rounded-xl shadow-sm">
+        <button onclick="shareActiveProperty()" class="inline-flex items-center gap-1.5 hover:text-slate-950 bg-white border border-slate-200 px-3 py-1.5 rounded-xl shadow-sm">
           Share
         </button>
       </div>
 
-      <div class="relative rounded-3xl overflow-hidden bg-slate-900 h-60 sm:h-72 shadow-md">
+      <div class="relative rounded-3xl overflow-hidden bg-slate-950 h-64 sm:h-72 shadow-md">
         <img id="detailImg" src="" class="w-full h-full object-cover">
         <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
         <div class="absolute top-3 left-3 flex gap-1.5">
           <span class="bg-emerald-600 text-white font-black text-[10px] px-2.5 py-0.5 rounded-full uppercase shadow" id="detailStatusBadge">AVAILABLE</span>
           <span class="bg-amber-500 text-slate-950 font-black text-[10px] px-2.5 py-0.5 rounded-full uppercase shadow" id="detailFeaturedBadge">★ Featured</span>
         </div>
-        <span class="absolute top-3 right-3 bg-slate-900/80 text-white font-mono text-[10px] font-bold px-2 py-0.5 rounded-lg border border-white/20" id="detailRef">RE-001</span>
-        <span class="absolute bottom-3 left-3 bg-white text-slate-900 text-[11px] font-extrabold px-3 py-1 rounded-xl shadow" id="detailTypeChip">Residential Land</span>
+        <span class="absolute top-3 right-3 bg-slate-950/80 text-white font-mono text-[10px] font-bold px-2 py-0.5 rounded-lg border border-white/20" id="detailRef">RE-001</span>
+        <span class="absolute bottom-3 left-3 bg-white text-slate-950 text-[11px] font-black px-3 py-1 rounded-xl shadow" id="detailTypeChip">Residential Land</span>
       </div>
 
-      <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3">
+      <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm space-y-3">
         <div>
           <div class="text-[10px] font-extrabold text-orange-600 uppercase tracking-wider mb-1" id="detailSubRef">PROPERTY ID: RE-001</div>
           <h2 class="text-lg sm:text-xl font-black text-slate-900 leading-snug" id="detailTitle">Title</h2>
-          <div class="text-xs text-slate-500 flex items-center gap-1 mt-1 font-medium">
+          <div class="text-xs text-slate-600 flex items-center gap-1 mt-1 font-semibold">
             <span>📍</span> <span id="detailLocation">Location</span>
           </div>
         </div>
 
         <div class="pt-2 border-t border-slate-100 flex items-baseline justify-between">
           <div>
-            <div class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight" id="detailPrice">₹ 0</div>
-            <div class="text-xs text-slate-400 font-semibold" id="detailSize">Size details</div>
+            <div class="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight" id="detailPrice">₹ 0</div>
+            <div class="text-xs text-slate-500 font-semibold" id="detailSize">Size details</div>
           </div>
           <div id="detailMapsBtnWrap"></div>
         </div>
@@ -122,28 +124,28 @@
         <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100 text-xs">
           <div class="bg-slate-50 border border-slate-100 p-3 rounded-xl">
             <span class="block text-[9px] uppercase font-bold text-slate-400">Land Area</span>
-            <span class="font-extrabold text-slate-800 text-sm" id="detailBoxArea">-</span>
+            <span class="font-black text-slate-900 text-sm" id="detailBoxArea">-</span>
           </div>
           <div class="bg-slate-50 border border-slate-100 p-3 rounded-xl">
             <span class="block text-[9px] uppercase font-bold text-slate-400">Property Type</span>
-            <span class="font-extrabold text-slate-800 text-sm" id="detailBoxType">-</span>
+            <span class="font-black text-slate-900 text-sm" id="detailBoxType">-</span>
           </div>
         </div>
       </div>
 
-      <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+      <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm">
         <h3 class="text-xs font-black text-slate-900 uppercase tracking-wider mb-2">Property Description</h3>
-        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed whitespace-pre-line font-medium" id="detailDesc">-</p>
+        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed whitespace-pre-line font-medium" id="detailDesc">-</p>
       </div>
 
-      <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3">
+      <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm space-y-3">
         <h3 class="text-xs font-black text-slate-900 uppercase tracking-wider">Infrastructure & Utilities</h3>
         <div class="space-y-2.5 text-xs">
           <div class="flex items-start gap-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
             <span class="text-base text-orange-500">🛣️</span>
             <div>
               <span class="text-[9px] font-bold text-slate-400 uppercase block">Road Access / Width</span>
-              <span class="font-semibold text-slate-800" id="detailRoadAccess">Direct road access</span>
+              <span class="font-bold text-slate-800" id="detailRoadAccess">Direct road access</span>
             </div>
           </div>
 
@@ -151,7 +153,7 @@
             <span class="text-base text-blue-500">💧</span>
             <div>
               <span class="text-[9px] font-bold text-slate-400 uppercase block">Water Supply</span>
-              <span class="font-semibold text-slate-800" id="detailWaterSupply">Open well / Municipal pipeline</span>
+              <span class="font-bold text-slate-800" id="detailWaterSupply">Open well / Municipal pipeline</span>
             </div>
           </div>
 
@@ -159,7 +161,7 @@
             <span class="text-base text-amber-500">⚡</span>
             <div>
               <span class="text-[9px] font-bold text-slate-400 uppercase block">Electricity</span>
-              <span class="font-semibold text-slate-800" id="detailElectricity">KSEB connection point ready</span>
+              <span class="font-bold text-slate-800" id="detailElectricity">KSEB connection point ready</span>
             </div>
           </div>
 
@@ -167,13 +169,13 @@
             <span class="text-base text-emerald-500">📄</span>
             <div>
               <span class="text-[9px] font-bold text-slate-400 uppercase block">Document Approvals Status</span>
-              <span class="font-semibold text-slate-800" id="detailApprovals">Clear Title & Tax Receipts</span>
+              <span class="font-bold text-slate-800" id="detailApprovals">Clear Title & Tax Receipts</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3">
+      <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm space-y-3">
         <div>
           <span class="text-[9px] font-extrabold text-slate-400 uppercase tracking-wider block">Consultation & Enquiries</span>
           <h3 class="text-sm font-black text-slate-900 mt-0.5">Interested in this Property?</h3>
@@ -196,19 +198,17 @@
   <!-- ========================================== -->
   <!-- 2. DEDICATED ADMIN CONTROL CENTER          -->
   <!-- ========================================== -->
-  <div id="adminContainer" class="hidden min-h-screen flex-col bg-slate-100 text-slate-900 pb-16">
+  <div id="adminContainer" class="hidden min-h-screen flex-col bg-[#f8fafc] text-slate-900 pb-16">
     
-    <!-- SINGLE CLEAN ADMIN HEADER -->
-    <header class="bg-white border-b border-slate-200 px-4 py-3 sticky top-0 z-30 shadow-sm">
+    <!-- SINGLE ADMIN HEADER (EXACT SCREENSHOT 2) -->
+    <header class="bg-white border-b border-slate-200/80 px-4 py-3 sticky top-0 z-30 shadow-sm">
       <div class="max-w-4xl mx-auto flex items-center justify-between">
         <div class="flex items-center gap-2.5">
-          <div class="w-9 h-9 rounded-xl bg-orange-600 text-white flex items-center justify-center shadow-sm">
-            <svg class="w-5 h-5 text-amber-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-            </svg>
+          <div class="w-8 h-8 rounded-lg bg-orange-600 text-white flex items-center justify-center shadow-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
           </div>
           <div>
-            <span class="text-xs font-extrabold text-slate-900 block leading-tight">Super Admin (Nestora)</span>
+            <span class="text-xs font-bold text-slate-900 block leading-tight">Super Admin (Nestora)</span>
             <span class="text-[9px] font-black px-1.5 py-0.5 rounded bg-purple-100 text-purple-700 tracking-wide uppercase">SUPER ADMIN</span>
           </div>
         </div>
@@ -240,16 +240,16 @@
         <button onclick="switchAdminTab('form')" class="bg-orange-600 hover:bg-orange-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition shadow-md">+ Add New Property</button>
       </div>
 
-      <!-- Stats Overview -->
+      <!-- Stats Overview (Screen 2 Exact) -->
       <div id="overviewStatsSection" class="grid grid-cols-2 gap-3">
-        <div class="bg-white border border-slate-200 p-4 rounded-2xl shadow-sm"><span class="text-[10px] font-bold text-slate-400 uppercase">Total Inventory</span><div class="text-2xl font-black text-slate-900" id="statTotal">0</div></div>
-        <div class="bg-white border border-slate-200 p-4 rounded-2xl shadow-sm"><span class="text-[10px] font-bold text-emerald-700 uppercase">Available</span><div class="text-2xl font-black text-emerald-600" id="statActive">0</div></div>
-        <div class="bg-white border border-slate-200 p-4 rounded-2xl shadow-sm"><span class="text-[10px] font-bold text-amber-700 uppercase">Reserved</span><div class="text-2xl font-black text-amber-600">0</div></div>
-        <div class="bg-white border border-slate-200 p-4 rounded-2xl shadow-sm"><span class="text-[10px] font-bold text-slate-400 uppercase">Sold</span><div class="text-2xl font-black text-slate-900" id="statSold">0</div></div>
+        <div class="bg-white border border-slate-200/80 p-4 rounded-2xl shadow-sm"><span class="text-[10px] font-bold text-slate-400 uppercase">Total Inventory</span><div class="text-2xl font-black text-slate-900 my-1" id="statTotal">0</div></div>
+        <div class="bg-white border border-slate-200/80 p-4 rounded-2xl shadow-sm"><span class="text-[10px] font-bold text-emerald-700 uppercase">Available</span><div class="text-2xl font-black text-emerald-600 my-1" id="statActive">0</div></div>
+        <div class="bg-white border border-slate-200/80 p-4 rounded-2xl shadow-sm"><span class="text-[10px] font-bold text-amber-700 uppercase">Reserved</span><div class="text-2xl font-black text-amber-600 my-1">0</div></div>
+        <div class="bg-white border border-slate-200/80 p-4 rounded-2xl shadow-sm"><span class="text-[10px] font-bold text-slate-400 uppercase">Sold</span><div class="text-2xl font-black text-slate-900 my-1" id="statSold">0</div></div>
       </div>
 
       <!-- Directory Table -->
-      <div id="propertyTableSection" class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
+      <div id="propertyTableSection" class="bg-white border border-slate-200/80 rounded-2xl p-4 shadow-sm">
         <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">Property Directory</h3>
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs">
@@ -269,7 +269,7 @@
       </div>
 
       <!-- COMPLETE COMPREHENSIVE ADD PROPERTY FORM -->
-      <div id="propertyFormSection" class="hidden bg-white border border-slate-200 rounded-3xl p-5 sm:p-7 shadow-sm space-y-5">
+      <div id="propertyFormSection" class="hidden bg-white border border-slate-200/80 rounded-3xl p-5 sm:p-7 shadow-sm space-y-5">
         <div class="border-b border-slate-100 pb-3">
           <h2 class="text-base sm:text-lg font-black text-slate-900">Add New Property</h2>
           <p class="text-xs text-slate-400 mt-0.5">Fill in property specifications, upload photos, and update catalogue details.</p>
@@ -464,16 +464,16 @@
 
   <!-- ========================================================= -->
   <!-- 3. BRAND NEW LUXURY JPEG POSTER (WHITE / ORANGE ELEGANT) -->
-  <!-- ========================================== ============== -->
+  <!-- ========================================================= -->
   <div id="flyerContainer" style="position: absolute; left: -9999px; top: -9999px;">
-    <div id="flyerPoster" style="width: 600px; height: 750px; background: #ffffff; color: #0f172a; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; font-family: 'Plus Jakarta Sans', sans-serif; box-sizing: border-box; border: 1px solid #e2e8f0;">
+    <div id="flyerPoster" style="width: 600px; height: 750px; background: #ffffff; color: #0f172a; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; font-family: 'Inter', sans-serif; box-sizing: border-box; border: 1px solid #e2e8f0;">
       
       <!-- Brand Header -->
       <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 16px;">
         <div style="display: flex; align-items: center; gap: 12px;">
-          <div style="width: 44px; height: 44px; background: linear-gradient(135deg, #020617, #ea580c); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M4 21V10l8-7 8 7v11M9 21v-6a3 3 0 016 0v6M9 9h.01M15 9h.01M9 13h.01M15 13h.01"/>
+          <div style="width: 44px; height: 44px; background: #020617; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
             </svg>
           </div>
           <div>
@@ -574,8 +574,8 @@
       selectedCategory = cat;
       document.querySelectorAll('.cat-btn').forEach(btn => {
         btn.className = btn.dataset.cat === cat 
-          ? "cat-btn bg-slate-900 text-white px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap shadow-sm"
-          : "cat-btn bg-white border border-slate-200 text-slate-600 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap";
+          ? "cat-btn bg-slate-950 text-white px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap shadow-sm"
+          : "cat-btn bg-white border border-slate-200 text-slate-700 px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap hover:bg-slate-50 transition";
       });
       applyFilters();
     }
@@ -605,7 +605,7 @@
             <div class="relative h-44 bg-slate-100">
               <img src="${p.image_url}" class="w-full h-full object-cover ${isSold ? 'grayscale' : ''}">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
-              <span class="absolute top-2.5 left-2.5 bg-slate-900/80 text-white font-mono text-[10px] px-2 py-0.5 rounded-lg font-bold">${p.reference_code || 'NP-' + (index + 1)}</span>
+              <span class="absolute top-2.5 left-2.5 bg-slate-950/80 text-white font-mono text-[10px] px-2 py-0.5 rounded-lg font-bold">${p.reference_code || 'NP-' + (index + 1)}</span>
               <div class="absolute top-2.5 right-2.5">${isSold ? `<span class="bg-amber-500 text-slate-950 font-black text-[9px] uppercase px-2 py-0.5 rounded-full">SOLD</span>` : `<span class="bg-emerald-500 text-slate-950 font-bold text-[9px] uppercase px-2 py-0.5 rounded-full">${p.category}</span>`}</div>
               <div class="absolute bottom-2.5 left-3 right-3 text-white">
                 <span class="text-[9px] uppercase font-bold text-emerald-400">Guide Price</span>
@@ -613,10 +613,10 @@
               </div>
             </div>
             <div class="p-3">
-              <div class="text-[11px] font-semibold text-emerald-600 mb-0.5">📍 ${p.location}</div>
+              <div class="text-[11px] font-bold text-emerald-600 mb-0.5">📍 ${p.location}</div>
               <h3 class="text-xs font-bold text-slate-900 leading-snug mb-1 truncate">${p.title}</h3>
-              <div class="flex justify-between items-center text-[10px] text-slate-500 pt-1 border-t border-slate-100">
-                <span>${p.size ? (p.size + ' ' + (p.area_unit || 'Cent')) : 'Verified Asset'}</span>
+              <div class="flex justify-between items-center text-[10px] text-slate-500 pt-1.5 border-t border-slate-100">
+                <span class="font-medium">${p.size ? (p.size + ' ' + (p.area_unit || 'Cent')) : 'Verified Asset'}</span>
                 <span class="text-orange-600 font-bold">View Full Details →</span>
               </div>
             </div>
@@ -702,12 +702,12 @@
       const tbody = document.getElementById('adminAssetTableBody');
       tbody.innerHTML = allProperties.map(p => `
         <tr class="hover:bg-slate-50">
-          <td class="p-2 font-mono font-bold text-slate-700">${p.reference_code || '-'}</td>
-          <td class="p-2"><div class="font-bold text-slate-900">${p.title}</div><div class="text-[10px] text-slate-400">${p.location}</div></td>
-          <td class="p-2 font-semibold text-emerald-600">${formatINR(p.price)}</td>
-          <td class="p-2"><div class="font-semibold text-slate-800">${p.owner_name || 'Nestora'}</div><div class="text-slate-400 text-[10px]">${p.owner_phone || '-'}</div></td>
-          <td class="p-2"><button onclick="toggleSoldStatus('${p.id}', '${p.status || 'active'}')" class="px-2 py-0.5 rounded text-[9px] font-bold uppercase ${p.status === 'sold' ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'}">${p.status === 'sold' ? 'Sold' : 'Active'}</button></td>
-          <td class="p-2 text-right space-x-1">
+          <td class="p-2.5 font-mono font-bold text-slate-700">${p.reference_code || '-'}</td>
+          <td class="p-2.5"><div class="font-bold text-slate-900">${p.title}</div><div class="text-[10px] text-slate-500 font-medium">${p.location}</div></td>
+          <td class="p-2.5 font-bold text-emerald-700">${formatINR(p.price)}</td>
+          <td class="p-2.5"><div class="font-semibold text-slate-800">${p.owner_name || 'Nestora'}</div><div class="text-slate-500 text-[10px]">${p.owner_phone || '-'}</div></td>
+          <td class="p-2.5"><button onclick="toggleSoldStatus('${p.id}', '${p.status || 'active'}')" class="px-2 py-0.5 rounded text-[9px] font-bold uppercase ${p.status === 'sold' ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'}">${p.status === 'sold' ? 'Sold' : 'Active'}</button></td>
+          <td class="p-2.5 text-right space-x-1">
             <button onclick="downloadFlyer('${p.id}')" class="bg-orange-50 hover:bg-orange-100 border border-orange-200 text-orange-700 px-2.5 py-1 rounded-lg text-[11px] font-bold transition">JPG Flyer</button>
             <button onclick="deleteProperty('${p.id}')" class="bg-red-50 hover:bg-red-100 text-red-600 px-2 py-1 rounded text-[11px] font-bold transition">Del</button>
           </td>
