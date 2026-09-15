@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=1.0">
   <title>Nestora Properties | Exclusive Kerala Real Estate</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -14,24 +14,21 @@
 </head>
 <body class="bg-slate-50 text-slate-900 antialiased min-h-screen flex flex-col">
 
-  <!-- ========================================== -->
-  <!-- 1. PUBLIC VIEW (CUSTOMER INTERFACE)       -->
-  <!-- ========================================== -->
+  <!-- 1. PUBLIC VIEW -->
   <div id="publicContainer" class="flex-1 flex flex-col">
-    <!-- Public Header -->
     <header class="bg-slate-950 border-b border-slate-800 text-white sticky top-0 z-30">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
         <div class="flex items-center space-x-3">
-          <div class="w-10 h-10 rounded-xl bg-emerald-500 text-slate-950 font-black text-xl flex items-center justify-center shadow-lg shadow-emerald-500/20">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-500 text-slate-950 font-black text-lg sm:text-xl flex items-center justify-center shadow-lg shadow-emerald-500/20">
             N
           </div>
           <div>
-            <span class="text-xl font-black tracking-tight text-white block leading-none">NESTORA</span>
-            <span class="text-[10px] font-bold tracking-widest text-emerald-400 uppercase">Properties Kerala</span>
+            <span class="text-lg sm:text-xl font-black tracking-tight text-white block leading-none">NESTORA</span>
+            <span class="text-[9px] sm:text-[10px] font-bold tracking-widest text-emerald-400 uppercase">Properties Kerala</span>
           </div>
         </div>
         <div>
-          <button onclick="handleAdminButtonClick()" class="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 text-xs font-semibold px-4 py-2 rounded-xl transition">
+          <button onclick="handleAdminButtonClick()" class="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 text-xs font-semibold px-3.5 py-2 rounded-xl transition">
             <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
             <span id="portalBtnText">Admin Portal</span>
           </button>
@@ -39,87 +36,70 @@
       </div>
     </header>
 
-    <!-- Public Listings -->
-    <main class="flex-1 max-w-6xl mx-auto w-full px-4 sm:px-6 py-8">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-6 mb-8">
+    <main class="flex-1 max-w-6xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-5 mb-6">
         <div>
           <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Verified Premium Assets</h1>
-          <p class="text-sm text-slate-500 mt-1" id="publicListingCount">Loading verified listings...</p>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1" id="publicListingCount">Loading verified listings...</p>
         </div>
       </div>
-
-      <!-- Properties Grid -->
-      <div id="propertiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Injected via JS -->
-      </div>
+      <div id="propertiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
     </main>
 
-    <!-- Public Footer -->
     <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500 mt-auto">
       <p class="font-bold text-slate-800 mb-1">NESTORA PROPERTIES KERALA</p>
       <p>Direct Brokerage & Verified Real Estate Solutions.</p>
     </footer>
   </div>
 
-
-  <!-- ========================================== -->
-  <!-- 2. DEDICATED ADMIN DASHBOARD (SEPARATE)    -->
-  <!-- ========================================== -->
+  <!-- 2. SEPARATE ADMIN DASHBOARD -->
   <div id="adminContainer" class="hidden min-h-screen flex-col bg-slate-950 text-slate-100">
-    <!-- Admin Top Nav -->
     <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-30">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
         <div class="flex items-center space-x-3">
-          <div class="w-10 h-10 rounded-xl bg-emerald-500 text-slate-950 font-black text-xl flex items-center justify-center">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-500 text-slate-950 font-black text-lg sm:text-xl flex items-center justify-center">
             N
           </div>
           <div>
-            <span class="text-lg font-bold text-white block leading-none">Nestora Control Center</span>
-            <span class="text-[10px] font-semibold tracking-wider text-emerald-400 uppercase">Management & Analytics</span>
+            <span class="text-base sm:text-lg font-bold text-white block leading-none">Nestora Control Center</span>
+            <span class="text-[9px] sm:text-[10px] font-semibold tracking-wider text-emerald-400 uppercase">Management & Analytics</span>
           </div>
         </div>
-        <div class="flex items-center gap-3">
-          <button onclick="switchToPublicView()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold px-3 py-2 rounded-xl transition border border-slate-700">
+        <div class="flex items-center gap-2 sm:gap-3">
+          <button onclick="switchToPublicView()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold px-3 py-1.5 sm:py-2 rounded-xl transition border border-slate-700">
             View Public Site
           </button>
-          <button onclick="logoutAdmin()" class="bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 text-xs font-semibold px-3 py-2 rounded-xl transition">
+          <button onclick="logoutAdmin()" class="bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 text-xs font-semibold px-3 py-1.5 sm:py-2 rounded-xl transition">
             Logout
           </button>
         </div>
       </div>
     </header>
 
-    <!-- Admin Content -->
-    <main class="max-w-7xl mx-auto w-full px-4 sm:px-6 py-8 space-y-8 flex-1">
-      
-      <!-- STATS OVERVIEW CARDS -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl">
-          <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Properties</span>
-          <div class="text-3xl font-black text-white mt-2" id="statTotal">0</div>
-          <span class="text-[11px] text-slate-500 mt-1 block">All registered records</span>
+    <main class="max-w-7xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8 space-y-6 flex-1">
+      <div class="grid grid-cols-3 gap-3 sm:gap-4">
+        <div class="bg-slate-900 border border-slate-800 p-4 sm:p-5 rounded-2xl">
+          <span class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-wider">Total</span>
+          <div class="text-2xl sm:text-3xl font-black text-white mt-1" id="statTotal">0</div>
         </div>
-        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl">
-          <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Active Listings</span>
-          <div class="text-3xl font-black text-emerald-400 mt-2" id="statActive">0</div>
-          <span class="text-[11px] text-slate-500 mt-1 block">Currently on public market</span>
+        <div class="bg-slate-900 border border-slate-800 p-4 sm:p-5 rounded-2xl">
+          <span class="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-wider">Active</span>
+          <div class="text-2xl sm:text-3xl font-black text-emerald-400 mt-1" id="statActive">0</div>
         </div>
-        <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl">
-          <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Sold Out</span>
-          <div class="text-3xl font-black text-amber-400 mt-2" id="statSold">0</div>
-          <span class="text-[11px] text-slate-500 mt-1 block">Successfully closed deals</span>
+        <div class="bg-slate-900 border border-slate-800 p-4 sm:p-5 rounded-2xl">
+          <span class="text-[10px] sm:text-xs font-bold text-amber-400 uppercase tracking-wider">Sold Out</span>
+          <div class="text-2xl sm:text-3xl font-black text-amber-400 mt-1" id="statSold">0</div>
         </div>
       </div>
 
-      <!-- ADD NEW PROPERTY FORM -->
-      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8">
-        <h2 class="text-lg font-bold text-white mb-1 flex items-center gap-2">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8">
+        <h2 class="text-base sm:text-lg font-bold text-white mb-1 flex items-center gap-2">
           <span class="w-2.5 h-2.5 bg-emerald-400 rounded-full"></span> Add New Property Asset
         </h2>
-        <p class="text-xs text-slate-400 mb-6">Enter complete property and owner details. Owner details will remain strictly confidential in this admin console.</p>
+        <p class="text-xs text-slate-400 mb-5">Enter complete property and confidential owner records.</p>
 
-        <form id="propertyForm" onsubmit="handleFormSubmit(event)" class="space-y-5">
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <form id="propertyForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
             <div>
               <label class="block text-xs font-medium text-slate-400 mb-1">Ref Code</label>
               <input type="text" id="propRef" placeholder="e.g. NP-105" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500">
@@ -140,7 +120,7 @@
             </div>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
             <div>
               <label class="block text-xs font-medium text-slate-400 mb-1">Location / Town</label>
               <input type="text" id="propLocation" placeholder="e.g. Aluva, Kochi" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500">
@@ -155,10 +135,9 @@
             </div>
           </div>
 
-          <!-- CONFIDENTIAL OWNER SECTION -->
-          <div class="bg-slate-950 border border-amber-500/20 p-4 rounded-2xl">
-            <div class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-3">🔒 Owner Confidential Record (Admin Only)</div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="bg-slate-950 border border-amber-500/20 p-4 rounded-xl">
+            <div class="text-[11px] font-bold text-amber-400 uppercase tracking-wider mb-2.5">🔒 Owner Confidential Record (Admin Only)</div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label class="block text-xs font-medium text-slate-400 mb-1">Owner Name</label>
                 <input type="text" id="propOwnerName" placeholder="Owner Full Name" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500">
@@ -176,76 +155,60 @@
           </div>
 
           <div>
-            <label class="block text-xs font-medium text-slate-400 mb-1">Full Description & Highlights</label>
-            <textarea id="propDescription" rows="3" placeholder="Access road details, proximity to junction, water supply, special amenities..." class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500"></textarea>
+            <label class="block text-xs font-medium text-slate-400 mb-1">Description & Highlights</label>
+            <textarea id="propDescription" rows="2" placeholder="Key features, water access..." class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500"></textarea>
           </div>
 
-          <button type="submit" id="savePropertyBtn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl text-sm transition shadow-lg shadow-emerald-900/30">
+          <button type="submit" id="savePropertyBtn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl text-sm transition shadow-lg shadow-emerald-900/30">
             Publish Live Asset
           </button>
         </form>
       </div>
 
-      <!-- PROPERTY ASSET MANAGEMENT TABLE -->
-      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8">
-        <h2 class="text-lg font-bold text-white mb-4">Asset Records & Owner Directory</h2>
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl sm:rounded-3xl p-4 sm:p-6">
+        <h2 class="text-base font-bold text-white mb-3">Asset Records & Owner Directory</h2>
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs">
             <thead class="bg-slate-950 text-slate-400 uppercase tracking-wider border-b border-slate-800">
               <tr>
-                <th class="p-3">Ref</th>
-                <th class="p-3">Asset</th>
-                <th class="p-3">Price</th>
-                <th class="p-3">Owner Contact (Confidential)</th>
-                <th class="p-3">Status</th>
-                <th class="p-3 text-right">Actions</th>
+                <th class="p-2.5">Ref</th>
+                <th class="p-2.5">Asset</th>
+                <th class="p-2.5">Price</th>
+                <th class="p-2.5">Owner Contact</th>
+                <th class="p-2.5">Status</th>
+                <th class="p-2.5 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody id="adminAssetTableBody" class="divide-y divide-slate-800">
-              <!-- Dynamically loaded -->
-            </tbody>
+            <tbody id="adminAssetTableBody" class="divide-y divide-slate-800"></tbody>
           </table>
         </div>
       </div>
     </main>
   </div>
 
-
-  <!-- ========================================== -->
-  <!-- 3. DETAILS MODAL (FOR PUBLIC / CUSTOMER)   -->
-  <!-- ========================================== -->
-  <div id="detailsModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
-    <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl my-8 relative">
-      <button onclick="closeDetailsModal()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center transition">
-        ✕
-      </button>
+  <!-- 3. DETAILS MODAL -->
+  <div id="detailsModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl sm:rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl my-6 relative">
+      <button onclick="closeDetailsModal()" class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center text-sm transition">✕</button>
       <div id="modalContent"></div>
     </div>
   </div>
 
-
-  <!-- ========================================== -->
-  <!-- 4. ADMIN LOGIN MODAL                       -->
-  <!-- ========================================== -->
+  <!-- 4. ADMIN LOGIN MODAL -->
   <div id="adminAuthModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl">
-      <div class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-emerald-500/20">
-        🔒
-      </div>
-      <h3 class="text-lg font-bold text-white mb-1">Administrative Access</h3>
-      <p class="text-xs text-slate-400 mb-5">Enter passcode to unlock the dedicated control center.</p>
-      <input type="password" id="adminPassInput" placeholder="Passcode" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-center text-white tracking-widest text-lg focus:outline-none focus:border-emerald-500 mb-4">
+      <div class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-emerald-500/20">🔒</div>
+      <h3 class="text-base font-bold text-white mb-1">Administrative Access</h3>
+      <p class="text-xs text-slate-400 mb-4">Enter passcode to open control center.</p>
+      <input type="password" id="adminPassInput" placeholder="Passcode" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2 text-center text-white tracking-widest text-lg focus:outline-none focus:border-emerald-500 mb-4">
       <div class="flex gap-2">
-        <button onclick="toggleAdminModal(false)" class="w-1/2 py-2.5 text-xs font-semibold text-slate-400 hover:text-white transition">Cancel</button>
-        <button onclick="verifyAdminPasscode()" class="w-1/2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl py-2.5 text-xs font-bold transition">Unlock</button>
+        <button onclick="toggleAdminModal(false)" class="w-1/2 py-2 text-xs font-semibold text-slate-400 hover:text-white transition">Cancel</button>
+        <button onclick="verifyAdminPasscode()" class="w-1/2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl py-2 text-xs font-bold transition">Unlock</button>
       </div>
     </div>
   </div>
 
-
-  <!-- ========================================== -->
-  <!-- 5. HIDDEN E-FLYER CONTAINER                -->
-  <!-- ========================================== -->
+  <!-- 5. FLYER TEMPLATE -->
   <div id="flyerContainer" style="position: absolute; left: -9999px; top: -9999px;">
     <div id="flyerPoster" style="width: 600px; height: 750px; background-color: #030712; color: #ffffff; padding: 36px; display: flex; flex-direction: column; justify-content: space-between; font-family: 'Plus Jakarta Sans', sans-serif; box-sizing: border-box;">
       <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #1f2937; padding-bottom: 20px;">
@@ -256,29 +219,17 @@
             <div style="font-size: 10px; color: #10b981; font-weight: 700; letter-spacing: 2px;">PROPERTIES KERALA</div>
           </div>
         </div>
-        <div id="flyerRefBadge" style="background-color: #111827; border: 1px solid #374151; padding: 6px 14px; border-radius: 9999px; font-size: 11px; font-weight: 700; color: #9ca3af;">
-          REF: NP-000
-        </div>
+        <div id="flyerRefBadge" style="background-color: #111827; border: 1px solid #374151; padding: 6px 14px; border-radius: 9999px; font-size: 11px; font-weight: 700; color: #9ca3af;">REF: NP-000</div>
       </div>
-
       <div style="margin: 20px 0; border-radius: 16px; overflow: hidden; height: 320px; position: relative; background-color: #111827;">
         <img id="flyerImg" src="" crossorigin="anonymous" style="width: 100%; height: 100%; object-fit: cover;">
-        <div id="flyerCatBadge" style="position: absolute; top: 16px; right: 16px; background-color: #10b981; color: #030712; font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 9999px; text-transform: uppercase;">
-          VILLA
-        </div>
+        <div id="flyerCatBadge" style="position: absolute; top: 16px; right: 16px; background-color: #10b981; color: #030712; font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 9999px; text-transform: uppercase;">VILLA</div>
       </div>
-
       <div>
-        <div id="flyerLocation" style="font-size: 13px; font-weight: 700; color: #10b981; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
-          LOCATION
-        </div>
-        <div id="flyerTitle" style="font-size: 26px; font-weight: 800; color: #ffffff; line-height: 1.2; margin-bottom: 12px;">
-          Property Headline Title
-        </div>
+        <div id="flyerLocation" style="font-size: 13px; font-weight: 700; color: #10b981; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">LOCATION</div>
+        <div id="flyerTitle" style="font-size: 26px; font-weight: 800; color: #ffffff; line-height: 1.2; margin-bottom: 12px;">Property Headline Title</div>
         <div style="display: flex; gap: 12px; margin-bottom: 20px;">
-          <div id="flyerSize" style="background-color: #111827; padding: 6px 12px; border-radius: 8px; font-size: 12px; color: #d1d5db;">
-            Size Details
-          </div>
+          <div id="flyerSize" style="background-color: #111827; padding: 6px 12px; border-radius: 8px; font-size: 12px; color: #d1d5db;">Size Details</div>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: flex-end; background-color: #0f172a; padding: 18px 24px; border-radius: 14px; border: 1px solid #1e293b;">
           <div>
@@ -294,20 +245,15 @@
     </div>
   </div>
 
-
-  <!-- ========================================== -->
-  <!-- 6. APPLICATION LOGIC & DATABASE            -->
-  <!-- ========================================== -->
+  <!-- 6. APPLICATION JAVASCRIPT -->
   <script>
     const SUPABASE_URL = "https://mphtlexdhzyjuxpncygf.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1waHRsZXhkaHp5anV4cG5jeWdmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1NDUzMjUsImV4cCI6MjA4OTExMTMyNX0.u119y9r_r-u6e2lUks96a2n5e032f6-p-yUj1r_p-wU"; 
+    const SUPABASE_ANON_KEY = "sb_publishable_K5hGWJiNHPnl2_MpCUirqg_x-y5RWrJ"; 
     const NESTORA_OFFICIAL_PHONE = "919946446793";
     const ADMIN_PASSCODE = "nestora123";
 
     const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     let allProperties = [];
-
-    // Check saved login state
     let isAdminLoggedIn = localStorage.getItem('nestora_admin_session') === 'true';
 
     function formatINR(amount) {
@@ -324,83 +270,52 @@
 
         if (error) throw error;
         allProperties = data || [];
-        
         renderPublicProperties();
-        if (isAdminLoggedIn) {
-          renderAdminDashboard();
-        }
+        if (isAdminLoggedIn) renderAdminDashboard();
       } catch (err) {
         console.error("Fetch Error:", err);
       }
     }
 
-    // RENDER PUBLIC SHOWCASE
     function renderPublicProperties() {
       const grid = document.getElementById('propertiesGrid');
       const countLabel = document.getElementById('publicListingCount');
       countLabel.innerText = `${allProperties.length} verified listings available`;
 
       if (allProperties.length === 0) {
-        grid.innerHTML = `
-          <div class="col-span-full text-center py-16 bg-white rounded-3xl border border-dashed border-slate-200">
-            <p class="text-slate-400 font-medium">No verified listings currently available.</p>
-          </div>`;
+        grid.innerHTML = `<div class="col-span-full text-center py-12 bg-white rounded-2xl border border-dashed border-slate-200"><p class="text-slate-400 text-xs sm:text-sm font-medium">No verified listings currently available.</p></div>`;
         return;
       }
 
       grid.innerHTML = allProperties.map((p, index) => {
         const isSold = p.status === 'sold';
         return `
-          <div class="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
-            <div class="relative h-60 bg-slate-100 overflow-hidden group">
-              <img src="${p.image_url || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80'}" 
-                   class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ${isSold ? 'grayscale' : ''}" 
-                   alt="${p.title}">
+          <div class="bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-lg transition flex flex-col">
+            <div class="relative h-44 sm:h-56 bg-slate-100 overflow-hidden group">
+              <img src="${p.image_url || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80'}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ${isSold ? 'grayscale' : ''}" alt="${p.title}">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
-              
-              <span class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-md text-white font-mono text-xs px-2.5 py-1 rounded-lg border border-white/10 font-bold">
-                ${p.reference_code || 'NP-' + (index + 1)}
-              </span>
-
-              <div class="absolute top-4 right-4 flex gap-1">
-                ${isSold ? `
-                  <span class="bg-amber-500 text-slate-950 font-black text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full">
-                    SOLD OUT
-                  </span>
-                ` : `
-                  <span class="bg-emerald-500 text-slate-950 font-bold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full">
-                    ${p.category || 'Listing'}
-                  </span>
-                `}
-              </div>
-
-              <div class="absolute bottom-4 left-4 right-4 text-white">
-                <span class="text-[10px] uppercase font-bold text-emerald-400 tracking-wider">Guide Price</span>
-                <div class="text-2xl font-black">${formatINR(p.price)}</div>
+              <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white font-mono text-[10px] sm:text-xs px-2 py-0.5 rounded-lg border border-white/10 font-bold">${p.reference_code || 'NP-' + (index + 1)}</span>
+              <div class="absolute top-3 right-3 flex gap-1">${isSold ? `<span class="bg-amber-500 text-slate-950 font-black text-[9px] sm:text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full">SOLD OUT</span>` : `<span class="bg-emerald-500 text-slate-950 font-bold text-[9px] sm:text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full">${p.category || 'Listing'}</span>`}</div>
+              <div class="absolute bottom-3 left-3 right-3 text-white">
+                <span class="text-[9px] sm:text-[10px] uppercase font-bold text-emerald-400 tracking-wider">Guide Price</span>
+                <div class="text-xl sm:text-2xl font-black">${formatINR(p.price)}</div>
               </div>
             </div>
-
-            <div class="p-5 flex-1 flex flex-col justify-between">
+            <div class="p-3.5 sm:p-5 flex-1 flex flex-col justify-between">
               <div>
                 <div class="flex items-center text-xs font-semibold text-emerald-600 gap-1 mb-1">
                   <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                   ${p.location}
                 </div>
-                <h3 class="text-lg font-bold text-slate-900 leading-snug mb-2">${p.title}</h3>
-                ${p.size ? `
-                  <div class="inline-flex items-center gap-1.5 bg-slate-50 border border-slate-200 text-slate-600 text-xs px-2.5 py-1 rounded-lg mb-3">
-                    <span>📐</span> ${p.size}
-                  </div>
-                ` : ''}
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 leading-snug mb-1.5">${p.title}</h3>
+                ${p.size ? `<div class="inline-flex items-center gap-1 bg-slate-50 border border-slate-200 text-slate-600 text-[11px] px-2 py-0.5 rounded-md mb-2"><span>📐</span> ${p.size}</div>` : ''}
               </div>
-
-              <!-- PUBLIC ACTIONS (NO FLYER, NO OWNER DATA) -->
-              <div class="mt-4 grid grid-cols-2 gap-2">
-                <button onclick="openDetailsModal('${p.id}')" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1 transition">
+              <div class="mt-3 grid grid-cols-2 gap-2">
+                <button onclick="openDetailsModal('${p.id}')" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2 px-2.5 rounded-xl text-xs flex items-center justify-center gap-1 transition">
                   <span>View Details</span>
                   <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </button>
-                <button onclick="shareViaWhatsApp('${p.id}')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1 transition">
+                <button onclick="shareViaWhatsApp('${p.id}')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-2.5 rounded-xl text-xs flex items-center justify-center gap-1 transition">
                   <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
                   Share
                 </button>
@@ -411,7 +326,6 @@
       }).join('');
     }
 
-    // RENDER DEDICATED ADMIN DASHBOARD
     function renderAdminDashboard() {
       const total = allProperties.length;
       const sold = allProperties.filter(p => p.status === 'sold').length;
@@ -429,34 +343,19 @@
 
       tbody.innerHTML = allProperties.map(p => `
         <tr class="hover:bg-slate-900/60 transition">
-          <td class="p-3 font-mono font-bold text-slate-300">${p.reference_code || '-'}</td>
-          <td class="p-3">
-            <div class="font-bold text-white">${p.title}</div>
-            <div class="text-[11px] text-slate-400">${p.location} • ${p.category}</div>
-          </td>
-          <td class="p-3 font-semibold text-emerald-400">${formatINR(p.price)}</td>
-          <td class="p-3">
-            <div class="font-semibold text-amber-300">${p.owner_name || 'Not Recorded'}</div>
-            <div class="text-slate-400 font-mono">${p.owner_phone ? `<a href="tel:${p.owner_phone}" class="underline hover:text-white">${p.owner_phone}</a>` : 'No phone'}</div>
-          </td>
-          <td class="p-3">
-            <button onclick="toggleSoldStatus('${p.id}', '${p.status || 'active'}')" class="px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider ${p.status === 'sold' ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'}">
-              ${p.status === 'sold' ? 'Sold Out' : 'Active'}
-            </button>
-          </td>
-          <td class="p-3 text-right space-x-2">
-            <button onclick="downloadFlyer('${p.id}')" class="bg-slate-800 hover:bg-slate-700 text-white px-2.5 py-1.5 rounded-lg text-xs font-semibold inline-flex items-center gap-1 border border-slate-700 transition">
-              <span>Flyer</span>
-            </button>
-            <button onclick="deleteProperty('${p.id}')" class="bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition">
-              Delete
-            </button>
+          <td class="p-2.5 font-mono font-bold text-slate-300">${p.reference_code || '-'}</td>
+          <td class="p-2.5"><div class="font-bold text-white">${p.title}</div><div class="text-[10px] text-slate-400">${p.location} • ${p.category}</div></td>
+          <td class="p-2.5 font-semibold text-emerald-400">${formatINR(p.price)}</td>
+          <td class="p-2.5"><div class="font-semibold text-amber-300">${p.owner_name || 'Not Recorded'}</div><div class="text-slate-400 font-mono text-[11px]">${p.owner_phone ? `<a href="tel:${p.owner_phone}" class="underline hover:text-white">${p.owner_phone}</a>` : 'No phone'}</div></td>
+          <td class="p-2.5"><button onclick="toggleSoldStatus('${p.id}', '${p.status || 'active'}')" class="px-2 py-0.5 rounded-lg text-[10px] font-bold uppercase tracking-wider ${p.status === 'sold' ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'}">${p.status === 'sold' ? 'Sold' : 'Active'}</button></td>
+          <td class="p-2.5 text-right space-x-1 sm:space-x-2">
+            <button onclick="downloadFlyer('${p.id}')" class="bg-slate-800 hover:bg-slate-700 text-white px-2 py-1 rounded-lg text-[11px] font-semibold inline-flex items-center border border-slate-700 transition">Flyer</button>
+            <button onclick="deleteProperty('${p.id}')" class="bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-1 rounded-lg text-[11px] font-semibold transition">Delete</button>
           </td>
         </tr>
       `).join('');
     }
 
-    // VIEW DETAILS MODAL
     function openDetailsModal(id) {
       const p = allProperties.find(item => item.id === id);
       if (!p) return;
@@ -465,60 +364,26 @@
       const whatsappUrl = `https://wa.me/${NESTORA_OFFICIAL_PHONE}?text=${whatsappText}`;
 
       document.getElementById('modalContent').innerHTML = `
-        <div class="relative h-72 sm:h-80 bg-slate-900">
+        <div class="relative h-56 sm:h-72 bg-slate-900">
           <img src="${p.image_url || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80'}" class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
-          <div class="absolute bottom-4 left-6 right-6 text-white">
-            <div class="flex items-center gap-2">
-              <span class="bg-emerald-500 text-slate-950 font-bold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full">
-                ${p.category || 'Asset'}
-              </span>
-              ${p.status === 'sold' ? '<span class="bg-amber-500 text-slate-950 font-black text-[10px] uppercase px-2.5 py-1 rounded-full">SOLD OUT</span>' : ''}
-            </div>
-            <div class="text-3xl font-black mt-2">${formatINR(p.price)}</div>
-            <div class="text-xs text-slate-300 flex items-center gap-1 mt-1">
-              <span>📍</span> ${p.location}
-            </div>
+          <div class="absolute bottom-3 left-4 sm:left-6 right-4 sm:right-6 text-white">
+            <div class="flex items-center gap-2"><span class="bg-emerald-500 text-slate-950 font-bold text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-full">${p.category || 'Asset'}</span>${p.status === 'sold' ? '<span class="bg-amber-500 text-slate-950 font-black text-[9px] uppercase px-2 py-0.5 rounded-full">SOLD OUT</span>' : ''}</div>
+            <div class="text-2xl sm:text-3xl font-black mt-1.5">${formatINR(p.price)}</div>
+            <div class="text-xs text-slate-300 flex items-center gap-1 mt-0.5"><span>📍</span> ${p.location}</div>
           </div>
         </div>
-
-        <div class="p-6 sm:p-8 space-y-6">
-          <div>
-            <div class="text-xs font-mono font-bold text-slate-400 mb-1">REFERENCE: ${p.reference_code || 'NP-VERIFIED'}</div>
-            <h2 class="text-2xl font-black text-slate-900">${p.title}</h2>
+        <div class="p-4 sm:p-6 space-y-4">
+          <div><div class="text-[11px] font-mono font-bold text-slate-400 mb-0.5">REF: ${p.reference_code || 'NP-VERIFIED'}</div><h2 class="text-xl sm:text-2xl font-black text-slate-900">${p.title}</h2></div>
+          <div class="grid grid-cols-3 gap-2">
+            <div class="bg-slate-50 border border-slate-200 p-2.5 rounded-xl"><span class="block text-[9px] uppercase font-bold text-slate-400">Category</span><span class="font-bold text-slate-800 text-xs sm:text-sm">${p.category || 'Residential'}</span></div>
+            <div class="bg-slate-50 border border-slate-200 p-2.5 rounded-xl"><span class="block text-[9px] uppercase font-bold text-slate-400">Area</span><span class="font-bold text-slate-800 text-xs sm:text-sm">${p.size || 'On Request'}</span></div>
+            <div class="bg-slate-50 border border-slate-200 p-2.5 rounded-xl"><span class="block text-[9px] uppercase font-bold text-slate-400">Title Deed</span><span class="font-bold text-emerald-600 text-xs sm:text-sm">Verified</span></div>
           </div>
-
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            <div class="bg-slate-50 border border-slate-200 p-3 rounded-xl">
-              <span class="block text-[10px] uppercase font-bold text-slate-400">Category</span>
-              <span class="font-bold text-slate-800 text-sm">${p.category || 'Residential'}</span>
-            </div>
-            <div class="bg-slate-50 border border-slate-200 p-3 rounded-xl">
-              <span class="block text-[10px] uppercase font-bold text-slate-400">Area / Size</span>
-              <span class="font-bold text-slate-800 text-sm">${p.size || 'On Request'}</span>
-            </div>
-            <div class="bg-slate-50 border border-slate-200 p-3 rounded-xl">
-              <span class="block text-[10px] uppercase font-bold text-slate-400">Title Status</span>
-              <span class="font-bold text-emerald-600 text-sm">Verified Clear</span>
-            </div>
-          </div>
-
-          <div>
-            <h4 class="text-xs uppercase font-bold tracking-wider text-slate-400 mb-2">Description & Highlights</h4>
-            <p class="text-sm text-slate-600 leading-relaxed whitespace-pre-line bg-slate-50 p-4 rounded-2xl border border-slate-100">
-              ${p.description || 'Verified Kerala property asset managed exclusively under Nestora direct brokerage desk.'}
-            </p>
-          </div>
-
-          <div class="pt-2">
-            <a href="${whatsappUrl}" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-6 rounded-2xl text-center text-sm flex items-center justify-center gap-2 transition shadow-lg shadow-emerald-900/20">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-              <span>Connect on WhatsApp</span>
-            </a>
-          </div>
+          <div><h4 class="text-[11px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Description</h4><p class="text-xs sm:text-sm text-slate-600 leading-relaxed whitespace-pre-line bg-slate-50 p-3 rounded-xl border border-slate-100">${p.description || 'Verified Kerala property asset managed exclusively under Nestora direct brokerage desk.'}</p></div>
+          <div class="pt-1"><a href="${whatsappUrl}" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl text-center text-xs sm:text-sm flex items-center justify-center gap-2 transition shadow-lg shadow-emerald-900/20"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg><span>Connect on WhatsApp</span></a></div>
         </div>
       `;
-
       document.getElementById('detailsModal').classList.remove('hidden');
     }
 
@@ -526,7 +391,6 @@
       document.getElementById('detailsModal').classList.add('hidden');
     }
 
-    // FORM SUBMISSION
     async function handleFormSubmit(e) {
       e.preventDefault();
       const btn = document.getElementById('savePropertyBtn');
@@ -550,7 +414,6 @@
       try {
         const { error } = await client.from('properties').insert([payload]);
         if (error) throw error;
-
         document.getElementById('propertyForm').reset();
         await fetchProperties();
         alert("Property published successfully!");
@@ -562,7 +425,6 @@
       }
     }
 
-    // TOGGLE ACTIVE / SOLD OUT STATUS
     async function toggleSoldStatus(id, currentStatus) {
       const nextStatus = currentStatus === 'sold' ? 'active' : 'sold';
       try {
@@ -574,7 +436,6 @@
       }
     }
 
-    // DELETE PROPERTY
     async function deleteProperty(id) {
       if (!confirm("Are you sure you want to permanently delete this listing?")) return;
       try {
@@ -586,7 +447,6 @@
       }
     }
 
-    // E-FLYER DOWNLOAD (ADMIN EXCLUSIVE)
     async function downloadFlyer(id) {
       const p = allProperties.find(item => item.id === id);
       if (!p) return;
@@ -633,7 +493,6 @@
       window.open(`https://wa.me/?text=${text}`, '_blank');
     }
 
-    // AUTHENTICATION & VIEW TOGGLES
     function handleAdminButtonClick() {
       if (isAdminLoggedIn) {
         switchToAdminDashboard();
@@ -651,7 +510,7 @@
       const pass = document.getElementById('adminPassInput').value;
       if (pass === ADMIN_PASSCODE) {
         isAdminLoggedIn = true;
-        localStorage.setItem('nestora_admin_session', 'true'); // Save login persistently
+        localStorage.setItem('nestora_admin_session', 'true');
         toggleAdminModal(false);
         switchToAdminDashboard();
       } else {
@@ -681,7 +540,6 @@
       switchToPublicView();
     }
 
-    // Startup
     if (isAdminLoggedIn) {
       document.getElementById('portalBtnText').innerText = "Admin Dashboard";
     }
