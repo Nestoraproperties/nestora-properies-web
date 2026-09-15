@@ -672,25 +672,26 @@
             </div>
           </div>
 
-          <!-- 4. MEDIA (DIRECT FILE UPLOAD OR URL) -->
+          <!-- 4. MEDIA (SYSTEM FILE PICKER: GALLERY + FILES/FILE MANAGER) -->
           <div>
             <div class="flex items-center gap-3 mb-4">
               <div class="w-9 h-9 rounded-xl bg-[#f7eee0] text-[#a8752c] flex items-center justify-center font-bold">04</div>
               <div>
                 <div class="section-label">Property Media</div>
-                <div class="text-xs font-bold text-slate-500 mt-0.5">Upload image directly from phone/gallery or paste link</div>
+                <div class="text-xs font-bold text-slate-500 mt-0.5">Select image from Files, File Manager, Gallery or paste link</div>
               </div>
             </div>
 
             <div class="space-y-3">
-              <!-- FILE PICKER BOX -->
+              <!-- FILE PICKER BOX (OPENS SYSTEM CHOOSER: FILES + GALLERY) -->
               <div class="border-2 border-dashed border-[#ead7b4] hover:border-[#d5a04f] rounded-2xl p-5 text-center bg-[#fcfaf6] transition cursor-pointer" onclick="document.getElementById('propFileInput').click()">
-                <input type="file" id="propFileInput" accept="image/*" class="hidden" onchange="handleDirectFileUpload(event)">
+                <!-- Removed restrictive accept='image/*' to force Android System File Chooser -->
+                <input type="file" id="propFileInput" class="hidden" onchange="handleDirectFileUpload(event)">
                 <div class="w-12 h-12 rounded-2xl bg-white text-[#d5a04f] border border-[#ead7b4] flex items-center justify-center mx-auto mb-2 text-xl shadow-sm">
                   📁
                 </div>
-                <div class="text-xs font-extrabold text-slate-800">Choose from Phone Gallery / Files</div>
-                <div class="text-[10px] text-slate-400 mt-1">Tap to select photo (JPG, PNG, WebP)</div>
+                <div class="text-xs font-extrabold text-slate-800">Select Photo (Files / Gallery / Drive)</div>
+                <div class="text-[10px] text-slate-400 mt-1">Tap to open system chooser for Files, Gallery or Downloads</div>
                 <div id="uploadStatusText" class="text-[11px] font-bold text-[#b17c31] mt-2 hidden">Uploading... please wait</div>
               </div>
 
@@ -702,7 +703,7 @@
                 </button>
               </div>
 
-              <!-- HIDDEN/FALLBACK URL INPUT -->
+              <!-- URL FALLBACK INPUT -->
               <div>
                 <label class="admin-label text-[11px] text-slate-500">Image Web URL (Auto-filled on upload, or paste manually)</label>
                 <input type="url" id="propImageUrl" required placeholder="https://..." class="admin-input bg-slate-50 text-xs" oninput="updatePreviewFromUrl()">
@@ -941,28 +942,33 @@
       return "NP-" + String(maxNum + 1).padStart(3, "0");
     }
 
-    /* DIRECT PHONE/GALLERY UPLOAD TO SUPABASE STORAGE */
+    /* DIRECT SYSTEM FILE UPLOAD TO SUPABASE STORAGE */
     async function handleDirectFileUpload(event) {
       const file = event.target.files[0];
       if (!file) return;
+
+      // Verify file is an image
+      if (file.type && !file.type.startsWith('image/')) {
+        alert("Please select a valid image file (JPG, PNG, WebP).");
+        event.target.value = "";
+        return;
+      }
 
       const status = document.getElementById("uploadStatusText");
       status.classList.remove("hidden");
       status.innerText = "Uploading photo to storage...";
 
       try {
-        const fileExt = file.name.split('.').pop();
+        const fileExt = file.name.split('.').pop() || 'jpg';
         const fileName = `nestora_${Date.now()}_${Math.random().toString(36).substring(2, 8)}.${fileExt}`;
         const filePath = `${fileName}`;
 
-        // Upload to bucket 'property-images'
         const { data, error } = await client.storage
           .from('property-images')
           .upload(filePath, file, { cacheControl: '3600', upsert: true });
 
         if (error) throw error;
 
-        // Get public URL
         const { data: publicData } = client.storage
           .from('property-images')
           .getPublicUrl(filePath);
@@ -974,7 +980,6 @@
         const finalUrl = publicData.publicUrl;
         document.getElementById("propImageUrl").value = finalUrl;
         
-        // Show preview
         document.getElementById("imagePreview").src = finalUrl;
         document.getElementById("imagePreviewWrap").classList.remove("hidden");
         
@@ -1410,7 +1415,7 @@
       switchAdminTab("form");
     }
 
-    /* COMPLETE ADMIN PROPERTY DETAILS MODAL */
+    /* ADMIN PROPERTY DETAILS MODAL */
     function openAdminPropertyDetails(id) {
       const p = allProperties.find(item => item.id === id);
       if (!p || !isAdminLoggedIn) return;
@@ -1475,7 +1480,7 @@
                 <p class="text-sm text-slate-600 leading-7 whitespace-pre-line">${safe(p.description || "No description added.")}</p>
               </div>
 
-              <!-- CONFIDENTIAL ORIGINAL OWNER BOX (WITH CALL LINK) -->
+              <!-- CONFIDENTIAL ORIGINAL OWNER BOX (WITH DIRECT CALL) -->
               <div class="rounded-[24px] border border-[#ead7b4] bg-[#fcf7ed] p-5">
                 <div class="section-label">Original Property Owner (Admin Confidential)</div>
                 <div class="gold-line mt-2 mb-4"></div>
