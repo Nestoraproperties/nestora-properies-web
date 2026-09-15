@@ -67,8 +67,6 @@
       box-shadow: 0 22px 50px rgba(15, 23, 42, .11), 0 5px 14px rgba(15, 23, 42, .04);
       border-color: #ddd8cc;
     }
-    .property-image { transition: transform .55s cubic-bezier(.2,.7,.2,1); }
-    .property-card:hover .property-image { transform: scale(1.035); }
     .gold-line {
       width: 42px;
       height: 2px;
@@ -294,32 +292,36 @@
       </div>
 
       <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-5">
-        <!-- DETAIL IMAGE (CLICKABLE FOR FULL SCREEN LIGHTBOX) -->
-        <div class="relative bg-[#0b1220] rounded-[28px] overflow-hidden min-h-[320px] sm:min-h-[440px] lg:min-h-[620px] premium-shadow group cursor-pointer" onclick="openImageLightbox(document.getElementById('detailImg').src)">
-          <img id="detailImg" src="" alt="Property" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#08101d] via-transparent to-black/10 pointer-events-none"></div>
+        <div>
+          <!-- DETAIL MAIN IMAGE -->
+          <div class="relative bg-[#0b1220] rounded-[28px] overflow-hidden min-h-[300px] sm:min-h-[420px] lg:min-h-[480px] premium-shadow group cursor-pointer" onclick="openActiveMainImage()">
+            <img id="detailImg" src="" alt="Property" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#08101d] via-transparent to-black/10 pointer-events-none"></div>
 
-          <!-- FULL SCREEN HINT BADGE -->
-          <div class="absolute bottom-4 right-4 z-10 bg-black/60 backdrop-blur-md text-white border border-white/20 text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 opacity-90 group-hover:opacity-100 transition">
-            <span>🔍 Tap to view original image</span>
-          </div>
-
-          <div class="absolute top-4 left-4 right-4 flex justify-between gap-2 pointer-events-none">
-            <div class="flex flex-wrap gap-2">
-              <span id="detailStatusBadge" class="bg-emerald-500 text-white text-[10px] font-extrabold px-3 py-1.5 rounded-full uppercase shadow">AVAILABLE</span>
-              <span id="detailFeaturedBadge" class="bg-[#d5a04f] text-[#0b1220] text-[10px] font-extrabold px-3 py-1.5 rounded-full uppercase shadow">★ Featured</span>
+            <div class="absolute bottom-4 right-4 z-10 bg-black/70 backdrop-blur-md text-white border border-white/20 text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5">
+              <span>🔍 Tap for Fullscreen</span>
             </div>
-            <span id="detailRef" class="bg-black/60 backdrop-blur-md text-white border border-white/15 text-[10px] font-mono font-bold px-3 py-1.5 rounded-xl">NP-001</span>
-          </div>
 
-          <div class="absolute bottom-5 left-5 right-28 pointer-events-none">
-            <span id="detailTypeChip" class="inline-flex bg-white text-[#0b1220] px-3 py-1.5 rounded-xl text-[10px] font-extrabold uppercase shadow mb-3">Residential Land</span>
-            <div id="detailSubRef" class="text-[10px] text-[#e2c98f] font-bold uppercase tracking-[.12em]">PROPERTY ID: NP-001</div>
-            <h1 id="detailTitle" class="brand-font text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight mt-2 max-w-2xl">Property Title</h1>
-            <div class="flex items-center gap-2 text-sm text-slate-300 mt-3">
-              <span>⌖</span> <span id="detailLocation">Location</span>
+            <div class="absolute top-4 left-4 right-4 flex justify-between gap-2 pointer-events-none">
+              <div class="flex flex-wrap gap-2">
+                <span id="detailStatusBadge" class="bg-emerald-500 text-white text-[10px] font-extrabold px-3 py-1.5 rounded-full uppercase shadow">AVAILABLE</span>
+                <span id="detailFeaturedBadge" class="bg-[#d5a04f] text-[#0b1220] text-[10px] font-extrabold px-3 py-1.5 rounded-full uppercase shadow">★ Featured</span>
+              </div>
+              <span id="detailRef" class="bg-black/60 backdrop-blur-md text-white border border-white/15 text-[10px] font-mono font-bold px-3 py-1.5 rounded-xl">NP-001</span>
+            </div>
+
+            <div class="absolute bottom-5 left-5 right-28 pointer-events-none">
+              <span id="detailTypeChip" class="inline-flex bg-white text-[#0b1220] px-3 py-1.5 rounded-xl text-[10px] font-extrabold uppercase shadow mb-3">Residential Land</span>
+              <div id="detailSubRef" class="text-[10px] text-[#e2c98f] font-bold uppercase tracking-[.12em]">PROPERTY ID: NP-001</div>
+              <h1 id="detailTitle" class="brand-font text-2xl sm:text-3xl font-extrabold text-white leading-tight mt-1 max-w-2xl">Property Title</h1>
+              <div class="flex items-center gap-2 text-sm text-slate-300 mt-2">
+                <span>⌖</span> <span id="detailLocation">Location</span>
+              </div>
             </div>
           </div>
+
+          <!-- MULTIPLE PHOTO THUMBNAIL GALLERY STRIP -->
+          <div id="detailThumbnailsStrip" class="flex gap-2.5 overflow-x-auto no-scrollbar py-3 mt-1"></div>
         </div>
 
         <div class="space-y-4">
@@ -494,7 +496,7 @@
           <div>
             <div class="section-label">Inventory</div>
             <h2 class="brand-font text-lg sm:text-xl font-extrabold text-slate-900 mt-1">Property Directory</h2>
-            <p class="text-xs text-slate-400 mt-1">Manage listings, view complete details, or call original owners directly.</p>
+            <p class="text-xs text-slate-400 mt-1">Manage listings, view multiple photos, or call original owners directly.</p>
           </div>
           <button onclick="openAddProperty()" class="self-start sm:self-auto bg-[#0b1220] hover:bg-[#162238] text-white px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-sm">
             + Add Property
@@ -679,18 +681,19 @@
             </div>
           </div>
 
-          <!-- 4. MEDIA (DUAL SEPARATE TRIGGER: GALLERY OR FILE MANAGER) -->
+          <!-- 4. MEDIA (MULTIPLE IMAGES SUPPORT) -->
           <div>
             <div class="flex items-center gap-3 mb-4">
               <div class="w-9 h-9 rounded-xl bg-[#f7eee0] text-[#a8752c] flex items-center justify-center font-bold">04</div>
               <div>
-                <div class="section-label">Property Media</div>
-                <div class="text-xs font-bold text-slate-500 mt-0.5">Select photo from Gallery or File Manager, or view full size</div>
+                <div class="section-label">Property Photos (Multiple Supported)</div>
+                <div class="text-xs font-bold text-slate-500 mt-0.5">Select multiple photos at once from Gallery or Files</div>
               </div>
             </div>
 
-            <input type="file" id="propGalleryInput" accept="image/*" class="hidden" onchange="handleDirectFileUpload(event)">
-            <input type="file" id="propFilesInput" class="hidden" onchange="handleDirectFileUpload(event)">
+            <!-- Multiple Selection Inputs -->
+            <input type="file" id="propGalleryInput" accept="image/*" multiple class="hidden" onchange="handleMultipleFileUpload(event)">
+            <input type="file" id="propFilesInput" multiple class="hidden" onchange="handleMultipleFileUpload(event)">
 
             <div class="space-y-3">
               <div class="grid grid-cols-2 gap-3">
@@ -698,35 +701,34 @@
                   <div class="w-10 h-10 rounded-xl bg-white text-[#d5a04f] border border-[#ead7b4] flex items-center justify-center mx-auto mb-2 text-lg shadow-sm">
                     🖼️
                   </div>
-                  <div class="text-xs font-black text-slate-800">Open Gallery</div>
-                  <div class="text-[9px] text-slate-400 mt-0.5">Google Photos / Gallery</div>
+                  <div class="text-xs font-black text-slate-800">Add from Gallery</div>
+                  <div class="text-[9px] text-slate-400 mt-0.5">Multiple photos allowed</div>
                 </button>
 
                 <button type="button" onclick="document.getElementById('propFilesInput').click()" class="border-2 border-dashed border-[#ead7b4] hover:border-[#d5a04f] rounded-2xl p-4 text-center bg-[#fcfaf6] transition cursor-pointer">
                   <div class="w-10 h-10 rounded-xl bg-white text-[#d5a04f] border border-[#ead7b4] flex items-center justify-center mx-auto mb-2 text-lg shadow-sm">
                     📁
                   </div>
-                  <div class="text-xs font-black text-slate-800">Open Files</div>
+                  <div class="text-xs font-black text-slate-800">Add from Files</div>
                   <div class="text-[9px] text-slate-400 mt-0.5">File Manager / Storage</div>
                 </button>
               </div>
 
               <div id="uploadStatusText" class="text-[11px] font-bold text-[#b17c31] text-center hidden">Uploading... please wait</div>
 
-              <!-- PREVIEW (CLICKABLE FOR FULL SCREEN) -->
-              <div id="imagePreviewWrap" class="hidden relative h-48 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 group">
-                <img id="imagePreview" src="" class="w-full h-full object-cover cursor-pointer transition duration-300 group-hover:scale-105" onclick="openImageLightbox(this.src)" title="Click to view full image">
-                <div class="absolute bottom-2 left-2 bg-black/60 backdrop-blur-sm text-white text-[9px] font-bold px-2 py-1 rounded-md pointer-events-none">
-                  🔍 Click image to view full screen
+              <!-- MULTI-IMAGE PREVIEW GRID -->
+              <div id="multiImagePreviewContainer" class="hidden">
+                <div class="flex items-center justify-between text-xs font-bold text-slate-700 mb-2">
+                  <span>Selected Photos (<span id="photoCountBadge">0</span>)</span>
+                  <span class="text-[10px] text-slate-400 font-normal">Tap a photo to view fullscreen</span>
                 </div>
-                <button type="button" onclick="clearUploadedImage()" class="absolute top-2 right-2 bg-black/70 hover:bg-black text-white text-[10px] font-bold px-2.5 py-1 rounded-lg backdrop-blur-sm">
-                  Remove
-                </button>
+                <div id="multiImageGrid" class="grid grid-cols-3 sm:grid-cols-4 gap-2.5"></div>
               </div>
 
+              <!-- HIDDEN/FALLBACK URLS (COMMA SEPARATED) -->
               <div>
-                <label class="admin-label text-[11px] text-slate-500">Image Web URL (Auto-filled on upload, or paste manually)</label>
-                <input type="url" id="propImageUrl" required placeholder="https://..." class="admin-input bg-slate-50 text-xs" oninput="updatePreviewFromUrl()">
+                <label class="admin-label text-[11px] text-slate-500">Image Web URLs (Auto-populated, comma-separated)</label>
+                <input type="text" id="propImageUrl" required placeholder="https://..." class="admin-input bg-slate-50 text-xs" oninput="syncFromUrlInput()">
               </div>
             </div>
           </div>
@@ -911,6 +913,7 @@
     let activeProperty = null;
     let selectedCategory = "all";
     let isAdminLoggedIn = localStorage.getItem("nestora_admin_session") === "true";
+    let uploadedImagesList = [];
 
     window.addEventListener("popstate", () => {
       const state = window.history.state;
@@ -990,73 +993,101 @@
       document.body.style.overflow = "";
     }
 
-    /* DIRECT SYSTEM FILE UPLOAD TO SUPABASE STORAGE */
-    async function handleDirectFileUpload(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-
-      if (file.type && !file.type.startsWith('image/')) {
-        alert("Please select a valid image file (JPG, PNG, WebP).");
-        event.target.value = "";
-        return;
-      }
+    /* MULTIPLE FILES UPLOAD TO SUPABASE STORAGE */
+    async function handleMultipleFileUpload(event) {
+      const files = Array.from(event.target.files);
+      if (!files.length) return;
 
       const status = document.getElementById("uploadStatusText");
       status.classList.remove("hidden");
-      status.innerText = "Uploading photo to storage...";
+      status.innerText = `Uploading ${files.length} photo(s)... please wait`;
 
       try {
-        const fileExt = file.name.split('.').pop() || 'jpg';
-        const fileName = `nestora_${Date.now()}_${Math.random().toString(36).substring(2, 8)}.${fileExt}`;
-        const filePath = `${fileName}`;
+        for (let file of files) {
+          if (!file.type || !file.type.startsWith('image/')) continue;
+          
+          const fileExt = file.name.split('.').pop() || 'jpg';
+          const fileName = `nestora_${Date.now()}_${Math.random().toString(36).substring(2, 8)}.${fileExt}`;
+          
+          const { error } = await client.storage
+            .from('property-images')
+            .upload(fileName, file, { cacheControl: '3600', upsert: true });
 
-        const { data, error } = await client.storage
-          .from('property-images')
-          .upload(filePath, file, { cacheControl: '3600', upsert: true });
+          if (error) throw error;
 
-        if (error) throw error;
+          const { data: publicData } = client.storage
+            .from('property-images')
+            .getPublicUrl(fileName);
 
-        const { data: publicData } = client.storage
-          .from('property-images')
-          .getPublicUrl(filePath);
-
-        if (!publicData || !publicData.publicUrl) {
-          throw new Error("Could not retrieve public URL");
+          if (publicData && publicData.publicUrl) {
+            uploadedImagesList.push(publicData.publicUrl);
+          }
         }
 
-        const finalUrl = publicData.publicUrl;
-        document.getElementById("propImageUrl").value = finalUrl;
-        
-        document.getElementById("imagePreview").src = finalUrl;
-        document.getElementById("imagePreviewWrap").classList.remove("hidden");
-        
-        status.innerText = "✓ Photo successfully uploaded!";
+        renderUploadedGrid();
+        status.innerText = `✓ Successfully uploaded ${uploadedImagesList.length} photo(s)!`;
       } catch (err) {
-        console.error("Storage upload error:", err);
+        console.error("Upload error:", err);
         status.innerText = "Upload failed: Ensure 'property-images' bucket exists in Supabase Storage.";
-        alert("Upload error: " + err.message + "\n\nPlease ensure a public bucket named 'property-images' is created in Supabase.");
+        alert("Upload error: " + err.message);
+      } finally {
+        event.target.value = "";
       }
     }
 
-    function updatePreviewFromUrl() {
-      const url = document.getElementById("propImageUrl").value.trim();
-      const wrap = document.getElementById("imagePreviewWrap");
-      const img = document.getElementById("imagePreview");
-      if (url) {
-        img.src = url;
-        wrap.classList.remove("hidden");
-      } else {
-        wrap.classList.add("hidden");
+    function renderUploadedGrid() {
+      const container = document.getElementById("multiImagePreviewContainer");
+      const grid = document.getElementById("multiImageGrid");
+      const badge = document.getElementById("photoCountBadge");
+      const urlInput = document.getElementById("propImageUrl");
+
+      if (!uploadedImagesList.length) {
+        container.classList.add("hidden");
+        urlInput.value = "";
+        return;
       }
+
+      container.classList.remove("hidden");
+      badge.innerText = uploadedImagesList.length;
+      urlInput.value = uploadedImagesList.join(", ");
+
+      grid.innerHTML = uploadedImagesList.map((url, idx) => `
+        <div class="relative h-24 rounded-xl overflow-hidden border border-slate-200 bg-slate-100 group">
+          <img src="${url}" class="w-full h-full object-cover cursor-pointer" onclick="openImageLightbox('${url}')">
+          <button type="button" onclick="removeSingleImage(${idx})" class="absolute top-1 right-1 bg-black/70 hover:bg-black text-white text-[9px] w-5 h-5 rounded-full flex items-center justify-center font-bold">
+            ✕
+          </button>
+          ${idx === 0 ? `<span class="absolute bottom-1 left-1 bg-amber-500 text-slate-950 font-extrabold text-[8px] px-1.5 py-0.5 rounded shadow">Main</span>` : ''}
+        </div>
+      `).join("");
+    }
+
+    function removeSingleImage(index) {
+      uploadedImagesList.splice(index, 1);
+      renderUploadedGrid();
+    }
+
+    function syncFromUrlInput() {
+      const val = document.getElementById("propImageUrl").value.trim();
+      if (val) {
+        uploadedImagesList = val.split(",").map(u => u.trim()).filter(Boolean);
+      } else {
+        uploadedImagesList = [];
+      }
+      renderUploadedGrid();
     }
 
     function clearUploadedImage() {
-      document.getElementById("propImageUrl").value = "";
-      document.getElementById("imagePreview").src = "";
-      document.getElementById("imagePreviewWrap").classList.add("hidden");
+      uploadedImagesList = [];
+      renderUploadedGrid();
       document.getElementById("propGalleryInput").value = "";
       document.getElementById("propFilesInput").value = "";
       document.getElementById("uploadStatusText").classList.add("hidden");
+    }
+
+    function parseImages(imgField) {
+      if (!imgField) return [];
+      return imgField.split(",").map(s => s.trim()).filter(Boolean);
     }
 
     async function fetchProperties() {
@@ -1140,17 +1171,29 @@
         const ref = p.reference_code || "NP-" + String(index + 1).padStart(3, "0");
         const area = p.size ? `${p.size} ${p.area_unit || "Cent"}` : "Verified Area";
         const road = p.road_access || "Direct Access";
+        const imgs = parseImages(p.image_url);
+        const mainImg = imgs[0] || "";
 
         return `
           <article onclick="openDedicatedDetails('${p.id}')" class="property-card bg-white border border-[#e7e4dc] rounded-[26px] overflow-hidden cursor-pointer soft-shadow">
             <div class="relative h-[250px] sm:h-[270px] bg-slate-100 overflow-hidden">
-              <img src="${escapeHtml(p.image_url || "")}" alt="${escapeHtml(p.title || "Property")}" loading="lazy" class="property-image w-full h-full object-cover ${isSold ? "grayscale" : ""}" onerror="this.style.display='none'">
+              <img src="${escapeHtml(mainImg)}" alt="${escapeHtml(p.title || "Property")}" loading="lazy" class="w-full h-full object-cover ${isSold ? "grayscale" : ""}" onerror="this.style.display='none'">
               <div class="absolute inset-0 bg-gradient-to-t from-[#08101d]/75 via-transparent to-transparent pointer-events-none"></div>
+              
               <div class="absolute top-4 left-4 flex items-center gap-2">
                 <span class="bg-[#d86b2c] text-white px-3 py-1.5 rounded-full text-[9px] font-extrabold uppercase tracking-wider shadow-lg">${escapeHtml(p.category || "Property")}</span>
                 ${p.is_featured ? `<span class="bg-[#d5a04f] text-[#0b1220] px-2.5 py-1.5 rounded-full text-[9px] font-extrabold shadow-lg">★</span>` : ""}
               </div>
+
+              <!-- PHOTO COUNT BADGE -->
+              ${imgs.length > 1 ? `
+                <span class="absolute bottom-12 right-4 bg-black/70 backdrop-blur-md text-white border border-white/20 px-2.5 py-1 rounded-lg text-[9px] font-bold flex items-center gap-1">
+                  📷 ${imgs.length} Photos
+                </span>
+              ` : ''}
+
               <span class="absolute top-4 right-4 bg-[#0b1220]/75 backdrop-blur-md text-white border border-white/10 px-2.5 py-1.5 rounded-xl text-[9px] font-mono font-bold">${escapeHtml(ref)}</span>
+              
               <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3">
                 <div class="text-[9px] font-bold text-[#e4c890] uppercase tracking-wider">${escapeHtml((p.location || "Kerala").toUpperCase())}</div>
                 <span class="bg-black/65 backdrop-blur-md text-emerald-300 border border-white/10 px-2.5 py-1.5 rounded-full text-[9px] font-extrabold whitespace-nowrap">✓ VERIFIED</span>
@@ -1211,18 +1254,44 @@
         .replace(/'/g, "&#039;");
     }
 
+    function setDetailMainImage(url) {
+      document.getElementById("detailImg").src = url;
+    }
+
+    function openActiveMainImage() {
+      const src = document.getElementById("detailImg").src;
+      openImageLightbox(src);
+    }
+
     function openDedicatedDetails(id, pushState = true) {
       activeProperty = allProperties.find(p => p.id === id);
       if (!activeProperty) return;
 
       const p = activeProperty;
-      document.getElementById("detailImg").src = p.image_url || "";
+      const imgs = parseImages(p.image_url);
+      const mainImg = imgs[0] || "";
+
+      document.getElementById("detailImg").src = mainImg;
       document.getElementById("detailRef").innerText = p.reference_code || "NP-001";
       document.getElementById("detailSubRef").innerText = `PROPERTY ID: ${p.reference_code || "NP-001"}`;
       document.getElementById("detailTypeChip").innerText = p.category || "Residential Land";
       document.getElementById("detailTitle").innerText = p.title || "Property";
       document.getElementById("detailLocation").innerText = p.location || "Kerala";
       document.getElementById("detailPrice").innerText = formatINR(p.price);
+
+      // Render thumbnail strip for multiple photos
+      const strip = document.getElementById("detailThumbnailsStrip");
+      if (imgs.length > 1) {
+        strip.classList.remove("hidden");
+        strip.innerHTML = imgs.map((u, i) => `
+          <div class="w-16 h-16 rounded-xl overflow-hidden border-2 border-transparent hover:border-[#d5a04f] shrink-0 cursor-pointer transition shadow-sm" onclick="setDetailMainImage('${u}')">
+            <img src="${u}" class="w-full h-full object-cover">
+          </div>
+        `).join("");
+      } else {
+        strip.classList.add("hidden");
+        strip.innerHTML = "";
+      }
 
       const sizeDisplay = p.size ? `${p.size} ${p.area_unit || "Cent"}` : "On Request";
       document.getElementById("detailSize").innerText = sizeDisplay;
@@ -1313,11 +1382,17 @@
 
       tbody.innerHTML = allProperties.map(p => {
         const sold = p.status === "sold";
+        const imgs = parseImages(p.image_url);
+        const mainImg = imgs[0] || "";
+
         return `
           <tr class="hover:bg-[#fbfaf7] transition cursor-pointer" onclick="openAdminPropertyDetails('${p.id}')">
             <td class="py-4 px-3">
               <div class="flex items-center gap-3">
-                <img src="${escapeHtml(p.image_url || "")}" class="w-12 h-12 rounded-xl object-cover bg-slate-100" onerror="this.style.display='none'">
+                <div class="relative w-12 h-12 rounded-xl overflow-hidden bg-slate-100 shrink-0">
+                  <img src="${escapeHtml(mainImg)}" class="w-full h-full object-cover" onerror="this.style.display='none'">
+                  ${imgs.length > 1 ? `<span class="absolute bottom-0 right-0 bg-black/80 text-white font-bold text-[8px] px-1 rounded-tl">${imgs.length}</span>` : ''}
+                </div>
                 <div class="min-w-0">
                   <div class="text-[9px] font-mono font-bold text-[#b17c31]">${escapeHtml(p.reference_code || "-")}</div>
                   <div class="text-xs font-extrabold text-slate-900 truncate max-w-[260px] mt-1">${escapeHtml(p.title || "Property")}</div>
@@ -1374,10 +1449,17 @@
 
       container.innerHTML = allProperties.map(p => {
         const sold = p.status === "sold";
+        const imgs = parseImages(p.image_url);
+        const mainImg = imgs[0] || "";
+
         return `
           <div class="border border-slate-200 rounded-[20px] p-3.5 bg-[#fcfcfb] cursor-pointer hover:border-[#d5a04f] transition" onclick="openAdminPropertyDetails('${p.id}')">
             <div class="flex gap-3">
-              <img src="${escapeHtml(p.image_url || "")}" class="w-[78px] h-[78px] rounded-2xl object-cover bg-slate-100 shrink-0" onerror="this.style.display='none'">
+              <div class="relative w-[78px] h-[78px] rounded-2xl overflow-hidden bg-slate-100 shrink-0">
+                <img src="${escapeHtml(mainImg)}" class="w-full h-full object-cover" onerror="this.style.display='none'">
+                ${imgs.length > 1 ? `<span class="absolute bottom-1 right-1 bg-black/70 text-white font-bold text-[8px] px-1.5 py-0.5 rounded">📷 ${imgs.length}</span>` : ''}
+              </div>
+              
               <div class="min-w-0 flex-1">
                 <div class="flex items-center justify-between gap-2">
                   <span class="text-[9px] font-mono font-bold text-[#b17c31]">${escapeHtml(p.reference_code || "-")}</span>
@@ -1483,15 +1565,17 @@
       const safe = escapeHtml;
       const size = p.size ? `${p.size} ${p.area_unit || "Cent"}` : "On Request";
       const status = p.status === "sold" ? "Sold Out" : "Available";
+      const imgs = parseImages(p.image_url);
+      const mainImg = imgs[0] || "";
 
       document.getElementById("adminPropertyDetailsContent").innerHTML = `
         <div class="relative">
-          <div class="h-64 sm:h-80 bg-[#0b1220] overflow-hidden rounded-t-[30px] relative cursor-pointer group" onclick="openImageLightbox('${safe(p.image_url || "")}')">
-            <img src="${safe(p.image_url || "")}" alt="Property" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.style.display='none'">
+          <div class="h-64 sm:h-80 bg-[#0b1220] overflow-hidden rounded-t-[30px] relative cursor-pointer group" onclick="openImageLightbox('${safe(mainImg)}')">
+            <img id="adminDetailMainImg" src="${safe(mainImg)}" alt="Property" class="w-full h-full object-cover" onerror="this.style.display='none'">
             <div class="absolute inset-0 bg-gradient-to-t from-[#07101d] via-transparent to-black/10 pointer-events-none"></div>
             
-            <div class="absolute bottom-4 right-16 z-10 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-3 py-1 rounded-full pointer-events-none">
-              🔍 Tap to view original image
+            <div class="absolute bottom-4 right-16 z-10 bg-black/70 backdrop-blur-sm text-white text-[10px] font-bold px-3 py-1 rounded-full pointer-events-none">
+              🔍 Tap for Fullscreen
             </div>
 
             <div class="absolute top-4 left-4 right-4 flex justify-between gap-3 pointer-events-none">
@@ -1505,6 +1589,17 @@
             </div>
             <button onclick="event.stopPropagation(); closeAdminPropertyDetails()" class="absolute top-4 right-4 w-9 h-9 rounded-xl bg-white/90 text-slate-700 font-bold shadow hover:bg-white transition z-20">✕</button>
           </div>
+
+          <!-- ADMIN MULTI PHOTO GALLERY STRIP -->
+          ${imgs.length > 1 ? `
+            <div class="flex gap-2 p-3 bg-slate-100 overflow-x-auto no-scrollbar">
+              ${imgs.map(u => `
+                <div class="w-16 h-16 rounded-xl overflow-hidden border-2 border-transparent hover:border-[#d5a04f] shrink-0 cursor-pointer" onclick="document.getElementById('adminDetailMainImg').src='${u}'">
+                  <img src="${u}" class="w-full h-full object-cover">
+                </div>
+              `).join("")}
+            </div>
+          ` : ''}
 
           <div class="p-5 sm:p-7 space-y-5">
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
@@ -1610,7 +1705,7 @@
       document.getElementById("propOwnerName").value = p.owner_name || "";
       document.getElementById("propOwnerPhone").value = p.owner_phone || "";
 
-      updatePreviewFromUrl();
+      syncFromUrlInput();
       switchAdminTab("form");
     }
 
@@ -1708,8 +1803,9 @@
       document.getElementById("flyerRoad").innerText = p.road_access || "Direct Tar Road";
       document.getElementById("flyerPrice").innerText = formatINR(p.price);
 
+      const imgs = parseImages(p.image_url);
       const img = document.getElementById("flyerImg");
-      img.src = p.image_url;
+      img.src = imgs[0] || "";
 
       const generate = async () => {
         try {
