@@ -383,6 +383,7 @@
             </div>
           </div>
 
+          <!-- PUBLIC CONTACT — NESTORA DESK ONLY -->
           <div class="bg-[#0b1220] rounded-[26px] p-5 sm:p-6 text-white premium-shadow">
             <div class="text-[10px] font-bold uppercase tracking-[.15em] text-[#d5a04f]">Private Enquiry</div>
             <h3 class="brand-font text-xl font-extrabold mt-2">Interested in this property?</h3>
@@ -672,28 +673,43 @@
             </div>
           </div>
 
-          <!-- 4. MEDIA (SYSTEM FILE PICKER: GALLERY + FILES/FILE MANAGER) -->
+          <!-- 4. MEDIA (DUAL OPTION: DIRECT GALLERY OR FILES) -->
           <div>
             <div class="flex items-center gap-3 mb-4">
               <div class="w-9 h-9 rounded-xl bg-[#f7eee0] text-[#a8752c] flex items-center justify-center font-bold">04</div>
               <div>
                 <div class="section-label">Property Media</div>
-                <div class="text-xs font-bold text-slate-500 mt-0.5">Select image from Files, File Manager, Gallery or paste link</div>
+                <div class="text-xs font-bold text-slate-500 mt-0.5">Choose directly from Gallery or File Manager</div>
               </div>
             </div>
 
+            <!-- Hidden Inputs for Gallery & Files -->
+            <input type="file" id="propGalleryInput" accept="image/*" class="hidden" onchange="handleDirectFileUpload(event)">
+            <input type="file" id="propFilesInput" class="hidden" onchange="handleDirectFileUpload(event)">
+
             <div class="space-y-3">
-              <!-- FILE PICKER BOX (OPENS SYSTEM CHOOSER: FILES + GALLERY) -->
-              <div class="border-2 border-dashed border-[#ead7b4] hover:border-[#d5a04f] rounded-2xl p-5 text-center bg-[#fcfaf6] transition cursor-pointer" onclick="document.getElementById('propFileInput').click()">
-                <!-- Removed restrictive accept='image/*' to force Android System File Chooser -->
-                <input type="file" id="propFileInput" class="hidden" onchange="handleDirectFileUpload(event)">
-                <div class="w-12 h-12 rounded-2xl bg-white text-[#d5a04f] border border-[#ead7b4] flex items-center justify-center mx-auto mb-2 text-xl shadow-sm">
-                  📁
-                </div>
-                <div class="text-xs font-extrabold text-slate-800">Select Photo (Files / Gallery / Drive)</div>
-                <div class="text-[10px] text-slate-400 mt-1">Tap to open system chooser for Files, Gallery or Downloads</div>
-                <div id="uploadStatusText" class="text-[11px] font-bold text-[#b17c31] mt-2 hidden">Uploading... please wait</div>
+              <!-- TWO DEDICATED BUTTONS -->
+              <div class="grid grid-cols-2 gap-3">
+                <!-- Gallery Button -->
+                <button type="button" onclick="document.getElementById('propGalleryInput').click()" class="border-2 border-dashed border-[#ead7b4] hover:border-[#d5a04f] rounded-2xl p-4 text-center bg-[#fcfaf6] transition cursor-pointer">
+                  <div class="w-10 h-10 rounded-xl bg-white text-[#d5a04f] border border-[#ead7b4] flex items-center justify-center mx-auto mb-2 text-lg shadow-sm">
+                    🖼️
+                  </div>
+                  <div class="text-xs font-black text-slate-800">Open Gallery</div>
+                  <div class="text-[9px] text-slate-400 mt-0.5">Google Photos / Gallery</div>
+                </button>
+
+                <!-- Files Button -->
+                <button type="button" onclick="document.getElementById('propFilesInput').click()" class="border-2 border-dashed border-[#ead7b4] hover:border-[#d5a04f] rounded-2xl p-4 text-center bg-[#fcfaf6] transition cursor-pointer">
+                  <div class="w-10 h-10 rounded-xl bg-white text-[#d5a04f] border border-[#ead7b4] flex items-center justify-center mx-auto mb-2 text-lg shadow-sm">
+                    📁
+                  </div>
+                  <div class="text-xs font-black text-slate-800">Open Files</div>
+                  <div class="text-[9px] text-slate-400 mt-0.5">File Manager / Storage</div>
+                </button>
               </div>
+
+              <div id="uploadStatusText" class="text-[11px] font-bold text-[#b17c31] text-center hidden">Uploading... please wait</div>
 
               <!-- PREVIEW -->
               <div id="imagePreviewWrap" class="hidden relative h-44 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200">
@@ -947,7 +963,6 @@
       const file = event.target.files[0];
       if (!file) return;
 
-      // Verify file is an image
       if (file.type && !file.type.startsWith('image/')) {
         alert("Please select a valid image file (JPG, PNG, WebP).");
         event.target.value = "";
@@ -1007,7 +1022,8 @@
       document.getElementById("propImageUrl").value = "";
       document.getElementById("imagePreview").src = "";
       document.getElementById("imagePreviewWrap").classList.add("hidden");
-      document.getElementById("propFileInput").value = "";
+      document.getElementById("propGalleryInput").value = "";
+      document.getElementById("propFilesInput").value = "";
       document.getElementById("uploadStatusText").classList.add("hidden");
     }
 
