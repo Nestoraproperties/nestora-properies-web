@@ -294,11 +294,17 @@
       </div>
 
       <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-5">
-        <div class="relative bg-[#0b1220] rounded-[28px] overflow-hidden min-h-[320px] sm:min-h-[440px] lg:min-h-[620px] premium-shadow">
-          <img id="detailImg" src="" alt="Property" class="absolute inset-0 w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#08101d] via-transparent to-black/10"></div>
+        <!-- DETAIL IMAGE (CLICKABLE FOR FULL SCREEN LIGHTBOX) -->
+        <div class="relative bg-[#0b1220] rounded-[28px] overflow-hidden min-h-[320px] sm:min-h-[440px] lg:min-h-[620px] premium-shadow group cursor-pointer" onclick="openImageLightbox(document.getElementById('detailImg').src)">
+          <img id="detailImg" src="" alt="Property" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#08101d] via-transparent to-black/10 pointer-events-none"></div>
 
-          <div class="absolute top-4 left-4 right-4 flex justify-between gap-2">
+          <!-- FULL SCREEN HINT BADGE -->
+          <div class="absolute bottom-4 right-4 z-10 bg-black/60 backdrop-blur-md text-white border border-white/20 text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 opacity-90 group-hover:opacity-100 transition">
+            <span>🔍 Tap to view original image</span>
+          </div>
+
+          <div class="absolute top-4 left-4 right-4 flex justify-between gap-2 pointer-events-none">
             <div class="flex flex-wrap gap-2">
               <span id="detailStatusBadge" class="bg-emerald-500 text-white text-[10px] font-extrabold px-3 py-1.5 rounded-full uppercase shadow">AVAILABLE</span>
               <span id="detailFeaturedBadge" class="bg-[#d5a04f] text-[#0b1220] text-[10px] font-extrabold px-3 py-1.5 rounded-full uppercase shadow">★ Featured</span>
@@ -306,7 +312,7 @@
             <span id="detailRef" class="bg-black/60 backdrop-blur-md text-white border border-white/15 text-[10px] font-mono font-bold px-3 py-1.5 rounded-xl">NP-001</span>
           </div>
 
-          <div class="absolute bottom-5 left-5 right-5">
+          <div class="absolute bottom-5 left-5 right-28 pointer-events-none">
             <span id="detailTypeChip" class="inline-flex bg-white text-[#0b1220] px-3 py-1.5 rounded-xl text-[10px] font-extrabold uppercase shadow mb-3">Residential Land</span>
             <div id="detailSubRef" class="text-[10px] text-[#e2c98f] font-bold uppercase tracking-[.12em]">PROPERTY ID: NP-001</div>
             <h1 id="detailTitle" class="brand-font text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight mt-2 max-w-2xl">Property Title</h1>
@@ -673,24 +679,21 @@
             </div>
           </div>
 
-          <!-- 4. MEDIA (DUAL OPTION: DIRECT GALLERY OR FILES) -->
+          <!-- 4. MEDIA (DUAL SEPARATE TRIGGER: GALLERY OR FILE MANAGER) -->
           <div>
             <div class="flex items-center gap-3 mb-4">
               <div class="w-9 h-9 rounded-xl bg-[#f7eee0] text-[#a8752c] flex items-center justify-center font-bold">04</div>
               <div>
                 <div class="section-label">Property Media</div>
-                <div class="text-xs font-bold text-slate-500 mt-0.5">Choose directly from Gallery or File Manager</div>
+                <div class="text-xs font-bold text-slate-500 mt-0.5">Select photo from Gallery or File Manager, or view full size</div>
               </div>
             </div>
 
-            <!-- Hidden Inputs for Gallery & Files -->
             <input type="file" id="propGalleryInput" accept="image/*" class="hidden" onchange="handleDirectFileUpload(event)">
             <input type="file" id="propFilesInput" class="hidden" onchange="handleDirectFileUpload(event)">
 
             <div class="space-y-3">
-              <!-- TWO DEDICATED BUTTONS -->
               <div class="grid grid-cols-2 gap-3">
-                <!-- Gallery Button -->
                 <button type="button" onclick="document.getElementById('propGalleryInput').click()" class="border-2 border-dashed border-[#ead7b4] hover:border-[#d5a04f] rounded-2xl p-4 text-center bg-[#fcfaf6] transition cursor-pointer">
                   <div class="w-10 h-10 rounded-xl bg-white text-[#d5a04f] border border-[#ead7b4] flex items-center justify-center mx-auto mb-2 text-lg shadow-sm">
                     🖼️
@@ -699,7 +702,6 @@
                   <div class="text-[9px] text-slate-400 mt-0.5">Google Photos / Gallery</div>
                 </button>
 
-                <!-- Files Button -->
                 <button type="button" onclick="document.getElementById('propFilesInput').click()" class="border-2 border-dashed border-[#ead7b4] hover:border-[#d5a04f] rounded-2xl p-4 text-center bg-[#fcfaf6] transition cursor-pointer">
                   <div class="w-10 h-10 rounded-xl bg-white text-[#d5a04f] border border-[#ead7b4] flex items-center justify-center mx-auto mb-2 text-lg shadow-sm">
                     📁
@@ -711,15 +713,17 @@
 
               <div id="uploadStatusText" class="text-[11px] font-bold text-[#b17c31] text-center hidden">Uploading... please wait</div>
 
-              <!-- PREVIEW -->
-              <div id="imagePreviewWrap" class="hidden relative h-44 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200">
-                <img id="imagePreview" src="" class="w-full h-full object-cover">
+              <!-- PREVIEW (CLICKABLE FOR FULL SCREEN) -->
+              <div id="imagePreviewWrap" class="hidden relative h-48 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 group">
+                <img id="imagePreview" src="" class="w-full h-full object-cover cursor-pointer transition duration-300 group-hover:scale-105" onclick="openImageLightbox(this.src)" title="Click to view full image">
+                <div class="absolute bottom-2 left-2 bg-black/60 backdrop-blur-sm text-white text-[9px] font-bold px-2 py-1 rounded-md pointer-events-none">
+                  🔍 Click image to view full screen
+                </div>
                 <button type="button" onclick="clearUploadedImage()" class="absolute top-2 right-2 bg-black/70 hover:bg-black text-white text-[10px] font-bold px-2.5 py-1 rounded-lg backdrop-blur-sm">
                   Remove
                 </button>
               </div>
 
-              <!-- URL FALLBACK INPUT -->
               <div>
                 <label class="admin-label text-[11px] text-slate-500">Image Web URL (Auto-filled on upload, or paste manually)</label>
                 <input type="url" id="propImageUrl" required placeholder="https://..." class="admin-input bg-slate-50 text-xs" oninput="updatePreviewFromUrl()">
@@ -885,6 +889,16 @@
     </div>
   </div>
 
+  <!-- FULL SCREEN IMAGE LIGHTBOX MODAL -->
+  <div id="imageLightboxModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/95 backdrop-blur-md p-2 sm:p-4" onclick="closeImageLightbox()">
+    <button type="button" onclick="closeImageLightbox()" class="absolute top-4 right-4 z-[110] w-11 h-11 rounded-full bg-white/20 hover:bg-white/30 text-white font-bold flex items-center justify-center text-xl backdrop-blur-sm transition">
+      ✕
+    </button>
+    <div class="relative max-w-5xl w-full max-h-[92vh] flex items-center justify-center" onclick="event.stopPropagation()">
+      <img id="lightboxImage" src="" alt="Full view" class="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl transition duration-300">
+    </div>
+  </div>
+
   <!-- JAVASCRIPT ENGINE -->
   <script>
     const SUPABASE_URL = "https://mphtlexdhzyjuxpncygf.supabase.co";
@@ -956,6 +970,24 @@
         }
       });
       return "NP-" + String(maxNum + 1).padStart(3, "0");
+    }
+
+    /* FULL SCREEN IMAGE LIGHTBOX FUNCTIONS */
+    function openImageLightbox(url) {
+      if (!url) return;
+      const modal = document.getElementById("imageLightboxModal");
+      const img = document.getElementById("lightboxImage");
+      img.src = url;
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeImageLightbox() {
+      const modal = document.getElementById("imageLightboxModal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      document.body.style.overflow = "";
     }
 
     /* DIRECT SYSTEM FILE UPLOAD TO SUPABASE STORAGE */
@@ -1454,19 +1486,24 @@
 
       document.getElementById("adminPropertyDetailsContent").innerHTML = `
         <div class="relative">
-          <div class="h-64 sm:h-80 bg-[#0b1220] overflow-hidden rounded-t-[30px] relative">
-            <img src="${safe(p.image_url || "")}" alt="Property" class="w-full h-full object-cover" onerror="this.style.display='none'">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#07101d] via-transparent to-black/10"></div>
-            <div class="absolute top-4 left-4 right-4 flex justify-between gap-3">
+          <div class="h-64 sm:h-80 bg-[#0b1220] overflow-hidden rounded-t-[30px] relative cursor-pointer group" onclick="openImageLightbox('${safe(p.image_url || "")}')">
+            <img src="${safe(p.image_url || "")}" alt="Property" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.style.display='none'">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#07101d] via-transparent to-black/10 pointer-events-none"></div>
+            
+            <div class="absolute bottom-4 right-16 z-10 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-3 py-1 rounded-full pointer-events-none">
+              🔍 Tap to view original image
+            </div>
+
+            <div class="absolute top-4 left-4 right-4 flex justify-between gap-3 pointer-events-none">
               <span class="bg-[#d5a04f] text-[#0b1220] px-3 py-1.5 rounded-full text-[10px] font-extrabold uppercase">${safe(p.category || "Property")}</span>
               <span class="bg-black/60 text-white px-3 py-1.5 rounded-xl text-[10px] font-mono font-bold">${safe(p.reference_code || "NP-001")}</span>
             </div>
-            <div class="absolute bottom-5 left-5 right-5">
+            <div class="absolute bottom-5 left-5 right-5 pointer-events-none">
               <div class="text-[10px] text-[#e2c98f] font-bold uppercase tracking-[.12em]">${safe(status)}</div>
               <h2 class="brand-font text-2xl sm:text-3xl font-extrabold text-white mt-1">${safe(p.title || "Property")}</h2>
               <div class="text-sm text-slate-300 mt-2">⌖ ${safe(p.location || "Kerala")}</div>
             </div>
-            <button onclick="closeAdminPropertyDetails()" class="absolute top-4 right-4 w-9 h-9 rounded-xl bg-white/90 text-slate-700 font-bold shadow hover:bg-white transition">✕</button>
+            <button onclick="event.stopPropagation(); closeAdminPropertyDetails()" class="absolute top-4 right-4 w-9 h-9 rounded-xl bg-white/90 text-slate-700 font-bold shadow hover:bg-white transition z-20">✕</button>
           </div>
 
           <div class="p-5 sm:p-7 space-y-5">
