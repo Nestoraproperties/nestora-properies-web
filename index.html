@@ -43,7 +43,7 @@
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     .luxury-gradient {
       background:
-        radial-gradient(circle at 15% 10%, rgba(213,160,79,.15), transparent 30%),
+        radial-gradient(circle at 15% 10%, rgba(201,151,75,.15), transparent 30%),
         radial-gradient(circle at 85% 80%, rgba(216,107,44,.10), transparent 30%),
         #0b1220;
     }
@@ -504,7 +504,7 @@
             <span>RESERVED</span>
             <span class="w-6 h-6 rounded-md bg-[#f8efdf] flex items-center justify-center text-[#a8752c] text-xs">🕒</span>
           </div>
-          <div id="statReserved" class="brand-font text-2xl font-extrabold text-slate-900 mt-2">0</div>
+          <div id="statReserved" class="brand-font text-2xl font-extrabold text-[#a8752c] mt-2">0</div>
           <div class="text-[9.5px] text-slate-400 mt-0.5">Reserved listings</div>
         </div>
 
@@ -1115,7 +1115,7 @@
       }).join("");
     }
 
-    /* ADMIN DETAILS MODAL (WITH CALL ORIGINAL OWNER) */
+    /* ADMIN DETAILS MODAL */
     function openAdminPropertyDetails(id) {
       const p = allProperties.find(item => item.id === id);
       if (!p || !isAdminLoggedIn) return;
@@ -1385,11 +1385,24 @@
       if (img.complete) img.onload();
     }
 
+    /* FETCH DATA WITH DIRECT LINK HASH ROUTING */
     async function fetchProperties() {
       try {
         const { data, error } = await client.from("properties").select("*").order("created_at", { ascending: false });
         if (error) throw error;
         allProperties = data || [];
+
+        // ലിങ്കിൽ പ്രോപ്പർട്ടി ഐഡി ഉണ്ടോയെന്ന് പരിശോധിക്കുന്നു (#property=...)
+        const hash = window.location.hash;
+        if (hash.startsWith("#property=")) {
+          const propId = hash.replace("#property=", "");
+          const targetProp = allProperties.find(p => p.id === propId || p.reference_code === propId);
+          if (targetProp) {
+            openDedicatedDetails(targetProp.id, false);
+            return;
+          }
+        }
+
         applyFilters();
         if (isAdminLoggedIn) renderAdminDashboard();
       } catch (err) {
@@ -1438,7 +1451,10 @@
       return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     }
 
-    renderView("catalogue");
+    // ഷെയർ ലിങ്ക് ഇല്ലെങ്കിൽ മാത്രം കാറ്റലോഗ് ലോഡ് ചെയ്യുക
+    if (!window.location.hash.startsWith("#property=")) {
+      renderView("catalogue");
+    }
     fetchProperties();
   </script>
 </body>
