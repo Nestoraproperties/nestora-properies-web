@@ -102,9 +102,7 @@
       .desktop-container { max-width: 1160px; }
     }
 
-    /* =========================================
-       CATEGORY CHIP BOXES (EXACT MATCH)
-       ========================================= */
+    /* CATEGORY BOXES */
     .cat-box {
       display: flex;
       flex-direction: column;
@@ -135,9 +133,7 @@
       box-shadow: 0 6px 18px rgba(11,18,32,0.22);
     }
 
-    /* =========================================
-       FEATURED PROPERTY CARD (SPLIT LAYOUT)
-       ========================================= */
+    /* SPLIT CARD LAYOUT */
     .featured-card {
       background: #ffffff;
       border: 1px solid #e7e4dc;
@@ -246,10 +242,9 @@
         </div>
       </section>
 
-      <!-- SEARCH & FILTER BOX (EXACT MATCH TO REFERENCE) -->
+      <!-- SEARCH & FILTER BOX -->
       <section id="propertyDirectory" class="mt-4">
         <div class="bg-white border border-[#e7e4dc] rounded-[24px] p-4 soft-shadow space-y-3">
-          <!-- Text Input -->
           <div class="relative">
             <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">🔍</span>
             <input
@@ -261,9 +256,7 @@
             >
           </div>
 
-          <!-- 3 Columns Row -->
           <div class="grid grid-cols-3 gap-2">
-            <!-- Col 1: Location -->
             <div class="bg-[#f8fafc] border border-slate-200 rounded-xl p-2 relative">
               <div class="text-[9px] font-bold text-slate-400 flex items-center gap-1">📍 Location</div>
               <select id="locationFilter" onchange="applyFilters()" class="w-full bg-transparent text-[11px] font-bold text-slate-800 outline-none mt-0.5 truncate">
@@ -276,7 +269,6 @@
               </select>
             </div>
 
-            <!-- Col 2: Property Type -->
             <div class="bg-[#f8fafc] border border-slate-200 rounded-xl p-2 relative">
               <div class="text-[9px] font-bold text-slate-400 flex items-center gap-1">🏠 Type</div>
               <select id="categoryFilter" onchange="applyFilters()" class="w-full bg-transparent text-[11px] font-bold text-slate-800 outline-none mt-0.5 truncate">
@@ -289,7 +281,6 @@
               </select>
             </div>
 
-            <!-- Col 3: Budget -->
             <div class="bg-[#f8fafc] border border-slate-200 rounded-xl p-2 relative">
               <div class="text-[9px] font-bold text-slate-400 flex items-center gap-1">💰 Budget</div>
               <select id="budgetFilter" onchange="applyFilters()" class="w-full bg-transparent text-[11px] font-bold text-slate-800 outline-none mt-0.5 truncate">
@@ -301,7 +292,6 @@
             </div>
           </div>
 
-          <!-- Gold Search Button -->
           <button onclick="applyFilters()" class="w-full h-11 rounded-xl bg-[#d5a04f] hover:bg-[#e2b365] text-[#0b1220] text-xs font-black flex items-center justify-center gap-2 transition shadow-sm">
             <span>Search Properties</span>
             <span>🔍</span>
@@ -309,7 +299,7 @@
         </div>
       </section>
 
-      <!-- PROPERTY CATEGORIES (HORIZONTAL SWIPE BOXES) -->
+      <!-- PROPERTY CATEGORIES -->
       <section class="mt-5">
         <div class="flex items-center justify-between mb-2.5">
           <h2 class="brand-font text-sm font-extrabold text-slate-800">Property Categories</h2>
@@ -344,14 +334,13 @@
         </div>
       </section>
 
-      <!-- FEATURED PROPERTIES HEADER -->
+      <!-- FEATURED PROPERTIES -->
       <section class="mt-4">
         <div class="flex items-center justify-between mb-3">
           <h2 class="brand-font text-sm font-extrabold text-slate-800">Featured Properties</h2>
           <div id="publicListingCount" class="text-[11px] font-bold text-slate-400">Loading...</div>
         </div>
 
-        <!-- LISTING CONTAINER (EXACT CARD MATCH) -->
         <div id="propertiesGrid" class="space-y-4 pb-12"></div>
       </section>
     </main>
@@ -392,12 +381,10 @@
             </div>
           </div>
 
-          <!-- DETAIL THUMBNAILS -->
           <div id="detailThumbnailsStrip" class="flex gap-2 overflow-x-auto no-scrollbar py-2.5"></div>
         </div>
 
         <div class="space-y-3.5">
-          <!-- PRICE CARD -->
           <div class="bg-white border border-[#e7e4dc] rounded-[22px] p-4 sm:p-5 soft-shadow">
             <div class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider">Guide Price</div>
             <div id="detailPrice" class="brand-font text-3xl font-extrabold text-[#0b1220] mt-0.5">₹ 0</div>
@@ -415,14 +402,12 @@
             </div>
           </div>
 
-          <!-- OVERVIEW -->
           <div class="bg-white border border-[#e7e4dc] rounded-[22px] p-4 sm:p-5 soft-shadow">
             <div class="section-label">Property Overview</div>
             <div class="gold-line mt-1.5 mb-2.5"></div>
             <p id="detailDesc" class="text-xs text-slate-600 leading-relaxed whitespace-pre-line">-</p>
           </div>
 
-          <!-- SPECS -->
           <div class="bg-white border border-[#e7e4dc] rounded-[22px] p-4 sm:p-5 soft-shadow space-y-2">
             <div class="section-label">Features & Infrastructure</div>
             <div class="gold-line mt-1.5 mb-2.5"></div>
@@ -440,7 +425,6 @@
             </div>
           </div>
 
-          <!-- CONTACT BUTTONS -->
           <div class="bg-[#0b1220] rounded-[22px] p-4 text-white">
             <div class="text-[9px] font-bold text-[#d5a04f] uppercase tracking-wider">Contact Desk</div>
             <div class="brand-font text-base font-extrabold mt-0.5">Interested in this property?</div>
@@ -459,7 +443,7 @@
   </div>
 
   <!-- =========================================================
-       ADMIN PORTAL (MATCHING RIGHT SCREEN)
+       ADMIN PORTAL
   ========================================================== -->
   <div id="adminContainer" class="hidden min-h-screen bg-[#f4f5f7] text-slate-900">
     <header class="sticky top-0 z-40 bg-[#0b1220] border-b border-white/10 shadow-lg">
@@ -496,7 +480,6 @@
     </header>
 
     <main class="desktop-container mx-auto w-full px-4 sm:px-6 py-5 pb-16">
-      <!-- 2x2 METRICS CARDS -->
       <section id="overviewStatsSection" class="grid grid-cols-2 gap-3">
         <div class="bg-white border border-[#e7e4dc] rounded-[22px] p-4 soft-shadow">
           <div class="flex items-center justify-between text-[9px] font-extrabold uppercase text-slate-400">
@@ -521,7 +504,7 @@
             <span>RESERVED</span>
             <span class="w-6 h-6 rounded-md bg-[#f8efdf] flex items-center justify-center text-[#a8752c] text-xs">🕒</span>
           </div>
-          <div id="statReserved" class="brand-font text-2xl font-extrabold text-[#a8752c] mt-2">0</div>
+          <div id="statReserved" class="brand-font text-2xl font-extrabold text-slate-900 mt-2">0</div>
           <div class="text-[9.5px] text-slate-400 mt-0.5">Reserved listings</div>
         </div>
 
@@ -547,7 +530,6 @@
           </button>
         </div>
 
-        <!-- SEARCH INPUT -->
         <div class="relative mb-3.5">
           <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs">🔍</span>
           <input
@@ -558,6 +540,7 @@
           >
         </div>
 
+        <!-- LIST CONTAINER -->
         <div id="adminPropertyList" class="space-y-3"></div>
       </section>
 
@@ -629,7 +612,6 @@
             </div>
           </div>
 
-          <!-- PHOTOS -->
           <div>
             <label class="admin-label">Property Photos</label>
             <input type="file" id="propGalleryInput" accept="image/*" multiple class="hidden" onchange="handleMultipleFileUpload(event)">
@@ -651,7 +633,6 @@
             <textarea id="propDescription" rows="3" placeholder="Overview of the property..." class="admin-input resize-y"></textarea>
           </div>
 
-          <!-- OWNER INFO (CONFIDENTIAL) -->
           <div class="bg-[#fcf7ed] border border-[#ead7b4] rounded-xl p-3.5">
             <div class="text-[9px] font-bold text-[#b17c31] uppercase">Confidential Owner Data (Admin Only)</div>
             <div class="grid grid-cols-2 gap-2.5 mt-2">
@@ -693,7 +674,7 @@
     </div>
   </div>
 
-  <!-- FULLSCREEN IMAGE SLIDER (SWIPEABLE) -->
+  <!-- FULLSCREEN IMAGE SLIDER -->
   <div id="imageLightboxModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/95 backdrop-blur-md select-none touch-pan-y" onclick="closeImageLightbox()">
     <div class="absolute top-4 left-4 right-4 flex items-center justify-between z-[110]" onclick="event.stopPropagation()">
       <div id="lightboxCounter" class="bg-white/10 text-white font-mono text-xs px-3 py-1 rounded-full border border-white/15">1 / 1</div>
@@ -708,7 +689,7 @@
     </div>
   </div>
 
-  <!-- UPGRADED LUXURY FLYER -->
+  <!-- FLYER GENERATOR -->
   <div id="flyerContainer" style="position:absolute;left:-9999px;top:-9999px;">
     <div id="flyerPoster" style="width:1080px;height:1350px;background:#f8f9fb;color:#0f172a;position:relative;overflow:hidden;font-family:'DM Sans',sans-serif;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;padding:52px 56px 48px;">
       <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #eae7df;padding-bottom:24px;">
@@ -904,7 +885,7 @@
       renderPropertyCards(list);
     }
 
-    /* RENDER CARDS (MATCHING REFERENCE EXACTLY) */
+    /* RENDER CARDS */
     function renderPropertyCards(list) {
       const container = document.getElementById("propertiesGrid");
       if (!list.length) {
@@ -928,7 +909,6 @@
         return `
           <article class="featured-card">
             <div class="featured-card-top cursor-pointer" onclick="openDedicatedDetails('${p.id}')">
-              <!-- Square Image Left -->
               <div class="featured-card-img">
                 <img src="${escapeHtml(mainImg)}" alt="Property" class="${isSold ? 'grayscale' : ''}" onerror="this.style.display='none'">
                 <span class="absolute top-2 left-2 bg-[#d86b2c] text-white text-[8.5px] font-black uppercase px-2 py-0.5 rounded-full shadow">
@@ -941,7 +921,6 @@
                 ` : ''}
               </div>
 
-              <!-- Information Right -->
               <div class="flex flex-col justify-between py-0.5 min-w-0">
                 <div>
                   <div class="flex items-center justify-between">
@@ -971,7 +950,6 @@
               </div>
             </div>
 
-            <!-- Bottom Action Row: Call | WhatsApp | Heart -->
             <div class="flex items-center gap-2 mt-3 pt-2.5 border-t border-slate-100">
               <a href="tel:${NESTORA_OFFICIAL_PHONE}" class="flex-1 h-10 rounded-xl bg-[#0b1220] hover:bg-[#182338] text-white text-xs font-black flex items-center justify-center gap-1.5 transition">
                 <span>📞</span> <span>Call</span>
@@ -1058,7 +1036,7 @@
       if (activeProperty) shareActivePropertyById(activeProperty.id);
     }
 
-    /* ADMIN DASHBOARD (MATCHING RIGHT SCREEN) */
+    /* ADMIN DASHBOARD */
     function renderAdminDashboard() {
       const total = allProperties.length;
       const sold = allProperties.filter(p => p.status === "sold").length;
@@ -1085,6 +1063,7 @@
       renderAdminDirectoryList(filtered);
     }
 
+    /* ADMIN LIST WITH PROPER CLICK EVENT */
     function renderAdminDirectoryList(list) {
       const c = document.getElementById("adminPropertyList");
       if (!list.length) {
@@ -1098,11 +1077,12 @@
         const isSold = p.status === "sold";
 
         return `
-          <div class="border border-slate-200 rounded-[20px] p-3 bg-[#fcfcfb]">
+          <div class="border border-slate-200 rounded-[20px] p-3 bg-[#fcfcfb] hover:border-[#d5a04f] transition cursor-pointer" onclick="openAdminPropertyDetails('${p.id}')">
             <div class="flex gap-3">
-              <div class="relative w-[78px] h-[78px] rounded-xl overflow-hidden bg-slate-900 shrink-0 cursor-pointer" onclick="openLightboxSlider(parseImages('${p.image_url}'), 0)">
+              <div class="relative w-[78px] h-[78px] rounded-xl overflow-hidden bg-slate-900 shrink-0">
                 <img src="${escapeHtml(mainImg)}" class="w-full h-full object-cover">
                 <span class="absolute top-1 left-1 bg-black/80 text-[7px] text-[#f3dfb7] font-black px-1.5 py-0.5 rounded">FOR SALE</span>
+                ${imgs.length > 1 ? `<span class="absolute bottom-1 right-1 bg-black/70 text-white font-bold text-[8px] px-1 rounded">📷 ${imgs.length}</span>` : ''}
               </div>
               <div class="min-w-0 flex-1">
                 <div class="flex items-center justify-between">
@@ -1118,7 +1098,7 @@
                 <div class="flex items-center justify-between mt-1 text-[10px]">
                   <span class="text-slate-400 font-bold">Owner:</span>
                   ${p.owner_phone ? `
-                    <a href="tel:${p.owner_phone}" class="text-[#b17c31] font-bold bg-[#f8efdf] px-1.5 py-0.5 rounded">
+                    <a href="tel:${p.owner_phone}" onclick="event.stopPropagation()" class="text-[#b17c31] font-bold bg-[#f8efdf] px-1.5 py-0.5 rounded">
                       📞 ${escapeHtml(p.owner_phone)}
                     </a>
                   ` : `<span class="text-slate-400">Not saved</span>`}
@@ -1126,13 +1106,117 @@
               </div>
             </div>
 
-            <div class="grid grid-cols-2 gap-2 mt-2.5 pt-2 border-t border-slate-100">
+            <div class="grid grid-cols-2 gap-2 mt-2.5 pt-2 border-t border-slate-100" onclick="event.stopPropagation()">
               <button onclick="editProperty('${p.id}')" class="py-2 rounded-xl bg-[#0b1220] text-white text-[11px] font-bold">Edit</button>
               <button onclick="downloadFlyer('${p.id}')" class="py-2 rounded-xl bg-[#f8efdf] text-[#9b6c27] text-[11px] font-bold">Flyer</button>
             </div>
           </div>
         `;
       }).join("");
+    }
+
+    /* ADMIN DETAILS MODAL (WITH CALL ORIGINAL OWNER) */
+    function openAdminPropertyDetails(id) {
+      const p = allProperties.find(item => item.id === id);
+      if (!p || !isAdminLoggedIn) return;
+
+      let modal = document.getElementById("adminPropertyDetailsModal");
+      if (!modal) {
+        modal = document.createElement("div");
+        modal.id = "adminPropertyDetailsModal";
+        modal.className = "fixed inset-0 z-[80] hidden items-center justify-center p-3 sm:p-4 bg-[#07101d]/85 backdrop-blur-md";
+        modal.innerHTML = `
+          <div class="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-[26px] shadow-2xl relative">
+            <button onclick="closeAdminPropertyDetails()" class="absolute top-3 right-3 z-30 w-8 h-8 rounded-full bg-black/60 hover:bg-black text-white font-bold flex items-center justify-center text-xs shadow-md transition">
+              ✕
+            </button>
+            <div id="adminPropertyDetailsContent"></div>
+          </div>`;
+        document.body.appendChild(modal);
+      }
+
+      const safe = escapeHtml;
+      const size = p.size ? `${p.size} Cent` : "On Request";
+      const status = p.status === "sold" ? "Sold Out" : "Available";
+      const imgs = parseImages(p.image_url);
+      const mainImg = imgs[0] || "";
+
+      document.getElementById("adminPropertyDetailsContent").innerHTML = `
+        <div class="relative">
+          <div class="h-56 sm:h-64 bg-slate-950 overflow-hidden relative cursor-pointer" onclick="openLightboxSlider(parseImages('${p.image_url}'), 0)">
+            <img src="${safe(mainImg)}" alt="Property" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none"></div>
+
+            <div class="absolute top-3.5 left-3.5 flex gap-2">
+              <span class="bg-[#d5a04f] text-[#0b1220] px-2.5 py-1 rounded-full text-[9px] font-black uppercase">
+                ${safe(p.category || "Property")}
+              </span>
+              <span class="bg-black/60 text-white px-2 py-0.5 rounded-lg text-[9px] font-mono font-bold">
+                ${safe(p.reference_code || "NP-001")}
+              </span>
+            </div>
+
+            <div class="absolute bottom-3 left-3.5 right-12 pointer-events-none">
+              <h2 class="brand-font text-lg font-black text-white leading-tight">${safe(p.title || "Property")}</h2>
+              <div class="text-[11px] text-slate-300 mt-0.5">📍 ${safe(p.location || "Kerala")}</div>
+            </div>
+          </div>
+
+          <div class="p-4 space-y-3.5">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
+              <div class="rounded-xl bg-[#f8fafc] border border-slate-100 p-2.5">
+                <div class="text-[8.5px] uppercase font-bold text-slate-400">Price</div>
+                <div class="text-xs font-black text-[#9b6c27] mt-0.5">${formatINR(p.price)}</div>
+              </div>
+              <div class="rounded-xl bg-[#f8fafc] border border-slate-100 p-2.5">
+                <div class="text-[8.5px] uppercase font-bold text-slate-400">Area</div>
+                <div class="text-xs font-black text-slate-800 mt-0.5">${safe(size)}</div>
+              </div>
+              <div class="rounded-xl bg-[#f8fafc] border border-slate-100 p-2.5">
+                <div class="text-[8.5px] uppercase font-bold text-slate-400">Type</div>
+                <div class="text-xs font-black text-slate-800 mt-0.5">${safe(p.category || "-")}</div>
+              </div>
+              <div class="rounded-xl bg-[#f8fafc] border border-slate-100 p-2.5">
+                <div class="text-[8.5px] uppercase font-bold text-slate-400">Status</div>
+                <div class="text-xs font-black text-slate-800 mt-0.5">${safe(status)}</div>
+              </div>
+            </div>
+
+            <div class="rounded-xl border border-[#ead7b4] bg-[#fcf7ed] p-3.5">
+              <div class="text-[9px] font-bold text-[#b17c31] uppercase">Original Property Owner (Admin Confidential)</div>
+              <div class="text-sm font-black text-slate-900 mt-1">${safe(p.owner_name || "Owner Name Not Recorded")}</div>
+              
+              <div class="mt-2.5">
+                ${p.owner_phone ? `
+                  <a href="tel:${p.owner_phone}" class="inline-flex items-center justify-center gap-1.5 bg-[#d5a04f] hover:bg-[#e2b365] text-[#0b1220] font-black px-4 py-2 rounded-xl text-xs shadow transition w-full">
+                    <span>📞 Call Original Owner:</span> ${safe(p.owner_phone)}
+                  </a>
+                ` : `<span class="text-xs text-slate-400">No owner contact recorded</span>`}
+              </div>
+            </div>
+
+            <div class="rounded-xl border border-slate-100 p-3 bg-[#fbfbfa]">
+              <div class="text-[9px] font-bold text-slate-400 uppercase">Overview</div>
+              <p class="text-xs text-slate-600 mt-1 leading-relaxed whitespace-pre-line">${safe(p.description || "No description added.")}</p>
+            </div>
+
+            <div class="flex gap-2 justify-end pt-2 border-t border-slate-100">
+              <button onclick="closeAdminPropertyDetails(); editProperty('${safe(p.id)}')" class="px-4 py-2 rounded-xl bg-[#0b1220] text-white text-xs font-bold">Edit</button>
+              <button onclick="downloadFlyer('${safe(p.id)}')" class="px-4 py-2 rounded-xl bg-[#f8efdf] text-[#9b6c27] text-xs font-bold">Flyer</button>
+            </div>
+          </div>
+        </div>`;
+
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    }
+
+    function closeAdminPropertyDetails() {
+      const modal = document.getElementById("adminPropertyDetailsModal");
+      if (modal) {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+      }
     }
 
     function switchAdminTab(t) {
