@@ -13,7 +13,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
@@ -58,14 +58,6 @@
     }
     .premium-shadow {
       box-shadow: 0 24px 60px rgba(15, 23, 42, .12), 0 6px 20px rgba(15, 23, 42, .06);
-    }
-    .property-card {
-      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-    }
-    .property-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 22px 50px rgba(15, 23, 42, .11), 0 5px 14px rgba(15, 23, 42, .04);
-      border-color: #ddd8cc;
     }
     .gold-line {
       width: 42px;
@@ -112,6 +104,168 @@
     @media (max-width: 640px) {
       input, select, textarea { font-size: 16px !important; }
     }
+
+    /* 1. COMPACT HERO SECTION */
+    @media (max-width: 768px) {
+      .hero-card-inner {
+        padding: 24px 18px 20px !important;
+      }
+      .hero-title {
+        font-size: 32px !important;
+        line-height: 1.08 !important;
+        margin-top: 12px !important;
+        margin-bottom: 10px !important;
+      }
+      .hero-desc {
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 14px !important;
+      }
+      .hero-trust-badges {
+        gap: 8px !important;
+        margin-top: 12px !important;
+      }
+    }
+
+    /* 2. MOBILE CATEGORY NAVIGATION */
+    .category-list {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+      padding: 6px 2px 10px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .category-list::-webkit-scrollbar {
+      display: none;
+    }
+    .category-list > * {
+      flex: 0 0 auto;
+    }
+    @media (max-width: 768px) {
+      .category-list {
+        scroll-snap-type: x proximity;
+      }
+      .category-list > * {
+        scroll-snap-align: start;
+      }
+    }
+
+    /* 3. CLEAN SEARCH / FILTER AREA */
+    .search-filter-section {
+      padding: 16px !important;
+      border-radius: 22px !important;
+    }
+    .search-filter-section input {
+      height: 48px !important;
+      border-radius: 14px !important;
+      font-size: 14px !important;
+    }
+    .search-filter-section .filters {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .search-filter-section .filter {
+      min-height: 46px;
+      border-radius: 14px;
+    }
+    .search-filter-section .search-button {
+      width: 100%;
+      min-height: 46px;
+      margin-top: 10px;
+      border-radius: 14px;
+    }
+    @media (max-width: 640px) {
+      .search-filter-section {
+        padding: 14px !important;
+      }
+      .search-filter-section .filters {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+    }
+
+    /* 4. PROPERTY CARD HIERARCHY */
+    .property-card {
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      overflow: hidden;
+      border-radius: 22px;
+    }
+    .property-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 50px rgba(15, 23, 42, .11), 0 5px 14px rgba(15, 23, 42, .04);
+      border-color: #ddd8cc;
+    }
+    .property-card .property-image {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: #f1f5f9;
+    }
+    .property-card .property-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .55s cubic-bezier(.2,.7,.2,1);
+    }
+    .property-card:hover .property-image img {
+      transform: scale(1.035);
+    }
+    .property-card .property-content {
+      padding: 16px;
+    }
+    .property-card .property-reference {
+      font-size: 11px;
+      font-family: monospace;
+      font-weight: 800;
+      color: #b17c31;
+      margin-bottom: 4px;
+    }
+    .property-card .property-title {
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.25;
+      margin: 0 0 6px;
+      color: #0f172a;
+    }
+    .property-card .property-location {
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .property-card .property-meta {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .property-card .property-meta span {
+      padding: 5px 9px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      background: #f1f5f9;
+      color: #334155;
+    }
+    .property-card .property-price {
+      font-size: 20px;
+      font-weight: 800;
+      color: #0b1220;
+      letter-spacing: -0.02em;
+    }
+    .property-card .property-updated {
+      font-size: 11px;
+      color: #94a3b8;
+      font-weight: 600;
+      margin-top: 2px;
+    }
   </style>
 </head>
 
@@ -124,20 +278,20 @@
 
     <!-- PUBLIC NAVBAR -->
     <header class="sticky top-0 z-40 border-b border-white/10 bg-[#0b1220]/95 backdrop-blur-xl">
-      <div class="desktop-container mx-auto px-4 sm:px-6 lg:px-8 h-[72px] flex items-center justify-between">
+      <div class="desktop-container mx-auto px-4 sm:px-6 lg:px-8 h-[70px] flex items-center justify-between">
         
         <button onclick="closeDetailsPage()" class="flex items-center gap-3 text-left group">
-          <div class="w-11 h-11 rounded-[14px] bg-[#0b1220] border border-[#d5a04f]/40 flex items-center justify-center shadow-lg shadow-black/30 group-hover:border-[#d5a04f] transition">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#d5a04f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <div class="w-10 h-10 rounded-[12px] bg-[#0b1220] border border-[#d5a04f]/40 flex items-center justify-center shadow-lg shadow-black/30 group-hover:border-[#d5a04f] transition">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d5a04f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/>
               <polyline points="9 21 9 12 15 12 15 21"/>
             </svg>
           </div>
           <div>
-            <div class="brand-font text-[16px] font-black tracking-[.2em] text-white leading-none">
+            <div class="brand-font text-[15px] font-black tracking-[.2em] text-white leading-none">
               NESTORA
             </div>
-            <div class="text-[9px] text-[#d5a04f] font-bold tracking-[.18em] uppercase mt-1">
+            <div class="text-[8.5px] text-[#d5a04f] font-bold tracking-[.18em] uppercase mt-1">
               Properties & Living
             </div>
           </div>
@@ -152,7 +306,7 @@
           </button>
           <button
             onclick="handleAdminButtonClick()"
-            class="inline-flex items-center gap-2 bg-[#d5a04f] hover:bg-[#e2b365] text-[#0b1220] px-4 py-2.5 rounded-xl text-xs font-extrabold transition shadow-lg shadow-black/20"
+            class="inline-flex items-center gap-2 bg-[#d5a04f] hover:bg-[#e2b365] text-[#0b1220] px-4 py-2 rounded-xl text-xs font-extrabold transition shadow-lg shadow-black/20"
           >
             <span>Portal</span>
             <span class="hidden sm:inline">→</span>
@@ -164,58 +318,58 @@
     <!-- PUBLIC CATALOGUE -->
     <main id="publicContainer" class="flex-1 desktop-container mx-auto w-full px-4 sm:px-6 lg:px-8">
       
-      <!-- HERO -->
-      <section class="pt-5 sm:pt-8 lg:pt-10">
-        <div class="luxury-gradient hero-pattern rounded-[28px] sm:rounded-[36px] overflow-hidden relative premium-shadow">
+      <!-- 1. COMPACT HERO SECTION -->
+      <section class="pt-4 sm:pt-6 lg:pt-8">
+        <div class="luxury-gradient hero-pattern rounded-[24px] sm:rounded-[32px] overflow-hidden relative premium-shadow">
           <div class="absolute -right-24 -top-24 w-72 h-72 rounded-full border border-[#d5a04f]/10"></div>
           <div class="absolute right-8 bottom-[-100px] w-60 h-60 rounded-full border border-[#d5a04f]/10"></div>
 
-          <div class="relative z-10 grid lg:grid-cols-[1.15fr_.85fr] gap-8 px-6 py-8 sm:px-10 sm:py-11 lg:px-14 lg:py-14">
+          <div class="hero-card-inner relative z-10 grid lg:grid-cols-[1.15fr_.85fr] gap-6 px-5 py-6 sm:px-8 sm:py-8 lg:px-11 lg:py-10">
             <div class="max-w-2xl">
-              <div class="inline-flex items-center gap-2 rounded-full border border-[#d5a04f]/25 bg-white/[.06] px-3.5 py-2">
+              <div class="inline-flex items-center gap-2 rounded-full border border-[#d5a04f]/25 bg-white/[.06] px-3 py-1.5">
                 <span class="w-1.5 h-1.5 rounded-full bg-[#d5a04f] shadow-[0_0_10px_rgba(213,160,79,.8)]"></span>
-                <span class="text-[10px] sm:text-[11px] font-bold tracking-[.12em] uppercase text-[#e5c98f]">
+                <span class="text-[9.5px] sm:text-[11px] font-bold tracking-[.12em] uppercase text-[#e5c98f]">
                   Verified Kerala Real Estate
                 </span>
               </div>
 
-              <h1 class="brand-font text-[34px] sm:text-[46px] lg:text-[58px] font-extrabold leading-[1.02] tracking-[-.045em] text-white mt-5">
+              <h1 class="hero-title brand-font text-[28px] sm:text-[40px] lg:text-[48px] font-extrabold leading-[1.06] tracking-[-.04em] text-white mt-3.5 mb-2.5">
                 Find a place <span class="text-[#d5a04f]">worth owning.</span>
               </h1>
 
-              <p class="text-sm sm:text-base text-slate-300 leading-7 max-w-xl mt-5">
+              <p class="hero-desc text-[13px] sm:text-sm text-slate-300 leading-relaxed max-w-xl mb-3">
                 Curated residential plots, premium homes, villas and commercial properties across Ernakulam District and selected investment corridors across Kerala.
               </p>
 
-              <div class="flex flex-wrap gap-3 mt-7">
-                <div class="inline-flex items-center gap-2 text-xs font-semibold text-slate-200">
-                  <span class="w-6 h-6 rounded-full bg-emerald-400/10 border border-emerald-400/20 flex items-center justify-center text-emerald-400">✓</span>
+              <div class="hero-trust-badges flex flex-wrap gap-2.5 sm:gap-3 mt-4">
+                <div class="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold text-slate-200">
+                  <span class="w-5 h-5 rounded-full bg-emerald-400/10 border border-emerald-400/20 flex items-center justify-center text-emerald-400 text-[10px]">✓</span>
                   Verified listings
                 </div>
-                <div class="inline-flex items-center gap-2 text-xs font-semibold text-slate-200">
-                  <span class="w-6 h-6 rounded-full bg-[#d5a04f]/10 border border-[#d5a04f]/20 flex items-center justify-center text-[#d5a04f]">◆</span>
+                <div class="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold text-slate-200">
+                  <span class="w-5 h-5 rounded-full bg-[#d5a04f]/10 border border-[#d5a04f]/20 flex items-center justify-center text-[#d5a04f] text-[9px]">◆</span>
                   Direct owner / agent
                 </div>
-                <div class="inline-flex items-center gap-2 text-xs font-semibold text-slate-200">
-                  <span class="w-6 h-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">●</span>
+                <div class="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold text-slate-200">
+                  <span class="w-5 h-5 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[8px]">●</span>
                   Ernakulam & Kerala
                 </div>
               </div>
             </div>
 
-            <div class="hidden lg:flex items-end justify-end">
-              <div class="w-full max-w-[360px] rounded-[26px] border border-white/10 bg-white/[.055] backdrop-blur-xl p-6">
-                <div class="text-[10px] font-bold uppercase tracking-[.16em] text-[#d5a04f]">Nestora Standard</div>
-                <div class="brand-font text-2xl font-extrabold text-white mt-3">Simple. Verified.<br>Professional.</div>
-                <div class="gold-line mt-5"></div>
-                <div class="grid grid-cols-2 gap-3 mt-6">
-                  <div class="rounded-2xl bg-white/[.055] border border-white/5 p-4">
-                    <div class="text-xl font-extrabold text-white">01</div>
-                    <div class="text-[10px] text-slate-400 mt-1">Direct enquiry</div>
+            <div class="hidden lg:flex items-center justify-end">
+              <div class="w-full max-w-[320px] rounded-[22px] border border-white/10 bg-white/[.055] backdrop-blur-xl p-5">
+                <div class="text-[9.5px] font-bold uppercase tracking-[.16em] text-[#d5a04f]">Nestora Standard</div>
+                <div class="brand-font text-xl font-extrabold text-white mt-1.5">Simple. Verified.<br>Professional.</div>
+                <div class="gold-line mt-3 mb-3.5"></div>
+                <div class="grid grid-cols-2 gap-2">
+                  <div class="rounded-xl bg-white/[.055] border border-white/5 p-3">
+                    <div class="text-base font-extrabold text-white">01</div>
+                    <div class="text-[9.5px] text-slate-400 mt-0.5">Direct enquiry</div>
                   </div>
-                  <div class="rounded-2xl bg-white/[.055] border border-white/5 p-4">
-                    <div class="text-xl font-extrabold text-white">24/7</div>
-                    <div class="text-[10px] text-slate-400 mt-1">Digital catalogue</div>
+                  <div class="rounded-xl bg-white/[.055] border border-white/5 p-3">
+                    <div class="text-base font-extrabold text-white">24/7</div>
+                    <div class="text-[9.5px] text-slate-400 mt-0.5">Digital catalogue</div>
                   </div>
                 </div>
               </div>
@@ -224,51 +378,77 @@
         </div>
       </section>
 
-      <!-- SEARCH -->
-      <section id="propertyDirectory" class="mt-6 sm:mt-8">
-        <div class="bg-white border border-[#e7e4dc] rounded-[26px] p-3 sm:p-4 soft-shadow">
-          <div class="grid lg:grid-cols-[1fr_190px] gap-3">
+      <!-- 2. MOBILE CATEGORY NAVIGATION -->
+      <section class="mt-4">
+        <div class="category-list">
+          <button onclick="setCategoryFilter('all')" data-cat="all" class="cat-btn shrink-0 bg-[#0b1220] text-white px-4 py-2 rounded-full text-xs font-bold shadow-sm">All Properties</button>
+          <button onclick="setCategoryFilter('Residential Land')" data-cat="Residential Land" class="cat-btn shrink-0 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full text-xs font-semibold">Residential Land</button>
+          <button onclick="setCategoryFilter('Independent House')" data-cat="Independent House" class="cat-btn shrink-0 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full text-xs font-semibold">House</button>
+          <button onclick="setCategoryFilter('Villa')" data-cat="Villa" class="cat-btn shrink-0 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full text-xs font-semibold">Villa</button>
+          <button onclick="setCategoryFilter('Apartment')" data-cat="Apartment" class="cat-btn shrink-0 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full text-xs font-semibold">Apartment</button>
+          <button onclick="setCategoryFilter('Commercial')" data-cat="Commercial" class="cat-btn shrink-0 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full text-xs font-semibold">Commercial</button>
+        </div>
+      </section>
+
+      <!-- 3. CLEAN SEARCH / FILTER SECTION -->
+      <section id="propertyDirectory" class="mt-2">
+        <div class="search-filter-section bg-white border border-[#e7e4dc] soft-shadow">
+          <div class="relative">
+            <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="11" cy="11" r="7"></circle>
+                <path d="m20 20-4-4"></path>
+              </svg>
+            </div>
+            <input
+              type="text"
+              id="searchInput"
+              oninput="applyFilters()"
+              placeholder="Search keyword, locality or title..."
+              class="w-full bg-[#f8fafc] border border-slate-200 pl-11 pr-4 text-slate-800 placeholder:text-slate-400 outline-none focus:bg-white focus:border-[#d5a04f] transition"
+            >
+          </div>
+
+          <div class="filters">
             <div class="relative">
-              <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <circle cx="11" cy="11" r="7"></circle>
-                  <path d="m20 20-4-4"></path>
-                </svg>
-              </div>
-              <input
-                type="text"
-                id="searchInput"
-                oninput="applyFilters()"
-                placeholder="Search locality, property title or reference..."
-                class="w-full h-12 rounded-[16px] bg-[#f7f8fa] border border-slate-200 pl-11 pr-4 text-sm text-slate-800 placeholder:text-slate-400 outline-none focus:bg-white focus:border-[#d5a04f] transition"
-              >
+              <select id="locationFilter" onchange="applyFilters()" class="filter w-full bg-[#f8fafc] border border-slate-200 px-3.5 text-xs font-bold text-slate-700 outline-none focus:border-[#d5a04f]">
+                <option value="all">📍 All Locations</option>
+                <option value="Ernakulam">Ernakulam</option>
+                <option value="Aluva">Aluva</option>
+                <option value="Kochi">Kochi</option>
+                <option value="Edappally">Edappally</option>
+                <option value="Kakkanad">Kakkanad</option>
+              </select>
             </div>
 
-            <select
-              id="statusFilter"
-              onchange="applyFilters()"
-              class="h-12 rounded-[16px] bg-[#f7f8fa] border border-slate-200 px-4 text-sm font-semibold text-slate-700 outline-none focus:bg-white focus:border-[#d5a04f] transition"
-            >
-              <option value="all">All properties</option>
-              <option value="active">Available only</option>
-              <option value="sold">Sold out</option>
-            </select>
+            <div class="relative">
+              <select id="statusFilter" onchange="applyFilters()" class="filter w-full bg-[#f8fafc] border border-slate-200 px-3.5 text-xs font-bold text-slate-700 outline-none focus:border-[#d5a04f]">
+                <option value="all">🏷️ All Availability</option>
+                <option value="active">Available Only</option>
+                <option value="sold">Sold Out</option>
+              </select>
+            </div>
+
+            <div class="relative">
+              <select id="budgetFilter" onchange="applyFilters()" class="filter w-full bg-[#f8fafc] border border-slate-200 px-3.5 text-xs font-bold text-slate-700 outline-none focus:border-[#d5a04f]">
+                <option value="all">💰 Any Budget</option>
+                <option value="under_50l">Under ₹50 Lakhs</option>
+                <option value="50l_1cr">₹50L - ₹1 Crore</option>
+                <option value="above_1cr">Above ₹1 Crore</option>
+              </select>
+            </div>
           </div>
 
-          <div id="categoryFilterBar" class="flex items-center gap-2 overflow-x-auto no-scrollbar mt-3 pb-1">
-            <button onclick="setCategoryFilter('all')" data-cat="all" class="cat-btn shrink-0 bg-[#0b1220] text-white px-4 py-2 rounded-full text-xs font-bold shadow-sm">All</button>
-            <button onclick="setCategoryFilter('Residential Land')" data-cat="Residential Land" class="cat-btn shrink-0 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full text-xs font-semibold">Residential Land</button>
-            <button onclick="setCategoryFilter('Independent House')" data-cat="Independent House" class="cat-btn shrink-0 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full text-xs font-semibold">House</button>
-            <button onclick="setCategoryFilter('Villa')" data-cat="Villa" class="cat-btn shrink-0 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full text-xs font-semibold">Villa</button>
-            <button onclick="setCategoryFilter('Apartment')" data-cat="Apartment" class="cat-btn shrink-0 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full text-xs font-semibold">Apartment</button>
-            <button onclick="setCategoryFilter('Commercial')" data-cat="Commercial" class="cat-btn shrink-0 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full text-xs font-semibold">Commercial</button>
-          </div>
+          <button onclick="applyFilters()" class="search-button bg-[#0b1220] hover:bg-[#162238] text-white text-xs font-extrabold flex items-center justify-center gap-2 transition shadow">
+            <span>Search Properties</span>
+            <span>🔍</span>
+          </button>
         </div>
 
-        <div class="flex items-center justify-between px-1 mt-5">
+        <div class="flex items-center justify-between px-1 mt-4">
           <div>
             <div class="section-label">Property Collection</div>
-            <div id="publicListingCount" class="text-sm font-bold text-slate-700 mt-1">Showing listings...</div>
+            <div id="publicListingCount" class="text-xs sm:text-sm font-bold text-slate-700 mt-0.5">Showing verified listings...</div>
           </div>
           <div class="hidden sm:flex items-center gap-2 text-[11px] font-semibold text-slate-400">
             <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
@@ -276,7 +456,8 @@
           </div>
         </div>
 
-        <div id="propertiesGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mt-4 pb-10"></div>
+        <!-- 4. PROPERTY LISTING CARDS GRID -->
+        <div id="propertiesGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mt-3 pb-10"></div>
       </section>
     </main>
 
@@ -294,11 +475,11 @@
       <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-5">
         <div>
           <!-- DETAIL MAIN IMAGE (CLICKABLE FOR FULLSCREEN SLIDER) -->
-          <div class="relative bg-[#0b1220] rounded-[28px] overflow-hidden min-h-[300px] sm:min-h-[420px] lg:min-h-[480px] premium-shadow group cursor-pointer" onclick="openActiveMainImage()">
+          <div class="relative bg-[#0b1220] rounded-[24px] overflow-hidden min-h-[290px] sm:min-h-[400px] lg:min-h-[460px] premium-shadow group cursor-pointer" onclick="openActiveMainImage()">
             <img id="detailImg" src="" alt="Property" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-[#08101d] via-transparent to-black/10 pointer-events-none"></div>
 
-            <div class="absolute bottom-4 right-4 z-10 bg-black/70 backdrop-blur-md text-white border border-white/20 text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5">
+            <div class="absolute bottom-3 right-3 z-10 bg-black/70 backdrop-blur-md text-white border border-white/20 text-[10px] font-bold px-3 py-1 rounded-full flex items-center gap-1.5">
               <span>🔍 Tap for Fullscreen Slider</span>
             </div>
 
@@ -310,11 +491,11 @@
               <span id="detailRef" class="bg-black/60 backdrop-blur-md text-white border border-white/15 text-[10px] font-mono font-bold px-3 py-1.5 rounded-xl">NP-001</span>
             </div>
 
-            <div class="absolute bottom-5 left-5 right-28 pointer-events-none">
-              <span id="detailTypeChip" class="inline-flex bg-white text-[#0b1220] px-3 py-1.5 rounded-xl text-[10px] font-extrabold uppercase shadow mb-3">Residential Land</span>
-              <div id="detailSubRef" class="text-[10px] text-[#e2c98f] font-bold uppercase tracking-[.12em]">PROPERTY ID: NP-001</div>
-              <h1 id="detailTitle" class="brand-font text-2xl sm:text-3xl font-extrabold text-white leading-tight mt-1 max-w-2xl">Property Title</h1>
-              <div class="flex items-center gap-2 text-sm text-slate-300 mt-2">
+            <div class="absolute bottom-4 left-4 right-28 pointer-events-none">
+              <span id="detailTypeChip" class="inline-flex bg-white text-[#0b1220] px-3 py-1 rounded-xl text-[10px] font-extrabold uppercase shadow mb-2">Residential Land</span>
+              <div id="detailSubRef" class="text-[9.5px] text-[#e2c98f] font-bold uppercase tracking-[.12em]">PROPERTY ID: NP-001</div>
+              <h1 id="detailTitle" class="brand-font text-xl sm:text-2xl lg:text-3xl font-extrabold text-white leading-tight mt-1 max-w-2xl">Property Title</h1>
+              <div class="flex items-center gap-2 text-xs text-slate-300 mt-1.5">
                 <span>⌖</span> <span id="detailLocation">Location</span>
               </div>
             </div>
@@ -325,83 +506,83 @@
         </div>
 
         <div class="space-y-4">
-          <div class="bg-white border border-[#e7e4dc] rounded-[26px] p-5 sm:p-6 soft-shadow">
+          <div class="bg-white border border-[#e7e4dc] rounded-[24px] p-5 soft-shadow">
             <div class="flex items-start justify-between gap-4">
               <div>
                 <div class="text-[10px] font-extrabold text-slate-400 uppercase tracking-[.13em]">Guide Price</div>
-                <div id="detailPrice" class="brand-font text-3xl sm:text-4xl font-extrabold text-[#0b1220] mt-1 tracking-tight">₹ 0</div>
+                <div id="detailPrice" class="brand-font text-3xl font-extrabold text-[#0b1220] mt-1 tracking-tight">₹ 0</div>
                 <div id="detailSize" class="text-xs font-semibold text-slate-500 mt-1">Size details</div>
               </div>
               <div id="detailMapsBtnWrap"></div>
             </div>
 
-            <div class="grid grid-cols-2 gap-3 mt-6">
-              <div class="rounded-2xl bg-[#f7f8fa] border border-slate-100 p-4">
+            <div class="grid grid-cols-2 gap-3 mt-5">
+              <div class="rounded-xl bg-[#f7f8fa] border border-slate-100 p-3.5">
                 <div class="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Land Area</div>
-                <div id="detailBoxArea" class="text-sm font-extrabold text-slate-900 mt-1">-</div>
+                <div id="detailBoxArea" class="text-xs font-extrabold text-slate-900 mt-1">-</div>
               </div>
-              <div class="rounded-2xl bg-[#f7f8fa] border border-slate-100 p-4">
+              <div class="rounded-xl bg-[#f7f8fa] border border-slate-100 p-3.5">
                 <div class="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Property Type</div>
-                <div id="detailBoxType" class="text-sm font-extrabold text-slate-900 mt-1">-</div>
+                <div id="detailBoxType" class="text-xs font-extrabold text-slate-900 mt-1">-</div>
               </div>
             </div>
           </div>
 
-          <div class="bg-white border border-[#e7e4dc] rounded-[26px] p-5 sm:p-6 soft-shadow">
+          <div class="bg-white border border-[#e7e4dc] rounded-[24px] p-5 soft-shadow">
             <div class="section-label">Property Overview</div>
-            <div class="gold-line mt-2 mb-4"></div>
-            <p id="detailDesc" class="text-sm text-slate-600 leading-7 whitespace-pre-line">-</p>
+            <div class="gold-line mt-1.5 mb-3.5"></div>
+            <p id="detailDesc" class="text-xs sm:text-sm text-slate-600 leading-relaxed whitespace-pre-line">-</p>
           </div>
 
-          <div class="bg-white border border-[#e7e4dc] rounded-[26px] p-5 sm:p-6 soft-shadow">
+          <div class="bg-white border border-[#e7e4dc] rounded-[24px] p-5 soft-shadow">
             <div class="section-label">Property Infrastructure</div>
-            <div class="gold-line mt-2 mb-4"></div>
-            <div class="space-y-3">
-              <div class="flex gap-3 rounded-2xl bg-[#f8fafc] border border-slate-100 p-3.5">
-                <div class="w-9 h-9 rounded-xl bg-[#f1eadc] text-[#a8752c] flex items-center justify-center shrink-0">↔</div>
+            <div class="gold-line mt-1.5 mb-3.5"></div>
+            <div class="space-y-2.5">
+              <div class="flex gap-3 rounded-xl bg-[#f8fafc] border border-slate-100 p-3">
+                <div class="w-8 h-8 rounded-lg bg-[#f1eadc] text-[#a8752c] flex items-center justify-center shrink-0 text-sm">↔</div>
                 <div>
-                  <div class="text-[9px] font-bold text-slate-400 uppercase">Road Access / Width</div>
-                  <div id="detailRoadAccess" class="text-xs font-bold text-slate-800 mt-1">Direct road access</div>
+                  <div class="text-[8.5px] font-bold text-slate-400 uppercase">Road Access / Width</div>
+                  <div id="detailRoadAccess" class="text-xs font-bold text-slate-800 mt-0.5">Direct road access</div>
                 </div>
               </div>
 
-              <div class="flex gap-3 rounded-2xl bg-[#f8fafc] border border-slate-100 p-3.5">
-                <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">≋</div>
+              <div class="flex gap-3 rounded-xl bg-[#f8fafc] border border-slate-100 p-3">
+                <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 text-sm">≋</div>
                 <div>
-                  <div class="text-[9px] font-bold text-slate-400 uppercase">Water Supply</div>
-                  <div id="detailWaterSupply" class="text-xs font-bold text-slate-800 mt-1">Open well / Municipal pipeline</div>
+                  <div class="text-[8.5px] font-bold text-slate-400 uppercase">Water Supply</div>
+                  <div id="detailWaterSupply" class="text-xs font-bold text-slate-800 mt-0.5">Open well / Municipal pipeline</div>
                 </div>
               </div>
 
-              <div class="flex gap-3 rounded-2xl bg-[#f8fafc] border border-slate-100 p-3.5">
-                <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">⚡</div>
+              <div class="flex gap-3 rounded-xl bg-[#f8fafc] border border-slate-100 p-3">
+                <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 text-sm">⚡</div>
                 <div>
-                  <div class="text-[9px] font-bold text-slate-400 uppercase">Electricity</div>
-                  <div id="detailElectricity" class="text-xs font-bold text-slate-800 mt-1">KSEB connection point ready</div>
+                  <div class="text-[8.5px] font-bold text-slate-400 uppercase">Electricity</div>
+                  <div id="detailElectricity" class="text-xs font-bold text-slate-800 mt-0.5">KSEB connection point ready</div>
                 </div>
               </div>
 
-              <div class="flex gap-3 rounded-2xl bg-[#f8fafc] border border-slate-100 p-3.5">
-                <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">✓</div>
+              <div class="flex gap-3 rounded-xl bg-[#f8fafc] border border-slate-100 p-3">
+                <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 text-sm">✓</div>
                 <div>
-                  <div class="text-[9px] font-bold text-slate-400 uppercase">Document Status</div>
-                  <div id="detailApprovals" class="text-xs font-bold text-slate-800 mt-1">Clear Title & Tax Receipts</div>
+                  <div class="text-[8.5px] font-bold text-slate-400 uppercase">Document Status</div>
+                  <div id="detailApprovals" class="text-xs font-bold text-slate-800 mt-0.5">Clear Title & Tax Receipts</div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- PUBLIC CONTACT — NESTORA DESK ONLY -->
-          <div class="bg-[#0b1220] rounded-[26px] p-5 sm:p-6 text-white premium-shadow">
-            <div class="text-[10px] font-bold uppercase tracking-[.15em] text-[#d5a04f]">Private Enquiry</div>
-            <h3 class="brand-font text-xl font-extrabold mt-2">Interested in this property?</h3>
-            <p class="text-xs text-slate-400 mt-1 leading-5">Contact the Nestora property desk directly for availability, documents and site visit enquiries.</p>
+          <!-- PUBLIC CONTACT DESK -->
+          <div class="bg-[#0b1220] rounded-[24px] p-5 text-white premium-shadow">
+            <div class="text-[9.5px] font-bold uppercase tracking-[.15em] text-[#d5a04f]">Private Enquiry</div>
+            <h3 class="brand-font text-lg font-extrabold mt-1.5">Interested in this property?</h3>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Contact the Nestora property desk directly for availability, documents and site visit enquiries.</p>
 
-            <div class="grid sm:grid-cols-2 gap-2.5 mt-5">
-              <a id="detailWhatsappBtn" href="#" target="_blank" class="flex items-center justify-center gap-2 bg-[#1fba68] hover:bg-[#18a95c] text-white rounded-xl py-3.5 text-xs font-extrabold transition">
+            <div class="grid sm:grid-cols-2 gap-2 mt-4">
+              <a id="detailWhatsappBtn" href="#" target="_blank" class="flex items-center justify-center gap-2 bg-[#1fba68] hover:bg-[#18a95c] text-white rounded-xl py-3 text-xs font-extrabold transition">
                 <span>WhatsApp</span> <span>↗</span>
               </a>
-              <a id="detailCallBtn" href="tel:9946446793" class="flex items-center justify-center gap-2 bg-white/10 border border-white/10 hover:bg-white/15 text-white rounded-xl py-3.5 text-xs font-extrabold transition">
+              <a id="detailCallBtn" href="tel:9946446793" class="flex items-center justify-center gap-2 bg-white/10 border border-white/10 hover:bg-white/15 text-white rounded-xl py-3 text-xs font-extrabold transition">
                 <span>Call Desk</span> <span>☎</span>
               </a>
             </div>
@@ -416,26 +597,26 @@
   ========================================================== -->
   <div id="adminContainer" class="hidden min-h-screen bg-[#f4f5f7] text-slate-900">
     <header class="sticky top-0 z-40 bg-[#0b1220] border-b border-white/10 shadow-xl">
-      <div class="desktop-container mx-auto px-4 sm:px-6 lg:px-8 h-[72px] flex items-center justify-between">
+      <div class="desktop-container mx-auto px-4 sm:px-6 lg:px-8 h-[70px] flex items-center justify-between">
         
         <div class="flex items-center gap-3">
-          <div class="w-11 h-11 rounded-[14px] bg-[#0b1220] border border-[#d5a04f]/40 flex items-center justify-center shadow-lg">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d5a04f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <div class="w-10 h-10 rounded-[12px] bg-[#0b1220] border border-[#d5a04f]/40 flex items-center justify-center shadow-lg">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d5a04f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/>
               <polyline points="9 21 9 12 15 12 15 21"/>
             </svg>
           </div>
           <div>
             <div class="text-sm font-extrabold text-white tracking-wide">Nestora Control</div>
-            <div class="text-[9px] font-bold tracking-[.15em] text-[#d5a04f] uppercase mt-0.5">Super Admin Portal</div>
+            <div class="text-[8.5px] font-bold tracking-[.15em] text-[#d5a04f] uppercase mt-0.5">Super Admin Portal</div>
           </div>
         </div>
 
         <div class="flex items-center gap-2">
-          <button onclick="switchToPublicView()" class="hidden sm:inline-flex items-center gap-2 border border-white/10 bg-white/5 hover:bg-white/10 text-slate-200 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition">
+          <button onclick="switchToPublicView()" class="hidden sm:inline-flex items-center gap-2 border border-white/10 bg-white/5 hover:bg-white/10 text-slate-200 px-3.5 py-2 rounded-xl text-xs font-semibold transition">
             Live Catalogue <span>↗</span>
           </button>
-          <button onclick="logoutAdmin()" class="inline-flex items-center gap-2 bg-white/10 hover:bg-red-500/15 border border-white/10 text-slate-200 hover:text-red-300 px-3.5 py-2.5 rounded-xl text-xs font-bold transition">
+          <button onclick="logoutAdmin()" class="inline-flex items-center gap-2 bg-white/10 hover:bg-red-500/15 border border-white/10 text-slate-200 hover:text-red-300 px-3.5 py-2 rounded-xl text-xs font-bold transition">
             Sign Out
           </button>
         </div>
@@ -443,62 +624,62 @@
 
       <div class="desktop-container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center gap-1 overflow-x-auto no-scrollbar">
-          <button onclick="switchAdminTab('overview')" id="tabBtnOverview" class="admin-tab shrink-0 px-4 py-3 text-xs font-bold text-[#d5a04f] border-b-2 border-[#d5a04f]">Overview</button>
-          <button onclick="switchAdminTab('properties')" id="tabBtnProps" class="admin-tab shrink-0 px-4 py-3 text-xs font-semibold text-slate-400 border-b-2 border-transparent">Properties</button>
+          <button onclick="switchAdminTab('overview')" id="tabBtnOverview" class="admin-tab shrink-0 px-4 py-2.5 text-xs font-bold text-[#d5a04f] border-b-2 border-[#d5a04f]">Overview</button>
+          <button onclick="switchAdminTab('properties')" id="tabBtnProps" class="admin-tab shrink-0 px-4 py-2.5 text-xs font-semibold text-slate-400 border-b-2 border-transparent">Properties</button>
         </div>
       </div>
     </header>
 
-    <main class="desktop-container mx-auto w-full px-4 sm:px-6 lg:px-8 py-5 sm:py-8 pb-16">
+    <main class="desktop-container mx-auto w-full px-4 sm:px-6 lg:px-8 py-5 sm:py-7 pb-16">
       
       <!-- STATS -->
       <section id="overviewStatsSection" class="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <div class="bg-white border border-[#e7e4dc] rounded-[22px] p-4 sm:p-5 soft-shadow">
+        <div class="bg-white border border-[#e7e4dc] rounded-[20px] p-4 soft-shadow">
           <div class="flex items-center justify-between">
             <span class="text-[9px] font-extrabold uppercase tracking-wider text-slate-400">Inventory</span>
-            <span class="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center text-slate-600 font-black">#</span>
+            <span class="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600 font-black text-xs">#</span>
           </div>
-          <div id="statTotal" class="brand-font text-3xl font-extrabold text-slate-900 mt-3">0</div>
-          <div class="text-[10px] text-slate-400 mt-1">Total properties</div>
+          <div id="statTotal" class="brand-font text-2xl font-extrabold text-slate-900 mt-2">0</div>
+          <div class="text-[9.5px] text-slate-400 mt-0.5">Total properties</div>
         </div>
 
-        <div class="bg-white border border-[#e7e4dc] rounded-[22px] p-4 sm:p-5 soft-shadow">
+        <div class="bg-white border border-[#e7e4dc] rounded-[20px] p-4 soft-shadow">
           <div class="flex items-center justify-between">
             <span class="text-[9px] font-extrabold uppercase tracking-wider text-emerald-600">Available</span>
-            <span class="w-8 h-8 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 font-bold">✓</span>
+            <span class="w-7 h-7 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600 font-bold text-xs">✓</span>
           </div>
-          <div id="statActive" class="brand-font text-3xl font-extrabold text-emerald-600 mt-3">0</div>
-          <div class="text-[10px] text-slate-400 mt-1">Active listings</div>
+          <div id="statActive" class="brand-font text-2xl font-extrabold text-emerald-600 mt-2">0</div>
+          <div class="text-[9.5px] text-slate-400 mt-0.5">Active listings</div>
         </div>
 
-        <div class="bg-white border border-[#e7e4dc] rounded-[22px] p-4 sm:p-5 soft-shadow">
+        <div class="bg-white border border-[#e7e4dc] rounded-[20px] p-4 soft-shadow">
           <div class="flex items-center justify-between">
             <span class="text-[9px] font-extrabold uppercase tracking-wider text-[#a8752c]">Reserved</span>
-            <span class="w-8 h-8 rounded-xl bg-[#f8efdf] flex items-center justify-center text-[#a8752c]">◷</span>
+            <span class="w-7 h-7 rounded-lg bg-[#f8efdf] flex items-center justify-center text-[#a8752c] text-xs">◷</span>
           </div>
-          <div id="statReserved" class="brand-font text-3xl font-extrabold text-[#a8752c] mt-3">0</div>
-          <div class="text-[10px] text-slate-400 mt-1">Reserved listings</div>
+          <div id="statReserved" class="brand-font text-2xl font-extrabold text-[#a8752c] mt-2">0</div>
+          <div class="text-[9.5px] text-slate-400 mt-0.5">Reserved listings</div>
         </div>
 
-        <div class="bg-white border border-[#e7e4dc] rounded-[22px] p-4 sm:p-5 soft-shadow">
+        <div class="bg-white border border-[#e7e4dc] rounded-[20px] p-4 soft-shadow">
           <div class="flex items-center justify-between">
             <span class="text-[9px] font-extrabold uppercase tracking-wider text-red-500">Sold</span>
-            <span class="w-8 h-8 rounded-xl bg-red-50 flex items-center justify-center text-red-500 font-bold">✕</span>
+            <span class="w-7 h-7 rounded-lg bg-red-50 flex items-center justify-center text-red-500 font-bold text-xs">✕</span>
           </div>
-          <div id="statSold" class="brand-font text-3xl font-extrabold text-slate-900 mt-3">0</div>
-          <div class="text-[10px] text-slate-400 mt-1">Closed listings</div>
+          <div id="statSold" class="brand-font text-2xl font-extrabold text-slate-900 mt-2">0</div>
+          <div class="text-[9.5px] text-slate-400 mt-0.5">Closed listings</div>
         </div>
       </section>
 
       <!-- PROPERTY DIRECTORY SECTION -->
-      <section id="propertyTableSection" class="bg-white border border-[#e7e4dc] rounded-[26px] p-4 sm:p-6 soft-shadow mt-5">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
+      <section id="propertyTableSection" class="bg-white border border-[#e7e4dc] rounded-[24px] p-4 sm:p-5 soft-shadow mt-5">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
           <div>
             <div class="section-label">Inventory</div>
-            <h2 class="brand-font text-lg sm:text-xl font-extrabold text-slate-900 mt-1">Property Directory</h2>
-            <p class="text-xs text-slate-400 mt-1">Manage listings, view multiple photos, or call original owners directly.</p>
+            <h2 class="brand-font text-lg font-extrabold text-slate-900 mt-0.5">Property Directory</h2>
+            <p class="text-xs text-slate-400 mt-0.5">Manage listings, view multiple photos, or call original owners directly.</p>
           </div>
-          <button onclick="openAddProperty()" class="self-start sm:self-auto bg-[#0b1220] hover:bg-[#162238] text-white px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-sm">
+          <button onclick="openAddProperty()" class="self-start sm:self-auto bg-[#0b1220] hover:bg-[#162238] text-white px-4 py-2 rounded-xl text-xs font-bold transition shadow-sm">
             + Add Property
           </button>
         </div>
@@ -522,30 +703,30 @@
       </section>
 
       <!-- PROPERTY ADD / EDIT FORM -->
-      <section id="propertyFormSection" class="hidden bg-white border border-[#e7e4dc] rounded-[28px] p-5 sm:p-7 soft-shadow mt-5">
-        <div class="flex items-start justify-between gap-4 pb-5 border-b border-slate-100">
+      <section id="propertyFormSection" class="hidden bg-white border border-[#e7e4dc] rounded-[26px] p-5 sm:p-6 soft-shadow mt-5">
+        <div class="flex items-start justify-between gap-4 pb-4 border-b border-slate-100">
           <div>
             <div class="section-label">Property Editor</div>
-            <h2 id="formHeading" class="brand-font text-xl sm:text-2xl font-extrabold text-slate-900 mt-1">Add Property</h2>
-            <p class="text-xs text-slate-400 mt-1 leading-5">Save accurate property specifications and confidential owner details.</p>
+            <h2 id="formHeading" class="brand-font text-xl font-extrabold text-slate-900 mt-0.5">Add Property</h2>
+            <p class="text-xs text-slate-400 mt-0.5">Save accurate specifications and confidential owner details.</p>
           </div>
-          <button type="button" onclick="switchAdminTab('properties')" class="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center font-bold shrink-0">✕</button>
+          <button type="button" onclick="switchAdminTab('properties')" class="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center font-bold shrink-0">✕</button>
         </div>
 
-        <form id="propertyForm" onsubmit="handleFormSubmit(event)" class="space-y-7 mt-6">
+        <form id="propertyForm" onsubmit="handleFormSubmit(event)" class="space-y-6 mt-5">
           <input type="hidden" id="editingRecordId" value="">
 
           <!-- 1. BASIC -->
           <div>
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-9 h-9 rounded-xl bg-[#f7eee0] text-[#a8752c] flex items-center justify-center font-bold">01</div>
+            <div class="flex items-center gap-2.5 mb-3">
+              <div class="w-8 h-8 rounded-lg bg-[#f7eee0] text-[#a8752c] flex items-center justify-center font-bold text-xs">01</div>
               <div>
                 <div class="section-label">Basic Information</div>
-                <div class="text-xs font-bold text-slate-500 mt-0.5">Identity and availability</div>
+                <div class="text-[11px] font-bold text-slate-500">Identity and category</div>
               </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               <div>
                 <label class="admin-label">Property ID *</label>
                 <input type="text" id="propRef" required readonly class="admin-input bg-slate-100 text-[#a8752c] font-mono font-bold cursor-not-allowed">
@@ -564,12 +745,12 @@
               </div>
             </div>
 
-            <div class="mt-4">
+            <div class="mt-3.5">
               <label class="admin-label">Property Title *</label>
               <input type="text" id="propTitle" placeholder="15 Cent Residential Plot near Desom Junction" required class="admin-input">
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-3.5">
               <div>
                 <label class="admin-label">Status *</label>
                 <select id="propStatus" class="admin-input">
@@ -579,7 +760,7 @@
               </div>
 
               <div class="flex items-center pt-2 sm:pt-6">
-                <label class="flex items-center gap-3 cursor-pointer text-xs font-bold text-slate-700">
+                <label class="flex items-center gap-2.5 cursor-pointer text-xs font-bold text-slate-700">
                   <input type="checkbox" id="propIsFeatured" class="w-4 h-4 rounded accent-[#c9974b]">
                   Mark as Featured Opportunity
                 </label>
@@ -589,15 +770,15 @@
 
           <!-- 2. LOCATION -->
           <div>
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-9 h-9 rounded-xl bg-[#f7eee0] text-[#a8752c] flex items-center justify-center font-bold">02</div>
+            <div class="flex items-center gap-2.5 mb-3">
+              <div class="w-8 h-8 rounded-lg bg-[#f7eee0] text-[#a8752c] flex items-center justify-center font-bold text-xs">02</div>
               <div>
                 <div class="section-label">Location</div>
-                <div class="text-xs font-bold text-slate-500 mt-0.5">Geographic details</div>
+                <div class="text-[11px] font-bold text-slate-500">Geographic details</div>
               </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               <div>
                 <label class="admin-label">District</label>
                 <input type="text" id="propDistrict" value="Ernakulam" class="admin-input">
@@ -608,17 +789,17 @@
               </div>
             </div>
 
-            <div class="mt-4">
+            <div class="mt-3.5">
               <label class="admin-label">Locality / Area *</label>
               <input type="text" id="propLocality" placeholder="Desom, Choornikkara" required class="admin-input">
             </div>
 
-            <div class="mt-4">
+            <div class="mt-3.5">
               <label class="admin-label">Full Location String *</label>
               <input type="text" id="propLocation" placeholder="Near Desom Junction, Aluva, Ernakulam, Kerala" required class="admin-input">
             </div>
 
-            <div class="mt-4">
+            <div class="mt-3.5">
               <label class="admin-label">Google Maps URL</label>
               <input type="url" id="propMapsUrl" placeholder="https://maps.google.com/?q=..." class="admin-input">
             </div>
@@ -626,11 +807,11 @@
 
           <!-- 3. SPECS & PRICING -->
           <div>
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-9 h-9 rounded-xl bg-[#f7eee0] text-[#a8752c] flex items-center justify-center font-bold">03</div>
+            <div class="flex items-center gap-2.5 mb-3">
+              <div class="w-8 h-8 rounded-lg bg-[#f7eee0] text-[#a8752c] flex items-center justify-center font-bold text-xs">03</div>
               <div>
                 <div class="section-label">Specifications & Pricing</div>
-                <div class="text-xs font-bold text-slate-500 mt-0.5">Size, price and utilities</div>
+                <div class="text-[11px] font-bold text-slate-500">Size, price and utilities</div>
               </div>
             </div>
 
@@ -639,7 +820,7 @@
               <input type="number" id="propPrice" placeholder="9600000" required class="admin-input">
             </div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-4">
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3.5 mt-3.5">
               <div>
                 <label class="admin-label">Land Area</label>
                 <input type="text" id="propSize" placeholder="12" class="admin-input">
@@ -659,12 +840,12 @@
               </div>
             </div>
 
-            <div class="mt-4">
+            <div class="mt-3.5">
               <label class="admin-label">Road Width / Access</label>
               <input type="text" id="propRoadAccess" placeholder="16 feet tar road, lorry access" class="admin-input">
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-3.5">
               <div>
                 <label class="admin-label">Water Supply</label>
                 <input type="text" id="propWaterSupply" placeholder="Open well, KWA municipal line" class="admin-input">
@@ -675,7 +856,7 @@
               </div>
             </div>
 
-            <div class="mt-4">
+            <div class="mt-3.5">
               <label class="admin-label">Document Approvals Status</label>
               <input type="text" id="propApprovals" placeholder="Clear Title, Approved Plan, Possession Certificate" class="admin-input">
             </div>
@@ -683,11 +864,11 @@
 
           <!-- 4. MEDIA (MULTIPLE IMAGES SUPPORT) -->
           <div>
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-9 h-9 rounded-xl bg-[#f7eee0] text-[#a8752c] flex items-center justify-center font-bold">04</div>
+            <div class="flex items-center gap-2.5 mb-3">
+              <div class="w-8 h-8 rounded-lg bg-[#f7eee0] text-[#a8752c] flex items-center justify-center font-bold text-xs">04</div>
               <div>
-                <div class="section-label">Property Photos (Multiple Supported)</div>
-                <div class="text-xs font-bold text-slate-500 mt-0.5">Select multiple photos at once from Gallery or Files</div>
+                <div class="section-label">Property Photos</div>
+                <div class="text-[11px] font-bold text-slate-500">Multiple photos supported</div>
               </div>
             </div>
 
@@ -695,17 +876,17 @@
             <input type="file" id="propFilesInput" multiple class="hidden" onchange="handleMultipleFileUpload(event)">
 
             <div class="space-y-3">
-              <div class="grid grid-cols-2 gap-3">
-                <button type="button" onclick="document.getElementById('propGalleryInput').click()" class="border-2 border-dashed border-[#ead7b4] hover:border-[#d5a04f] rounded-2xl p-4 text-center bg-[#fcfaf6] transition cursor-pointer">
-                  <div class="w-10 h-10 rounded-xl bg-white text-[#d5a04f] border border-[#ead7b4] flex items-center justify-center mx-auto mb-2 text-lg shadow-sm">
+              <div class="grid grid-cols-2 gap-2.5">
+                <button type="button" onclick="document.getElementById('propGalleryInput').click()" class="border-2 border-dashed border-[#ead7b4] hover:border-[#d5a04f] rounded-xl p-3 text-center bg-[#fcfaf6] transition cursor-pointer">
+                  <div class="w-8 h-8 rounded-lg bg-white text-[#d5a04f] border border-[#ead7b4] flex items-center justify-center mx-auto mb-1 text-base shadow-sm">
                     🖼️
                   </div>
                   <div class="text-xs font-black text-slate-800">Add from Gallery</div>
-                  <div class="text-[9px] text-slate-400 mt-0.5">Multiple photos allowed</div>
+                  <div class="text-[9px] text-slate-400 mt-0.5">Multiple selection</div>
                 </button>
 
-                <button type="button" onclick="document.getElementById('propFilesInput').click()" class="border-2 border-dashed border-[#ead7b4] hover:border-[#d5a04f] rounded-2xl p-4 text-center bg-[#fcfaf6] transition cursor-pointer">
-                  <div class="w-10 h-10 rounded-xl bg-white text-[#d5a04f] border border-[#ead7b4] flex items-center justify-center mx-auto mb-2 text-lg shadow-sm">
+                <button type="button" onclick="document.getElementById('propFilesInput').click()" class="border-2 border-dashed border-[#ead7b4] hover:border-[#d5a04f] rounded-xl p-3 text-center bg-[#fcfaf6] transition cursor-pointer">
+                  <div class="w-8 h-8 rounded-lg bg-white text-[#d5a04f] border border-[#ead7b4] flex items-center justify-center mx-auto mb-1 text-base shadow-sm">
                     📁
                   </div>
                   <div class="text-xs font-black text-slate-800">Add from Files</div>
@@ -721,7 +902,7 @@
                   <span>Selected Photos (<span id="photoCountBadge">0</span>)</span>
                   <span class="text-[10px] text-slate-400 font-normal">Tap to view full slider</span>
                 </div>
-                <div id="multiImageGrid" class="grid grid-cols-3 sm:grid-cols-4 gap-2.5"></div>
+                <div id="multiImageGrid" class="grid grid-cols-3 sm:grid-cols-4 gap-2"></div>
               </div>
 
               <div>
@@ -733,28 +914,28 @@
 
           <!-- 5. DESCRIPTION -->
           <div>
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-9 h-9 rounded-xl bg-[#f7eee0] text-[#a8752c] flex items-center justify-center font-bold">05</div>
+            <div class="flex items-center gap-2.5 mb-3">
+              <div class="w-8 h-8 rounded-lg bg-[#f7eee0] text-[#a8752c] flex items-center justify-center font-bold text-xs">05</div>
               <div>
                 <div class="section-label">Description</div>
-                <div class="text-xs font-bold text-slate-500 mt-0.5">Property highlights & key features</div>
+                <div class="text-[11px] font-bold text-slate-500">Key features and highlights</div>
               </div>
             </div>
 
-            <textarea id="propDescription" rows="5" placeholder="Provide a detailed description of the property, road frontage, proximity to highway..." class="admin-input resize-y"></textarea>
+            <textarea id="propDescription" rows="4" placeholder="Provide detailed specifications of the property..." class="admin-input resize-y"></textarea>
           </div>
 
           <!-- 6. CONFIDENTIAL OWNER CONTACT -->
-          <div class="rounded-[22px] border border-[#ead7b4] bg-[#fcf7ed] p-5">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-9 h-9 rounded-xl bg-white text-[#a8752c] flex items-center justify-center font-bold shadow-sm">06</div>
+          <div class="rounded-[20px] border border-[#ead7b4] bg-[#fcf7ed] p-4 sm:p-5">
+            <div class="flex items-center gap-2.5 mb-3">
+              <div class="w-8 h-8 rounded-lg bg-white text-[#a8752c] flex items-center justify-center font-bold shadow-sm text-xs">06</div>
               <div>
                 <div class="section-label">Confidential Owner Information</div>
-                <div class="text-xs font-bold text-slate-500 mt-0.5">Visible only in Super Admin. Strictly hidden from public catalog and flyers.</div>
+                <div class="text-[11px] font-bold text-slate-500 mt-0.5">Admin private. Hidden from catalog & flyers.</div>
               </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               <div>
                 <label class="admin-label">Original Owner / Contact Name</label>
                 <input type="text" id="propOwnerName" placeholder="Owner Name" class="admin-input bg-white">
@@ -767,11 +948,11 @@
           </div>
 
           <!-- FORM SUBMIT -->
-          <div class="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-2.5 pt-2">
-            <button type="button" onclick="switchAdminTab('properties')" class="w-full sm:w-auto px-5 py-3 rounded-xl text-xs font-bold text-slate-500 hover:bg-slate-100 transition">
+          <div class="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-2 pt-2">
+            <button type="button" onclick="switchAdminTab('properties')" class="w-full sm:w-auto px-5 py-2.5 rounded-xl text-xs font-bold text-slate-500 hover:bg-slate-100 transition">
               Cancel
             </button>
-            <button type="submit" id="savePropertyBtn" class="w-full sm:w-auto bg-[#0b1220] hover:bg-[#162238] text-white font-extrabold px-7 py-3 rounded-xl text-xs shadow-lg transition">
+            <button type="submit" id="savePropertyBtn" class="w-full sm:w-auto bg-[#0b1220] hover:bg-[#162238] text-white font-extrabold px-6 py-2.5 rounded-xl text-xs shadow-lg transition">
               Save Property
             </button>
           </div>
@@ -782,37 +963,37 @@
 
   <!-- ADMIN AUTH MODAL -->
   <div id="adminAuthModal" class="fixed inset-0 z-[70] hidden items-center justify-center p-4 bg-[#07101d]/75 backdrop-blur-md">
-    <div class="w-full max-w-sm bg-white rounded-[28px] p-6 sm:p-7 premium-shadow">
+    <div class="w-full max-w-sm bg-white rounded-[26px] p-6 premium-shadow">
       <div class="flex justify-center">
-        <div class="w-14 h-14 rounded-[18px] bg-[#f6eddd] text-[#a8752c] flex items-center justify-center">
+        <div class="w-12 h-12 rounded-[16px] bg-[#f6eddd] text-[#a8752c] flex items-center justify-center">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
           </svg>
         </div>
       </div>
 
-      <div class="text-center mt-4">
+      <div class="text-center mt-3">
         <div class="section-label">Private Access</div>
-        <h3 class="brand-font text-xl font-extrabold text-slate-900 mt-1">Nestora Admin Portal</h3>
-        <p class="text-xs text-slate-500 mt-2 leading-5">Enter your administrator passcode to manage inventory.</p>
+        <h3 class="brand-font text-lg font-extrabold text-slate-900 mt-1">Nestora Admin Portal</h3>
+        <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Enter your passcode to manage inventory.</p>
       </div>
 
       <input
         type="password"
         id="adminPassInput"
         placeholder="Enter passcode"
-        class="w-full mt-5 h-12 rounded-2xl bg-slate-50 border border-slate-200 px-4 text-center tracking-[.3em] text-sm outline-none focus:bg-white focus:border-[#c9974b]"
+        class="w-full mt-4 h-11 rounded-xl bg-slate-50 border border-slate-200 px-4 text-center tracking-[.3em] text-sm outline-none focus:bg-white focus:border-[#c9974b]"
         onkeydown="if(event.key==='Enter') verifyAdminPasscode()"
       >
 
-      <div class="grid grid-cols-2 gap-2.5 mt-3">
-        <button onclick="toggleAdminModal(false)" class="py-3 rounded-xl text-xs font-bold text-slate-500 bg-slate-50 hover:bg-slate-100">Cancel</button>
-        <button onclick="verifyAdminPasscode()" class="py-3 rounded-xl text-xs font-extrabold text-white bg-[#0b1220] hover:bg-[#172238]">Unlock</button>
+      <div class="grid grid-cols-2 gap-2 mt-3">
+        <button onclick="toggleAdminModal(false)" class="py-2.5 rounded-xl text-xs font-bold text-slate-500 bg-slate-50 hover:bg-slate-100">Cancel</button>
+        <button onclick="verifyAdminPasscode()" class="py-2.5 rounded-xl text-xs font-extrabold text-white bg-[#0b1220] hover:bg-[#172238]">Unlock</button>
       </div>
     </div>
   </div>
 
-  <!-- UPGRADED LUXURY REAL ESTATE E-POSTER FLYER (1080x1350) -->
+  <!-- UPGRADED LUXURY REAL ESTATE FLYER (1080x1350) -->
   <div id="flyerContainer" style="position:absolute;left:-9999px;top:-9999px;">
     <div id="flyerPoster" style="width:1080px;height:1350px;background:#f8f9fb;color:#0f172a;position:relative;overflow:hidden;font-family:'DM Sans',sans-serif;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;padding:52px 56px 48px;">
       
@@ -889,7 +1070,7 @@
     </div>
   </div>
 
-  <!-- FULL SCREEN SLIDING IMAGE LIGHTBOX WITH SWIPE SUPPORT -->
+  <!-- FULL SCREEN SLIDING IMAGE LIGHTBOX (WITH SWIPE & SLIDE) -->
   <div id="imageLightboxModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/95 backdrop-blur-md select-none touch-pan-y" onclick="closeImageLightbox()">
     
     <!-- TOP BAR -->
@@ -903,12 +1084,12 @@
     </div>
 
     <!-- PREV BUTTON -->
-    <button id="lightboxPrevBtn" type="button" onclick="event.stopPropagation(); prevLightboxImage()" class="absolute left-3 sm:left-6 z-[110] w-12 h-12 rounded-full bg-white/15 hover:bg-white/25 text-white font-black flex items-center justify-center text-xl backdrop-blur-sm transition">
+    <button id="lightboxPrevBtn" type="button" onclick="event.stopPropagation(); prevLightboxImage()" class="absolute left-3 sm:left-6 z-[110] w-11 h-11 rounded-full bg-white/15 hover:bg-white/25 text-white font-black flex items-center justify-center text-xl backdrop-blur-sm transition">
       ❮
     </button>
 
     <!-- NEXT BUTTON -->
-    <button id="lightboxNextBtn" type="button" onclick="event.stopPropagation(); nextLightboxImage()" class="absolute right-3 sm:right-6 z-[110] w-12 h-12 rounded-full bg-white/15 hover:bg-white/25 text-white font-black flex items-center justify-center text-xl backdrop-blur-sm transition">
+    <button id="lightboxNextBtn" type="button" onclick="event.stopPropagation(); nextLightboxImage()" class="absolute right-3 sm:right-6 z-[110] w-11 h-11 rounded-full bg-white/15 hover:bg-white/25 text-white font-black flex items-center justify-center text-xl backdrop-blur-sm transition">
       ❯
     </button>
 
@@ -917,7 +1098,7 @@
       <img id="lightboxImage" src="" alt="Full view" class="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl transition duration-200">
     </div>
 
-    <div class="absolute bottom-5 text-center text-white/50 text-[11px] pointer-events-none">
+    <div class="absolute bottom-4 text-center text-white/50 text-[10.5px] pointer-events-none">
       Swipe left / right or use arrows to change photo
     </div>
   </div>
@@ -1053,7 +1234,7 @@
       document.body.style.overflow = "";
     }
 
-    /* TOUCH SWIPE EVENT LISTENERS FOR MOBILE */
+    /* TOUCH SWIPE EVENT LISTENERS */
     const lightboxElem = document.getElementById("imageLightboxModal");
     lightboxElem.addEventListener("touchstart", e => {
       touchStartX = e.changedTouches[0].screenX;
@@ -1068,14 +1249,13 @@
       const diff = touchEndX - touchStartX;
       if (Math.abs(diff) > 45) {
         if (diff < 0) {
-          nextLightboxImage(); // Swiped Left -> Next Photo
+          nextLightboxImage();
         } else {
-          prevLightboxImage(); // Swiped Right -> Prev Photo
+          prevLightboxImage();
         }
       }
     }
 
-    // Keyboard Arrow Keys Support
     window.addEventListener("keydown", e => {
       const modal = document.getElementById("imageLightboxModal");
       if (!modal.classList.contains("hidden")) {
@@ -1144,7 +1324,7 @@
       urlInput.value = uploadedImagesList.join(", ");
 
       grid.innerHTML = uploadedImagesList.map((url, idx) => `
-        <div class="relative h-24 rounded-xl overflow-hidden border border-slate-200 bg-slate-100 group">
+        <div class="relative h-20 rounded-xl overflow-hidden border border-slate-200 bg-slate-100 group">
           <img src="${url}" class="w-full h-full object-cover cursor-pointer" onclick="openLightboxSlider(uploadedImagesList, ${idx})">
           <button type="button" onclick="removeSingleImage(${idx})" class="absolute top-1 right-1 bg-black/70 hover:bg-black text-white text-[9px] w-5 h-5 rounded-full flex items-center justify-center font-bold">
             ✕
@@ -1220,9 +1400,12 @@
       applyFilters();
     }
 
+    /* 3. CLEAN SEARCH AND FILTER ENGINE */
     function applyFilters() {
       const search = (document.getElementById("searchInput")?.value || "").toLowerCase().trim();
       const status = document.getElementById("statusFilter")?.value || "all";
+      const location = document.getElementById("locationFilter")?.value || "all";
+      const budget = document.getElementById("budgetFilter")?.value || "all";
       let list = [...allProperties];
 
       if (selectedCategory !== "all") {
@@ -1230,6 +1413,21 @@
       }
       if (status !== "all") {
         list = list.filter(p => (p.status || "active") === status);
+      }
+      if (location !== "all") {
+        list = list.filter(p => {
+          const locStr = [p.location, p.city, p.district, p.locality].filter(Boolean).join(" ").toLowerCase();
+          return locStr.includes(location.toLowerCase());
+        });
+      }
+      if (budget !== "all") {
+        list = list.filter(p => {
+          const price = Number(p.price || 0);
+          if (budget === "under_50l") return price < 5000000;
+          if (budget === "50l_1cr") return price >= 5000000 && price <= 10000000;
+          if (budget === "above_1cr") return price > 10000000;
+          return true;
+        });
       }
       if (search) {
         list = list.filter(p => {
@@ -1244,15 +1442,16 @@
       renderPropertyCards(list);
     }
 
+    /* 4. RENDER PROPERTY CARD WITH IMPROVED HIERARCHY */
     function renderPropertyCards(list) {
       const grid = document.getElementById("propertiesGrid");
       if (!list.length) {
         grid.innerHTML = `
           <div class="md:col-span-2 xl:col-span-3">
-            <div class="bg-white border border-dashed border-slate-200 rounded-[26px] p-12 text-center">
-              <div class="w-14 h-14 rounded-2xl bg-slate-100 mx-auto flex items-center justify-center text-slate-400 text-xl">⌕</div>
-              <div class="brand-font text-lg font-extrabold text-slate-800 mt-4">No matching properties</div>
-              <div class="text-xs text-slate-400 mt-1">Try another locality, category or status.</div>
+            <div class="bg-white border border-dashed border-slate-200 rounded-[24px] p-10 text-center">
+              <div class="w-12 h-12 rounded-xl bg-slate-100 mx-auto flex items-center justify-center text-slate-400 text-lg">⌕</div>
+              <div class="brand-font text-base font-extrabold text-slate-800 mt-3">No matching properties found</div>
+              <div class="text-xs text-slate-400 mt-1">Try resetting the filters or keyword search.</div>
             </div>
           </div>`;
         return;
@@ -1261,70 +1460,75 @@
       grid.innerHTML = list.map((p, index) => {
         const isSold = p.status === "sold";
         const ref = p.reference_code || "NP-" + String(index + 1).padStart(3, "0");
-        const area = p.size ? `${p.size} ${p.area_unit || "Cent"}` : "Verified Area";
-        const road = p.road_access || "Direct Access";
+        const area = p.size ? `${p.size} ${p.area_unit || "Cent"}` : "Verified Extent";
         const imgs = parseImages(p.image_url);
         const mainImg = imgs[0] || "";
 
         return `
-          <article onclick="openDedicatedDetails('${p.id}')" class="property-card bg-white border border-[#e7e4dc] rounded-[26px] overflow-hidden cursor-pointer soft-shadow">
-            <div class="relative h-[250px] sm:h-[270px] bg-slate-100 overflow-hidden">
-              <img src="${escapeHtml(mainImg)}" alt="${escapeHtml(p.title || "Property")}" loading="lazy" class="w-full h-full object-cover ${isSold ? "grayscale" : ""}" onerror="this.style.display='none'">
-              <div class="absolute inset-0 bg-gradient-to-t from-[#08101d]/75 via-transparent to-transparent pointer-events-none"></div>
+          <article onclick="openDedicatedDetails('${p.id}')" class="property-card bg-white border border-[#e7e4dc] soft-shadow cursor-pointer">
+            <div class="property-image">
+              <img src="${escapeHtml(mainImg)}" alt="${escapeHtml(p.title || "Property")}" loading="lazy" class="${isSold ? "grayscale" : ""}" onerror="this.style.display='none'">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none"></div>
               
-              <div class="absolute top-4 left-4 flex items-center gap-2">
-                <span class="bg-[#d86b2c] text-white px-3 py-1.5 rounded-full text-[9px] font-extrabold uppercase tracking-wider shadow-lg">${escapeHtml(p.category || "Property")}</span>
-                ${p.is_featured ? `<span class="bg-[#d5a04f] text-[#0b1220] px-2.5 py-1.5 rounded-full text-[9px] font-extrabold shadow-lg">★</span>` : ""}
-              </div>
+              <span class="absolute top-3.5 left-3.5 bg-[#d86b2c] text-white px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-wider shadow">
+                ${escapeHtml(p.category || "Property")}
+              </span>
+
+              <span class="absolute top-3.5 right-3.5 bg-black/60 backdrop-blur-md text-emerald-400 border border-white/10 px-2.5 py-1 rounded-full text-[9px] font-extrabold flex items-center gap-1 shadow">
+                ✓ Verified
+              </span>
 
               ${imgs.length > 1 ? `
-                <span class="absolute bottom-12 right-4 bg-black/70 backdrop-blur-md text-white border border-white/20 px-2.5 py-1 rounded-lg text-[9px] font-bold flex items-center gap-1">
-                  📷 ${imgs.length} Photos
+                <span class="absolute bottom-3 right-3 bg-black/70 backdrop-blur-md text-white border border-white/15 px-2 py-0.5 rounded-lg text-[9px] font-bold flex items-center gap-1">
+                  📷 ${imgs.length}
                 </span>
               ` : ''}
-
-              <span class="absolute top-4 right-4 bg-[#0b1220]/75 backdrop-blur-md text-white border border-white/10 px-2.5 py-1.5 rounded-xl text-[9px] font-mono font-bold">${escapeHtml(ref)}</span>
-              
-              <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3">
-                <div class="text-[9px] font-bold text-[#e4c890] uppercase tracking-wider">${escapeHtml((p.location || "Kerala").toUpperCase())}</div>
-                <span class="bg-black/65 backdrop-blur-md text-emerald-300 border border-white/10 px-2.5 py-1.5 rounded-full text-[9px] font-extrabold whitespace-nowrap">✓ VERIFIED</span>
-              </div>
             </div>
 
-            <div class="p-4 sm:p-5">
-              <h3 class="brand-font text-[17px] sm:text-[18px] font-extrabold text-slate-900 leading-snug line-clamp-2 min-h-[48px]">${escapeHtml(p.title || "Property")}</h3>
-              <div class="flex items-center gap-1.5 text-xs text-slate-500 mt-2">
-                <span class="text-[#b17c31]">⌖</span>
+            <div class="property-content">
+              <div class="property-reference">
+                ${escapeHtml(ref)}
+              </div>
+
+              <h3 class="property-title line-clamp-2">
+                ${escapeHtml(p.title || "Property")}
+              </h3>
+
+              <div class="property-location truncate">
+                <span>📍</span>
                 <span class="truncate">${escapeHtml(p.location || "Kerala")}</span>
               </div>
 
-              <div class="grid grid-cols-3 gap-2 mt-5">
-                <div class="rounded-xl bg-[#f7f8fa] border border-slate-100 px-2 py-3 text-center">
-                  <div class="text-[8px] uppercase font-bold tracking-wider text-slate-400">Area</div>
-                  <div class="text-[10px] sm:text-[11px] font-extrabold text-slate-800 truncate mt-1">${escapeHtml(area)}</div>
-                </div>
-                <div class="rounded-xl bg-[#f7f8fa] border border-slate-100 px-2 py-3 text-center">
-                  <div class="text-[8px] uppercase font-bold tracking-wider text-slate-400">Road</div>
-                  <div class="text-[10px] sm:text-[11px] font-extrabold text-slate-800 truncate mt-1">${escapeHtml(road)}</div>
-                </div>
-                <div class="rounded-xl bg-[#f7f8fa] border border-slate-100 px-2 py-3 text-center">
-                  <div class="text-[8px] uppercase font-bold tracking-wider text-slate-400">Title</div>
-                  <div class="text-[10px] sm:text-[11px] font-extrabold text-emerald-600 truncate mt-1">Clear</div>
-                </div>
+              <div class="property-meta">
+                <span>${escapeHtml(area)}</span>
+                <span>${escapeHtml(p.category || "Plot")}</span>
+                ${p.road_access ? `<span>${escapeHtml(p.road_access)}</span>` : ''}
               </div>
 
-              <div class="mt-4 rounded-2xl bg-[#0b1220] p-3.5 flex items-center justify-between gap-3">
+              <div class="flex items-baseline justify-between mt-2 pt-2 border-t border-slate-100">
                 <div>
-                  <div class="text-[8px] uppercase font-bold tracking-[.13em] text-slate-400">Guide Price</div>
-                  <div class="brand-font text-base sm:text-lg font-extrabold text-[#e4ad59] mt-1">${formatINR(p.price)}</div>
+                  <div class="text-[9px] font-bold uppercase text-slate-400">Guide Price</div>
+                  <div class="property-price text-[#0b1220]">${formatINR(p.price)}</div>
                 </div>
                 <div class="text-right">
-                  <div class="text-[8px] uppercase font-bold tracking-[.1em] text-slate-500">Direct Desk</div>
-                  <div class="text-[10px] sm:text-[11px] font-bold text-white mt-1">+91 99464 46793</div>
+                  <span class="text-[9px] font-bold uppercase px-2 py-1 rounded ${isSold ? 'bg-amber-50 text-amber-700' : 'bg-emerald-50 text-emerald-700'}">
+                    ${isSold ? 'Sold' : 'Available'}
+                  </span>
                 </div>
               </div>
 
-              ${isSold ? `<div class="mt-3 text-center text-[10px] font-extrabold uppercase tracking-wider text-amber-700 bg-amber-50 rounded-xl py-2">Property Sold Out</div>` : ""}
+              <div class="property-updated">
+                Owner Listed · Verified Kerala Property
+              </div>
+
+              <div class="grid grid-cols-2 gap-2 mt-3.5 pt-3 border-t border-slate-100" onclick="event.stopPropagation()">
+                <a href="tel:${NESTORA_OFFICIAL_PHONE}" class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition">
+                  <span>📞</span> Call
+                </a>
+                <a href="https://wa.me/${NESTORA_OFFICIAL_PHONE}?text=${encodeURIComponent('Hello Nestora, interested in [' + ref + '] ' + (p.title || '') + ' - ' + formatINR(p.price))}" target="_blank" class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition shadow-sm">
+                  <span>💬</span> WhatsApp
+                </a>
+              </div>
             </div>
           </article>
         `;
@@ -1374,7 +1578,7 @@
       if (imgs.length > 1) {
         strip.classList.remove("hidden");
         strip.innerHTML = imgs.map((u, i) => `
-          <div class="w-16 h-16 rounded-xl overflow-hidden border-2 border-transparent hover:border-[#d5a04f] shrink-0 cursor-pointer transition shadow-sm" onclick="document.getElementById('detailImg').src='${u}'; openLightboxSlider(parseImages(activeProperty.image_url), ${i});">
+          <div class="w-14 h-14 rounded-xl overflow-hidden border-2 border-transparent hover:border-[#d5a04f] shrink-0 cursor-pointer transition shadow-sm" onclick="document.getElementById('detailImg').src='${u}'; openLightboxSlider(parseImages(activeProperty.image_url), ${i});">
             <img src="${u}" class="w-full h-full object-cover">
           </div>
         `).join("");
@@ -1397,7 +1601,7 @@
       const mapsWrap = document.getElementById("detailMapsBtnWrap");
       if (p.maps_url) {
         mapsWrap.innerHTML = `
-          <a href="${escapeHtml(p.maps_url)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#f8efdf] border border-[#ead7b4] text-[#9b6c27] px-3 py-2 rounded-xl text-[10px] font-extrabold">
+          <a href="${escapeHtml(p.maps_url)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-[#f8efdf] border border-[#ead7b4] text-[#9b6c27] px-3 py-1.5 rounded-xl text-[10px] font-extrabold">
             Map <span>↗</span>
           </a>`;
       } else {
@@ -1408,8 +1612,8 @@
       const statusBadge = document.getElementById("detailStatusBadge");
       statusBadge.innerText = isSold ? "SOLD OUT" : "AVAILABLE";
       statusBadge.className = isSold
-        ? "bg-amber-500 text-[#0b1220] text-[10px] font-extrabold px-3 py-1.5 rounded-full uppercase shadow"
-        : "bg-emerald-500 text-white text-[10px] font-extrabold px-3 py-1.5 rounded-full uppercase shadow";
+        ? "bg-amber-500 text-[#0b1220] text-[10px] font-extrabold px-3 py-1 rounded-full uppercase shadow"
+        : "bg-emerald-500 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase shadow";
 
       const targetPhone = NESTORA_OFFICIAL_PHONE;
       const waMsg = encodeURIComponent(`Hello Nestora Properties, I am interested in [${p.reference_code || p.title}] at ${p.location} (${formatINR(p.price)}). Please provide more details.`);
@@ -1477,47 +1681,47 @@
 
         return `
           <tr class="hover:bg-[#fbfaf7] transition cursor-pointer" onclick="openAdminPropertyDetails('${p.id}')">
-            <td class="py-4 px-3">
+            <td class="py-3.5 px-3">
               <div class="flex items-center gap-3">
-                <div class="relative w-12 h-12 rounded-xl overflow-hidden bg-slate-100 shrink-0">
+                <div class="relative w-11 h-11 rounded-xl overflow-hidden bg-slate-100 shrink-0">
                   <img src="${escapeHtml(mainImg)}" class="w-full h-full object-cover" onerror="this.style.display='none'">
                   ${imgs.length > 1 ? `<span class="absolute bottom-0 right-0 bg-black/80 text-white font-bold text-[8px] px-1 rounded-tl">${imgs.length}</span>` : ''}
                 </div>
                 <div class="min-w-0">
                   <div class="text-[9px] font-mono font-bold text-[#b17c31]">${escapeHtml(p.reference_code || "-")}</div>
-                  <div class="text-xs font-extrabold text-slate-900 truncate max-w-[260px] mt-1">${escapeHtml(p.title || "Property")}</div>
-                  <div class="text-[10px] text-slate-400 truncate max-w-[260px] mt-0.5">${escapeHtml(p.location || "-")}</div>
+                  <div class="text-xs font-extrabold text-slate-900 truncate max-w-[260px] mt-0.5">${escapeHtml(p.title || "Property")}</div>
+                  <div class="text-[10px] text-slate-400 truncate max-w-[260px]">${escapeHtml(p.location || "-")}</div>
                 </div>
               </div>
             </td>
 
-            <td class="py-4 px-3">
+            <td class="py-3.5 px-3">
               <div class="text-xs font-extrabold text-slate-900">${formatINR(p.price)}</div>
-              <div class="text-[9px] text-slate-400 mt-1">${escapeHtml(p.category || "-")}</div>
+              <div class="text-[9px] text-slate-400 mt-0.5">${escapeHtml(p.category || "-")}</div>
             </td>
 
-            <td class="py-4 px-3">
+            <td class="py-3.5 px-3">
               <div class="text-xs font-bold text-slate-800">${escapeHtml(p.owner_name || "Owner")}</div>
-              <div class="mt-1">
+              <div class="mt-0.5">
                 ${p.owner_phone ? `
-                  <a href="tel:${p.owner_phone}" onclick="event.stopPropagation()" class="inline-flex items-center gap-1.5 text-[11px] font-extrabold text-[#b17c31] hover:underline bg-[#f8efdf] px-2.5 py-1 rounded-lg">
+                  <a href="tel:${p.owner_phone}" onclick="event.stopPropagation()" class="inline-flex items-center gap-1.5 text-[10.5px] font-extrabold text-[#b17c31] hover:underline bg-[#f8efdf] px-2 py-0.5 rounded-lg">
                     <span>📞</span> ${escapeHtml(p.owner_phone)}
                   </a>
                 ` : `<span class="text-[10px] text-slate-400">Not recorded</span>`}
               </div>
             </td>
 
-            <td class="py-4 px-3">
-              <button onclick="event.stopPropagation(); toggleSoldStatus('${p.id}', '${p.status || "active"}')" class="${sold ? "bg-amber-50 text-amber-700 border-amber-200" : "bg-emerald-50 text-emerald-700 border-emerald-200"} border px-2.5 py-1.5 rounded-full text-[9px] font-extrabold uppercase">
+            <td class="py-3.5 px-3">
+              <button onclick="event.stopPropagation(); toggleSoldStatus('${p.id}', '${p.status || "active"}')" class="${sold ? "bg-amber-50 text-amber-700 border-amber-200" : "bg-emerald-50 text-emerald-700 border-emerald-200"} border px-2.5 py-1 rounded-full text-[9px] font-extrabold uppercase">
                 ${sold ? "Sold" : "Active"}
               </button>
             </td>
 
-            <td class="py-4 px-3">
+            <td class="py-3.5 px-3">
               <div class="flex items-center justify-end gap-1.5">
-                <button onclick="event.stopPropagation(); editProperty('${p.id}')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-2 rounded-lg text-[10px] font-bold">Edit</button>
-                <button onclick="event.stopPropagation(); downloadFlyer('${p.id}')" class="bg-[#f8efdf] hover:bg-[#f1e2c5] text-[#9b6c27] px-3 py-2 rounded-lg text-[10px] font-bold">Flyer</button>
-                <button onclick="event.stopPropagation(); deleteProperty('${p.id}')" class="bg-red-50 hover:bg-red-100 text-red-600 px-3 py-2 rounded-lg text-[10px] font-bold">Delete</button>
+                <button onclick="event.stopPropagation(); editProperty('${p.id}')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-2.5 py-1.5 rounded-lg text-[10px] font-bold">Edit</button>
+                <button onclick="event.stopPropagation(); downloadFlyer('${p.id}')" class="bg-[#f8efdf] hover:bg-[#f1e2c5] text-[#9b6c27] px-2.5 py-1.5 rounded-lg text-[10px] font-bold">Flyer</button>
+                <button onclick="event.stopPropagation(); deleteProperty('${p.id}')" class="bg-red-50 hover:bg-red-100 text-red-600 px-2.5 py-1.5 rounded-lg text-[10px] font-bold">Delete</button>
               </div>
             </td>
           </tr>
@@ -1543,28 +1747,28 @@
         const mainImg = imgs[0] || "";
 
         return `
-          <div class="border border-slate-200 rounded-[20px] p-3.5 bg-[#fcfcfb] cursor-pointer hover:border-[#d5a04f] transition" onclick="openAdminPropertyDetails('${p.id}')">
+          <div class="border border-slate-200 rounded-[18px] p-3 bg-[#fcfcfb] cursor-pointer hover:border-[#d5a04f] transition" onclick="openAdminPropertyDetails('${p.id}')">
             <div class="flex gap-3">
-              <div class="relative w-[78px] h-[78px] rounded-2xl overflow-hidden bg-slate-100 shrink-0">
+              <div class="relative w-[72px] h-[72px] rounded-xl overflow-hidden bg-slate-100 shrink-0">
                 <img src="${escapeHtml(mainImg)}" class="w-full h-full object-cover" onerror="this.style.display='none'">
-                ${imgs.length > 1 ? `<span class="absolute bottom-1 right-1 bg-black/70 text-white font-bold text-[8px] px-1.5 py-0.5 rounded">📷 ${imgs.length}</span>` : ''}
+                ${imgs.length > 1 ? `<span class="absolute bottom-1 right-1 bg-black/70 text-white font-bold text-[8px] px-1 py-0.5 rounded">📷 ${imgs.length}</span>` : ''}
               </div>
               
               <div class="min-w-0 flex-1">
                 <div class="flex items-center justify-between gap-2">
                   <span class="text-[9px] font-mono font-bold text-[#b17c31]">${escapeHtml(p.reference_code || "-")}</span>
-                  <button onclick="event.stopPropagation(); toggleSoldStatus('${p.id}', '${p.status || "active"}')" class="${sold ? "bg-amber-50 text-amber-700" : "bg-emerald-50 text-emerald-700"} px-2 py-1 rounded-full text-[8px] font-extrabold uppercase">
+                  <button onclick="event.stopPropagation(); toggleSoldStatus('${p.id}', '${p.status || "active"}')" class="${sold ? "bg-amber-50 text-amber-700" : "bg-emerald-50 text-emerald-700"} px-2 py-0.5 rounded-full text-[8px] font-extrabold uppercase">
                     ${sold ? "Sold" : "Active"}
                   </button>
                 </div>
-                <div class="text-xs font-extrabold text-slate-900 mt-1 line-clamp-2">${escapeHtml(p.title || "Property")}</div>
-                <div class="text-[10px] text-slate-400 mt-1 truncate">${escapeHtml(p.location || "-")}</div>
-                <div class="text-sm font-extrabold text-[#9b6c27] mt-1">${formatINR(p.price)}</div>
+                <div class="text-xs font-extrabold text-slate-900 mt-0.5 line-clamp-1">${escapeHtml(p.title || "Property")}</div>
+                <div class="text-[10px] text-slate-400 truncate">${escapeHtml(p.location || "-")}</div>
+                <div class="text-xs font-extrabold text-[#9b6c27] mt-0.5">${formatINR(p.price)}</div>
                 
-                <div class="text-[10px] text-slate-500 mt-1.5 flex items-center justify-between">
+                <div class="text-[10px] text-slate-500 mt-1 flex items-center justify-between">
                   <span class="font-bold text-slate-400">Owner:</span>
                   ${p.owner_phone ? `
-                    <a href="tel:${p.owner_phone}" onclick="event.stopPropagation()" class="font-bold text-[#b17c31] bg-[#f8efdf] px-2 py-0.5 rounded flex items-center gap-1">
+                    <a href="tel:${p.owner_phone}" onclick="event.stopPropagation()" class="font-bold text-[#b17c31] bg-[#f8efdf] px-1.5 py-0.5 rounded flex items-center gap-1">
                       <span>📞</span> ${escapeHtml(p.owner_phone)}
                     </a>
                   ` : `<span class="text-slate-400">Not recorded</span>`}
@@ -1572,10 +1776,10 @@
               </div>
             </div>
 
-            <div class="grid grid-cols-3 gap-2 mt-3">
-              <button onclick="event.stopPropagation(); editProperty('${p.id}')" class="py-2.5 rounded-xl bg-slate-100 text-slate-700 text-[10px] font-bold">Edit</button>
-              <button onclick="event.stopPropagation(); downloadFlyer('${p.id}')" class="py-2.5 rounded-xl bg-[#f8efdf] text-[#9b6c27] text-[10px] font-bold">Flyer</button>
-              <button onclick="event.stopPropagation(); deleteProperty('${p.id}')" class="py-2.5 rounded-xl bg-red-50 text-red-600 text-[10px] font-bold">Delete</button>
+            <div class="grid grid-cols-3 gap-2 mt-2.5">
+              <button onclick="event.stopPropagation(); editProperty('${p.id}')" class="py-2 rounded-lg bg-slate-100 text-slate-700 text-[10px] font-bold">Edit</button>
+              <button onclick="event.stopPropagation(); downloadFlyer('${p.id}')" class="py-2 rounded-lg bg-[#f8efdf] text-[#9b6c27] text-[10px] font-bold">Flyer</button>
+              <button onclick="event.stopPropagation(); deleteProperty('${p.id}')" class="py-2 rounded-lg bg-red-50 text-red-600 text-[10px] font-bold">Delete</button>
             </div>
           </div>
         `;
@@ -1591,21 +1795,21 @@
 
       [overviewBtn, propsBtn].forEach(btn => {
         if (!btn) return;
-        btn.className = "admin-tab shrink-0 px-4 py-3 text-xs font-semibold text-slate-400 border-b-2 border-transparent";
+        btn.className = "admin-tab shrink-0 px-4 py-2.5 text-xs font-semibold text-slate-400 border-b-2 border-transparent";
       });
 
       if (tab === "overview") {
         stats.classList.remove("hidden");
         directory.classList.remove("hidden");
         form.classList.add("hidden");
-        if (overviewBtn) overviewBtn.className = "admin-tab shrink-0 px-4 py-3 text-xs font-bold text-[#d5a04f] border-b-2 border-[#d5a04f]";
+        if (overviewBtn) overviewBtn.className = "admin-tab shrink-0 px-4 py-2.5 text-xs font-bold text-[#d5a04f] border-b-2 border-[#d5a04f]";
       }
 
       if (tab === "properties") {
         stats.classList.add("hidden");
         directory.classList.remove("hidden");
         form.classList.add("hidden");
-        if (propsBtn) propsBtn.className = "admin-tab shrink-0 px-4 py-3 text-xs font-bold text-[#d5a04f] border-b-2 border-[#d5a04f]";
+        if (propsBtn) propsBtn.className = "admin-tab shrink-0 px-4 py-2.5 text-xs font-bold text-[#d5a04f] border-b-2 border-[#d5a04f]";
       }
 
       if (tab === "form") {
@@ -1635,7 +1839,7 @@
       switchAdminTab("form");
     }
 
-    /* ADMIN PROPERTY DETAILS MODAL (WITH DIRECT SLIDER ACCESS) */
+    /* ADMIN DETAILS MODAL */
     function openAdminPropertyDetails(id) {
       const p = allProperties.find(item => item.id === id);
       if (!p || !isAdminLoggedIn) return;
@@ -1646,8 +1850,8 @@
         modal.id = "adminPropertyDetailsModal";
         modal.className = "fixed inset-0 z-[80] hidden items-center justify-center p-3 sm:p-4 bg-[#07101d]/85 backdrop-blur-md";
         modal.innerHTML = `
-          <div class="w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white rounded-[28px] shadow-2xl relative">
-            <button onclick="closeAdminPropertyDetails()" class="absolute top-3 right-3 z-30 w-9 h-9 rounded-full bg-black/60 hover:bg-black text-white font-bold flex items-center justify-center text-sm shadow-md transition">
+          <div class="w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white rounded-[26px] shadow-2xl relative">
+            <button onclick="closeAdminPropertyDetails()" class="absolute top-3 right-3 z-30 w-8 h-8 rounded-full bg-black/60 hover:bg-black text-white font-bold flex items-center justify-center text-xs shadow-md transition">
               ✕
             </button>
             <div id="adminPropertyDetailsContent"></div>
@@ -1663,42 +1867,40 @@
 
       document.getElementById("adminPropertyDetailsContent").innerHTML = `
         <div class="relative">
-          <!-- MAIN IMAGE DISPLAY (CLICK TO OPEN FULLSCREEN SLIDER) -->
-          <div class="h-64 sm:h-80 bg-slate-950 overflow-hidden relative cursor-pointer" onclick="openLightboxSlider(parseImages('${p.image_url}'), 0)">
+          <div class="h-60 sm:h-72 bg-slate-950 overflow-hidden relative cursor-pointer" onclick="const all = parseImages('${p.image_url}'); const cur = document.getElementById('adminDetailMainImg').src; openLightboxSlider(all, Math.max(0, all.indexOf(cur)));">
             <img id="adminDetailMainImg" src="${safe(mainImg)}" alt="Property" class="w-full h-full object-cover" onerror="this.style.display='none'">
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none"></div>
 
-            <div class="absolute top-4 left-4 flex gap-2 pointer-events-none">
-              <span class="bg-[#d5a04f] text-[#0b1220] px-3 py-1 rounded-full text-[10px] font-black uppercase shadow">
+            <div class="absolute top-3.5 left-3.5 flex gap-2 pointer-events-none">
+              <span class="bg-[#d5a04f] text-[#0b1220] px-2.5 py-1 rounded-full text-[9.5px] font-black uppercase shadow">
                 ${safe(p.category || "Property")}
               </span>
-              <span class="bg-black/60 text-white px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold">
+              <span class="bg-black/60 text-white px-2 py-0.5 rounded-lg text-[9.5px] font-mono font-bold">
                 ${safe(p.reference_code || "NP-001")}
               </span>
             </div>
 
-            <div class="absolute bottom-3 right-3 bg-black/70 backdrop-blur-sm text-white text-[10px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1 pointer-events-none">
+            <div class="absolute bottom-3 right-3 bg-black/70 backdrop-blur-sm text-white text-[9.5px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1 pointer-events-none">
               <span>🔍 Tap for Fullscreen Slider</span>
             </div>
 
-            <div class="absolute bottom-4 left-4 right-28 pointer-events-none">
-              <span class="text-[9px] font-extrabold tracking-wider uppercase ${p.status === 'sold' ? 'text-amber-400' : 'text-emerald-400'}">
+            <div class="absolute bottom-3.5 left-3.5 right-24 pointer-events-none">
+              <span class="text-[8.5px] font-extrabold tracking-wider uppercase ${p.status === 'sold' ? 'text-amber-400' : 'text-emerald-400'}">
                 ● ${safe(status)}
               </span>
-              <h2 class="brand-font text-xl sm:text-2xl font-black text-white leading-tight mt-0.5 drop-shadow">
+              <h2 class="brand-font text-lg sm:text-xl font-black text-white leading-tight mt-0.5 drop-shadow">
                 ${safe(p.title || "Property")}
               </h2>
-              <div class="text-xs text-slate-300 mt-1 flex items-center gap-1 font-semibold">
+              <div class="text-[11px] text-slate-300 mt-0.5 flex items-center gap-1 font-semibold">
                 <span>⌖</span> ${safe(p.location || "Kerala")}
               </div>
             </div>
           </div>
 
-          <!-- MULTI-PHOTO THUMBNAILS (CLICK DIRECTLY TO SLIDE) -->
           ${imgs.length > 1 ? `
-            <div class="flex gap-2 p-3 bg-slate-100 overflow-x-auto no-scrollbar border-b border-slate-200">
+            <div class="flex gap-2 p-2.5 bg-slate-100 overflow-x-auto no-scrollbar border-b border-slate-200">
               ${imgs.map((u, idx) => `
-                <div class="relative w-16 h-16 rounded-xl overflow-hidden border-2 border-transparent hover:border-[#d5a04f] shrink-0 cursor-pointer shadow-sm transition" 
+                <div class="relative w-14 h-14 rounded-lg overflow-hidden border-2 border-transparent hover:border-[#d5a04f] shrink-0 cursor-pointer shadow-sm transition" 
                      onclick="document.getElementById('adminDetailMainImg').src='${u}'; openLightboxSlider(parseImages('${p.image_url}'), ${idx});">
                   <img src="${u}" class="w-full h-full object-cover">
                 </div>
@@ -1706,44 +1908,41 @@
             </div>
           ` : ''}
 
-          <!-- SPECS & DETAILS -->
-          <div class="p-5 space-y-4">
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-              <div class="rounded-2xl bg-[#f8fafc] border border-slate-100 p-3.5">
-                <div class="text-[9px] uppercase font-bold text-slate-400">Guide Price</div>
-                <div class="text-base font-black text-[#9b6c27] mt-1">${formatINR(p.price)}</div>
+          <div class="p-4 sm:p-5 space-y-3.5">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <div class="rounded-xl bg-[#f8fafc] border border-slate-100 p-3">
+                <div class="text-[8.5px] uppercase font-bold text-slate-400">Guide Price</div>
+                <div class="text-sm font-black text-[#9b6c27] mt-0.5">${formatINR(p.price)}</div>
               </div>
-              <div class="rounded-2xl bg-[#f8fafc] border border-slate-100 p-3.5">
-                <div class="text-[9px] uppercase font-bold text-slate-400">Land Area</div>
-                <div class="text-xs font-black text-slate-800 mt-1">${safe(size)}</div>
+              <div class="rounded-xl bg-[#f8fafc] border border-slate-100 p-3">
+                <div class="text-[8.5px] uppercase font-bold text-slate-400">Land Area</div>
+                <div class="text-xs font-black text-slate-800 mt-0.5">${safe(size)}</div>
               </div>
-              <div class="rounded-2xl bg-[#f8fafc] border border-slate-100 p-3.5">
-                <div class="text-[9px] uppercase font-bold text-slate-400">Building Area</div>
-                <div class="text-xs font-black text-slate-800 mt-1">${safe(p.building_area || "-")} Sq.Ft</div>
+              <div class="rounded-xl bg-[#f8fafc] border border-slate-100 p-3">
+                <div class="text-[8.5px] uppercase font-bold text-slate-400">Building Area</div>
+                <div class="text-xs font-black text-slate-800 mt-0.5">${safe(p.building_area || "-")} Sq.Ft</div>
               </div>
-              <div class="rounded-2xl bg-[#f8fafc] border border-slate-100 p-3.5">
-                <div class="text-[9px] uppercase font-bold text-slate-400">Status</div>
-                <div class="text-xs font-black text-slate-800 mt-1">${safe(status)}</div>
+              <div class="rounded-xl bg-[#f8fafc] border border-slate-100 p-3">
+                <div class="text-[8.5px] uppercase font-bold text-slate-400">Status</div>
+                <div class="text-xs font-black text-slate-800 mt-0.5">${safe(status)}</div>
               </div>
             </div>
 
-            <!-- OVERVIEW & OWNER INFO -->
-            <div class="grid sm:grid-cols-2 gap-3.5">
-              <div class="rounded-2xl border border-slate-100 p-4 bg-[#fbfbfa]">
-                <div class="section-label text-[9px]">Property Overview</div>
-                <p class="text-xs text-slate-600 leading-relaxed mt-2 whitespace-pre-line">${safe(p.description || "No description added.")}</p>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div class="rounded-xl border border-slate-100 p-3.5 bg-[#fbfbfa]">
+                <div class="section-label text-[8.5px]">Property Overview</div>
+                <p class="text-xs text-slate-600 leading-relaxed mt-1.5 whitespace-pre-line">${safe(p.description || "No description added.")}</p>
               </div>
 
-              <!-- OWNER CONTACT CARD (ADMIN CONFIDENTIAL) -->
-              <div class="rounded-2xl border border-[#ead7b4] bg-[#fcf7ed] p-4 flex flex-col justify-between">
+              <div class="rounded-xl border border-[#ead7b4] bg-[#fcf7ed] p-3.5 flex flex-col justify-between">
                 <div>
-                  <div class="section-label text-[9px]">Original Owner (Admin Confidential)</div>
-                  <div class="text-sm font-black text-slate-900 mt-1">${safe(p.owner_name || "Owner")}</div>
+                  <div class="section-label text-[8.5px]">Original Owner (Admin Confidential)</div>
+                  <div class="text-xs font-black text-slate-900 mt-1">${safe(p.owner_name || "Owner")}</div>
                 </div>
                 
-                <div class="mt-3">
+                <div class="mt-2.5">
                   ${p.owner_phone ? `
-                    <a href="tel:${p.owner_phone}" class="inline-flex items-center gap-2 bg-[#d5a04f] hover:bg-[#e2b365] text-[#0b1220] font-black px-4 py-2 rounded-xl text-xs shadow transition w-full justify-center">
+                    <a href="tel:${p.owner_phone}" class="inline-flex items-center gap-1.5 bg-[#d5a04f] hover:bg-[#e2b365] text-[#0b1220] font-black px-3 py-1.5 rounded-lg text-xs shadow transition w-full justify-center">
                       <span>📞 Call Owner:</span> ${safe(p.owner_phone)}
                     </a>
                   ` : `<span class="text-xs text-slate-400">No owner number recorded</span>`}
@@ -1751,18 +1950,9 @@
               </div>
             </div>
 
-            <!-- UTILITIES -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-              <div class="rounded-xl bg-slate-50 p-2.5 border border-slate-100"><div class="text-[8px] uppercase font-bold text-slate-400">Road</div><div class="font-bold text-slate-800 truncate">${safe(p.road_access || "-")}</div></div>
-              <div class="rounded-xl bg-slate-50 p-2.5 border border-slate-100"><div class="text-[8px] uppercase font-bold text-slate-400">Water</div><div class="font-bold text-slate-800 truncate">${safe(p.water_supply || "-")}</div></div>
-              <div class="rounded-xl bg-slate-50 p-2.5 border border-slate-100"><div class="text-[8px] uppercase font-bold text-slate-400">Power</div><div class="font-bold text-slate-800 truncate">${safe(p.electricity || "-")}</div></div>
-              <div class="rounded-xl bg-slate-50 p-2.5 border border-slate-100"><div class="text-[8px] uppercase font-bold text-slate-400">Docs</div><div class="font-bold text-slate-800 truncate">${safe(p.approvals || "-")}</div></div>
-            </div>
-
-            <!-- ACTION BUTTONS -->
             <div class="flex gap-2 justify-end pt-2 border-t border-slate-100">
-              <button onclick="closeAdminPropertyDetails(); editProperty('${safe(p.id)}')" class="px-4 py-2.5 rounded-xl bg-[#0b1220] text-white text-xs font-bold">Edit</button>
-              <button onclick="downloadFlyer('${safe(p.id)}')" class="px-4 py-2.5 rounded-xl bg-[#f8efdf] text-[#9b6c27] text-xs font-bold">Flyer</button>
+              <button onclick="closeAdminPropertyDetails(); editProperty('${safe(p.id)}')" class="px-3.5 py-2 rounded-xl bg-[#0b1220] text-white text-xs font-bold">Edit</button>
+              <button onclick="downloadFlyer('${safe(p.id)}')" class="px-3.5 py-2 rounded-xl bg-[#f8efdf] text-[#9b6c27] text-xs font-bold">Flyer</button>
             </div>
           </div>
         </div>`;
@@ -1809,7 +1999,15 @@
       document.getElementById("propOwnerName").value = p.owner_name || "";
       document.getElementById("propOwnerPhone").value = p.owner_phone || "";
 
-      syncFromUrlInput();
+      // FIX: Load existing photos directly to upload preview grid
+      if (p.image_url) {
+        uploadedImagesList = parseImages(p.image_url);
+        renderUploadedGrid();
+      } else {
+        uploadedImagesList = [];
+        renderUploadedGrid();
+      }
+
       switchAdminTab("form");
     }
 
