@@ -20,7 +20,7 @@
     :root {
       --navy: #0b1220;
       --navy-2: #111a2b;
-      --gold: #c9974b;
+      --gold: #d5a04f;
       --gold-light: #f3dfb7;
       --orange: #d86b2c;
       --cream: #faf8f3;
@@ -43,8 +43,8 @@
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     .luxury-gradient {
       background:
-        radial-gradient(circle at 15% 10%, rgba(201,151,75,.13), transparent 28%),
-        radial-gradient(circle at 85% 80%, rgba(216,107,44,.09), transparent 28%),
+        radial-gradient(circle at 15% 10%, rgba(213,160,79,.15), transparent 30%),
+        radial-gradient(circle at 85% 80%, rgba(216,107,44,.10), transparent 30%),
         #0b1220;
     }
     .hero-pattern {
@@ -54,10 +54,10 @@
       background-size: 28px 28px;
     }
     .soft-shadow {
-      box-shadow: 0 10px 30px rgba(15, 23, 42, .06), 0 2px 6px rgba(15, 23, 42, .03);
+      box-shadow: 0 8px 25px rgba(15, 23, 42, .05), 0 2px 6px rgba(15, 23, 42, .03);
     }
     .premium-shadow {
-      box-shadow: 0 24px 60px rgba(15, 23, 42, .12), 0 6px 20px rgba(15, 23, 42, .06);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, .12), 0 6px 18px rgba(15, 23, 42, .06);
     }
     .gold-line {
       width: 42px;
@@ -78,8 +78,8 @@
     }
     .admin-input:focus {
       background: #fff;
-      border-color: #c9974b;
-      box-shadow: 0 0 0 3px rgba(201,151,75,.10);
+      border-color: #d5a04f;
+      box-shadow: 0 0 0 3px rgba(213,160,79,.15);
     }
     .admin-label {
       display: block;
@@ -99,172 +99,82 @@
       padding-bottom: calc(30px + env(safe-area-inset-bottom));
     }
     @media (min-width: 768px) {
-      .desktop-container { max-width: 1180px; }
-    }
-    @media (max-width: 640px) {
-      input, select, textarea { font-size: 16px !important; }
+      .desktop-container { max-width: 1160px; }
     }
 
-    /* 1. COMPACT HERO SECTION */
-    @media (max-width: 768px) {
-      .hero-card-inner {
-        padding: 24px 18px 20px !important;
-      }
-      .hero-title {
-        font-size: 32px !important;
-        line-height: 1.08 !important;
-        margin-top: 12px !important;
-        margin-bottom: 10px !important;
-      }
-      .hero-desc {
-        font-size: 13px !important;
-        line-height: 1.5 !important;
-        margin-bottom: 14px !important;
-      }
-      .hero-trust-badges {
-        gap: 8px !important;
-        margin-top: 12px !important;
-      }
-    }
-
-    /* 2. MOBILE CATEGORY NAVIGATION */
-    .category-list {
+    /* =========================================
+       CATEGORY CHIP BOXES (EXACT MATCH)
+       ========================================= */
+    .cat-box {
       display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      overflow-y: hidden;
-      white-space: nowrap;
-      padding: 6px 2px 10px;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 82px;
+      padding: 10px 12px;
+      border-radius: 18px;
+      border: 1.5px solid #eae7df;
+      background: #ffffff;
+      color: #334155;
+      font-size: 11px;
+      font-weight: 700;
+      transition: all .2s ease;
+      cursor: pointer;
+      user-select: none;
+      flex-shrink: 0;
     }
-    .category-list::-webkit-scrollbar {
-      display: none;
+    .cat-box .cat-icon {
+      font-size: 20px;
+      margin-bottom: 4px;
+      line-height: 1;
     }
-    .category-list > * {
-      flex: 0 0 auto;
-    }
-    @media (max-width: 768px) {
-      .category-list {
-        scroll-snap-type: x proximity;
-      }
-      .category-list > * {
-        scroll-snap-align: start;
-      }
+    .cat-box.active {
+      background: #0b1220;
+      color: #ffffff;
+      border-color: #0b1220;
+      box-shadow: 0 6px 18px rgba(11,18,32,0.22);
     }
 
-    /* 3. CLEAN SEARCH / FILTER AREA */
-    .search-filter-section {
-      padding: 16px !important;
-      border-radius: 22px !important;
+    /* =========================================
+       FEATURED PROPERTY CARD (SPLIT LAYOUT)
+       ========================================= */
+    .featured-card {
+      background: #ffffff;
+      border: 1px solid #e7e4dc;
+      border-radius: 24px;
+      padding: 12px;
+      transition: all .25s ease;
     }
-    .search-filter-section input {
-      height: 48px !important;
-      border-radius: 14px !important;
-      font-size: 14px !important;
+    .featured-card:hover {
+      box-shadow: 0 16px 36px rgba(15, 23, 42, .08);
+      border-color: #d8d4c7;
     }
-    .search-filter-section .filters {
+    .featured-card-top {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 10px;
+      grid-template-columns: 135px 1fr;
+      gap: 14px;
     }
-    .search-filter-section .filter {
-      min-height: 46px;
-      border-radius: 14px;
-    }
-    .search-filter-section .search-button {
-      width: 100%;
-      min-height: 46px;
-      margin-top: 10px;
-      border-radius: 14px;
-    }
-    @media (max-width: 640px) {
-      .search-filter-section {
-        padding: 14px !important;
-      }
-      .search-filter-section .filters {
-        grid-template-columns: 1fr;
-        gap: 8px;
+    @media (min-width: 640px) {
+      .featured-card-top {
+        grid-template-columns: 165px 1fr;
+        gap: 16px;
       }
     }
-
-    /* 4. PROPERTY CARD HIERARCHY */
-    .property-card {
-      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-      overflow: hidden;
-      border-radius: 22px;
-    }
-    .property-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 22px 50px rgba(15, 23, 42, .11), 0 5px 14px rgba(15, 23, 42, .04);
-      border-color: #ddd8cc;
-    }
-    .property-card .property-image {
+    .featured-card-img {
       position: relative;
-      aspect-ratio: 16 / 10;
+      aspect-ratio: 1 / 1;
+      border-radius: 18px;
       overflow: hidden;
-      background: #f1f5f9;
+      background: #0b1220;
     }
-    .property-card .property-image img {
+    .featured-card-img img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform .55s cubic-bezier(.2,.7,.2,1);
+      transition: transform .5s cubic-bezier(.2,.7,.2,1);
     }
-    .property-card:hover .property-image img {
-      transform: scale(1.035);
-    }
-    .property-card .property-content {
-      padding: 16px;
-    }
-    .property-card .property-reference {
-      font-size: 11px;
-      font-family: monospace;
-      font-weight: 800;
-      color: #b17c31;
-      margin-bottom: 4px;
-    }
-    .property-card .property-title {
-      font-size: 17px;
-      font-weight: 800;
-      line-height: 1.25;
-      margin: 0 0 6px;
-      color: #0f172a;
-    }
-    .property-card .property-location {
-      font-size: 13px;
-      color: #64748b;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .property-card .property-meta {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-    }
-    .property-card .property-meta span {
-      padding: 5px 9px;
-      border-radius: 8px;
-      font-size: 11px;
-      font-weight: 700;
-      background: #f1f5f9;
-      color: #334155;
-    }
-    .property-card .property-price {
-      font-size: 20px;
-      font-weight: 800;
-      color: #0b1220;
-      letter-spacing: -0.02em;
-    }
-    .property-card .property-updated {
-      font-size: 11px;
-      color: #94a3b8;
-      font-weight: 600;
-      margin-top: 2px;
+    .featured-card:hover .featured-card-img img {
+      transform: scale(1.05);
     }
   </style>
 </head>
@@ -272,147 +182,92 @@
 <body class="min-h-screen bg-[#f7f8fa] text-slate-900">
 
   <!-- =========================================================
-       PUBLIC EXPERIENCE
+       PUBLIC FLOW
   ========================================================== -->
   <div id="publicFlowContainer" class="min-h-screen flex flex-col">
 
-    <!-- PUBLIC NAVBAR -->
-    <header class="sticky top-0 z-40 border-b border-white/10 bg-[#0b1220]/95 backdrop-blur-xl">
-      <div class="desktop-container mx-auto px-4 sm:px-6 lg:px-8 h-[70px] flex items-center justify-between">
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-40 border-b border-white/10 bg-[#0b1220] backdrop-blur-xl">
+      <div class="desktop-container mx-auto px-4 sm:px-6 h-[72px] flex items-center justify-between">
         
-        <button onclick="closeDetailsPage()" class="flex items-center gap-3 text-left group">
-          <div class="w-10 h-10 rounded-[12px] bg-[#0b1220] border border-[#d5a04f]/40 flex items-center justify-center shadow-lg shadow-black/30 group-hover:border-[#d5a04f] transition">
+        <button onclick="closeDetailsPage()" class="flex items-center gap-3 text-left">
+          <div class="w-10 h-10 rounded-[14px] bg-[#0b1220] border border-[#d5a04f]/40 flex items-center justify-center shadow-lg">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d5a04f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/>
               <polyline points="9 21 9 12 15 12 15 21"/>
             </svg>
           </div>
           <div>
-            <div class="brand-font text-[15px] font-black tracking-[.2em] text-white leading-none">
+            <div class="brand-font text-[15px] font-black tracking-[.22em] text-white leading-none">
               NESTORA
             </div>
             <div class="text-[8.5px] text-[#d5a04f] font-bold tracking-[.18em] uppercase mt-1">
-              Properties & Living
+              PROPERTIES & LIVING
             </div>
           </div>
         </button>
 
-        <div class="flex items-center gap-2">
-          <button
-            onclick="document.getElementById('propertyDirectory').scrollIntoView({behavior:'smooth'})"
-            class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold text-slate-300 hover:text-white px-3 py-2 rounded-xl transition"
-          >
-            Properties
-          </button>
-          <button
-            onclick="handleAdminButtonClick()"
-            class="inline-flex items-center gap-2 bg-[#d5a04f] hover:bg-[#e2b365] text-[#0b1220] px-4 py-2 rounded-xl text-xs font-extrabold transition shadow-lg shadow-black/20"
-          >
-            <span>Portal</span>
-            <span class="hidden sm:inline">→</span>
-          </button>
-        </div>
+        <button
+          onclick="handleAdminButtonClick()"
+          class="bg-[#d5a04f] hover:bg-[#e2b365] text-[#0b1220] px-4 py-2 rounded-xl text-xs font-black transition shadow-md"
+        >
+          Portal
+        </button>
       </div>
     </header>
 
-    <!-- PUBLIC CATALOGUE -->
-    <main id="publicContainer" class="flex-1 desktop-container mx-auto w-full px-4 sm:px-6 lg:px-8">
+    <!-- MAIN HOME CATALOGUE -->
+    <main id="publicContainer" class="flex-1 desktop-container mx-auto w-full px-4 sm:px-6">
       
-      <!-- 1. COMPACT HERO SECTION -->
-      <section class="pt-4 sm:pt-6 lg:pt-8">
-        <div class="luxury-gradient hero-pattern rounded-[24px] sm:rounded-[32px] overflow-hidden relative premium-shadow">
-          <div class="absolute -right-24 -top-24 w-72 h-72 rounded-full border border-[#d5a04f]/10"></div>
-          <div class="absolute right-8 bottom-[-100px] w-60 h-60 rounded-full border border-[#d5a04f]/10"></div>
+      <!-- HERO -->
+      <section class="pt-4 sm:pt-6">
+        <div class="luxury-gradient hero-pattern rounded-[26px] overflow-hidden relative premium-shadow p-5 sm:p-8">
+          <div class="max-w-xl">
+            <h1 class="brand-font text-[28px] sm:text-[38px] font-extrabold leading-[1.1] text-white">
+              Find a place <span class="text-[#d5a04f]">worth owning.</span>
+            </h1>
 
-          <div class="hero-card-inner relative z-10 grid lg:grid-cols-[1.15fr_.85fr] gap-6 px-5 py-6 sm:px-8 sm:py-8 lg:px-11 lg:py-10">
-            <div class="max-w-2xl">
-              <div class="inline-flex items-center gap-2 rounded-full border border-[#d5a04f]/25 bg-white/[.06] px-3 py-1.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#d5a04f] shadow-[0_0_10px_rgba(213,160,79,.8)]"></span>
-                <span class="text-[9.5px] sm:text-[11px] font-bold tracking-[.12em] uppercase text-[#e5c98f]">
-                  Verified Kerala Real Estate
-                </span>
-              </div>
+            <p class="text-xs sm:text-[13px] text-slate-300 leading-relaxed mt-2.5 max-w-md">
+              Curated residential plots, premium homes, villas and commercial properties across Ernakulam District and selected corridors across Kerala.
+            </p>
 
-              <h1 class="hero-title brand-font text-[28px] sm:text-[40px] lg:text-[48px] font-extrabold leading-[1.06] tracking-[-.04em] text-white mt-3.5 mb-2.5">
-                Find a place <span class="text-[#d5a04f]">worth owning.</span>
-              </h1>
-
-              <p class="hero-desc text-[13px] sm:text-sm text-slate-300 leading-relaxed max-w-xl mb-3">
-                Curated residential plots, premium homes, villas and commercial properties across Ernakulam District and selected investment corridors across Kerala.
-              </p>
-
-              <div class="hero-trust-badges flex flex-wrap gap-2.5 sm:gap-3 mt-4">
-                <div class="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold text-slate-200">
-                  <span class="w-5 h-5 rounded-full bg-emerald-400/10 border border-emerald-400/20 flex items-center justify-center text-emerald-400 text-[10px]">✓</span>
-                  Verified listings
-                </div>
-                <div class="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold text-slate-200">
-                  <span class="w-5 h-5 rounded-full bg-[#d5a04f]/10 border border-[#d5a04f]/20 flex items-center justify-center text-[#d5a04f] text-[9px]">◆</span>
-                  Direct owner / agent
-                </div>
-                <div class="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold text-slate-200">
-                  <span class="w-5 h-5 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[8px]">●</span>
-                  Ernakulam & Kerala
-                </div>
-              </div>
-            </div>
-
-            <div class="hidden lg:flex items-center justify-end">
-              <div class="w-full max-w-[320px] rounded-[22px] border border-white/10 bg-white/[.055] backdrop-blur-xl p-5">
-                <div class="text-[9.5px] font-bold uppercase tracking-[.16em] text-[#d5a04f]">Nestora Standard</div>
-                <div class="brand-font text-xl font-extrabold text-white mt-1.5">Simple. Verified.<br>Professional.</div>
-                <div class="gold-line mt-3 mb-3.5"></div>
-                <div class="grid grid-cols-2 gap-2">
-                  <div class="rounded-xl bg-white/[.055] border border-white/5 p-3">
-                    <div class="text-base font-extrabold text-white">01</div>
-                    <div class="text-[9.5px] text-slate-400 mt-0.5">Direct enquiry</div>
-                  </div>
-                  <div class="rounded-xl bg-white/[.055] border border-white/5 p-3">
-                    <div class="text-base font-extrabold text-white">24/7</div>
-                    <div class="text-[9.5px] text-slate-400 mt-0.5">Digital catalogue</div>
-                  </div>
-                </div>
-              </div>
+            <div class="flex flex-wrap items-center gap-2 mt-4 text-[11px] font-semibold text-slate-200">
+              <span class="inline-flex items-center gap-1.5 bg-white/[.07] px-2.5 py-1 rounded-full border border-white/10">
+                <span class="text-emerald-400 font-bold">✓</span> Verified listings
+              </span>
+              <span class="inline-flex items-center gap-1.5 bg-white/[.07] px-2.5 py-1 rounded-full border border-white/10">
+                <span class="text-[#d5a04f]">◆</span> Direct owner / agent
+              </span>
+              <span class="inline-flex items-center gap-1.5 bg-white/[.07] px-2.5 py-1 rounded-full border border-white/10">
+                <span>📍</span> Kerala
+              </span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 2. MOBILE CATEGORY NAVIGATION -->
-      <section class="mt-4">
-        <div class="category-list">
-          <button onclick="setCategoryFilter('all')" data-cat="all" class="cat-btn shrink-0 bg-[#0b1220] text-white px-4 py-2 rounded-full text-xs font-bold shadow-sm">All Properties</button>
-          <button onclick="setCategoryFilter('Residential Land')" data-cat="Residential Land" class="cat-btn shrink-0 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full text-xs font-semibold">Residential Land</button>
-          <button onclick="setCategoryFilter('Independent House')" data-cat="Independent House" class="cat-btn shrink-0 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full text-xs font-semibold">House</button>
-          <button onclick="setCategoryFilter('Villa')" data-cat="Villa" class="cat-btn shrink-0 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full text-xs font-semibold">Villa</button>
-          <button onclick="setCategoryFilter('Apartment')" data-cat="Apartment" class="cat-btn shrink-0 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full text-xs font-semibold">Apartment</button>
-          <button onclick="setCategoryFilter('Commercial')" data-cat="Commercial" class="cat-btn shrink-0 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full text-xs font-semibold">Commercial</button>
-        </div>
-      </section>
-
-      <!-- 3. CLEAN SEARCH / FILTER SECTION -->
-      <section id="propertyDirectory" class="mt-2">
-        <div class="search-filter-section bg-white border border-[#e7e4dc] soft-shadow">
+      <!-- SEARCH & FILTER BOX (EXACT MATCH TO REFERENCE) -->
+      <section id="propertyDirectory" class="mt-4">
+        <div class="bg-white border border-[#e7e4dc] rounded-[24px] p-4 soft-shadow space-y-3">
+          <!-- Text Input -->
           <div class="relative">
-            <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <circle cx="11" cy="11" r="7"></circle>
-                <path d="m20 20-4-4"></path>
-              </svg>
-            </div>
+            <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">🔍</span>
             <input
               type="text"
               id="searchInput"
               oninput="applyFilters()"
-              placeholder="Search keyword, locality or title..."
-              class="w-full bg-[#f8fafc] border border-slate-200 pl-11 pr-4 text-slate-800 placeholder:text-slate-400 outline-none focus:bg-white focus:border-[#d5a04f] transition"
+              placeholder="Search locality, property title or reference..."
+              class="w-full h-12 rounded-xl bg-[#f8fafc] border border-slate-200 pl-10 pr-3.5 text-xs text-slate-800 placeholder:text-slate-400 outline-none focus:bg-white focus:border-[#d5a04f] transition"
             >
           </div>
 
-          <div class="filters">
-            <div class="relative">
-              <select id="locationFilter" onchange="applyFilters()" class="filter w-full bg-[#f8fafc] border border-slate-200 px-3.5 text-xs font-bold text-slate-700 outline-none focus:border-[#d5a04f]">
-                <option value="all">📍 All Locations</option>
+          <!-- 3 Columns Row -->
+          <div class="grid grid-cols-3 gap-2">
+            <!-- Col 1: Location -->
+            <div class="bg-[#f8fafc] border border-slate-200 rounded-xl p-2 relative">
+              <div class="text-[9px] font-bold text-slate-400 flex items-center gap-1">📍 Location</div>
+              <select id="locationFilter" onchange="applyFilters()" class="w-full bg-transparent text-[11px] font-bold text-slate-800 outline-none mt-0.5 truncate">
+                <option value="all">All locations</option>
                 <option value="Ernakulam">Ernakulam</option>
                 <option value="Aluva">Aluva</option>
                 <option value="Kochi">Kochi</option>
@@ -421,169 +276,180 @@
               </select>
             </div>
 
-            <div class="relative">
-              <select id="statusFilter" onchange="applyFilters()" class="filter w-full bg-[#f8fafc] border border-slate-200 px-3.5 text-xs font-bold text-slate-700 outline-none focus:border-[#d5a04f]">
-                <option value="all">🏷️ All Availability</option>
-                <option value="active">Available Only</option>
-                <option value="sold">Sold Out</option>
+            <!-- Col 2: Property Type -->
+            <div class="bg-[#f8fafc] border border-slate-200 rounded-xl p-2 relative">
+              <div class="text-[9px] font-bold text-slate-400 flex items-center gap-1">🏠 Type</div>
+              <select id="categoryFilter" onchange="applyFilters()" class="w-full bg-transparent text-[11px] font-bold text-slate-800 outline-none mt-0.5 truncate">
+                <option value="all">All types</option>
+                <option value="Residential Land">Residential</option>
+                <option value="Independent House">House</option>
+                <option value="Villa">Villa</option>
+                <option value="Apartment">Apartment</option>
+                <option value="Commercial">Commercial</option>
               </select>
             </div>
 
-            <div class="relative">
-              <select id="budgetFilter" onchange="applyFilters()" class="filter w-full bg-[#f8fafc] border border-slate-200 px-3.5 text-xs font-bold text-slate-700 outline-none focus:border-[#d5a04f]">
-                <option value="all">💰 Any Budget</option>
-                <option value="under_50l">Under ₹50 Lakhs</option>
-                <option value="50l_1cr">₹50L - ₹1 Crore</option>
-                <option value="above_1cr">Above ₹1 Crore</option>
+            <!-- Col 3: Budget -->
+            <div class="bg-[#f8fafc] border border-slate-200 rounded-xl p-2 relative">
+              <div class="text-[9px] font-bold text-slate-400 flex items-center gap-1">💰 Budget</div>
+              <select id="budgetFilter" onchange="applyFilters()" class="w-full bg-transparent text-[11px] font-bold text-slate-800 outline-none mt-0.5 truncate">
+                <option value="all">Any budget</option>
+                <option value="under_50l">&lt; 50 Lakhs</option>
+                <option value="50l_1cr">50L - 1 Cr</option>
+                <option value="above_1cr">&gt; 1 Crore</option>
               </select>
             </div>
           </div>
 
-          <button onclick="applyFilters()" class="search-button bg-[#0b1220] hover:bg-[#162238] text-white text-xs font-extrabold flex items-center justify-center gap-2 transition shadow">
+          <!-- Gold Search Button -->
+          <button onclick="applyFilters()" class="w-full h-11 rounded-xl bg-[#d5a04f] hover:bg-[#e2b365] text-[#0b1220] text-xs font-black flex items-center justify-center gap-2 transition shadow-sm">
             <span>Search Properties</span>
             <span>🔍</span>
           </button>
         </div>
+      </section>
 
-        <div class="flex items-center justify-between px-1 mt-4">
-          <div>
-            <div class="section-label">Property Collection</div>
-            <div id="publicListingCount" class="text-xs sm:text-sm font-bold text-slate-700 mt-0.5">Showing verified listings...</div>
-          </div>
-          <div class="hidden sm:flex items-center gap-2 text-[11px] font-semibold text-slate-400">
-            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-            Verified assets
-          </div>
+      <!-- PROPERTY CATEGORIES (HORIZONTAL SWIPE BOXES) -->
+      <section class="mt-5">
+        <div class="flex items-center justify-between mb-2.5">
+          <h2 class="brand-font text-sm font-extrabold text-slate-800">Property Categories</h2>
+          <button onclick="setCategoryBox('all')" class="text-[11px] font-bold text-[#b17c31] hover:underline">View all →</button>
         </div>
 
-        <!-- 4. PROPERTY LISTING CARDS GRID -->
-        <div id="propertiesGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mt-3 pb-10"></div>
+        <div class="flex gap-2.5 overflow-x-auto no-scrollbar pb-2">
+          <div onclick="setCategoryBox('Residential Land')" data-cat="Residential Land" class="cat-box">
+            <span class="cat-icon">🏡</span>
+            <span>Residential</span>
+          </div>
+          <div onclick="setCategoryBox('Independent House')" data-cat="Independent House" class="cat-box">
+            <span class="cat-icon">🏠</span>
+            <span>House</span>
+          </div>
+          <div onclick="setCategoryBox('Villa')" data-cat="Villa" class="cat-box">
+            <span class="cat-icon">🏰</span>
+            <span>Villa</span>
+          </div>
+          <div onclick="setCategoryBox('Apartment')" data-cat="Apartment" class="cat-box">
+            <span class="cat-icon">🏢</span>
+            <span>Apartment</span>
+          </div>
+          <div onclick="setCategoryBox('Commercial')" data-cat="Commercial" class="cat-box">
+            <span class="cat-icon">🏬</span>
+            <span>Commercial</span>
+          </div>
+          <div onclick="setCategoryBox('all')" data-cat="all" class="cat-box active">
+            <span class="cat-icon">✨</span>
+            <span>All</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURED PROPERTIES HEADER -->
+      <section class="mt-4">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="brand-font text-sm font-extrabold text-slate-800">Featured Properties</h2>
+          <div id="publicListingCount" class="text-[11px] font-bold text-slate-400">Loading...</div>
+        </div>
+
+        <!-- LISTING CONTAINER (EXACT CARD MATCH) -->
+        <div id="propertiesGrid" class="space-y-4 pb-12"></div>
       </section>
     </main>
 
-    <!-- PUBLIC PROPERTY DETAILS -->
-    <section id="propertyDetailPage" class="hidden flex-1 desktop-container mx-auto w-full px-4 sm:px-6 lg:px-8 py-5 sm:py-8 mobile-bottom-space">
-      <div class="flex items-center justify-between mb-4">
-        <button onclick="closeDetailsPage()" class="inline-flex items-center gap-2 bg-white border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-bold text-slate-700 soft-shadow">
-          <span class="text-base">←</span> Catalogue
+    <!-- PROPERTY DETAIL PAGE -->
+    <section id="propertyDetailPage" class="hidden flex-1 desktop-container mx-auto w-full px-4 sm:px-6 py-5 mobile-bottom-space">
+      <div class="flex items-center justify-between mb-3">
+        <button onclick="closeDetailsPage()" class="inline-flex items-center gap-1.5 bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs font-bold text-slate-700 soft-shadow">
+          <span>←</span> Back
         </button>
-        <button onclick="shareActiveProperty()" class="inline-flex items-center gap-2 bg-[#0b1220] text-white rounded-xl px-3.5 py-2.5 text-xs font-bold shadow-lg">
+        <button onclick="shareActiveProperty()" class="inline-flex items-center gap-1.5 bg-[#0b1220] text-white rounded-xl px-3.5 py-2 text-xs font-bold shadow">
           <span>↗</span> Share
         </button>
       </div>
 
-      <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-5">
+      <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-4">
         <div>
-          <!-- DETAIL MAIN IMAGE (CLICKABLE FOR FULLSCREEN SLIDER) -->
-          <div class="relative bg-[#0b1220] rounded-[24px] overflow-hidden min-h-[290px] sm:min-h-[400px] lg:min-h-[460px] premium-shadow group cursor-pointer" onclick="openActiveMainImage()">
-            <img id="detailImg" src="" alt="Property" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+          <!-- DETAIL MAIN IMAGE -->
+          <div class="relative bg-[#0b1220] rounded-[24px] overflow-hidden min-h-[280px] sm:min-h-[420px] premium-shadow group cursor-pointer" onclick="openActiveMainImage()">
+            <img id="detailImg" src="" alt="Property" class="absolute inset-0 w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-[#08101d] via-transparent to-black/10 pointer-events-none"></div>
 
-            <div class="absolute bottom-3 right-3 z-10 bg-black/70 backdrop-blur-md text-white border border-white/20 text-[10px] font-bold px-3 py-1 rounded-full flex items-center gap-1.5">
+            <div class="absolute bottom-3 right-3 z-10 bg-black/70 backdrop-blur-md text-white border border-white/20 text-[10px] font-bold px-3 py-1 rounded-full flex items-center gap-1">
               <span>🔍 Tap for Fullscreen Slider</span>
             </div>
 
-            <div class="absolute top-4 left-4 right-4 flex justify-between gap-2 pointer-events-none">
-              <div class="flex flex-wrap gap-2">
-                <span id="detailStatusBadge" class="bg-emerald-500 text-white text-[10px] font-extrabold px-3 py-1.5 rounded-full uppercase shadow">AVAILABLE</span>
-                <span id="detailFeaturedBadge" class="bg-[#d5a04f] text-[#0b1220] text-[10px] font-extrabold px-3 py-1.5 rounded-full uppercase shadow">★ Featured</span>
-              </div>
-              <span id="detailRef" class="bg-black/60 backdrop-blur-md text-white border border-white/15 text-[10px] font-mono font-bold px-3 py-1.5 rounded-xl">NP-001</span>
+            <div class="absolute top-3.5 left-3.5 right-3.5 flex justify-between gap-2 pointer-events-none">
+              <span id="detailStatusBadge" class="bg-emerald-500 text-white text-[9.5px] font-extrabold px-2.5 py-1 rounded-full uppercase shadow">AVAILABLE</span>
+              <span id="detailRef" class="bg-black/60 backdrop-blur-md text-white border border-white/15 text-[9.5px] font-mono font-bold px-2.5 py-1 rounded-lg">NP-001</span>
             </div>
 
-            <div class="absolute bottom-4 left-4 right-28 pointer-events-none">
-              <span id="detailTypeChip" class="inline-flex bg-white text-[#0b1220] px-3 py-1 rounded-xl text-[10px] font-extrabold uppercase shadow mb-2">Residential Land</span>
-              <div id="detailSubRef" class="text-[9.5px] text-[#e2c98f] font-bold uppercase tracking-[.12em]">PROPERTY ID: NP-001</div>
-              <h1 id="detailTitle" class="brand-font text-xl sm:text-2xl lg:text-3xl font-extrabold text-white leading-tight mt-1 max-w-2xl">Property Title</h1>
-              <div class="flex items-center gap-2 text-xs text-slate-300 mt-1.5">
-                <span>⌖</span> <span id="detailLocation">Location</span>
+            <div class="absolute bottom-4 left-4 right-24 pointer-events-none">
+              <span id="detailTypeChip" class="inline-flex bg-white text-[#0b1220] px-2.5 py-1 rounded-lg text-[9.5px] font-black uppercase mb-1.5 shadow">Residential Land</span>
+              <h1 id="detailTitle" class="brand-font text-xl sm:text-2xl font-extrabold text-white leading-tight">Property Title</h1>
+              <div class="flex items-center gap-1 text-xs text-slate-300 mt-1">
+                <span>📍</span> <span id="detailLocation">Location</span>
               </div>
             </div>
           </div>
 
-          <!-- MULTIPLE PHOTO THUMBNAIL GALLERY STRIP -->
-          <div id="detailThumbnailsStrip" class="flex gap-2.5 overflow-x-auto no-scrollbar py-3 mt-1"></div>
+          <!-- DETAIL THUMBNAILS -->
+          <div id="detailThumbnailsStrip" class="flex gap-2 overflow-x-auto no-scrollbar py-2.5"></div>
         </div>
 
-        <div class="space-y-4">
-          <div class="bg-white border border-[#e7e4dc] rounded-[24px] p-5 soft-shadow">
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <div class="text-[10px] font-extrabold text-slate-400 uppercase tracking-[.13em]">Guide Price</div>
-                <div id="detailPrice" class="brand-font text-3xl font-extrabold text-[#0b1220] mt-1 tracking-tight">₹ 0</div>
-                <div id="detailSize" class="text-xs font-semibold text-slate-500 mt-1">Size details</div>
-              </div>
-              <div id="detailMapsBtnWrap"></div>
-            </div>
+        <div class="space-y-3.5">
+          <!-- PRICE CARD -->
+          <div class="bg-white border border-[#e7e4dc] rounded-[22px] p-4 sm:p-5 soft-shadow">
+            <div class="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider">Guide Price</div>
+            <div id="detailPrice" class="brand-font text-3xl font-extrabold text-[#0b1220] mt-0.5">₹ 0</div>
+            <div id="detailSize" class="text-xs font-semibold text-slate-500 mt-0.5">Extent details</div>
 
-            <div class="grid grid-cols-2 gap-3 mt-5">
-              <div class="rounded-xl bg-[#f7f8fa] border border-slate-100 p-3.5">
-                <div class="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Land Area</div>
-                <div id="detailBoxArea" class="text-xs font-extrabold text-slate-900 mt-1">-</div>
+            <div class="grid grid-cols-2 gap-2 mt-4">
+              <div class="rounded-xl bg-[#f8fafc] border border-slate-100 p-3">
+                <div class="text-[8.5px] font-bold text-slate-400 uppercase">Extent / Area</div>
+                <div id="detailBoxArea" class="text-xs font-extrabold text-slate-900 mt-0.5">-</div>
               </div>
-              <div class="rounded-xl bg-[#f7f8fa] border border-slate-100 p-3.5">
-                <div class="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Property Type</div>
-                <div id="detailBoxType" class="text-xs font-extrabold text-slate-900 mt-1">-</div>
+              <div class="rounded-xl bg-[#f8fafc] border border-slate-100 p-3">
+                <div class="text-[8.5px] font-bold text-slate-400 uppercase">Property Type</div>
+                <div id="detailBoxType" class="text-xs font-extrabold text-slate-900 mt-0.5">-</div>
               </div>
             </div>
           </div>
 
-          <div class="bg-white border border-[#e7e4dc] rounded-[24px] p-5 soft-shadow">
+          <!-- OVERVIEW -->
+          <div class="bg-white border border-[#e7e4dc] rounded-[22px] p-4 sm:p-5 soft-shadow">
             <div class="section-label">Property Overview</div>
-            <div class="gold-line mt-1.5 mb-3.5"></div>
-            <p id="detailDesc" class="text-xs sm:text-sm text-slate-600 leading-relaxed whitespace-pre-line">-</p>
+            <div class="gold-line mt-1.5 mb-2.5"></div>
+            <p id="detailDesc" class="text-xs text-slate-600 leading-relaxed whitespace-pre-line">-</p>
           </div>
 
-          <div class="bg-white border border-[#e7e4dc] rounded-[24px] p-5 soft-shadow">
-            <div class="section-label">Property Infrastructure</div>
-            <div class="gold-line mt-1.5 mb-3.5"></div>
-            <div class="space-y-2.5">
-              <div class="flex gap-3 rounded-xl bg-[#f8fafc] border border-slate-100 p-3">
-                <div class="w-8 h-8 rounded-lg bg-[#f1eadc] text-[#a8752c] flex items-center justify-center shrink-0 text-sm">↔</div>
-                <div>
-                  <div class="text-[8.5px] font-bold text-slate-400 uppercase">Road Access / Width</div>
-                  <div id="detailRoadAccess" class="text-xs font-bold text-slate-800 mt-0.5">Direct road access</div>
-                </div>
-              </div>
-
-              <div class="flex gap-3 rounded-xl bg-[#f8fafc] border border-slate-100 p-3">
-                <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 text-sm">≋</div>
-                <div>
-                  <div class="text-[8.5px] font-bold text-slate-400 uppercase">Water Supply</div>
-                  <div id="detailWaterSupply" class="text-xs font-bold text-slate-800 mt-0.5">Open well / Municipal pipeline</div>
-                </div>
-              </div>
-
-              <div class="flex gap-3 rounded-xl bg-[#f8fafc] border border-slate-100 p-3">
-                <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 text-sm">⚡</div>
-                <div>
-                  <div class="text-[8.5px] font-bold text-slate-400 uppercase">Electricity</div>
-                  <div id="detailElectricity" class="text-xs font-bold text-slate-800 mt-0.5">KSEB connection point ready</div>
-                </div>
-              </div>
-
-              <div class="flex gap-3 rounded-xl bg-[#f8fafc] border border-slate-100 p-3">
-                <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 text-sm">✓</div>
-                <div>
-                  <div class="text-[8.5px] font-bold text-slate-400 uppercase">Document Status</div>
-                  <div id="detailApprovals" class="text-xs font-bold text-slate-800 mt-0.5">Clear Title & Tax Receipts</div>
-                </div>
-              </div>
+          <!-- SPECS -->
+          <div class="bg-white border border-[#e7e4dc] rounded-[22px] p-4 sm:p-5 soft-shadow space-y-2">
+            <div class="section-label">Features & Infrastructure</div>
+            <div class="gold-line mt-1.5 mb-2.5"></div>
+            <div class="flex items-center gap-2 text-xs text-slate-700 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <span>↔</span> <span id="detailRoadAccess" class="font-bold">Tar Road</span>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-slate-700 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <span>≋</span> <span id="detailWaterSupply" class="font-bold">Water Available</span>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-slate-700 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <span>⚡</span> <span id="detailElectricity" class="font-bold">KSEB Ready</span>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-slate-700 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+              <span>✓</span> <span id="detailApprovals" class="font-bold">Clear Title</span>
             </div>
           </div>
 
-          <!-- PUBLIC CONTACT DESK -->
-          <div class="bg-[#0b1220] rounded-[24px] p-5 text-white premium-shadow">
-            <div class="text-[9.5px] font-bold uppercase tracking-[.15em] text-[#d5a04f]">Private Enquiry</div>
-            <h3 class="brand-font text-lg font-extrabold mt-1.5">Interested in this property?</h3>
-            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Contact the Nestora property desk directly for availability, documents and site visit enquiries.</p>
-
-            <div class="grid sm:grid-cols-2 gap-2 mt-4">
-              <a id="detailWhatsappBtn" href="#" target="_blank" class="flex items-center justify-center gap-2 bg-[#1fba68] hover:bg-[#18a95c] text-white rounded-xl py-3 text-xs font-extrabold transition">
-                <span>WhatsApp</span> <span>↗</span>
+          <!-- CONTACT BUTTONS -->
+          <div class="bg-[#0b1220] rounded-[22px] p-4 text-white">
+            <div class="text-[9px] font-bold text-[#d5a04f] uppercase tracking-wider">Contact Desk</div>
+            <div class="brand-font text-base font-extrabold mt-0.5">Interested in this property?</div>
+            <div class="grid grid-cols-2 gap-2 mt-3.5">
+              <a id="detailWhatsappBtn" href="#" target="_blank" class="flex items-center justify-center gap-1.5 bg-[#1fba68] hover:bg-[#18a95c] text-white rounded-xl py-3 text-xs font-bold transition">
+                <span>💬 WhatsApp</span>
               </a>
-              <a id="detailCallBtn" href="tel:9946446793" class="flex items-center justify-center gap-2 bg-white/10 border border-white/10 hover:bg-white/15 text-white rounded-xl py-3 text-xs font-extrabold transition">
-                <span>Call Desk</span> <span>☎</span>
+              <a id="detailCallBtn" href="tel:9946446793" class="flex items-center justify-center gap-1.5 bg-white/15 hover:bg-white/20 text-white rounded-xl py-3 text-xs font-bold transition">
+                <span>📞 Call</span>
               </a>
             </div>
           </div>
@@ -593,368 +459,210 @@
   </div>
 
   <!-- =========================================================
-       ADMIN PORTAL
+       ADMIN PORTAL (MATCHING RIGHT SCREEN)
   ========================================================== -->
   <div id="adminContainer" class="hidden min-h-screen bg-[#f4f5f7] text-slate-900">
-    <header class="sticky top-0 z-40 bg-[#0b1220] border-b border-white/10 shadow-xl">
-      <div class="desktop-container mx-auto px-4 sm:px-6 lg:px-8 h-[70px] flex items-center justify-between">
-        
+    <header class="sticky top-0 z-40 bg-[#0b1220] border-b border-white/10 shadow-lg">
+      <div class="desktop-container mx-auto px-4 sm:px-6 h-[72px] flex items-center justify-between">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-[12px] bg-[#0b1220] border border-[#d5a04f]/40 flex items-center justify-center shadow-lg">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d5a04f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <div class="w-10 h-10 rounded-[14px] bg-[#0b1220] border border-[#d5a04f]/40 flex items-center justify-center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d5a04f" stroke-width="2.2">
               <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/>
               <polyline points="9 21 9 12 15 12 15 21"/>
             </svg>
           </div>
           <div>
-            <div class="text-sm font-extrabold text-white tracking-wide">Nestora Control</div>
-            <div class="text-[8.5px] font-bold tracking-[.15em] text-[#d5a04f] uppercase mt-0.5">Super Admin Portal</div>
+            <div class="text-sm font-extrabold text-white">Nestora Control</div>
+            <div class="text-[8.5px] font-bold tracking-[.15em] text-[#d5a04f] uppercase">SUPER ADMIN PORTAL</div>
           </div>
         </div>
 
         <div class="flex items-center gap-2">
-          <button onclick="switchToPublicView()" class="hidden sm:inline-flex items-center gap-2 border border-white/10 bg-white/5 hover:bg-white/10 text-slate-200 px-3.5 py-2 rounded-xl text-xs font-semibold transition">
-            Live Catalogue <span>↗</span>
+          <button onclick="switchToPublicView()" class="hidden sm:inline-flex items-center gap-1.5 border border-white/10 bg-white/5 text-slate-200 px-3 py-2 rounded-xl text-xs font-semibold">
+            Live Catalogue
           </button>
-          <button onclick="logoutAdmin()" class="inline-flex items-center gap-2 bg-white/10 hover:bg-red-500/15 border border-white/10 text-slate-200 hover:text-red-300 px-3.5 py-2 rounded-xl text-xs font-bold transition">
+          <button onclick="logoutAdmin()" class="bg-white/10 hover:bg-red-500/15 border border-white/10 text-slate-200 hover:text-red-300 px-3 py-2 rounded-xl text-xs font-bold">
             Sign Out
           </button>
         </div>
       </div>
 
-      <div class="desktop-container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center gap-1 overflow-x-auto no-scrollbar">
-          <button onclick="switchAdminTab('overview')" id="tabBtnOverview" class="admin-tab shrink-0 px-4 py-2.5 text-xs font-bold text-[#d5a04f] border-b-2 border-[#d5a04f]">Overview</button>
-          <button onclick="switchAdminTab('properties')" id="tabBtnProps" class="admin-tab shrink-0 px-4 py-2.5 text-xs font-semibold text-slate-400 border-b-2 border-transparent">Properties</button>
+      <div class="desktop-container mx-auto px-4 sm:px-6">
+        <div class="flex items-center gap-1">
+          <button onclick="switchAdminTab('overview')" id="tabBtnOverview" class="px-4 py-2.5 text-xs font-bold text-[#d5a04f] border-b-2 border-[#d5a04f]">Overview</button>
+          <button onclick="switchAdminTab('properties')" id="tabBtnProps" class="px-4 py-2.5 text-xs font-semibold text-slate-400 border-b-2 border-transparent">Properties</button>
         </div>
       </div>
     </header>
 
-    <main class="desktop-container mx-auto w-full px-4 sm:px-6 lg:px-8 py-5 sm:py-7 pb-16">
-      
-      <!-- STATS -->
-      <section id="overviewStatsSection" class="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <div class="bg-white border border-[#e7e4dc] rounded-[20px] p-4 soft-shadow">
-          <div class="flex items-center justify-between">
-            <span class="text-[9px] font-extrabold uppercase tracking-wider text-slate-400">Inventory</span>
-            <span class="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600 font-black text-xs">#</span>
+    <main class="desktop-container mx-auto w-full px-4 sm:px-6 py-5 pb-16">
+      <!-- 2x2 METRICS CARDS -->
+      <section id="overviewStatsSection" class="grid grid-cols-2 gap-3">
+        <div class="bg-white border border-[#e7e4dc] rounded-[22px] p-4 soft-shadow">
+          <div class="flex items-center justify-between text-[9px] font-extrabold uppercase text-slate-400">
+            <span>TOTAL PROPERTIES</span>
+            <span class="w-6 h-6 rounded-md bg-slate-100 flex items-center justify-center text-slate-700 font-bold">#</span>
           </div>
           <div id="statTotal" class="brand-font text-2xl font-extrabold text-slate-900 mt-2">0</div>
           <div class="text-[9.5px] text-slate-400 mt-0.5">Total properties</div>
         </div>
 
-        <div class="bg-white border border-[#e7e4dc] rounded-[20px] p-4 soft-shadow">
-          <div class="flex items-center justify-between">
-            <span class="text-[9px] font-extrabold uppercase tracking-wider text-emerald-600">Available</span>
-            <span class="w-7 h-7 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600 font-bold text-xs">✓</span>
+        <div class="bg-white border border-[#e7e4dc] rounded-[22px] p-4 soft-shadow">
+          <div class="flex items-center justify-between text-[9px] font-extrabold uppercase text-emerald-600">
+            <span>ACTIVE</span>
+            <span class="w-6 h-6 rounded-md bg-emerald-50 flex items-center justify-center text-emerald-600 font-bold">✓</span>
           </div>
           <div id="statActive" class="brand-font text-2xl font-extrabold text-emerald-600 mt-2">0</div>
           <div class="text-[9.5px] text-slate-400 mt-0.5">Active listings</div>
         </div>
 
-        <div class="bg-white border border-[#e7e4dc] rounded-[20px] p-4 soft-shadow">
-          <div class="flex items-center justify-between">
-            <span class="text-[9px] font-extrabold uppercase tracking-wider text-[#a8752c]">Reserved</span>
-            <span class="w-7 h-7 rounded-lg bg-[#f8efdf] flex items-center justify-center text-[#a8752c] text-xs">◷</span>
+        <div class="bg-white border border-[#e7e4dc] rounded-[22px] p-4 soft-shadow">
+          <div class="flex items-center justify-between text-[9px] font-extrabold uppercase text-[#a8752c]">
+            <span>RESERVED</span>
+            <span class="w-6 h-6 rounded-md bg-[#f8efdf] flex items-center justify-center text-[#a8752c] text-xs">🕒</span>
           </div>
           <div id="statReserved" class="brand-font text-2xl font-extrabold text-[#a8752c] mt-2">0</div>
           <div class="text-[9.5px] text-slate-400 mt-0.5">Reserved listings</div>
         </div>
 
-        <div class="bg-white border border-[#e7e4dc] rounded-[20px] p-4 soft-shadow">
-          <div class="flex items-center justify-between">
-            <span class="text-[9px] font-extrabold uppercase tracking-wider text-red-500">Sold</span>
-            <span class="w-7 h-7 rounded-lg bg-red-50 flex items-center justify-center text-red-500 font-bold text-xs">✕</span>
+        <div class="bg-white border border-[#e7e4dc] rounded-[22px] p-4 soft-shadow">
+          <div class="flex items-center justify-between text-[9px] font-extrabold uppercase text-red-500">
+            <span>SOLD</span>
+            <span class="w-6 h-6 rounded-md bg-red-50 flex items-center justify-center text-red-500 font-bold">✕</span>
           </div>
           <div id="statSold" class="brand-font text-2xl font-extrabold text-slate-900 mt-2">0</div>
           <div class="text-[9.5px] text-slate-400 mt-0.5">Closed listings</div>
         </div>
       </section>
 
-      <!-- PROPERTY DIRECTORY SECTION -->
-      <section id="propertyTableSection" class="bg-white border border-[#e7e4dc] rounded-[24px] p-4 sm:p-5 soft-shadow mt-5">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+      <!-- PROPERTY DIRECTORY -->
+      <section id="propertyTableSection" class="mt-5 bg-white border border-[#e7e4dc] rounded-[24px] p-4 sm:p-5 soft-shadow">
+        <div class="flex items-center justify-between mb-3.5">
           <div>
-            <div class="section-label">Inventory</div>
-            <h2 class="brand-font text-lg font-extrabold text-slate-900 mt-0.5">Property Directory</h2>
-            <p class="text-xs text-slate-400 mt-0.5">Manage listings, view multiple photos, or call original owners directly.</p>
+            <div class="text-[9px] font-extrabold uppercase tracking-wider text-slate-400">INVENTORY</div>
+            <h2 class="brand-font text-base font-extrabold text-slate-900">Property Directory</h2>
           </div>
-          <button onclick="openAddProperty()" class="self-start sm:self-auto bg-[#0b1220] hover:bg-[#162238] text-white px-4 py-2 rounded-xl text-xs font-bold transition shadow-sm">
+          <button onclick="openAddProperty()" class="bg-[#0b1220] hover:bg-[#162238] text-white px-3.5 py-2 rounded-xl text-xs font-bold transition">
             + Add Property
           </button>
         </div>
 
-        <div class="hidden md:block overflow-x-auto">
-          <table class="w-full text-left">
-            <thead>
-              <tr class="border-y border-slate-100 bg-[#faf9f6]">
-                <th class="py-3 px-3 text-[9px] uppercase tracking-wider font-extrabold text-slate-400">Property</th>
-                <th class="py-3 px-3 text-[9px] uppercase tracking-wider font-extrabold text-slate-400">Price</th>
-                <th class="py-3 px-3 text-[9px] uppercase tracking-wider font-extrabold text-slate-400">Owner (Direct Call)</th>
-                <th class="py-3 px-3 text-[9px] uppercase tracking-wider font-extrabold text-slate-400">Status</th>
-                <th class="py-3 px-3 text-[9px] uppercase tracking-wider font-extrabold text-slate-400 text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody id="adminAssetTableBody" class="divide-y divide-slate-100"></tbody>
-          </table>
+        <!-- SEARCH INPUT -->
+        <div class="relative mb-3.5">
+          <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs">🔍</span>
+          <input
+            type="text"
+            oninput="applyAdminSearch(this.value)"
+            placeholder="Search by reference, title or location..."
+            class="w-full h-11 rounded-xl bg-[#f8fafc] border border-slate-200 pl-9 pr-3 text-xs outline-none focus:bg-white focus:border-[#d5a04f]"
+          >
         </div>
 
-        <div id="adminMobilePropertyList" class="md:hidden space-y-3"></div>
+        <div id="adminPropertyList" class="space-y-3"></div>
       </section>
 
-      <!-- PROPERTY ADD / EDIT FORM -->
-      <section id="propertyFormSection" class="hidden bg-white border border-[#e7e4dc] rounded-[26px] p-5 sm:p-6 soft-shadow mt-5">
-        <div class="flex items-start justify-between gap-4 pb-4 border-b border-slate-100">
-          <div>
-            <div class="section-label">Property Editor</div>
-            <h2 id="formHeading" class="brand-font text-xl font-extrabold text-slate-900 mt-0.5">Add Property</h2>
-            <p class="text-xs text-slate-400 mt-0.5">Save accurate specifications and confidential owner details.</p>
-          </div>
-          <button type="button" onclick="switchAdminTab('properties')" class="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center font-bold shrink-0">✕</button>
+      <!-- ADD / EDIT PROPERTY FORM -->
+      <section id="propertyFormSection" class="hidden mt-5 bg-white border border-[#e7e4dc] rounded-[24px] p-4 sm:p-6 soft-shadow">
+        <div class="flex items-center justify-between pb-3.5 border-b border-slate-100">
+          <h2 id="formHeading" class="brand-font text-lg font-extrabold text-slate-900">Add Property</h2>
+          <button type="button" onclick="switchAdminTab('properties')" class="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 font-bold">✕</button>
         </div>
 
-        <form id="propertyForm" onsubmit="handleFormSubmit(event)" class="space-y-6 mt-5">
+        <form id="propertyForm" onsubmit="handleFormSubmit(event)" class="space-y-5 mt-4">
           <input type="hidden" id="editingRecordId" value="">
 
-          <!-- 1. BASIC -->
-          <div>
-            <div class="flex items-center gap-2.5 mb-3">
-              <div class="w-8 h-8 rounded-lg bg-[#f7eee0] text-[#a8752c] flex items-center justify-center font-bold text-xs">01</div>
-              <div>
-                <div class="section-label">Basic Information</div>
-                <div class="text-[11px] font-bold text-slate-500">Identity and category</div>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-              <div>
-                <label class="admin-label">Property ID *</label>
-                <input type="text" id="propRef" required readonly class="admin-input bg-slate-100 text-[#a8752c] font-mono font-bold cursor-not-allowed">
-              </div>
-
-              <div>
-                <label class="admin-label">Property Type *</label>
-                <select id="propCategory" class="admin-input">
-                  <option value="Residential Land">Residential Land</option>
-                  <option value="Villa">Villa</option>
-                  <option value="Apartment">Apartment</option>
-                  <option value="Commercial">Commercial</option>
-                  <option value="Plot">Plot</option>
-                  <option value="Independent House">Independent House</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="mt-3.5">
-              <label class="admin-label">Property Title *</label>
-              <input type="text" id="propTitle" placeholder="15 Cent Residential Plot near Desom Junction" required class="admin-input">
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-3.5">
-              <div>
-                <label class="admin-label">Status *</label>
-                <select id="propStatus" class="admin-input">
-                  <option value="active">Available</option>
-                  <option value="sold">Sold Out</option>
-                </select>
-              </div>
-
-              <div class="flex items-center pt-2 sm:pt-6">
-                <label class="flex items-center gap-2.5 cursor-pointer text-xs font-bold text-slate-700">
-                  <input type="checkbox" id="propIsFeatured" class="w-4 h-4 rounded accent-[#c9974b]">
-                  Mark as Featured Opportunity
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <!-- 2. LOCATION -->
-          <div>
-            <div class="flex items-center gap-2.5 mb-3">
-              <div class="w-8 h-8 rounded-lg bg-[#f7eee0] text-[#a8752c] flex items-center justify-center font-bold text-xs">02</div>
-              <div>
-                <div class="section-label">Location</div>
-                <div class="text-[11px] font-bold text-slate-500">Geographic details</div>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-              <div>
-                <label class="admin-label">District</label>
-                <input type="text" id="propDistrict" value="Ernakulam" class="admin-input">
-              </div>
-              <div>
-                <label class="admin-label">City / Town</label>
-                <input type="text" id="propCity" value="Aluva" class="admin-input">
-              </div>
-            </div>
-
-            <div class="mt-3.5">
-              <label class="admin-label">Locality / Area *</label>
-              <input type="text" id="propLocality" placeholder="Desom, Choornikkara" required class="admin-input">
-            </div>
-
-            <div class="mt-3.5">
-              <label class="admin-label">Full Location String *</label>
-              <input type="text" id="propLocation" placeholder="Near Desom Junction, Aluva, Ernakulam, Kerala" required class="admin-input">
-            </div>
-
-            <div class="mt-3.5">
-              <label class="admin-label">Google Maps URL</label>
-              <input type="url" id="propMapsUrl" placeholder="https://maps.google.com/?q=..." class="admin-input">
-            </div>
-          </div>
-
-          <!-- 3. SPECS & PRICING -->
-          <div>
-            <div class="flex items-center gap-2.5 mb-3">
-              <div class="w-8 h-8 rounded-lg bg-[#f7eee0] text-[#a8752c] flex items-center justify-center font-bold text-xs">03</div>
-              <div>
-                <div class="section-label">Specifications & Pricing</div>
-                <div class="text-[11px] font-bold text-slate-500">Size, price and utilities</div>
-              </div>
-            </div>
-
+          <div class="grid grid-cols-2 gap-3">
             <div>
-              <label class="admin-label">Price (Exact INR ₹) *</label>
-              <input type="number" id="propPrice" placeholder="9600000" required class="admin-input">
+              <label class="admin-label">Property ID</label>
+              <input type="text" id="propRef" readonly class="admin-input bg-slate-100 font-mono font-bold text-[#b17c31]">
             </div>
-
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3.5 mt-3.5">
-              <div>
-                <label class="admin-label">Land Area</label>
-                <input type="text" id="propSize" placeholder="12" class="admin-input">
-              </div>
-              <div>
-                <label class="admin-label">Area Unit</label>
-                <select id="propAreaUnit" class="admin-input">
-                  <option value="Cent">Cent</option>
-                  <option value="Acre">Acre</option>
-                  <option value="Hectare">Hectare</option>
-                  <option value="Sq.Ft">Sq.Ft</option>
-                </select>
-              </div>
-              <div class="col-span-2 sm:col-span-1">
-                <label class="admin-label">Building Area (Sq.Ft)</label>
-                <input type="text" id="propBuildingArea" placeholder="2400" class="admin-input">
-              </div>
-            </div>
-
-            <div class="mt-3.5">
-              <label class="admin-label">Road Width / Access</label>
-              <input type="text" id="propRoadAccess" placeholder="16 feet tar road, lorry access" class="admin-input">
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-3.5">
-              <div>
-                <label class="admin-label">Water Supply</label>
-                <input type="text" id="propWaterSupply" placeholder="Open well, KWA municipal line" class="admin-input">
-              </div>
-              <div>
-                <label class="admin-label">Electricity</label>
-                <input type="text" id="propElectricity" placeholder="3-phase KSEB ready" class="admin-input">
-              </div>
-            </div>
-
-            <div class="mt-3.5">
-              <label class="admin-label">Document Approvals Status</label>
-              <input type="text" id="propApprovals" placeholder="Clear Title, Approved Plan, Possession Certificate" class="admin-input">
+            <div>
+              <label class="admin-label">Type</label>
+              <select id="propCategory" class="admin-input">
+                <option value="Residential Land">Residential Land</option>
+                <option value="Independent House">House</option>
+                <option value="Villa">Villa</option>
+                <option value="Apartment">Apartment</option>
+                <option value="Commercial">Commercial</option>
+              </select>
             </div>
           </div>
 
-          <!-- 4. MEDIA (MULTIPLE IMAGES SUPPORT) -->
           <div>
-            <div class="flex items-center gap-2.5 mb-3">
-              <div class="w-8 h-8 rounded-lg bg-[#f7eee0] text-[#a8752c] flex items-center justify-center font-bold text-xs">04</div>
-              <div>
-                <div class="section-label">Property Photos</div>
-                <div class="text-[11px] font-bold text-slate-500">Multiple photos supported</div>
-              </div>
-            </div>
+            <label class="admin-label">Property Title *</label>
+            <input type="text" id="propTitle" required placeholder="e.g. 7 Cent Commercial Plot opposite Mall" class="admin-input">
+          </div>
 
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="admin-label">Status</label>
+              <select id="propStatus" class="admin-input">
+                <option value="active">Active (Available)</option>
+                <option value="sold">Sold Out</option>
+              </select>
+            </div>
+            <div>
+              <label class="admin-label">Price (INR ₹) *</label>
+              <input type="number" id="propPrice" required placeholder="2000000" class="admin-input">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="admin-label">Area (Extent)</label>
+              <input type="text" id="propSize" placeholder="7 Cent" class="admin-input">
+            </div>
+            <div>
+              <label class="admin-label">Location (Locality, Town) *</label>
+              <input type="text" id="propLocation" required placeholder="Edappally, Ernakulam" class="admin-input">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="admin-label">Road Access</label>
+              <input type="text" id="propRoadAccess" placeholder="Tar road frontage" class="admin-input">
+            </div>
+            <div>
+              <label class="admin-label">Water / Utilities</label>
+              <input type="text" id="propWaterSupply" placeholder="KWA water connection" class="admin-input">
+            </div>
+          </div>
+
+          <!-- PHOTOS -->
+          <div>
+            <label class="admin-label">Property Photos</label>
             <input type="file" id="propGalleryInput" accept="image/*" multiple class="hidden" onchange="handleMultipleFileUpload(event)">
-            <input type="file" id="propFilesInput" multiple class="hidden" onchange="handleMultipleFileUpload(event)">
+            
+            <button type="button" onclick="document.getElementById('propGalleryInput').click()" class="w-full border-2 border-dashed border-[#ead7b4] hover:border-[#d5a04f] rounded-xl p-3 text-center bg-[#fcfaf6] transition cursor-pointer flex items-center justify-center gap-2 text-xs font-bold text-slate-800">
+              <span>🖼️ Upload Photos from Gallery / Files</span>
+            </button>
+            <div id="uploadStatusText" class="text-[11px] font-bold text-[#b17c31] text-center mt-1 hidden">Uploading...</div>
 
-            <div class="space-y-3">
-              <div class="grid grid-cols-2 gap-2.5">
-                <button type="button" onclick="document.getElementById('propGalleryInput').click()" class="border-2 border-dashed border-[#ead7b4] hover:border-[#d5a04f] rounded-xl p-3 text-center bg-[#fcfaf6] transition cursor-pointer">
-                  <div class="w-8 h-8 rounded-lg bg-white text-[#d5a04f] border border-[#ead7b4] flex items-center justify-center mx-auto mb-1 text-base shadow-sm">
-                    🖼️
-                  </div>
-                  <div class="text-xs font-black text-slate-800">Add from Gallery</div>
-                  <div class="text-[9px] text-slate-400 mt-0.5">Multiple selection</div>
-                </button>
-
-                <button type="button" onclick="document.getElementById('propFilesInput').click()" class="border-2 border-dashed border-[#ead7b4] hover:border-[#d5a04f] rounded-xl p-3 text-center bg-[#fcfaf6] transition cursor-pointer">
-                  <div class="w-8 h-8 rounded-lg bg-white text-[#d5a04f] border border-[#ead7b4] flex items-center justify-center mx-auto mb-1 text-base shadow-sm">
-                    📁
-                  </div>
-                  <div class="text-xs font-black text-slate-800">Add from Files</div>
-                  <div class="text-[9px] text-slate-400 mt-0.5">File Manager / Storage</div>
-                </button>
-              </div>
-
-              <div id="uploadStatusText" class="text-[11px] font-bold text-[#b17c31] text-center hidden">Uploading... please wait</div>
-
-              <!-- MULTI-IMAGE PREVIEW GRID -->
-              <div id="multiImagePreviewContainer" class="hidden">
-                <div class="flex items-center justify-between text-xs font-bold text-slate-700 mb-2">
-                  <span>Selected Photos (<span id="photoCountBadge">0</span>)</span>
-                  <span class="text-[10px] text-slate-400 font-normal">Tap to view full slider</span>
-                </div>
-                <div id="multiImageGrid" class="grid grid-cols-3 sm:grid-cols-4 gap-2"></div>
-              </div>
-
-              <div>
-                <label class="admin-label text-[11px] text-slate-500">Image Web URLs (Auto-populated, comma-separated)</label>
-                <input type="text" id="propImageUrl" required placeholder="https://..." class="admin-input bg-slate-50 text-xs" oninput="syncFromUrlInput()">
-              </div>
+            <div id="multiImagePreviewContainer" class="hidden mt-2">
+              <div id="multiImageGrid" class="grid grid-cols-4 gap-2"></div>
             </div>
+
+            <input type="text" id="propImageUrl" required placeholder="Image URLs" class="admin-input text-xs bg-slate-50 mt-2" oninput="syncFromUrlInput()">
           </div>
 
-          <!-- 5. DESCRIPTION -->
           <div>
-            <div class="flex items-center gap-2.5 mb-3">
-              <div class="w-8 h-8 rounded-lg bg-[#f7eee0] text-[#a8752c] flex items-center justify-center font-bold text-xs">05</div>
-              <div>
-                <div class="section-label">Description</div>
-                <div class="text-[11px] font-bold text-slate-500">Key features and highlights</div>
-              </div>
-            </div>
-
-            <textarea id="propDescription" rows="4" placeholder="Provide detailed specifications of the property..." class="admin-input resize-y"></textarea>
+            <label class="admin-label">Description</label>
+            <textarea id="propDescription" rows="3" placeholder="Overview of the property..." class="admin-input resize-y"></textarea>
           </div>
 
-          <!-- 6. CONFIDENTIAL OWNER CONTACT -->
-          <div class="rounded-[20px] border border-[#ead7b4] bg-[#fcf7ed] p-4 sm:p-5">
-            <div class="flex items-center gap-2.5 mb-3">
-              <div class="w-8 h-8 rounded-lg bg-white text-[#a8752c] flex items-center justify-center font-bold shadow-sm text-xs">06</div>
-              <div>
-                <div class="section-label">Confidential Owner Information</div>
-                <div class="text-[11px] font-bold text-slate-500 mt-0.5">Admin private. Hidden from catalog & flyers.</div>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-              <div>
-                <label class="admin-label">Original Owner / Contact Name</label>
-                <input type="text" id="propOwnerName" placeholder="Owner Name" class="admin-input bg-white">
-              </div>
-              <div>
-                <label class="admin-label">Original Owner Contact Number *</label>
-                <input type="tel" id="propOwnerPhone" placeholder="e.g. 98470XXXXX" class="admin-input bg-white">
-              </div>
+          <!-- OWNER INFO (CONFIDENTIAL) -->
+          <div class="bg-[#fcf7ed] border border-[#ead7b4] rounded-xl p-3.5">
+            <div class="text-[9px] font-bold text-[#b17c31] uppercase">Confidential Owner Data (Admin Only)</div>
+            <div class="grid grid-cols-2 gap-2.5 mt-2">
+              <input type="text" id="propOwnerName" placeholder="Owner Name" class="admin-input bg-white">
+              <input type="tel" id="propOwnerPhone" placeholder="Owner Phone" class="admin-input bg-white">
             </div>
           </div>
 
-          <!-- FORM SUBMIT -->
-          <div class="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-2 pt-2">
-            <button type="button" onclick="switchAdminTab('properties')" class="w-full sm:w-auto px-5 py-2.5 rounded-xl text-xs font-bold text-slate-500 hover:bg-slate-100 transition">
-              Cancel
-            </button>
-            <button type="submit" id="savePropertyBtn" class="w-full sm:w-auto bg-[#0b1220] hover:bg-[#162238] text-white font-extrabold px-6 py-2.5 rounded-xl text-xs shadow-lg transition">
-              Save Property
-            </button>
+          <div class="flex gap-2 justify-end pt-2">
+            <button type="button" onclick="switchAdminTab('properties')" class="px-4 py-2 text-xs font-bold text-slate-500">Cancel</button>
+            <button type="submit" id="savePropertyBtn" class="bg-[#0b1220] text-white px-6 py-2.5 rounded-xl text-xs font-bold shadow">Save Property</button>
           </div>
         </form>
       </section>
@@ -963,147 +671,73 @@
 
   <!-- ADMIN AUTH MODAL -->
   <div id="adminAuthModal" class="fixed inset-0 z-[70] hidden items-center justify-center p-4 bg-[#07101d]/75 backdrop-blur-md">
-    <div class="w-full max-w-sm bg-white rounded-[26px] p-6 premium-shadow">
-      <div class="flex justify-center">
-        <div class="w-12 h-12 rounded-[16px] bg-[#f6eddd] text-[#a8752c] flex items-center justify-center">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-          </svg>
-        </div>
-      </div>
-
-      <div class="text-center mt-3">
-        <div class="section-label">Private Access</div>
-        <h3 class="brand-font text-lg font-extrabold text-slate-900 mt-1">Nestora Admin Portal</h3>
-        <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">Enter your passcode to manage inventory.</p>
+    <div class="w-full max-w-sm bg-white rounded-[24px] p-6 shadow-2xl">
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-xl bg-[#f6eddd] text-[#a8752c] flex items-center justify-center mx-auto text-lg">🔒</div>
+        <h3 class="brand-font text-lg font-black text-slate-900 mt-2">Nestora Admin</h3>
+        <p class="text-xs text-slate-500 mt-1">Enter passcode to access portal</p>
       </div>
 
       <input
         type="password"
         id="adminPassInput"
         placeholder="Enter passcode"
-        class="w-full mt-4 h-11 rounded-xl bg-slate-50 border border-slate-200 px-4 text-center tracking-[.3em] text-sm outline-none focus:bg-white focus:border-[#c9974b]"
+        class="w-full mt-4 h-11 rounded-xl bg-slate-50 border border-slate-200 px-4 text-center tracking-[.3em] text-sm outline-none focus:bg-white focus:border-[#d5a04f]"
         onkeydown="if(event.key==='Enter') verifyAdminPasscode()"
       >
 
       <div class="grid grid-cols-2 gap-2 mt-3">
-        <button onclick="toggleAdminModal(false)" class="py-2.5 rounded-xl text-xs font-bold text-slate-500 bg-slate-50 hover:bg-slate-100">Cancel</button>
-        <button onclick="verifyAdminPasscode()" class="py-2.5 rounded-xl text-xs font-extrabold text-white bg-[#0b1220] hover:bg-[#172238]">Unlock</button>
+        <button onclick="toggleAdminModal(false)" class="py-2.5 rounded-xl text-xs font-bold text-slate-500 bg-slate-50">Cancel</button>
+        <button onclick="verifyAdminPasscode()" class="py-2.5 rounded-xl text-xs font-black text-white bg-[#0b1220]">Unlock</button>
       </div>
     </div>
   </div>
 
-  <!-- UPGRADED LUXURY REAL ESTATE FLYER (1080x1350) -->
+  <!-- FULLSCREEN IMAGE SLIDER (SWIPEABLE) -->
+  <div id="imageLightboxModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/95 backdrop-blur-md select-none touch-pan-y" onclick="closeImageLightbox()">
+    <div class="absolute top-4 left-4 right-4 flex items-center justify-between z-[110]" onclick="event.stopPropagation()">
+      <div id="lightboxCounter" class="bg-white/10 text-white font-mono text-xs px-3 py-1 rounded-full border border-white/15">1 / 1</div>
+      <button type="button" onclick="closeImageLightbox()" class="w-9 h-9 rounded-full bg-white/20 text-white font-bold flex items-center justify-center text-sm">✕</button>
+    </div>
+
+    <button id="lightboxPrevBtn" type="button" onclick="event.stopPropagation(); prevLightboxImage()" class="absolute left-3 z-[110] w-10 h-10 rounded-full bg-white/15 text-white font-black flex items-center justify-center text-lg">❮</button>
+    <button id="lightboxNextBtn" type="button" onclick="event.stopPropagation(); nextLightboxImage()" class="absolute right-3 z-[110] w-10 h-10 rounded-full bg-white/15 text-white font-black flex items-center justify-center text-lg">❯</button>
+
+    <div class="relative max-w-4xl w-full max-h-[85vh] flex items-center justify-center p-2" onclick="event.stopPropagation()">
+      <img id="lightboxImage" src="" alt="Full view" class="max-w-full max-h-[85vh] object-contain rounded-xl shadow-2xl">
+    </div>
+  </div>
+
+  <!-- UPGRADED LUXURY FLYER -->
   <div id="flyerContainer" style="position:absolute;left:-9999px;top:-9999px;">
     <div id="flyerPoster" style="width:1080px;height:1350px;background:#f8f9fb;color:#0f172a;position:relative;overflow:hidden;font-family:'DM Sans',sans-serif;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;padding:52px 56px 48px;">
-      
-      <div style="position:absolute;right:-140px;top:-140px;width:480px;height:480px;border-radius:50%;border:1.5px solid rgba(213,160,79,0.18);"></div>
-      <div style="position:absolute;left:-100px;bottom:-100px;width:400px;height:400px;border-radius:50%;border:1.5px solid rgba(213,160,79,0.12);"></div>
-
-      <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #eae7df;padding-bottom:24px;position:relative;z-index:2;">
-        <div style="display:flex;align-items:center;gap:18px;">
-          <div style="width:68px;height:68px;border-radius:20px;background:#0b1220;border:1.5px solid rgba(213,160,79,0.4);display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px rgba(11,18,32,0.22);">
-            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#d5a04f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/>
-              <polyline points="9 21 9 12 15 12 15 21"/>
-            </svg>
-          </div>
-          <div>
-            <div style="font-size:32px;font-weight:900;letter-spacing:2.5px;color:#0b1220;line-height:1;font-family:'Manrope',sans-serif;">NESTORA</div>
-            <div style="font-size:12px;font-weight:800;letter-spacing:2.4px;text-transform:uppercase;color:#b17c31;margin-top:8px;">Exclusive Properties & Living</div>
-          </div>
-        </div>
-        <div id="flyerRefBadge" style="border:2px solid #d5a04f;background:#ffffff;padding:12px 22px;border-radius:14px;font-size:14px;font-weight:900;color:#0b1220;font-family:monospace;box-shadow:0 4px 14px rgba(0,0,0,0.04);">
-          REF: NP-001
-        </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #eae7df;padding-bottom:24px;">
+        <div style="font-size:32px;font-weight:900;letter-spacing:2px;color:#0b1220;">NESTORA</div>
+        <div id="flyerRefBadge" style="border:2px solid #d5a04f;background:#fff;padding:10px 20px;border-radius:12px;font-size:14px;font-weight:900;font-family:monospace;">NP-001</div>
       </div>
-
-      <div style="margin:28px 0;border-radius:32px;overflow:hidden;height:600px;position:relative;background:#0b1220;box-shadow:0 30px 65px rgba(11,18,32,0.22);z-index:2;">
+      <div style="margin:24px 0;border-radius:28px;overflow:hidden;height:620px;position:relative;background:#0b1220;">
         <img id="flyerImg" src="" crossorigin="anonymous" style="width:100%;height:100%;object-fit:cover;">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(11,18,32,0.05) 45%, rgba(11,18,32,0.85) 100%);"></div>
-
-        <div id="flyerCatBadge" style="position:absolute;top:28px;left:28px;background:#d86b2c;color:#ffffff;font-size:13px;font-weight:900;padding:12px 22px;border-radius:999px;text-transform:uppercase;letter-spacing:1.2px;box-shadow:0 6px 18px rgba(0,0,0,0.25);">
-          RESIDENTIAL LAND
-        </div>
-        <div style="position:absolute;top:28px;right:28px;background:rgba(11,18,32,0.85);backdrop-filter:blur(10px);color:#4ade80;font-size:12px;font-weight:900;padding:12px 20px;border-radius:999px;border:1px solid rgba(255,255,255,0.15);letter-spacing:0.8px;">
-          ✓ VERIFIED ASSET
-        </div>
-
-        <div style="position:absolute;left:34px;right:34px;bottom:32px;color:#ffffff;">
-          <div style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:800;color:#f3dfb7;text-transform:uppercase;letter-spacing:1.5px;">
-            <span>📍</span> <span id="flyerLocation">ERNAKULAM, KERALA</span>
-          </div>
-          <div id="flyerTitle" style="font-size:40px;font-weight:900;color:#ffffff;line-height:1.15;margin-top:10px;font-family:'Manrope',sans-serif;text-shadow:0 2px 10px rgba(0,0,0,0.5);">
-            Property Title
-          </div>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg, transparent 50%, rgba(11,18,32,0.85) 100%);"></div>
+        <div id="flyerCatBadge" style="position:absolute;top:24px;left:24px;background:#d86b2c;color:#fff;font-size:12px;font-weight:900;padding:10px 20px;border-radius:999px;text-transform:uppercase;">COMMERCIAL</div>
+        <div style="position:absolute;left:28px;right:28px;bottom:28px;color:#fff;">
+          <div id="flyerLocation" style="font-size:14px;font-weight:800;color:#f3dfb7;text-transform:uppercase;">📍 ERNAKULAM</div>
+          <div id="flyerTitle" style="font-size:38px;font-weight:900;color:#fff;line-height:1.2;margin-top:6px;">Title</div>
         </div>
       </div>
-
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:28px;z-index:2;">
-        <div style="background:#ffffff;border:1.5px solid #e7e4dc;border-radius:20px;padding:20px 22px;text-align:center;box-shadow:0 6px 16px rgba(0,0,0,0.03);">
-          <div style="font-size:11px;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;">Area / Extent</div>
-          <div id="flyerSize" style="font-size:22px;font-weight:900;color:#0b1220;margin-top:8px;font-family:'Manrope',sans-serif;">12 Cent</div>
-        </div>
-
-        <div style="background:#ffffff;border:1.5px solid #e7e4dc;border-radius:20px;padding:20px 22px;text-align:center;box-shadow:0 6px 16px rgba(0,0,0,0.03);">
-          <div style="font-size:11px;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;">Road Access</div>
-          <div id="flyerRoad" style="font-size:20px;font-weight:900;color:#0b1220;margin-top:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'Manrope',sans-serif;">Tar Road</div>
-        </div>
-
-        <div style="background:#ffffff;border:1.5px solid #e7e4dc;border-radius:20px;padding:20px 22px;text-align:center;box-shadow:0 6px 16px rgba(0,0,0,0.03);">
-          <div style="font-size:11px;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;">Legal Status</div>
-          <div style="font-size:20px;font-weight:900;color:#16a34a;margin-top:8px;font-family:'Manrope',sans-serif;">Clear Title</div>
-        </div>
-      </div>
-
-      <div style="background:#0b1220;border-radius:24px;padding:26px 36px;display:flex;justify-content:space-between;align-items:center;color:#ffffff;box-shadow:0 20px 45px rgba(11,18,32,0.3);position:relative;z-index:2;">
+      <div style="background:#0b1220;border-radius:20px;padding:24px 32px;display:flex;justify-content:space-between;align-items:center;color:#fff;">
         <div>
-          <div style="font-size:12px;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:1.5px;">Guide Price</div>
-          <div id="flyerPrice" style="font-size:42px;font-weight:900;color:#d5a04f;line-height:1.1;margin-top:4px;font-family:'Manrope',sans-serif;">₹ 0</div>
+          <div style="font-size:11px;font-weight:800;color:#94a3b8;text-transform:uppercase;">Guide Price</div>
+          <div id="flyerPrice" style="font-size:38px;font-weight:900;color:#d5a04f;margin-top:2px;">₹ 0</div>
         </div>
         <div style="text-align:right;">
-          <div style="font-size:12px;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:1.5px;">Direct Property Desk</div>
-          <div style="font-size:24px;font-weight:900;color:#ffffff;margin-top:4px;font-family:'Manrope',sans-serif;">+91 99464 46793</div>
+          <div style="font-size:11px;font-weight:800;color:#94a3b8;text-transform:uppercase;">Direct Desk</div>
+          <div style="font-size:22px;font-weight:900;color:#fff;margin-top:2px;">+91 99464 46793</div>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- FULL SCREEN SLIDING IMAGE LIGHTBOX (WITH SWIPE & SLIDE) -->
-  <div id="imageLightboxModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/95 backdrop-blur-md select-none touch-pan-y" onclick="closeImageLightbox()">
-    
-    <!-- TOP BAR -->
-    <div class="absolute top-4 left-4 right-4 flex items-center justify-between z-[110]" onclick="event.stopPropagation()">
-      <div id="lightboxCounter" class="bg-white/10 backdrop-blur-md text-white font-mono text-xs px-3.5 py-1.5 rounded-full border border-white/15">
-        1 / 1
-      </div>
-      <button type="button" onclick="closeImageLightbox()" class="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 text-white font-bold flex items-center justify-center text-lg backdrop-blur-sm transition">
-        ✕
-      </button>
-    </div>
-
-    <!-- PREV BUTTON -->
-    <button id="lightboxPrevBtn" type="button" onclick="event.stopPropagation(); prevLightboxImage()" class="absolute left-3 sm:left-6 z-[110] w-11 h-11 rounded-full bg-white/15 hover:bg-white/25 text-white font-black flex items-center justify-center text-xl backdrop-blur-sm transition">
-      ❮
-    </button>
-
-    <!-- NEXT BUTTON -->
-    <button id="lightboxNextBtn" type="button" onclick="event.stopPropagation(); nextLightboxImage()" class="absolute right-3 sm:right-6 z-[110] w-11 h-11 rounded-full bg-white/15 hover:bg-white/25 text-white font-black flex items-center justify-center text-xl backdrop-blur-sm transition">
-      ❯
-    </button>
-
-    <!-- MAIN DISPLAY IMAGE -->
-    <div class="relative max-w-5xl w-full max-h-[85vh] flex items-center justify-center p-2" onclick="event.stopPropagation()">
-      <img id="lightboxImage" src="" alt="Full view" class="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl transition duration-200">
-    </div>
-
-    <div class="absolute bottom-4 text-center text-white/50 text-[10.5px] pointer-events-none">
-      Swipe left / right or use arrows to change photo
-    </div>
-  </div>
-
-  <!-- JAVASCRIPT ENGINE -->
+  <!-- JAVASCRIPT -->
   <script>
     const SUPABASE_URL = "https://mphtlexdhzyjuxpncygf.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_K5hGWJiNHPnl2_MpCUirqg_x-y5RWrJ";
@@ -1117,7 +751,6 @@
     let isAdminLoggedIn = localStorage.getItem("nestora_admin_session") === "true";
     let uploadedImagesList = [];
 
-    /* FULLSCREEN SLIDER STATE */
     let currentLightboxGallery = [];
     let currentLightboxIndex = 0;
     let touchStartX = 0;
@@ -1125,13 +758,9 @@
 
     window.addEventListener("popstate", () => {
       const state = window.history.state;
-      if (!state || state.view === "catalogue") {
-        renderView("catalogue");
-      } else if (state.view === "details") {
-        renderView("details");
-      } else if (state.view === "admin") {
-        renderView("admin");
-      }
+      if (!state || state.view === "catalogue") renderView("catalogue");
+      else if (state.view === "details") renderView("details");
+      else if (state.view === "admin") renderView("admin");
     });
 
     function renderView(viewName) {
@@ -1155,18 +784,10 @@
     }
 
     function formatINR(val) {
-      if (val === null || val === undefined || val === "" || isNaN(val)) {
-        return "Price on Request";
-      }
+      if (val === null || val === undefined || val === "" || isNaN(val)) return "Price on Request";
       const num = Number(val);
-      if (num >= 10000000) {
-        const cr = (num / 10000000).toFixed(2).replace(/\.00$/, "");
-        return `₹ ${cr} Cr`;
-      }
-      if (num >= 100000) {
-        const lakhs = (num / 100000).toFixed(2).replace(/\.00$/, "");
-        return `₹ ${lakhs} Lakhs`;
-      }
+      if (num >= 10000000) return `₹ ${(num / 10000000).toFixed(2).replace(/\.00$/, "")} Cr`;
+      if (num >= 100000) return `₹ ${(num / 100000).toFixed(2).replace(/\.00$/, "")} Lakhs`;
       return "₹ " + num.toLocaleString("en-IN");
     }
 
@@ -1183,36 +804,24 @@
       return "NP-" + String(maxNum + 1).padStart(3, "0");
     }
 
-    /* FULLSCREEN SLIDER LIGHTBOX WITH SLIDE & SWIPE */
+    /* LIGHTBOX FUNCTIONS */
     function openLightboxSlider(images, startIndex = 0) {
       if (!images || !images.length) return;
       currentLightboxGallery = images;
       currentLightboxIndex = startIndex;
-      
       const modal = document.getElementById("imageLightboxModal");
       modal.classList.remove("hidden");
       modal.classList.add("flex");
       document.body.style.overflow = "hidden";
-      
       updateLightboxDisplay();
     }
 
     function updateLightboxDisplay() {
-      const img = document.getElementById("lightboxImage");
-      const counter = document.getElementById("lightboxCounter");
-      const prevBtn = document.getElementById("lightboxPrevBtn");
-      const nextBtn = document.getElementById("lightboxNextBtn");
-
-      img.src = currentLightboxGallery[currentLightboxIndex];
-      counter.innerText = `${currentLightboxIndex + 1} / ${currentLightboxGallery.length}`;
-
-      if (currentLightboxGallery.length <= 1) {
-        prevBtn.classList.add("hidden");
-        nextBtn.classList.add("hidden");
-      } else {
-        prevBtn.classList.remove("hidden");
-        nextBtn.classList.remove("hidden");
-      }
+      document.getElementById("lightboxImage").src = currentLightboxGallery[currentLightboxIndex];
+      document.getElementById("lightboxCounter").innerText = `${currentLightboxIndex + 1} / ${currentLightboxGallery.length}`;
+      const showBtns = currentLightboxGallery.length > 1;
+      document.getElementById("lightboxPrevBtn").classList.toggle("hidden", !showBtns);
+      document.getElementById("lightboxNextBtn").classList.toggle("hidden", !showBtns);
     }
 
     function prevLightboxImage() {
@@ -1234,127 +843,157 @@
       document.body.style.overflow = "";
     }
 
-    /* TOUCH SWIPE EVENT LISTENERS */
     const lightboxElem = document.getElementById("imageLightboxModal");
-    lightboxElem.addEventListener("touchstart", e => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
+    lightboxElem.addEventListener("touchstart", e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
     lightboxElem.addEventListener("touchend", e => {
       touchEndX = e.changedTouches[0].screenX;
-      handleGesture();
+      if (Math.abs(touchEndX - touchStartX) > 40) {
+        if (touchEndX - touchStartX < 0) nextLightboxImage();
+        else prevLightboxImage();
+      }
     }, { passive: true });
 
-    function handleGesture() {
-      const diff = touchEndX - touchStartX;
-      if (Math.abs(diff) > 45) {
-        if (diff < 0) {
-          nextLightboxImage();
-        } else {
-          prevLightboxImage();
-        }
-      }
+    /* CATEGORY BOX SELECT */
+    function setCategoryBox(cat) {
+      selectedCategory = cat;
+      document.querySelectorAll(".cat-box").forEach(b => {
+        b.classList.toggle("active", b.dataset.cat === cat);
+      });
+      const catDropdown = document.getElementById("categoryFilter");
+      if (catDropdown) catDropdown.value = cat;
+      applyFilters();
     }
 
-    window.addEventListener("keydown", e => {
-      const modal = document.getElementById("imageLightboxModal");
-      if (!modal.classList.contains("hidden")) {
-        if (e.key === "ArrowLeft") prevLightboxImage();
-        if (e.key === "ArrowRight") nextLightboxImage();
-        if (e.key === "Escape") closeImageLightbox();
+    /* FILTER ENGINE */
+    function applyFilters() {
+      const search = (document.getElementById("searchInput")?.value || "").toLowerCase().trim();
+      const location = document.getElementById("locationFilter")?.value || "all";
+      const budget = document.getElementById("budgetFilter")?.value || "all";
+      const type = document.getElementById("categoryFilter")?.value || "all";
+
+      if (type !== selectedCategory && type !== "all") {
+        selectedCategory = type;
+        document.querySelectorAll(".cat-box").forEach(b => b.classList.toggle("active", b.dataset.cat === type));
       }
-    });
 
-    /* MULTIPLE FILES UPLOAD TO SUPABASE STORAGE */
-    async function handleMultipleFileUpload(event) {
-      const files = Array.from(event.target.files);
-      if (!files.length) return;
+      let list = [...allProperties];
 
-      const status = document.getElementById("uploadStatusText");
-      status.classList.remove("hidden");
-      status.innerText = `Uploading ${files.length} photo(s)... please wait`;
-
-      try {
-        for (let file of files) {
-          if (!file.type || !file.type.startsWith('image/')) continue;
-          
-          const fileExt = file.name.split('.').pop() || 'jpg';
-          const fileName = `nestora_${Date.now()}_${Math.random().toString(36).substring(2, 8)}.${fileExt}`;
-          
-          const { error } = await client.storage
-            .from('property-images')
-            .upload(fileName, file, { cacheControl: '3600', upsert: true });
-
-          if (error) throw error;
-
-          const { data: publicData } = client.storage
-            .from('property-images')
-            .getPublicUrl(fileName);
-
-          if (publicData && publicData.publicUrl) {
-            uploadedImagesList.push(publicData.publicUrl);
-          }
-        }
-
-        renderUploadedGrid();
-        status.innerText = `✓ Successfully uploaded ${uploadedImagesList.length} photo(s)!`;
-      } catch (err) {
-        console.error("Upload error:", err);
-        status.innerText = "Upload failed: Ensure 'property-images' bucket exists in Supabase Storage.";
-        alert("Upload error: " + err.message);
-      } finally {
-        event.target.value = "";
+      if (selectedCategory !== "all") {
+        list = list.filter(p => p.category === selectedCategory);
       }
+      if (location !== "all") {
+        list = list.filter(p => (p.location || "").toLowerCase().includes(location.toLowerCase()));
+      }
+      if (budget !== "all") {
+        list = list.filter(p => {
+          const pr = Number(p.price || 0);
+          if (budget === "under_50l") return pr < 5000000;
+          if (budget === "50l_1cr") return pr >= 5000000 && pr <= 10000000;
+          if (budget === "above_1cr") return pr > 10000000;
+          return true;
+        });
+      }
+      if (search) {
+        list = list.filter(p => {
+          const s = [p.title, p.location, p.reference_code, p.category].filter(Boolean).join(" ").toLowerCase();
+          return s.includes(search);
+        });
+      }
+
+      document.getElementById("publicListingCount").innerText = `Showing ${list.length} verified properties`;
+      renderPropertyCards(list);
     }
 
-    function renderUploadedGrid() {
-      const container = document.getElementById("multiImagePreviewContainer");
-      const grid = document.getElementById("multiImageGrid");
-      const badge = document.getElementById("photoCountBadge");
-      const urlInput = document.getElementById("propImageUrl");
-
-      if (!uploadedImagesList.length) {
-        container.classList.add("hidden");
-        urlInput.value = "";
+    /* RENDER CARDS (MATCHING REFERENCE EXACTLY) */
+    function renderPropertyCards(list) {
+      const container = document.getElementById("propertiesGrid");
+      if (!list.length) {
+        container.innerHTML = `
+          <div class="bg-white border border-dashed border-slate-200 rounded-[22px] p-8 text-center">
+            <div class="text-slate-400 text-lg">⌕</div>
+            <div class="text-sm font-extrabold text-slate-700 mt-2">No properties found</div>
+            <div class="text-xs text-slate-400 mt-0.5">Try adjusting your filters</div>
+          </div>`;
         return;
       }
 
-      container.classList.remove("hidden");
-      badge.innerText = uploadedImagesList.length;
-      urlInput.value = uploadedImagesList.join(", ");
+      container.innerHTML = list.map(p => {
+        const imgs = parseImages(p.image_url);
+        const mainImg = imgs[0] || "";
+        const ref = p.reference_code || "NP-000";
+        const area = p.size ? `${p.size} Cent` : "Extent verified";
+        const type = p.category || "Commercial";
+        const isSold = p.status === "sold";
 
-      grid.innerHTML = uploadedImagesList.map((url, idx) => `
-        <div class="relative h-20 rounded-xl overflow-hidden border border-slate-200 bg-slate-100 group">
-          <img src="${url}" class="w-full h-full object-cover cursor-pointer" onclick="openLightboxSlider(uploadedImagesList, ${idx})">
-          <button type="button" onclick="removeSingleImage(${idx})" class="absolute top-1 right-1 bg-black/70 hover:bg-black text-white text-[9px] w-5 h-5 rounded-full flex items-center justify-center font-bold">
-            ✕
-          </button>
-          ${idx === 0 ? `<span class="absolute bottom-1 left-1 bg-amber-500 text-slate-950 font-extrabold text-[8px] px-1.5 py-0.5 rounded shadow">Main</span>` : ''}
-        </div>
-      `).join("");
+        return `
+          <article class="featured-card">
+            <div class="featured-card-top cursor-pointer" onclick="openDedicatedDetails('${p.id}')">
+              <!-- Square Image Left -->
+              <div class="featured-card-img">
+                <img src="${escapeHtml(mainImg)}" alt="Property" class="${isSold ? 'grayscale' : ''}" onerror="this.style.display='none'">
+                <span class="absolute top-2 left-2 bg-[#d86b2c] text-white text-[8.5px] font-black uppercase px-2 py-0.5 rounded-full shadow">
+                  ${escapeHtml(type)}
+                </span>
+                ${imgs.length > 1 ? `
+                  <span class="absolute bottom-1.5 right-1.5 bg-black/70 text-white text-[8.5px] font-bold px-1.5 py-0.5 rounded">
+                    📷 ${imgs.length}
+                  </span>
+                ` : ''}
+              </div>
+
+              <!-- Information Right -->
+              <div class="flex flex-col justify-between py-0.5 min-w-0">
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-[11px] font-mono font-extrabold text-[#b17c31]">${escapeHtml(ref)}</span>
+                    <span class="text-[10px] font-bold text-emerald-600 flex items-center gap-0.5">✓ Verified</span>
+                  </div>
+
+                  <h3 class="brand-font text-[14px] font-extrabold text-slate-900 leading-snug line-clamp-2 mt-1">
+                    ${escapeHtml(p.title || "Property")}
+                  </h3>
+
+                  <div class="text-xs text-slate-500 flex items-center gap-1 mt-1 truncate">
+                    <span>📍</span> <span class="truncate">${escapeHtml(p.location || "Kerala")}</span>
+                  </div>
+
+                  <div class="text-[11px] font-bold text-slate-600 mt-1.5 flex items-center gap-2">
+                    <span>📐 ${escapeHtml(area)}</span>
+                    <span>•</span>
+                    <span>🏢 ${escapeHtml(type)}</span>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="brand-font text-base font-extrabold text-slate-950 mt-2">${formatINR(p.price)}</div>
+                  <div class="text-[10px] font-medium text-slate-400 mt-0.5">Owner listed • Verified</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Action Row: Call | WhatsApp | Heart -->
+            <div class="flex items-center gap-2 mt-3 pt-2.5 border-t border-slate-100">
+              <a href="tel:${NESTORA_OFFICIAL_PHONE}" class="flex-1 h-10 rounded-xl bg-[#0b1220] hover:bg-[#182338] text-white text-xs font-black flex items-center justify-center gap-1.5 transition">
+                <span>📞</span> <span>Call</span>
+              </a>
+              <a href="https://wa.me/${NESTORA_OFFICIAL_PHONE}?text=${encodeURIComponent('Hello Nestora, interested in [' + ref + '] ' + (p.title || '') + ' - ' + formatINR(p.price))}" target="_blank" class="flex-[1.2] h-10 rounded-xl bg-[#1fba68] hover:bg-[#18a95c] text-white text-xs font-black flex items-center justify-center gap-1.5 transition shadow-sm">
+                <span>💬</span> <span>WhatsApp</span>
+              </a>
+              <button onclick="shareActivePropertyById('${p.id}')" class="w-10 h-10 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 flex items-center justify-center text-sm font-bold shrink-0 transition" title="Share">
+                ♡
+              </button>
+            </div>
+          </article>
+        `;
+      }).join("");
     }
 
-    function removeSingleImage(index) {
-      uploadedImagesList.splice(index, 1);
-      renderUploadedGrid();
-    }
-
-    function syncFromUrlInput() {
-      const val = document.getElementById("propImageUrl").value.trim();
-      if (val) {
-        uploadedImagesList = val.split(",").map(u => u.trim()).filter(Boolean);
-      } else {
-        uploadedImagesList = [];
-      }
-      renderUploadedGrid();
-    }
-
-    function clearUploadedImage() {
-      uploadedImagesList = [];
-      renderUploadedGrid();
-      document.getElementById("propGalleryInput").value = "";
-      document.getElementById("propFilesInput").value = "";
-      document.getElementById("uploadStatusText").classList.add("hidden");
+    function shareActivePropertyById(id) {
+      const p = allProperties.find(x => x.id === id);
+      if (!p) return;
+      const url = window.location.origin + window.location.pathname + `#property=${p.id}`;
+      const text = encodeURIComponent(`*NESTORA PROPERTIES*\n${p.title} (${p.reference_code})\nPrice: ${formatINR(p.price)}\nView details:\n${url}`);
+      window.open(`https://wa.me/?text=${text}`, "_blank");
     }
 
     function parseImages(imgField) {
@@ -1362,267 +1001,51 @@
       return imgField.split(",").map(s => s.trim()).filter(Boolean);
     }
 
-    async function fetchProperties() {
-      try {
-        const { data, error } = await client
-          .from("properties")
-          .select("*")
-          .order("created_at", { ascending: false });
-
-        if (error) throw error;
-        allProperties = data || [];
-
-        const hash = window.location.hash;
-        if (hash.startsWith("#property=")) {
-          const propId = hash.replace("#property=", "");
-          const targetProp = allProperties.find(p => p.id === propId || p.reference_code === propId);
-          if (targetProp) {
-            openDedicatedDetails(targetProp.id, false);
-            return;
-          }
-        }
-
-        renderPublicProperties();
-        if (isAdminLoggedIn) renderAdminDashboard();
-      } catch (err) {
-        console.error("Fetch Error:", err);
-      }
-    }
-
-    function setCategoryFilter(cat) {
-      selectedCategory = cat;
-      document.querySelectorAll(".cat-btn").forEach(btn => {
-        const active = btn.dataset.cat === cat;
-        btn.className = active
-          ? "cat-btn shrink-0 bg-[#0b1220] text-white px-4 py-2 rounded-full text-xs font-bold shadow-sm"
-          : "cat-btn shrink-0 bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full text-xs font-semibold";
-      });
-      applyFilters();
-    }
-
-    /* 3. CLEAN SEARCH AND FILTER ENGINE */
-    function applyFilters() {
-      const search = (document.getElementById("searchInput")?.value || "").toLowerCase().trim();
-      const status = document.getElementById("statusFilter")?.value || "all";
-      const location = document.getElementById("locationFilter")?.value || "all";
-      const budget = document.getElementById("budgetFilter")?.value || "all";
-      let list = [...allProperties];
-
-      if (selectedCategory !== "all") {
-        list = list.filter(p => p.category === selectedCategory);
-      }
-      if (status !== "all") {
-        list = list.filter(p => (p.status || "active") === status);
-      }
-      if (location !== "all") {
-        list = list.filter(p => {
-          const locStr = [p.location, p.city, p.district, p.locality].filter(Boolean).join(" ").toLowerCase();
-          return locStr.includes(location.toLowerCase());
-        });
-      }
-      if (budget !== "all") {
-        list = list.filter(p => {
-          const price = Number(p.price || 0);
-          if (budget === "under_50l") return price < 5000000;
-          if (budget === "50l_1cr") return price >= 5000000 && price <= 10000000;
-          if (budget === "above_1cr") return price > 10000000;
-          return true;
-        });
-      }
-      if (search) {
-        list = list.filter(p => {
-          const searchable = [p.title, p.location, p.reference_code, p.locality, p.city, p.district, p.category]
-            .filter(Boolean).join(" ").toLowerCase();
-          return searchable.includes(search);
-        });
-      }
-
-      document.getElementById("publicListingCount").innerText =
-        `Showing ${list.length} ${list.length === 1 ? "verified property" : "verified properties"}`;
-      renderPropertyCards(list);
-    }
-
-    /* 4. RENDER PROPERTY CARD WITH IMPROVED HIERARCHY */
-    function renderPropertyCards(list) {
-      const grid = document.getElementById("propertiesGrid");
-      if (!list.length) {
-        grid.innerHTML = `
-          <div class="md:col-span-2 xl:col-span-3">
-            <div class="bg-white border border-dashed border-slate-200 rounded-[24px] p-10 text-center">
-              <div class="w-12 h-12 rounded-xl bg-slate-100 mx-auto flex items-center justify-center text-slate-400 text-lg">⌕</div>
-              <div class="brand-font text-base font-extrabold text-slate-800 mt-3">No matching properties found</div>
-              <div class="text-xs text-slate-400 mt-1">Try resetting the filters or keyword search.</div>
-            </div>
-          </div>`;
-        return;
-      }
-
-      grid.innerHTML = list.map((p, index) => {
-        const isSold = p.status === "sold";
-        const ref = p.reference_code || "NP-" + String(index + 1).padStart(3, "0");
-        const area = p.size ? `${p.size} ${p.area_unit || "Cent"}` : "Verified Extent";
-        const imgs = parseImages(p.image_url);
-        const mainImg = imgs[0] || "";
-
-        return `
-          <article onclick="openDedicatedDetails('${p.id}')" class="property-card bg-white border border-[#e7e4dc] soft-shadow cursor-pointer">
-            <div class="property-image">
-              <img src="${escapeHtml(mainImg)}" alt="${escapeHtml(p.title || "Property")}" loading="lazy" class="${isSold ? "grayscale" : ""}" onerror="this.style.display='none'">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none"></div>
-              
-              <span class="absolute top-3.5 left-3.5 bg-[#d86b2c] text-white px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-wider shadow">
-                ${escapeHtml(p.category || "Property")}
-              </span>
-
-              <span class="absolute top-3.5 right-3.5 bg-black/60 backdrop-blur-md text-emerald-400 border border-white/10 px-2.5 py-1 rounded-full text-[9px] font-extrabold flex items-center gap-1 shadow">
-                ✓ Verified
-              </span>
-
-              ${imgs.length > 1 ? `
-                <span class="absolute bottom-3 right-3 bg-black/70 backdrop-blur-md text-white border border-white/15 px-2 py-0.5 rounded-lg text-[9px] font-bold flex items-center gap-1">
-                  📷 ${imgs.length}
-                </span>
-              ` : ''}
-            </div>
-
-            <div class="property-content">
-              <div class="property-reference">
-                ${escapeHtml(ref)}
-              </div>
-
-              <h3 class="property-title line-clamp-2">
-                ${escapeHtml(p.title || "Property")}
-              </h3>
-
-              <div class="property-location truncate">
-                <span>📍</span>
-                <span class="truncate">${escapeHtml(p.location || "Kerala")}</span>
-              </div>
-
-              <div class="property-meta">
-                <span>${escapeHtml(area)}</span>
-                <span>${escapeHtml(p.category || "Plot")}</span>
-                ${p.road_access ? `<span>${escapeHtml(p.road_access)}</span>` : ''}
-              </div>
-
-              <div class="flex items-baseline justify-between mt-2 pt-2 border-t border-slate-100">
-                <div>
-                  <div class="text-[9px] font-bold uppercase text-slate-400">Guide Price</div>
-                  <div class="property-price text-[#0b1220]">${formatINR(p.price)}</div>
-                </div>
-                <div class="text-right">
-                  <span class="text-[9px] font-bold uppercase px-2 py-1 rounded ${isSold ? 'bg-amber-50 text-amber-700' : 'bg-emerald-50 text-emerald-700'}">
-                    ${isSold ? 'Sold' : 'Available'}
-                  </span>
-                </div>
-              </div>
-
-              <div class="property-updated">
-                Owner Listed · Verified Kerala Property
-              </div>
-
-              <div class="grid grid-cols-2 gap-2 mt-3.5 pt-3 border-t border-slate-100" onclick="event.stopPropagation()">
-                <a href="tel:${NESTORA_OFFICIAL_PHONE}" class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition">
-                  <span>📞</span> Call
-                </a>
-                <a href="https://wa.me/${NESTORA_OFFICIAL_PHONE}?text=${encodeURIComponent('Hello Nestora, interested in [' + ref + '] ' + (p.title || '') + ' - ' + formatINR(p.price))}" target="_blank" class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition shadow-sm">
-                  <span>💬</span> WhatsApp
-                </a>
-              </div>
-            </div>
-          </article>
-        `;
-      }).join("");
-    }
-
-    function renderPublicProperties() {
-      applyFilters();
-    }
-
-    function escapeHtml(value) {
-      if (value === null || value === undefined) return "";
-      return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-    }
-
     function openActiveMainImage() {
       if (!activeProperty) return;
       const imgs = parseImages(activeProperty.image_url);
-      const currentSrc = document.getElementById("detailImg").src;
-      let startIdx = imgs.indexOf(currentSrc);
-      if (startIdx === -1) startIdx = 0;
-      openLightboxSlider(imgs, startIdx);
+      const cur = document.getElementById("detailImg").src;
+      openLightboxSlider(imgs, Math.max(0, imgs.indexOf(cur)));
     }
 
     function openDedicatedDetails(id, pushState = true) {
       activeProperty = allProperties.find(p => p.id === id);
       if (!activeProperty) return;
-
       const p = activeProperty;
       const imgs = parseImages(p.image_url);
-      const mainImg = imgs[0] || "";
 
-      document.getElementById("detailImg").src = mainImg;
+      document.getElementById("detailImg").src = imgs[0] || "";
       document.getElementById("detailRef").innerText = p.reference_code || "NP-001";
-      document.getElementById("detailSubRef").innerText = `PROPERTY ID: ${p.reference_code || "NP-001"}`;
-      document.getElementById("detailTypeChip").innerText = p.category || "Residential Land";
+      document.getElementById("detailTypeChip").innerText = p.category || "Residential";
       document.getElementById("detailTitle").innerText = p.title || "Property";
       document.getElementById("detailLocation").innerText = p.location || "Kerala";
       document.getElementById("detailPrice").innerText = formatINR(p.price);
+      document.getElementById("detailSize").innerText = p.size ? `${p.size} Cent` : "On Request";
+      document.getElementById("detailBoxArea").innerText = p.size ? `${p.size} Cent` : "On Request";
+      document.getElementById("detailBoxType").innerText = p.category || "Property";
+      document.getElementById("detailDesc").innerText = p.description || "Verified Kerala property.";
+      document.getElementById("detailRoadAccess").innerText = p.road_access || "Direct tar road access";
+      document.getElementById("detailWaterSupply").innerText = p.water_supply || "Municipal / Well water";
+      document.getElementById("detailElectricity").innerText = p.electricity || "KSEB connection ready";
+      document.getElementById("detailApprovals").innerText = p.approvals || "Clear Title Documents";
 
       const strip = document.getElementById("detailThumbnailsStrip");
       if (imgs.length > 1) {
         strip.classList.remove("hidden");
         strip.innerHTML = imgs.map((u, i) => `
-          <div class="w-14 h-14 rounded-xl overflow-hidden border-2 border-transparent hover:border-[#d5a04f] shrink-0 cursor-pointer transition shadow-sm" onclick="document.getElementById('detailImg').src='${u}'; openLightboxSlider(parseImages(activeProperty.image_url), ${i});">
+          <div class="w-14 h-14 rounded-xl overflow-hidden border-2 border-transparent hover:border-[#d5a04f] shrink-0 cursor-pointer" onclick="document.getElementById('detailImg').src='${u}'; openLightboxSlider(parseImages(activeProperty.image_url), ${i});">
             <img src="${u}" class="w-full h-full object-cover">
           </div>
         `).join("");
       } else {
         strip.classList.add("hidden");
-        strip.innerHTML = "";
       }
 
-      const sizeDisplay = p.size ? `${p.size} ${p.area_unit || "Cent"}` : "On Request";
-      document.getElementById("detailSize").innerText = sizeDisplay;
-      document.getElementById("detailBoxArea").innerText = sizeDisplay;
-      document.getElementById("detailBoxType").innerText = p.category || "Residential";
-      document.getElementById("detailDesc").innerText = p.description || "Verified Kerala property asset managed exclusively under Nestora direct brokerage desk.";
-      document.getElementById("detailRoadAccess").innerText = p.road_access || "Tar road direct access available";
-      document.getElementById("detailWaterSupply").innerText = p.water_supply || "Groundwater & municipal pipeline accessible";
-      document.getElementById("detailElectricity").innerText = p.electricity || "KSEB connection point ready";
-      document.getElementById("detailApprovals").innerText = p.approvals || "Clear title, single owner & tax updated";
-      document.getElementById("detailFeaturedBadge").style.display = p.is_featured ? "inline-flex" : "none";
+      const waMsg = encodeURIComponent(`Hello Nestora Properties, interested in [${p.reference_code}] ${p.title} (${formatINR(p.price)})`);
+      document.getElementById("detailWhatsappBtn").href = `https://wa.me/${NESTORA_OFFICIAL_PHONE}?text=${waMsg}`;
+      document.getElementById("detailCallBtn").href = `tel:${NESTORA_OFFICIAL_PHONE}`;
 
-      const mapsWrap = document.getElementById("detailMapsBtnWrap");
-      if (p.maps_url) {
-        mapsWrap.innerHTML = `
-          <a href="${escapeHtml(p.maps_url)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-[#f8efdf] border border-[#ead7b4] text-[#9b6c27] px-3 py-1.5 rounded-xl text-[10px] font-extrabold">
-            Map <span>↗</span>
-          </a>`;
-      } else {
-        mapsWrap.innerHTML = "";
-      }
-
-      const isSold = p.status === "sold";
-      const statusBadge = document.getElementById("detailStatusBadge");
-      statusBadge.innerText = isSold ? "SOLD OUT" : "AVAILABLE";
-      statusBadge.className = isSold
-        ? "bg-amber-500 text-[#0b1220] text-[10px] font-extrabold px-3 py-1 rounded-full uppercase shadow"
-        : "bg-emerald-500 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase shadow";
-
-      const targetPhone = NESTORA_OFFICIAL_PHONE;
-      const waMsg = encodeURIComponent(`Hello Nestora Properties, I am interested in [${p.reference_code || p.title}] at ${p.location} (${formatINR(p.price)}). Please provide more details.`);
-      document.getElementById("detailWhatsappBtn").href = `https://wa.me/${targetPhone}?text=${waMsg}`;
-      document.getElementById("detailCallBtn").href = `tel:${targetPhone}`;
-
-      if (pushState) {
-        history.pushState({ view: "details", id: p.id }, "", `#property=${p.id}`);
-      }
+      if (pushState) history.pushState({ view: "details", id: p.id }, "", `#property=${p.id}`);
       renderView("details");
     }
 
@@ -1632,19 +1055,10 @@
     }
 
     function shareActiveProperty() {
-      if (!activeProperty) return;
-      const currentUrl = window.location.origin + window.location.pathname + `#property=${activeProperty.id}`;
-      const text = encodeURIComponent(
-        `*NESTORA PROPERTIES KERALA*\n` +
-        `Verified Asset: ${activeProperty.title}\n` +
-        `Ref: ${activeProperty.reference_code || "NP-DIRECT"}\n` +
-        `Location: ${activeProperty.location}\n` +
-        `Guide Price: ${formatINR(activeProperty.price)}\n\n` +
-        `👉 *View Full Details & Photos Here:*\n${currentUrl}`
-      );
-      window.open(`https://wa.me/?text=${text}`, "_blank");
+      if (activeProperty) shareActivePropertyById(activeProperty.id);
     }
 
+    /* ADMIN DASHBOARD (MATCHING RIGHT SCREEN) */
     function renderAdminDashboard() {
       const total = allProperties.length;
       const sold = allProperties.filter(p => p.status === "sold").length;
@@ -1656,359 +1070,166 @@
       document.getElementById("statSold").innerText = sold;
       document.getElementById("statReserved").innerText = reserved;
 
-      renderAdminDesktopTable();
-      renderAdminMobileList();
+      renderAdminDirectoryList(allProperties);
     }
 
-    /* ADMIN DESKTOP TABLE */
-    function renderAdminDesktopTable() {
-      const tbody = document.getElementById("adminAssetTableBody");
-      if (!allProperties.length) {
-        tbody.innerHTML = `
-          <tr>
-            <td colspan="5" class="py-12 text-center">
-              <div class="text-sm font-bold text-slate-700">No properties yet</div>
-              <div class="text-xs text-slate-400 mt-1">Add your first property to start the catalogue.</div>
-            </td>
-          </tr>`;
+    function applyAdminSearch(val) {
+      const s = val.toLowerCase().trim();
+      if (!s) {
+        renderAdminDirectoryList(allProperties);
+        return;
+      }
+      const filtered = allProperties.filter(p => {
+        return [p.title, p.reference_code, p.location].filter(Boolean).join(" ").toLowerCase().includes(s);
+      });
+      renderAdminDirectoryList(filtered);
+    }
+
+    function renderAdminDirectoryList(list) {
+      const c = document.getElementById("adminPropertyList");
+      if (!list.length) {
+        c.innerHTML = `<div class="text-center py-6 text-xs text-slate-400">No properties in directory</div>`;
         return;
       }
 
-      tbody.innerHTML = allProperties.map(p => {
-        const sold = p.status === "sold";
+      c.innerHTML = list.map(p => {
         const imgs = parseImages(p.image_url);
         const mainImg = imgs[0] || "";
+        const isSold = p.status === "sold";
 
         return `
-          <tr class="hover:bg-[#fbfaf7] transition cursor-pointer" onclick="openAdminPropertyDetails('${p.id}')">
-            <td class="py-3.5 px-3">
-              <div class="flex items-center gap-3">
-                <div class="relative w-11 h-11 rounded-xl overflow-hidden bg-slate-100 shrink-0">
-                  <img src="${escapeHtml(mainImg)}" class="w-full h-full object-cover" onerror="this.style.display='none'">
-                  ${imgs.length > 1 ? `<span class="absolute bottom-0 right-0 bg-black/80 text-white font-bold text-[8px] px-1 rounded-tl">${imgs.length}</span>` : ''}
-                </div>
-                <div class="min-w-0">
-                  <div class="text-[9px] font-mono font-bold text-[#b17c31]">${escapeHtml(p.reference_code || "-")}</div>
-                  <div class="text-xs font-extrabold text-slate-900 truncate max-w-[260px] mt-0.5">${escapeHtml(p.title || "Property")}</div>
-                  <div class="text-[10px] text-slate-400 truncate max-w-[260px]">${escapeHtml(p.location || "-")}</div>
-                </div>
-              </div>
-            </td>
-
-            <td class="py-3.5 px-3">
-              <div class="text-xs font-extrabold text-slate-900">${formatINR(p.price)}</div>
-              <div class="text-[9px] text-slate-400 mt-0.5">${escapeHtml(p.category || "-")}</div>
-            </td>
-
-            <td class="py-3.5 px-3">
-              <div class="text-xs font-bold text-slate-800">${escapeHtml(p.owner_name || "Owner")}</div>
-              <div class="mt-0.5">
-                ${p.owner_phone ? `
-                  <a href="tel:${p.owner_phone}" onclick="event.stopPropagation()" class="inline-flex items-center gap-1.5 text-[10.5px] font-extrabold text-[#b17c31] hover:underline bg-[#f8efdf] px-2 py-0.5 rounded-lg">
-                    <span>📞</span> ${escapeHtml(p.owner_phone)}
-                  </a>
-                ` : `<span class="text-[10px] text-slate-400">Not recorded</span>`}
-              </div>
-            </td>
-
-            <td class="py-3.5 px-3">
-              <button onclick="event.stopPropagation(); toggleSoldStatus('${p.id}', '${p.status || "active"}')" class="${sold ? "bg-amber-50 text-amber-700 border-amber-200" : "bg-emerald-50 text-emerald-700 border-emerald-200"} border px-2.5 py-1 rounded-full text-[9px] font-extrabold uppercase">
-                ${sold ? "Sold" : "Active"}
-              </button>
-            </td>
-
-            <td class="py-3.5 px-3">
-              <div class="flex items-center justify-end gap-1.5">
-                <button onclick="event.stopPropagation(); editProperty('${p.id}')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-2.5 py-1.5 rounded-lg text-[10px] font-bold">Edit</button>
-                <button onclick="event.stopPropagation(); downloadFlyer('${p.id}')" class="bg-[#f8efdf] hover:bg-[#f1e2c5] text-[#9b6c27] px-2.5 py-1.5 rounded-lg text-[10px] font-bold">Flyer</button>
-                <button onclick="event.stopPropagation(); deleteProperty('${p.id}')" class="bg-red-50 hover:bg-red-100 text-red-600 px-2.5 py-1.5 rounded-lg text-[10px] font-bold">Delete</button>
-              </div>
-            </td>
-          </tr>
-        `;
-      }).join("");
-    }
-
-    /* ADMIN MOBILE LIST */
-    function renderAdminMobileList() {
-      const container = document.getElementById("adminMobilePropertyList");
-      if (!allProperties.length) {
-        container.innerHTML = `
-          <div class="text-center py-10">
-            <div class="text-sm font-bold text-slate-700">No properties yet</div>
-            <div class="text-xs text-slate-400 mt-1">Add your first listing.</div>
-          </div>`;
-        return;
-      }
-
-      container.innerHTML = allProperties.map(p => {
-        const sold = p.status === "sold";
-        const imgs = parseImages(p.image_url);
-        const mainImg = imgs[0] || "";
-
-        return `
-          <div class="border border-slate-200 rounded-[18px] p-3 bg-[#fcfcfb] cursor-pointer hover:border-[#d5a04f] transition" onclick="openAdminPropertyDetails('${p.id}')">
+          <div class="border border-slate-200 rounded-[20px] p-3 bg-[#fcfcfb]">
             <div class="flex gap-3">
-              <div class="relative w-[72px] h-[72px] rounded-xl overflow-hidden bg-slate-100 shrink-0">
-                <img src="${escapeHtml(mainImg)}" class="w-full h-full object-cover" onerror="this.style.display='none'">
-                ${imgs.length > 1 ? `<span class="absolute bottom-1 right-1 bg-black/70 text-white font-bold text-[8px] px-1 py-0.5 rounded">📷 ${imgs.length}</span>` : ''}
+              <div class="relative w-[78px] h-[78px] rounded-xl overflow-hidden bg-slate-900 shrink-0 cursor-pointer" onclick="openLightboxSlider(parseImages('${p.image_url}'), 0)">
+                <img src="${escapeHtml(mainImg)}" class="w-full h-full object-cover">
+                <span class="absolute top-1 left-1 bg-black/80 text-[7px] text-[#f3dfb7] font-black px-1.5 py-0.5 rounded">FOR SALE</span>
               </div>
-              
               <div class="min-w-0 flex-1">
-                <div class="flex items-center justify-between gap-2">
-                  <span class="text-[9px] font-mono font-bold text-[#b17c31]">${escapeHtml(p.reference_code || "-")}</span>
-                  <button onclick="event.stopPropagation(); toggleSoldStatus('${p.id}', '${p.status || "active"}')" class="${sold ? "bg-amber-50 text-amber-700" : "bg-emerald-50 text-emerald-700"} px-2 py-0.5 rounded-full text-[8px] font-extrabold uppercase">
-                    ${sold ? "Sold" : "Active"}
-                  </button>
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-mono font-bold text-[#b17c31]">${escapeHtml(p.reference_code || "NP-000")}</span>
+                  <span class="text-[8px] font-extrabold uppercase px-2 py-0.5 rounded-full ${isSold ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'}">
+                    ${isSold ? 'Sold' : 'Active'}
+                  </span>
                 </div>
-                <div class="text-xs font-extrabold text-slate-900 mt-0.5 line-clamp-1">${escapeHtml(p.title || "Property")}</div>
-                <div class="text-[10px] text-slate-400 truncate">${escapeHtml(p.location || "-")}</div>
-                <div class="text-xs font-extrabold text-[#9b6c27] mt-0.5">${formatINR(p.price)}</div>
+                <div class="text-xs font-black text-slate-900 truncate mt-0.5">${escapeHtml(p.title || "Property")}</div>
+                <div class="text-[10px] text-slate-400 truncate mt-0.5">📍 ${escapeHtml(p.location || "Kerala")}</div>
+                <div class="text-xs font-extrabold text-slate-950 mt-1">${formatINR(p.price)}</div>
                 
-                <div class="text-[10px] text-slate-500 mt-1 flex items-center justify-between">
-                  <span class="font-bold text-slate-400">Owner:</span>
+                <div class="flex items-center justify-between mt-1 text-[10px]">
+                  <span class="text-slate-400 font-bold">Owner:</span>
                   ${p.owner_phone ? `
-                    <a href="tel:${p.owner_phone}" onclick="event.stopPropagation()" class="font-bold text-[#b17c31] bg-[#f8efdf] px-1.5 py-0.5 rounded flex items-center gap-1">
-                      <span>📞</span> ${escapeHtml(p.owner_phone)}
+                    <a href="tel:${p.owner_phone}" class="text-[#b17c31] font-bold bg-[#f8efdf] px-1.5 py-0.5 rounded">
+                      📞 ${escapeHtml(p.owner_phone)}
                     </a>
-                  ` : `<span class="text-slate-400">Not recorded</span>`}
+                  ` : `<span class="text-slate-400">Not saved</span>`}
                 </div>
               </div>
             </div>
 
-            <div class="grid grid-cols-3 gap-2 mt-2.5">
-              <button onclick="event.stopPropagation(); editProperty('${p.id}')" class="py-2 rounded-lg bg-slate-100 text-slate-700 text-[10px] font-bold">Edit</button>
-              <button onclick="event.stopPropagation(); downloadFlyer('${p.id}')" class="py-2 rounded-lg bg-[#f8efdf] text-[#9b6c27] text-[10px] font-bold">Flyer</button>
-              <button onclick="event.stopPropagation(); deleteProperty('${p.id}')" class="py-2 rounded-lg bg-red-50 text-red-600 text-[10px] font-bold">Delete</button>
+            <div class="grid grid-cols-2 gap-2 mt-2.5 pt-2 border-t border-slate-100">
+              <button onclick="editProperty('${p.id}')" class="py-2 rounded-xl bg-[#0b1220] text-white text-[11px] font-bold">Edit</button>
+              <button onclick="downloadFlyer('${p.id}')" class="py-2 rounded-xl bg-[#f8efdf] text-[#9b6c27] text-[11px] font-bold">Flyer</button>
             </div>
           </div>
         `;
       }).join("");
     }
 
-    function switchAdminTab(tab) {
-      const stats = document.getElementById("overviewStatsSection");
-      const directory = document.getElementById("propertyTableSection");
-      const form = document.getElementById("propertyFormSection");
-      const overviewBtn = document.getElementById("tabBtnOverview");
-      const propsBtn = document.getElementById("tabBtnProps");
-
-      [overviewBtn, propsBtn].forEach(btn => {
-        if (!btn) return;
-        btn.className = "admin-tab shrink-0 px-4 py-2.5 text-xs font-semibold text-slate-400 border-b-2 border-transparent";
-      });
-
-      if (tab === "overview") {
-        stats.classList.remove("hidden");
-        directory.classList.remove("hidden");
-        form.classList.add("hidden");
-        if (overviewBtn) overviewBtn.className = "admin-tab shrink-0 px-4 py-2.5 text-xs font-bold text-[#d5a04f] border-b-2 border-[#d5a04f]";
-      }
-
-      if (tab === "properties") {
-        stats.classList.add("hidden");
-        directory.classList.remove("hidden");
-        form.classList.add("hidden");
-        if (propsBtn) propsBtn.className = "admin-tab shrink-0 px-4 py-2.5 text-xs font-bold text-[#d5a04f] border-b-2 border-[#d5a04f]";
-      }
-
-      if (tab === "form") {
-        stats.classList.add("hidden");
-        directory.classList.add("hidden");
-        form.classList.remove("hidden");
-      }
-
+    function switchAdminTab(t) {
+      document.getElementById("overviewStatsSection").classList.toggle("hidden", t !== "overview");
+      document.getElementById("propertyTableSection").classList.toggle("hidden", t === "form");
+      document.getElementById("propertyFormSection").classList.toggle("hidden", t !== "form");
+      document.getElementById("tabBtnOverview").className = t === "overview" ? "px-4 py-2.5 text-xs font-bold text-[#d5a04f] border-b-2 border-[#d5a04f]" : "px-4 py-2.5 text-xs font-semibold text-slate-400 border-b-2 border-transparent";
+      document.getElementById("tabBtnProps").className = t === "properties" ? "px-4 py-2.5 text-xs font-bold text-[#d5a04f] border-b-2 border-[#d5a04f]" : "px-4 py-2.5 text-xs font-semibold text-slate-400 border-b-2 border-transparent";
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function openAddProperty() {
-      const form = document.getElementById("propertyForm");
-      form.reset();
-
+      document.getElementById("propertyForm").reset();
       document.getElementById("editingRecordId").value = "";
       document.getElementById("formHeading").innerText = "Add Property";
       document.getElementById("savePropertyBtn").innerText = "Save Property";
       document.getElementById("propRef").value = generateNextPropertyId();
-      document.getElementById("propDistrict").value = "Ernakulam";
-      document.getElementById("propCity").value = "Aluva";
-      document.getElementById("propCategory").value = "Residential Land";
-      document.getElementById("propStatus").value = "active";
-      document.getElementById("propIsFeatured").checked = false;
-      
-      clearUploadedImage();
+      uploadedImagesList = [];
+      renderUploadedGrid();
       switchAdminTab("form");
     }
 
-    /* ADMIN DETAILS MODAL */
-    function openAdminPropertyDetails(id) {
-      const p = allProperties.find(item => item.id === id);
-      if (!p || !isAdminLoggedIn) return;
-
-      let modal = document.getElementById("adminPropertyDetailsModal");
-      if (!modal) {
-        modal = document.createElement("div");
-        modal.id = "adminPropertyDetailsModal";
-        modal.className = "fixed inset-0 z-[80] hidden items-center justify-center p-3 sm:p-4 bg-[#07101d]/85 backdrop-blur-md";
-        modal.innerHTML = `
-          <div class="w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white rounded-[26px] shadow-2xl relative">
-            <button onclick="closeAdminPropertyDetails()" class="absolute top-3 right-3 z-30 w-8 h-8 rounded-full bg-black/60 hover:bg-black text-white font-bold flex items-center justify-center text-xs shadow-md transition">
-              ✕
-            </button>
-            <div id="adminPropertyDetailsContent"></div>
-          </div>`;
-        document.body.appendChild(modal);
-      }
-
-      const safe = escapeHtml;
-      const size = p.size ? `${p.size} ${p.area_unit || "Cent"}` : "On Request";
-      const status = p.status === "sold" ? "Sold Out" : "Available";
-      const imgs = parseImages(p.image_url);
-      const mainImg = imgs[0] || "";
-
-      document.getElementById("adminPropertyDetailsContent").innerHTML = `
-        <div class="relative">
-          <div class="h-60 sm:h-72 bg-slate-950 overflow-hidden relative cursor-pointer" onclick="const all = parseImages('${p.image_url}'); const cur = document.getElementById('adminDetailMainImg').src; openLightboxSlider(all, Math.max(0, all.indexOf(cur)));">
-            <img id="adminDetailMainImg" src="${safe(mainImg)}" alt="Property" class="w-full h-full object-cover" onerror="this.style.display='none'">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none"></div>
-
-            <div class="absolute top-3.5 left-3.5 flex gap-2 pointer-events-none">
-              <span class="bg-[#d5a04f] text-[#0b1220] px-2.5 py-1 rounded-full text-[9.5px] font-black uppercase shadow">
-                ${safe(p.category || "Property")}
-              </span>
-              <span class="bg-black/60 text-white px-2 py-0.5 rounded-lg text-[9.5px] font-mono font-bold">
-                ${safe(p.reference_code || "NP-001")}
-              </span>
-            </div>
-
-            <div class="absolute bottom-3 right-3 bg-black/70 backdrop-blur-sm text-white text-[9.5px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1 pointer-events-none">
-              <span>🔍 Tap for Fullscreen Slider</span>
-            </div>
-
-            <div class="absolute bottom-3.5 left-3.5 right-24 pointer-events-none">
-              <span class="text-[8.5px] font-extrabold tracking-wider uppercase ${p.status === 'sold' ? 'text-amber-400' : 'text-emerald-400'}">
-                ● ${safe(status)}
-              </span>
-              <h2 class="brand-font text-lg sm:text-xl font-black text-white leading-tight mt-0.5 drop-shadow">
-                ${safe(p.title || "Property")}
-              </h2>
-              <div class="text-[11px] text-slate-300 mt-0.5 flex items-center gap-1 font-semibold">
-                <span>⌖</span> ${safe(p.location || "Kerala")}
-              </div>
-            </div>
-          </div>
-
-          ${imgs.length > 1 ? `
-            <div class="flex gap-2 p-2.5 bg-slate-100 overflow-x-auto no-scrollbar border-b border-slate-200">
-              ${imgs.map((u, idx) => `
-                <div class="relative w-14 h-14 rounded-lg overflow-hidden border-2 border-transparent hover:border-[#d5a04f] shrink-0 cursor-pointer shadow-sm transition" 
-                     onclick="document.getElementById('adminDetailMainImg').src='${u}'; openLightboxSlider(parseImages('${p.image_url}'), ${idx});">
-                  <img src="${u}" class="w-full h-full object-cover">
-                </div>
-              `).join("")}
-            </div>
-          ` : ''}
-
-          <div class="p-4 sm:p-5 space-y-3.5">
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              <div class="rounded-xl bg-[#f8fafc] border border-slate-100 p-3">
-                <div class="text-[8.5px] uppercase font-bold text-slate-400">Guide Price</div>
-                <div class="text-sm font-black text-[#9b6c27] mt-0.5">${formatINR(p.price)}</div>
-              </div>
-              <div class="rounded-xl bg-[#f8fafc] border border-slate-100 p-3">
-                <div class="text-[8.5px] uppercase font-bold text-slate-400">Land Area</div>
-                <div class="text-xs font-black text-slate-800 mt-0.5">${safe(size)}</div>
-              </div>
-              <div class="rounded-xl bg-[#f8fafc] border border-slate-100 p-3">
-                <div class="text-[8.5px] uppercase font-bold text-slate-400">Building Area</div>
-                <div class="text-xs font-black text-slate-800 mt-0.5">${safe(p.building_area || "-")} Sq.Ft</div>
-              </div>
-              <div class="rounded-xl bg-[#f8fafc] border border-slate-100 p-3">
-                <div class="text-[8.5px] uppercase font-bold text-slate-400">Status</div>
-                <div class="text-xs font-black text-slate-800 mt-0.5">${safe(status)}</div>
-              </div>
-            </div>
-
-            <div class="grid sm:grid-cols-2 gap-3">
-              <div class="rounded-xl border border-slate-100 p-3.5 bg-[#fbfbfa]">
-                <div class="section-label text-[8.5px]">Property Overview</div>
-                <p class="text-xs text-slate-600 leading-relaxed mt-1.5 whitespace-pre-line">${safe(p.description || "No description added.")}</p>
-              </div>
-
-              <div class="rounded-xl border border-[#ead7b4] bg-[#fcf7ed] p-3.5 flex flex-col justify-between">
-                <div>
-                  <div class="section-label text-[8.5px]">Original Owner (Admin Confidential)</div>
-                  <div class="text-xs font-black text-slate-900 mt-1">${safe(p.owner_name || "Owner")}</div>
-                </div>
-                
-                <div class="mt-2.5">
-                  ${p.owner_phone ? `
-                    <a href="tel:${p.owner_phone}" class="inline-flex items-center gap-1.5 bg-[#d5a04f] hover:bg-[#e2b365] text-[#0b1220] font-black px-3 py-1.5 rounded-lg text-xs shadow transition w-full justify-center">
-                      <span>📞 Call Owner:</span> ${safe(p.owner_phone)}
-                    </a>
-                  ` : `<span class="text-xs text-slate-400">No owner number recorded</span>`}
-                </div>
-              </div>
-            </div>
-
-            <div class="flex gap-2 justify-end pt-2 border-t border-slate-100">
-              <button onclick="closeAdminPropertyDetails(); editProperty('${safe(p.id)}')" class="px-3.5 py-2 rounded-xl bg-[#0b1220] text-white text-xs font-bold">Edit</button>
-              <button onclick="downloadFlyer('${safe(p.id)}')" class="px-3.5 py-2 rounded-xl bg-[#f8efdf] text-[#9b6c27] text-xs font-bold">Flyer</button>
-            </div>
-          </div>
-        </div>`;
-
-      modal.classList.remove("hidden");
-      modal.classList.add("flex");
-    }
-
-    function closeAdminPropertyDetails() {
-      const modal = document.getElementById("adminPropertyDetailsModal");
-      if (!modal) return;
-      modal.classList.add("hidden");
-      modal.classList.remove("flex");
-    }
-
     function editProperty(id) {
-      const p = allProperties.find(item => item.id === id);
+      const p = allProperties.find(x => x.id === id);
       if (!p) return;
-
       document.getElementById("editingRecordId").value = p.id;
       document.getElementById("formHeading").innerText = "Edit Property";
       document.getElementById("savePropertyBtn").innerText = "Update Property";
-
       document.getElementById("propRef").value = p.reference_code || "";
       document.getElementById("propCategory").value = p.category || "Residential Land";
       document.getElementById("propTitle").value = p.title || "";
       document.getElementById("propStatus").value = p.status || "active";
-      document.getElementById("propIsFeatured").checked = p.is_featured || false;
-      document.getElementById("propDistrict").value = p.district || "Ernakulam";
-      document.getElementById("propCity").value = p.city || "Aluva";
-      document.getElementById("propLocality").value = p.locality || "";
-      document.getElementById("propLocation").value = p.location || "";
-      document.getElementById("propMapsUrl").value = p.maps_url || "";
       document.getElementById("propPrice").value = p.price || "";
       document.getElementById("propSize").value = p.size || "";
-      document.getElementById("propAreaUnit").value = p.area_unit || "Cent";
-      document.getElementById("propBuildingArea").value = p.building_area || "";
+      document.getElementById("propLocation").value = p.location || "";
       document.getElementById("propRoadAccess").value = p.road_access || "";
       document.getElementById("propWaterSupply").value = p.water_supply || "";
-      document.getElementById("propElectricity").value = p.electricity || "";
-      document.getElementById("propApprovals").value = p.approvals || "";
       document.getElementById("propImageUrl").value = p.image_url || "";
       document.getElementById("propDescription").value = p.description || "";
       document.getElementById("propOwnerName").value = p.owner_name || "";
       document.getElementById("propOwnerPhone").value = p.owner_phone || "";
 
-      // FIX: Load existing photos directly to upload preview grid
-      if (p.image_url) {
-        uploadedImagesList = parseImages(p.image_url);
-        renderUploadedGrid();
-      } else {
-        uploadedImagesList = [];
-        renderUploadedGrid();
-      }
-
+      uploadedImagesList = parseImages(p.image_url);
+      renderUploadedGrid();
       switchAdminTab("form");
+    }
+
+    /* FILE UPLOADS */
+    async function handleMultipleFileUpload(event) {
+      const files = Array.from(event.target.files);
+      if (!files.length) return;
+      const status = document.getElementById("uploadStatusText");
+      status.classList.remove("hidden");
+      status.innerText = `Uploading ${files.length} photo(s)...`;
+
+      try {
+        for (let file of files) {
+          if (!file.type || !file.type.startsWith('image/')) continue;
+          const ext = file.name.split('.').pop() || 'jpg';
+          const fileName = `nestora_${Date.now()}_${Math.random().toString(36).substring(2,7)}.${ext}`;
+          const { error } = await client.storage.from('property-images').upload(fileName, file, { cacheControl: '3600', upsert: true });
+          if (error) throw error;
+          const { data: pub } = client.storage.from('property-images').getPublicUrl(fileName);
+          if (pub?.publicUrl) uploadedImagesList.push(pub.publicUrl);
+        }
+        renderUploadedGrid();
+        status.innerText = "✓ Uploaded!";
+      } catch (err) {
+        alert("Upload error: " + err.message);
+      } finally {
+        event.target.value = "";
+      }
+    }
+
+    function renderUploadedGrid() {
+      const c = document.getElementById("multiImagePreviewContainer");
+      const g = document.getElementById("multiImageGrid");
+      const urlInput = document.getElementById("propImageUrl");
+      if (!uploadedImagesList.length) {
+        c.classList.add("hidden");
+        urlInput.value = "";
+        return;
+      }
+      c.classList.remove("hidden");
+      urlInput.value = uploadedImagesList.join(", ");
+      g.innerHTML = uploadedImagesList.map((u, i) => `
+        <div class="relative h-16 rounded-lg overflow-hidden border border-slate-200">
+          <img src="${u}" class="w-full h-full object-cover">
+          <button type="button" onclick="uploadedImagesList.splice(${i},1); renderUploadedGrid();" class="absolute top-1 right-1 bg-black text-white text-[8px] w-4 h-4 rounded-full font-bold">✕</button>
+        </div>
+      `).join("");
+    }
+
+    function syncFromUrlInput() {
+      const v = document.getElementById("propImageUrl").value.trim();
+      uploadedImagesList = v ? v.split(",").map(s => s.trim()).filter(Boolean) : [];
+      renderUploadedGrid();
     }
 
     async function handleFormSubmit(e) {
@@ -2016,27 +1237,18 @@
       const btn = document.getElementById("savePropertyBtn");
       const editingId = document.getElementById("editingRecordId").value;
       btn.disabled = true;
-      btn.innerText = editingId ? "Updating..." : "Publishing...";
+      btn.innerText = "Saving...";
 
       const payload = {
         reference_code: document.getElementById("propRef").value.trim(),
         title: document.getElementById("propTitle").value.trim(),
         category: document.getElementById("propCategory").value,
         status: document.getElementById("propStatus").value,
-        is_featured: document.getElementById("propIsFeatured").checked,
-        district: document.getElementById("propDistrict").value.trim(),
-        city: document.getElementById("propCity").value.trim(),
-        locality: document.getElementById("propLocality").value.trim(),
         location: document.getElementById("propLocation").value.trim(),
-        maps_url: document.getElementById("propMapsUrl").value.trim(),
         price: Number(document.getElementById("propPrice").value),
         size: document.getElementById("propSize").value.trim(),
-        area_unit: document.getElementById("propAreaUnit").value,
-        building_area: document.getElementById("propBuildingArea").value.trim(),
         road_access: document.getElementById("propRoadAccess").value.trim(),
         water_supply: document.getElementById("propWaterSupply").value.trim(),
-        electricity: document.getElementById("propElectricity").value.trim(),
-        approvals: document.getElementById("propApprovals").value.trim(),
         image_url: document.getElementById("propImageUrl").value.trim(),
         description: document.getElementById("propDescription").value.trim(),
         owner_name: document.getElementById("propOwnerName").value.trim() || "Owner",
@@ -2044,135 +1256,102 @@
       };
 
       try {
-        let error;
+        let err;
         if (editingId) {
           const res = await client.from("properties").update(payload).eq("id", editingId);
-          error = res.error;
+          err = res.error;
         } else {
           const res = await client.from("properties").insert([payload]);
-          error = res.error;
+          err = res.error;
         }
-
-        if (error) throw error;
-        document.getElementById("propertyForm").reset();
-        document.getElementById("editingRecordId").value = "";
-        clearUploadedImage();
+        if (err) throw err;
         await fetchProperties();
         switchAdminTab("properties");
-        alert(editingId ? "Property updated successfully!" : "Property added successfully!");
+        alert(editingId ? "Property updated!" : "Property added!");
       } catch (err) {
-        alert("Operation failed: " + err.message);
+        alert("Save error: " + err.message);
       } finally {
         btn.disabled = false;
         btn.innerText = editingId ? "Update Property" : "Save Property";
       }
     }
 
-    async function toggleSoldStatus(id, st) {
-      try {
-        const newStatus = st === "sold" ? "active" : "sold";
-        const { error } = await client.from("properties").update({ status: newStatus }).eq("id", id);
-        if (error) throw error;
-        await fetchProperties();
-        if (isAdminLoggedIn) renderAdminDashboard();
-      } catch (err) {
-        alert("Status update failed: " + err.message);
-      }
-    }
-
-    async function deleteProperty(id) {
-      if (!confirm("Permanently delete this property?")) return;
-      try {
-        const { error } = await client.from("properties").delete().eq("id", id);
-        if (error) throw error;
-        await fetchProperties();
-        if (isAdminLoggedIn) renderAdminDashboard();
-      } catch (err) {
-        alert("Delete failed: " + err.message);
-      }
-    }
-
-    /* DOWNLOAD FLYER */
     async function downloadFlyer(id) {
-      const p = allProperties.find(item => item.id === id);
+      const p = allProperties.find(x => x.id === id);
       if (!p) return;
-
-      document.getElementById("flyerRefBadge").innerText = `REF: ${p.reference_code || "NP-001"}`;
-      document.getElementById("flyerCatBadge").innerText = (p.category || "RESIDENTIAL LAND").toUpperCase();
-      document.getElementById("flyerLocation").innerText = (p.location || "ERNAKULAM, KERALA").toUpperCase();
-      document.getElementById("flyerTitle").innerText = p.title || "Exclusive Kerala Property";
-      document.getElementById("flyerSize").innerText = p.size ? `${p.size} ${p.area_unit || "Cent"}` : "Verified Extent";
-      document.getElementById("flyerRoad").innerText = p.road_access || "Direct Tar Road";
+      document.getElementById("flyerRefBadge").innerText = p.reference_code || "NP-001";
+      document.getElementById("flyerCatBadge").innerText = (p.category || "COMMERCIAL").toUpperCase();
+      document.getElementById("flyerLocation").innerText = `📍 ${(p.location || "ERNAKULAM").toUpperCase()}`;
+      document.getElementById("flyerTitle").innerText = p.title || "Exclusive Property";
       document.getElementById("flyerPrice").innerText = formatINR(p.price);
-
-      const imgs = parseImages(p.image_url);
       const img = document.getElementById("flyerImg");
-      img.src = imgs[0] || "";
+      img.src = parseImages(p.image_url)[0] || "";
 
-      const generate = async () => {
+      img.onload = async () => {
         try {
-          const poster = document.getElementById("flyerPoster");
-          const canvas = await html2canvas(poster, {
-            useCORS: true,
-            scale: 2,
-            backgroundColor: "#f8f9fb"
-          });
+          const canvas = await html2canvas(document.getElementById("flyerPoster"), { useCORS: true, scale: 2 });
           const a = document.createElement("a");
-          a.download = `Nestora-${p.reference_code || "Brochure"}.jpg`;
+          a.download = `Nestora-${p.reference_code}.jpg`;
           a.href = canvas.toDataURL("image/jpeg", 0.95);
           a.click();
-        } catch (err) {
-          alert("Flyer generation failed. Please verify that the image URL allows cross-origin requests.");
+        } catch {
+          alert("Flyer creation failed.");
         }
       };
+      if (img.complete) img.onload();
+    }
 
-      img.onload = generate;
-      if (img.complete) generate();
+    async function fetchProperties() {
+      try {
+        const { data, error } = await client.from("properties").select("*").order("created_at", { ascending: false });
+        if (error) throw error;
+        allProperties = data || [];
+        applyFilters();
+        if (isAdminLoggedIn) renderAdminDashboard();
+      } catch (err) {
+        console.error(err);
+      }
     }
 
     function handleAdminButtonClick() {
       if (isAdminLoggedIn) switchToAdminDashboard();
       else toggleAdminModal(true);
     }
-
-    function toggleAdminModal(show) {
-      const modal = document.getElementById("adminAuthModal");
-      modal.classList.toggle("hidden", !show);
-      modal.classList.toggle("flex", show);
-      if (show) {
-        setTimeout(() => { document.getElementById("adminPassInput").focus(); }, 100);
-      }
+    function toggleAdminModal(s) {
+      document.getElementById("adminAuthModal").classList.toggle("hidden", !s);
+      document.getElementById("adminAuthModal").classList.toggle("flex", s);
+      if (s) setTimeout(() => document.getElementById("adminPassInput").focus(), 100);
     }
-
     function verifyAdminPasscode() {
-      const input = document.getElementById("adminPassInput");
-      if (input.value === ADMIN_PASSCODE) {
+      const inp = document.getElementById("adminPassInput");
+      if (inp.value === ADMIN_PASSCODE) {
         isAdminLoggedIn = true;
         localStorage.setItem("nestora_admin_session", "true");
-        input.value = "";
+        inp.value = "";
         toggleAdminModal(false);
         switchToAdminDashboard();
       } else {
         alert("Incorrect passcode!");
-        input.select();
       }
     }
-
     function switchToAdminDashboard() {
       history.pushState({ view: "admin" }, "", "#admin");
       renderView("admin");
       renderAdminDashboard();
     }
-
     function switchToPublicView() {
       history.pushState({ view: "catalogue" }, "", window.location.pathname);
       renderView("catalogue");
     }
-
     function logoutAdmin() {
       isAdminLoggedIn = false;
       localStorage.removeItem("nestora_admin_session");
       switchToPublicView();
+    }
+
+    function escapeHtml(s) {
+      if (!s) return "";
+      return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     }
 
     renderView("catalogue");
